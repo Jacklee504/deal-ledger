@@ -1,2 +1,2 @@
-paapi5-python-sdk==1.0.0
+python-amazon-paapi==5.0.5
 

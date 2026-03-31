@@ -2,12 +2,12 @@
 
 Usage:
   Requires env vars: AMZ_PAAPI_ACCESS_KEY, AMZ_PAAPI_SECRET_KEY, AMZ_PARTNER_TAG
-  Optional env: AMZ_MARKETPLACE (default from seeds.json or www.amazon.com)
+  Optional env: AMZ_MARKETPLACE (domain like www.amazon.co.uk or www.amazon.com)
 
 Behavior:
   - If any required env is missing, exits cleanly (so CI won't fail while unconfigured).
   - Reads seeds.json for ASINs and per-ASIN tags; skip if seeds are still placeholders.
-  - Calls PA-API GetItems in batches, writes markdown to content/deals/generated/<asin>.md
+  - Calls PA-API in batches, writes markdown to content/deals/generated/<asin>.md
     with front matter compatible with existing templates.
 """
 from __future__ import annotations
@@ -15,15 +15,9 @@ import json
 import os
 from datetime import datetime
 from pathlib import Path
-from typing import List
-from xmlrpc.client import DateTime
+from typing import Dict, List
 
-import paapi5_python_sdk
-from paapi5_python_sdk.api.default_api import DefaultApi
-from paapi5_python_sdk.api_client import ApiClient
-from paapi5_python_sdk.configuration import Configuration
-from paapi5_python_sdk.models.get_items_request import GetItemsRequest
-from paapi5_python_sdk.models.partner_type import PartnerType
+from amazon.paapi import AmazonApi, AmazonException
 
 ROOT = Path(__file__).resolve().parents[1]
 SEEDS_PATH = ROOT / "scripts" / "seeds.json"
@@ -50,12 +44,54 @@ def load_seeds():
     return marketplace, asins, tags_map
 
 
-def client(marketplace: str) -> DefaultApi:
-    config = Configuration()
-    config.access_key = os.environ["AMZ_PAAPI_ACCESS_KEY"]
-    config.secret_key = os.environ["AMZ_PAAPI_SECRET_KEY"]
-    config.host = marketplace
-    return DefaultApi(ApiClient(config))
+def host_to_country(host: str) -> str:
+    host = host.lower()
+    if host.endswith(".co.uk") or host.endswith(".uk"):
+        return "UK"
+    if host.endswith(".de"):
+        return "DE"
+    if host.endswith(".fr"):
+        return "FR"
+    if host.endswith(".ca"):
+        return "CA"
+    if host.endswith(".co.jp") or host.endswith(".jp"):
+        return "JP"
+    if host.endswith(".in"):
+        return "IN"
+    if host.endswith(".it"):
+        return "IT"
+    if host.endswith(".es"):
+        return "ES"
+    if host.endswith(".com.au"):
+        return "AU"
+    if host.endswith(".com.br"):
+        return "BR"
+    if host.endswith(".com.mx"):
+        return "MX"
+    if host.endswith(".com.tr"):
+        return "TR"
+    if host.endswith(".ae") or host.endswith(".sa"):
+        return "AE"
+    if host.endswith(".nl"):
+        return "NL"
+    if host.endswith(".se"):
+        return "SE"
+    if host.endswith(".pl"):
+        return "PL"
+    if host.endswith(".eg"):
+        return "EG"
+    if host.endswith(".be"):
+        return "BE"
+    return "US"
+
+
+def client(country: str) -> AmazonApi:
+    return AmazonApi(
+        os.environ["AMZ_PAAPI_ACCESS_KEY"],
+        os.environ["AMZ_PAAPI_SECRET_KEY"],
+        os.environ["AMZ_PARTNER_TAG"],
+        country=country,
+    )
 
 
 def batches(iterable: List[str], size: int = 10):
@@ -75,7 +111,7 @@ def write_deal(asin: str, payload: dict, tags: List[str]):
         discount = max(0.0, min(1.0, 1 - (price / list_price)))
     featured = bool(discount and discount >= 0.3)
     summary = payload.get("summary", "")
-    now_iso = datetime.now(DateTime.UTC).isoformat() + "Z"
+    now_iso = datetime.utcnow().isoformat() + "Z"
     fm_lines = [
         "+++",
         f"title = \"{title}\"",
@@ -107,47 +143,44 @@ def main():
     if not seeds:
         return
     marketplace, asins, tags_map = seeds
-    api = client(marketplace)
-    partner_tag = os.environ["AMZ_PARTNER_TAG"]
+    country = host_to_country(marketplace)
+    api = client(country)
 
     for batch in batches(asins, size=10):
         try:
-            request = GetItemsRequest(
-                partner_tag=partner_tag,
-                partner_type=PartnerType.ASSOCIATES,
-                marketplace=marketplace,
-                item_ids=batch,
-            )
-            response = api.get_items(get_items_request=request)
-        except Exception as exc:  # noqa: BLE001
+            products = api.get_items(batch)
+        except AmazonException as exc:
             print(f"[fetch_deals] batch {batch} failed: {exc}")
             continue
-
-        if not response.items_result:
+        if not products:
             print(f"[fetch_deals] No items returned for {batch}")
             continue
 
-        for item in response.items_result.items:
-            asin = item.asin
-            info = item.item_info
-            offers = item.offers.listings if item.offers and item.offers.listings else []
+        for product in products:
+            asin = product.asin
+            raw_offers: Dict = (product.raw or {}).get("Offers") or {}
+            listings = raw_offers.get("Listings") or []
             price = None
             list_price = None
-            if offers:
-                listing = offers[0]
-                if listing.price and listing.price.amount is not None:
-                    price = listing.price.amount
-                if listing.price and listing.price.savings and listing.price.savings.amount is not None and listing.price.savings_basis is not None:
-                    list_price = listing.price.savings_basis
-                elif listing.price and listing.price.amount is not None and listing.price.savings and listing.price.savings.amount is not None:
-                    list_price = listing.price.amount + listing.price.savings.amount
+            if listings:
+                listing = listings[0]
+                price_info = listing.get("Price") or {}
+                savings = price_info.get("Savings") or {}
+                amount = price_info.get("Amount")
+                basis = price_info.get("SavingsBasis")
+                if amount is not None:
+                    price = amount
+                if basis is not None:
+                    list_price = basis
+                elif amount is not None and savings.get("Amount") is not None:
+                    list_price = amount + savings["Amount"]
             payload = {
-                "title": info.title.display_value if info and info.title else asin,
-                "url": item.detail_page_url or "",
-                "image": (item.images.primary.large.url if item.images and item.images.primary and item.images.primary.large else ""),
+                "title": product.title or asin,
+                "url": product.url or "",
+                "image": (product.images.large if product.images else ""),
                 "price": price,
                 "list_price": list_price,
-                "summary": info.features.display_values[0] if info and info.features and info.features.display_values else "",
+                "summary": (product.features[0] if product.features else ""),
             }
             write_deal(asin, payload, tags_map.get(asin, []))
 
