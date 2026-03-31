@@ -1,0 +1,49 @@
+{{ define "main" }}
+<article class="deal-single">
+  <header>
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.summary }}<p class="lead">{{ . }}</p>{{ end }}
+  </header>
+
+  {{ if .Params.image }}
+    <div class="deal-single__image">
+      <img src="{{ .Params.image }}" alt="{{ .Title }}" loading="lazy">
+    </div>
+  {{ end }}
+
+  <div class="deal-single__pricing">
+    {{ with .Params.sale_price }}<span class="sale">${{ . }}</span>{{ end }}
+    {{ with .Params.list_price }}<span class="list">${{ . }}</span>{{ end }}
+    {{ with .Params.discount_pct }}<span class="badge">-{{ printf "%.0f" (mul . 100) }}%</span>{{ end }}
+    {{ with .Params.expires_at }}<div class="meta">Expires {{ time.Format "Jan 2, 2006" (time .) }}</div>{{ end }}
+  </div>
+
+  {{ if .Params.affiliate_url }}
+    <p><a class="button" href="{{ .Params.affiliate_url }}" rel="nofollow sponsored" target="_blank">View deal</a></p>
+    <p class="disclosure">Affiliate link; we may earn a commission at no extra cost to you.</p>
+  {{ end }}
+
+  <div class="deal-single__content">
+    {{ .Content }}
+  </div>
+
+  {{ with .Params.tags }}
+    <div class="deal-single__tags">
+      {{ range . }}<a class="tag" href="{{ relURL (printf "/tags/%s/" .) }}">#{{ . }}</a>{{ end }}
+    </div>
+  {{ end }}
+
+  {{ $related := first 3 (where (where .Site.RegularPages "Section" "deals") "Permalink" "ne" .Permalink) }}
+  {{ if gt (len $related) 0 }}
+    <section class="related">
+      <h2>More deals</h2>
+      <div class="deal-grid">
+        {{ range $related }}
+          {{ partial "deal-card.html" . }}
+        {{ end }}
+      </div>
+    </section>
+  {{ end }}
+</article>
+{{ end }}
+

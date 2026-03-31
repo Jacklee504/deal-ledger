@@ -1,0 +1,15 @@
+{{ define "main" }}
+<h1>All deals</h1>
+{{ $deals := where (where .Site.RegularPages "Section" "deals") "Draft" false }}
+{{ if gt (len $deals) 0 }}
+  <div class="deal-grid">
+    {{ range sort $deals "Date" "desc" }}
+      {{ partial "deal-card.html" . }}
+    {{ end }}
+  </div>
+{{ else }}
+  <p>No deals available yet.</p>
+{{ end }}
+{{ end }}
+
+

@@ -1,0 +1,50 @@
+{{ define "main" }}
+<section class="home-section">
+  <h2>Featured deals</h2>
+  {{ $deals := where .Site.RegularPages "Section" "deals" }}
+  {{ $featured := where $deals ".Params.featured" true | first 6 }}
+  {{ if gt (len $featured) 0 }}
+    <div class="deal-grid">
+      {{ range $featured }}
+        {{ partial "deal-card.html" . }}
+      {{ end }}
+    </div>
+  {{ else }}
+    <p>No featured deals yet. Check back soon.</p>
+  {{ end }}
+</section>
+
+<section class="home-section">
+  <h2>Best past discounts</h2>
+  {{ $best := sort $deals "Params.discount_pct" "desc" | first 6 }}
+  {{ if gt (len $best) 0 }}
+    <div class="deal-grid">
+      {{ range $best }}
+        {{ partial "deal-card.html" . }}
+      {{ end }}
+    </div>
+  {{ else }}
+    <p>Discount history will appear here once deals are added.</p>
+  {{ end }}
+</section>
+
+<section class="home-section">
+  <h2>Recent additions</h2>
+  {{ $recent := first 6 (sort (where $deals "Draft" false) "Date" "desc") }}
+  {{ if gt (len $recent) 0 }}
+    <div class="deal-grid">
+      {{ range $recent }}
+        {{ partial "deal-card.html" . }}
+      {{ end }}
+    </div>
+  {{ else }}
+    <p>New deals will appear once published.</p>
+  {{ end }}
+</section>
+
+<div class="disclosure">
+  <p>This site uses affiliate links; we may earn a commission at no extra cost to you.</p>
+</div>
+{{ end }}
+
+

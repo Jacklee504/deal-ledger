@@ -3,11 +3,35 @@ languageCode = "en-us"
 title = "My Hugo Site"
 theme = "ananke"
 
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+
 [menu]
   [[menu.main]]
     name = "Home"
     url = "/"
 
   [[menu.main]]
-    name = "Posts"
-    url = "/posts/"
+    name = "Deals"
+    url = "/deals/"
+
+  [[menu.main]]
+    name = "Best Discounts"
+    url = "/best-deals/"
+
+  [[menu.main]]
+    name = "New"
+    url = "/new/"
+
+  [[menu.main]]
+    name = "Expiring"
+    url = "/expiring/"
+
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+
+  [[menu.main]]
+    name = "Disclosure"
+    url = "/disclosure/"

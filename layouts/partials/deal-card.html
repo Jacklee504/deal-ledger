@@ -1,0 +1,44 @@
+{{/* Compact card for a deal page or data object */}}
+{{ $title := .Title }}
+{{ $params := .Params }}
+{{ $img := $params.image }}
+{{ $list := $params.list_price }}
+{{ $sale := $params.sale_price }}
+{{ $discount := $params.discount_pct }}
+{{ $expires := $params.expires_at }}
+{{ $tags := $params.tags }}
+{{ $url := $params.affiliate_url }}
+<article class="deal-card">
+  {{ if $img }}
+    <div class="deal-card__image">
+      <img src="{{ $img }}" alt="{{ $title }}" loading="lazy">
+    </div>
+  {{ end }}
+  <div class="deal-card__body">
+    <h3 class="deal-card__title"><a href="{{ .RelPermalink }}">{{ $title }}</a></h3>
+    <p class="deal-card__excerpt">{{ with .Summary }}{{ . | plainify | truncate 140 }}{{ else }}Great pick for this category.{{ end }}</p>
+    <div class="deal-card__pricing">
+      {{ if $sale }}
+        <span class="deal-card__sale">${{ $sale }}</span>
+      {{ end }}
+      {{ if $list }}
+        <span class="deal-card__list">${{ $list }}</span>
+      {{ end }}
+      {{ if $discount }}
+        <span class="deal-card__badge">-{{ printf "%.0f" (mul $discount 100) }}%</span>
+      {{ end }}
+    </div>
+    {{ if $expires }}
+      <div class="deal-card__meta">Expires: {{ time.Format "Jan 2" (time $expires) }}</div>
+    {{ end }}
+    {{ if $tags }}
+      <div class="deal-card__tags">
+        {{ range first 3 $tags }}<span class="deal-card__tag">#{{ . }}</span>{{ end }}
+      </div>
+    {{ end }}
+    {{ if $url }}
+      <a class="deal-card__cta" href="{{ $url }}" rel="nofollow sponsored" target="_blank">View deal</a>
+    {{ end }}
+  </div>
+</article>
+

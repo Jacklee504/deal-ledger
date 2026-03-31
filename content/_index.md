@@ -1,5 +1,3 @@
-+++
-date = '2026-03-30T18:45:23+01:00'
-draft = true
-title = ''
-+++
+title = "Latest deals"
+
+Welcome to the hub for fresh discounts. Featured picks and top past discounts are highlighted below.
