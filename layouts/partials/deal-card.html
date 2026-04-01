@@ -7,24 +7,27 @@
 {{ $discount := $params.discount_pct }}
 {{ $expires := $params.expires_at }}
 {{ $tags := $params.tags }}
-{{ $url := $params.affiliate_url }}
+{{ $url := or $params.product_url $params.affiliate_url }}
+{{ $currency := .Site.Params.currency_symbol | default "$" }}
 <article class="deal-card">
   {{ if $img }}
     <div class="deal-card__image">
       <img src="{{ $img }}" alt="{{ $title }}" loading="lazy">
     </div>
+  {{ else }}
+    <div class="deal-card__placeholder">Deal pick</div>
   {{ end }}
   <div class="deal-card__body">
     <h3 class="deal-card__title"><a href="{{ .RelPermalink }}">{{ $title }}</a></h3>
     <p class="deal-card__excerpt">{{ with .Summary }}{{ . | plainify | truncate 140 }}{{ else }}Great pick for this category.{{ end }}</p>
     <div class="deal-card__pricing">
-      {{ if $sale }}
-        <span class="deal-card__sale">${{ $sale }}</span>
+      {{ if gt $sale 0 }}
+        <span class="deal-card__sale">{{ printf "%s%.2f" $currency $sale }}</span>
       {{ end }}
-      {{ if $list }}
-        <span class="deal-card__list">${{ $list }}</span>
+      {{ if gt $list 0 }}
+        <span class="deal-card__list">{{ printf "%s%.2f" $currency $list }}</span>
       {{ end }}
-      {{ if $discount }}
+      {{ if gt $discount 0 }}
         <span class="deal-card__badge">-{{ printf "%.0f" (mul $discount 100) }}%</span>
       {{ end }}
     </div>
@@ -37,8 +40,10 @@
       </div>
     {{ end }}
     {{ if $url }}
-      <a class="deal-card__cta" href="{{ $url }}" rel="nofollow sponsored" target="_blank">View deal</a>
+      <a class="deal-card__cta" href="{{ $url }}" rel="noopener noreferrer" target="_blank">View retailer page</a>
+    {{ else }}
+      <a class="deal-card__cta deal-card__cta--soft" href="{{ "/alerts/" | relURL }}">Get category alerts</a>
+      <div class="deal-card__pending">Retailer links are being connected after launch approval.</div>
     {{ end }}
   </div>
 </article>
-

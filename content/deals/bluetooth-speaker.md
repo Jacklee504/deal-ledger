@@ -8,10 +8,9 @@ expires_at = 2026-04-08T23:59:00Z
 featured = true
 tags = ["music", "outdoors", "portable"]
 categories = ["electronics"]
-affiliate_url = "https://www.amazon.com/dp/B000555?tag=yourtag"
-image = "https://via.placeholder.com/640x360?text=Speaker"
 summary = "Rugged IPX7 speaker with 12h battery and USB-C."
 +++
 
-Great for trips and backyards with strong low-end and a tough shell.
+Portable audio picks are useful because they give the site a lighter, giftable category alongside more research-heavy products like headphones or fitness tech.
 
+This sample write-up is intentionally short and skimmable, which is often the right format for a deals page: enough detail to build confidence without turning every listing into a full review.

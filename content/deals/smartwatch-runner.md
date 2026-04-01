@@ -8,10 +8,13 @@ expires_at = 2026-04-05T23:59:00Z
 featured = true
 tags = ["fitness", "running", "wearables"]
 categories = ["sports"]
-affiliate_url = "https://www.amazon.com/dp/B000222?tag=yourtag"
-image = "https://via.placeholder.com/640x360?text=Smartwatch"
 summary = "Built-in GPS, heart-rate, and week-long battery for training."
 +++
 
-Tracks pace, routes, and recovery with on-device GPS and a bright outdoor display.
+Running-tech pages work well because the audience is intent-driven. Readers usually know what they want to track: pace, distance, routes, or recovery.
 
+This sample page demonstrates the kind of information the site should surface quickly:
+
+- what training problem the watch solves
+- whether the discount is large enough to matter
+- which category alert a reader should join next

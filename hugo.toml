@@ -1,7 +1,11 @@
 baseURL = "https://Jacklee504.github.io/hugo-app/"
 languageCode = "en-us"
-title = "My Hugo Site"
+title = "Deal Ledger"
 theme = "ananke"
+
+[params]
+  description = "A pre-launch sample deals site focused on useful product picks, price context, and category-based alerts."
+  currency_symbol = "$"
 
 [taxonomies]
   category = "categories"
@@ -15,6 +19,10 @@ theme = "ananke"
   [[menu.main]]
     name = "Deals"
     url = "/deals/"
+
+  [[menu.main]]
+    name = "Alerts"
+    url = "/alerts/"
 
   [[menu.main]]
     name = "Best Discounts"
@@ -33,6 +41,10 @@ theme = "ananke"
     url = "/about/"
 
   [[menu.main]]
+    name = "Guides"
+    url = "/posts/"
+
+  [[menu.main]]
     name = "Disclosure"
     url = "/disclosure/"
 
@@ -43,4 +55,3 @@ theme = "ananke"
   [[menu.main]]
     name = "Privacy"
     url = "/privacy/"
-

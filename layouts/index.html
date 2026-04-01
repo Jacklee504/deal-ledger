@@ -1,8 +1,43 @@
 {{ define "main" }}
+{{ $deals := where .Site.RegularPages "Section" "deals" }}
+{{ $featured := where $deals ".Params.featured" true | first 6 }}
+{{ $best := sort $deals "Params.discount_pct" "desc" | first 6 }}
+{{ $recent := first 6 (sort (where $deals "Draft" false) "Date" "desc") }}
+{{ $guides := first 3 (sort (where .Site.RegularPages "Section" "posts") "Date" "desc") }}
+
+<section class="hero-band">
+  <div class="hero-band__eyebrow">Pre-launch sample site</div>
+  <div class="hero-band__grid">
+    <div>
+      <h1>Useful deals, not just noisy discounts.</h1>
+      <p>Deal Ledger is a sample product-discovery site built to show how a focused deals brand could work before affiliate and retailer integrations are switched on. The goal is simple: organize strong value picks, give shoppers context, and let readers subscribe to the categories they actually care about.</p>
+      <div class="hero-band__actions">
+        <a class="button-link button-link--primary" href="{{ "/deals/" | relURL }}">Browse deal picks</a>
+        <a class="button-link button-link--secondary" href="{{ "/alerts/" | relURL }}">See alert signup flow</a>
+      </div>
+    </div>
+    <div class="hero-band__stats">
+      <div class="hero-band__stat">
+        <strong>{{ len $deals }}</strong>
+        <span>Sample product pages across tech, fitness, and home upgrades.</span>
+      </div>
+      <div class="hero-band__stat">
+        <strong>{{ len $guides }}</strong>
+        <span>Editorial guides that explain how the site thinks about value.</span>
+      </div>
+      <div class="hero-band__stat">
+        <strong>4</strong>
+        <span>Core categories ready for future retailer-specific tracking and alerts.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="home-section">
-  <h2>Featured deals</h2>
-  {{ $deals := where .Site.RegularPages "Section" "deals" }}
-  {{ $featured := where $deals ".Params.featured" true | first 6 }}
+  <div class="home-section__intro">
+    <h2>Featured picks</h2>
+    <p>These are the kinds of products the site would highlight on the front page: popular categories, clear price context, and enough editorial framing to be helpful before a click ever happens.</p>
+  </div>
   {{ if gt (len $featured) 0 }}
     <div class="deal-grid">
       {{ range $featured }}
@@ -15,8 +50,10 @@
 </section>
 
 <section class="home-section">
-  <h2>Best past discounts</h2>
-  {{ $best := sort $deals "Params.discount_pct" "desc" | first 6 }}
+  <div class="home-section__intro">
+    <h2>Best sample discounts</h2>
+    <p>Each deal page shows a reference price, current price, and short rationale so the site reads like a useful recommendation property rather than a bare affiliate shell.</p>
+  </div>
   {{ if gt (len $best) 0 }}
     <div class="deal-grid">
       {{ range $best }}
@@ -29,8 +66,10 @@
 </section>
 
 <section class="home-section">
-  <h2>Recent additions</h2>
-  {{ $recent := first 6 (sort (where $deals "Draft" false) "Date" "desc") }}
+  <div class="home-section__intro">
+    <h2>Recent additions</h2>
+    <p>New categories, fresh picks, and updated notes land here first. This gives the homepage a clear sense of motion even before automated retailer feeds are connected.</p>
+  </div>
   {{ if gt (len $recent) 0 }}
     <div class="deal-grid">
       {{ range $recent }}
@@ -42,9 +81,39 @@
   {{ end }}
 </section>
 
-<div class="disclosure">
-  <p>This site uses affiliate links; we may earn a commission at no extra cost to you.</p>
-</div>
+<section class="home-section">
+  <div class="home-section__intro">
+    <h2>Categories people can subscribe to</h2>
+    <p>The future email feature is aimed at intent, not spam: readers choose a category, decide how often they want updates, and only hear about the products they care about.</p>
+  </div>
+  <div class="category-strip">
+    <a href="{{ "/tags/audio/" | relURL }}">Audio</a>
+    <a href="{{ "/tags/running/" | relURL }}">Running gear</a>
+    <a href="{{ "/tags/productivity/" | relURL }}">Home office</a>
+    <a href="{{ "/tags/home-gym/" | relURL }}">Home gym</a>
+    <a href="{{ "/alerts/" | relURL }}">Category alerts</a>
+  </div>
+</section>
+
+{{ if gt (len $guides) 0 }}
+<section class="home-section">
+  <div class="home-section__intro">
+    <h2>Editorial guides</h2>
+    <p>Adding lightweight editorial content helps the site feel trustworthy and complete before affiliate links are activated.</p>
+  </div>
+  <div class="guide-grid">
+    {{ range $guides }}
+      <article class="guide-card">
+        <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+        <p>{{ with .Summary }}{{ . | plainify | truncate 150 }}{{ else }}Read the full guide.{{ end }}</p>
+      </article>
+    {{ end }}
+  </div>
+</section>
 {{ end }}
 
+<div class="home-section disclosure-note">
+  <p>This pre-launch sample does not yet use live affiliate links or a retailer API. Product pages and alerts are designed to show the intended user experience before those integrations go live.</p>
+</div>
+{{ end }}
 

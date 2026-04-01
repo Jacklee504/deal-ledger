@@ -1,5 +1,5 @@
 +++
-title = "Latest deals"
+title = "Deal Ledger"
 +++
 
-Welcome to the hub for fresh discounts. Featured picks and top past discounts are highlighted below.
+Deal Ledger is a pre-launch sample deals site focused on practical product picks, clean pricing context, and category-based alerts.

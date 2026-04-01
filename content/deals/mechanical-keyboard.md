@@ -8,10 +8,9 @@ expires_at = 2026-04-12T23:59:00Z
 featured = false
 tags = ["productivity", "gaming", "accessories"]
 categories = ["electronics"]
-affiliate_url = "https://www.amazon.com/dp/B000333?tag=yourtag"
-image = "https://via.placeholder.com/640x360?text=Keyboard"
 summary = "Hot-swappable 65% board with RGB and silent switches."
 +++
 
-A comfortable layout with per-key RGB and software-free macros for work or play.
+Keyboard pages help show that the site is not limited to broad consumer gadgets. A niche like home office gear gives the project more editorial shape and makes category alerts more compelling.
 
+For a live version, this page would likely sit alongside a roundup guide and a productivity-focused alert stream.

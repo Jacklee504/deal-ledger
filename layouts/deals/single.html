@@ -1,27 +1,37 @@
 {{ define "main" }}
+{{ $url := or .Params.product_url .Params.affiliate_url }}
+{{ $currency := .Site.Params.currency_symbol | default "$" }}
 <article class="deal-single">
-  <header>
-    <h1>{{ .Title }}</h1>
-    {{ with .Params.summary }}<p class="lead">{{ . }}</p>{{ end }}
-  </header>
+  <div class="deal-single__hero">
+    <div>
+      <header>
+        <h1>{{ .Title }}</h1>
+        {{ with .Params.summary }}<p class="lead">{{ . }}</p>{{ end }}
+      </header>
 
-  {{ if .Params.image }}
-    <div class="deal-single__image">
-      <img src="{{ .Params.image }}" alt="{{ .Title }}" loading="lazy">
+      <div class="deal-single__pricing">
+        {{ with .Params.sale_price }}{{ if gt . 0 }}<span class="sale">{{ printf "%s%.2f" $currency . }}</span>{{ end }}{{ end }}
+        {{ with .Params.list_price }}{{ if gt . 0 }}<span class="list">{{ printf "%s%.2f" $currency . }}</span>{{ end }}{{ end }}
+        {{ with .Params.discount_pct }}{{ if gt . 0 }}<span class="badge">-{{ printf "%.0f" (mul . 100) }}%</span>{{ end }}{{ end }}
+        {{ with .Params.expires_at }}<div class="meta">Expires {{ time.Format "Jan 2, 2006" (time .) }}</div>{{ end }}
+      </div>
+
+      {{ if $url }}
+        <p><a class="deal-single__cta" href="{{ $url }}" rel="noopener noreferrer" target="_blank">View retailer page</a></p>
+      {{ else }}
+        <p><a class="deal-single__cta deal-single__cta--soft" href="{{ "/alerts/" | relURL }}">Join category alerts</a></p>
+        <p class="deal-single__note">This pre-launch sample keeps retailer links disabled until launch and approval work is complete.</p>
+      {{ end }}
     </div>
-  {{ end }}
 
-  <div class="deal-single__pricing">
-    {{ with .Params.sale_price }}<span class="sale">${{ . }}</span>{{ end }}
-    {{ with .Params.list_price }}<span class="list">${{ . }}</span>{{ end }}
-    {{ with .Params.discount_pct }}<span class="badge">-{{ printf "%.0f" (mul . 100) }}%</span>{{ end }}
-    {{ with .Params.expires_at }}<div class="meta">Expires {{ time.Format "Jan 2, 2006" (time .) }}</div>{{ end }}
+    {{ if .Params.image }}
+      <div class="deal-single__image">
+        <img src="{{ .Params.image }}" alt="{{ .Title }}" loading="lazy">
+      </div>
+    {{ else }}
+      <div class="deal-single__placeholder">Product page preview</div>
+    {{ end }}
   </div>
-
-  {{ if .Params.affiliate_url }}
-    <p><a class="button" href="{{ .Params.affiliate_url }}" rel="nofollow sponsored" target="_blank">View deal</a></p>
-    <p class="disclosure">Affiliate link; we may earn a commission at no extra cost to you.</p>
-  {{ end }}
 
   <div class="deal-single__content">
     {{ .Content }}
@@ -46,4 +56,3 @@
   {{ end }}
 </article>
 {{ end }}
-
