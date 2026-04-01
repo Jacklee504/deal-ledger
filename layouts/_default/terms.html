@@ -1,22 +1,25 @@
 {{ define "main" }}
-<h1>{{ .Title }}</h1>
-{{ if .Content }}<div class="content">{{ .Content }}</div>{{ end }}
-{{ $pages := .Pages }}
-{{ if gt (len $pages) 0 }}
-  <div class="deal-grid">
-    {{ range sort $pages "Date" "desc" }}
-      {{ if eq .Section "deals" }}
-        {{ partial "deal-card.html" . }}
-      {{ else }}
-        <article>
-          <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-          <p>{{ .Summary }}</p>
-        </article>
-      {{ end }}
-    {{ end }}
+<section class="list-shell">
+  <div class="list-shell__intro">
+    <h1>{{ .Title }}</h1>
+    {{ if .Content }}<div class="page-copy">{{ .Content }}</div>{{ end }}
   </div>
-{{ else }}
-  <p>No entries yet.</p>
+  {{ $pages := .Pages }}
+  {{ if gt (len $pages) 0 }}
+    <div class="deal-grid">
+      {{ range sort $pages "Date" "desc" }}
+        {{ if eq .Section "deals" }}
+          {{ partial "deal-card.html" . }}
+        {{ else }}
+          <article class="guide-card">
+            <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+            <p>{{ .Summary }}</p>
+          </article>
+        {{ end }}
+      {{ end }}
+    </div>
+  {{ else }}
+    <p>No entries yet.</p>
+  {{ end }}
+</section>
 {{ end }}
-{{ end }}
-

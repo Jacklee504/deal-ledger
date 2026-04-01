@@ -1,15 +1,19 @@
 {{ define "main" }}
-<h1>New arrivals</h1>
-{{ $deals := sort (where (where .Site.RegularPages "Section" "deals") "Draft" false) "Date" "desc" }}
-{{ if gt (len $deals) 0 }}
-  <div class="deal-grid">
-    {{ range first 20 $deals }}
-      {{ partial "deal-card.html" . }}
-    {{ end }}
+<section class="list-shell">
+  <div class="list-shell__intro">
+    <h1>New arrivals</h1>
+    <p>The newest sample deal pages and product notes added to the site.</p>
   </div>
-{{ else }}
-  <p>No recent deals yet.</p>
+  {{ $deals := sort (where (where .Site.RegularPages "Section" "deals") "Draft" false) "Date" "desc" }}
+  {{ if gt (len $deals) 0 }}
+    <div class="deal-grid">
+      {{ range first 20 $deals }}
+        {{ partial "deal-card.html" . }}
+      {{ end }}
+    </div>
+  {{ else }}
+    <p>No recent deals yet.</p>
+  {{ end }}
+</section>
 {{ end }}
-{{ end }}
-
 

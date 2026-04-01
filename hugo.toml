@@ -13,45 +13,41 @@ theme = "ananke"
 
 [menu]
   [[menu.main]]
-    name = "Home"
-    url = "/"
-
-  [[menu.main]]
     name = "Deals"
     url = "/deals/"
+    weight = 10
 
   [[menu.main]]
-    name = "Alerts"
-    url = "/alerts/"
-
-  [[menu.main]]
-    name = "Best Discounts"
+    name = "Top Savings"
     url = "/best-deals/"
+    weight = 20
 
   [[menu.main]]
-    name = "New"
+    name = "Latest"
     url = "/new/"
+    weight = 30
 
   [[menu.main]]
-    name = "Expiring"
+    name = "Ending Soon"
     url = "/expiring/"
-
-  [[menu.main]]
-    name = "About"
-    url = "/about/"
+    weight = 40
 
   [[menu.main]]
     name = "Guides"
     url = "/posts/"
+    weight = 50
 
   [[menu.main]]
-    name = "Disclosure"
-    url = "/disclosure/"
+    name = "Email Alerts"
+    url = "/alerts/"
+    weight = 60
+
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 70
 
   [[menu.main]]
     name = "Contact"
     url = "/contact/"
-
-  [[menu.main]]
-    name = "Privacy"
-    url = "/privacy/"
+    weight = 80

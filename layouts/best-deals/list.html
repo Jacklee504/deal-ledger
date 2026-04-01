@@ -1,16 +1,20 @@
 {{ define "main" }}
-<h1>Best discounts</h1>
-{{ $deals := where (where .Site.RegularPages "Section" "deals") "Draft" false }}
-{{ $sorted := sort $deals "Params.discount_pct" "desc" }}
-{{ if gt (len $sorted) 0 }}
-  <div class="deal-grid">
-    {{ range first 20 $sorted }}
-      {{ partial "deal-card.html" . }}
-    {{ end }}
+<section class="list-shell">
+  <div class="list-shell__intro">
+    <h1>Best discounts</h1>
+    <p>The strongest sample pages by discount depth, useful for readers who want the best-value picks first.</p>
   </div>
-{{ else }}
-  <p>No discounts to show yet.</p>
+  {{ $deals := where (where .Site.RegularPages "Section" "deals") "Draft" false }}
+  {{ $sorted := sort $deals "Params.discount_pct" "desc" }}
+  {{ if gt (len $sorted) 0 }}
+    <div class="deal-grid">
+      {{ range first 20 $sorted }}
+        {{ partial "deal-card.html" . }}
+      {{ end }}
+    </div>
+  {{ else }}
+    <p>No discounts to show yet.</p>
+  {{ end }}
+</section>
 {{ end }}
-{{ end }}
-
 

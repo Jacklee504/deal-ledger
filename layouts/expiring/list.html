@@ -1,17 +1,21 @@
 {{ define "main" }}
-<h1>Expiring soon</h1>
-{{ $now := now }}
-{{ $deals := where .Site.RegularPages "Section" "deals" }}
-{{ $soon := sort (where (where (where $deals "Params.expires_at" "ne" nil) "Draft" false) "Params.expires_at" "ge" $now) "Params.expires_at" "asc" }}
-{{ if gt (len $soon) 0 }}
-  <div class="deal-grid">
-    {{ range first 20 $soon }}
-      {{ partial "deal-card.html" . }}
-    {{ end }}
+<section class="list-shell">
+  <div class="list-shell__intro">
+    <h1>Expiring soon</h1>
+    <p>Pages with sample expiration windows, ordered so the most time-sensitive picks appear first.</p>
   </div>
-{{ else }}
-  <p>No expiring deals at the moment.</p>
+  {{ $now := now }}
+  {{ $deals := where .Site.RegularPages "Section" "deals" }}
+  {{ $soon := sort (where (where (where $deals "Params.expires_at" "ne" nil) "Draft" false) "Params.expires_at" "ge" $now) "Params.expires_at" "asc" }}
+  {{ if gt (len $soon) 0 }}
+    <div class="deal-grid">
+      {{ range first 20 $soon }}
+        {{ partial "deal-card.html" . }}
+      {{ end }}
+    </div>
+  {{ else }}
+    <p>No expiring deals at the moment.</p>
+  {{ end }}
+</section>
 {{ end }}
-{{ end }}
-
 

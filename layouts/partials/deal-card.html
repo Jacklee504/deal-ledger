@@ -42,7 +42,7 @@
     {{ if $url }}
       <a class="deal-card__cta" href="{{ $url }}" rel="noopener noreferrer" target="_blank">View retailer page</a>
     {{ else }}
-      <a class="deal-card__cta deal-card__cta--soft" href="{{ "/alerts/" | relURL }}">Get category alerts</a>
+      <a class="deal-card__cta deal-card__cta--soft" href="{{ "alerts/" | relURL }}">Get category alerts</a>
       <div class="deal-card__pending">Retailer links are being connected after launch approval.</div>
     {{ end }}
   </div>
