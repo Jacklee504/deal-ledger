@@ -15,9 +15,15 @@ import json
 import os
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, List
+from typing import Any, Dict, List
 
-from amazon.paapi import AmazonApi, AmazonException
+try:
+    from amazon.paapi import AmazonApi, AmazonException
+except ModuleNotFoundError:
+    AmazonApi = Any  # type: ignore[assignment]
+
+    class AmazonException(Exception):
+        pass
 
 ROOT = Path(__file__).resolve().parents[1]
 SEEDS_PATH = ROOT / "scripts" / "seeds.json"
@@ -139,6 +145,9 @@ def main():
     if not has_required_env():
         print("[fetch_deals] Missing PA-API env vars; skipping")
         return
+    if AmazonApi is Any:
+        print("[fetch_deals] python-amazon-paapi is not installed; skipping")
+        return
     seeds = load_seeds()
     if not seeds:
         return
@@ -187,4 +196,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
