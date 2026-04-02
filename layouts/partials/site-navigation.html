@@ -4,19 +4,26 @@
       <span class="nav-brand__name">{{ .Site.Title }}</span>
       <span class="nav-brand__tag">Curated picks and category alerts</span>
     </a>
-    <div class="flex-l items-center">
+    <div class="flex-l items-center nav-actions">
       {{ if .Site.Menus.main }}
-        <ul class="pl0 mr3 nav-links">
-          {{ range .Site.Menus.main.ByWeight }}
-          <li class="list dib nav-links__item">
-            <a class="nav-links__anchor no-underline" href="{{ .URL }}">
-              {{ .Name }}
-            </a>
-          </li>
-          {{ end }}
-        </ul>
+        <details class="nav-menu">
+          <summary class="nav-menu__toggle" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+          </summary>
+          <ul class="pl0 mr3 nav-links">
+            {{ range .Site.Menus.main.ByWeight }}
+            <li class="list dib nav-links__item">
+              <a class="nav-links__anchor no-underline" href="{{ .URL }}">
+                {{ .Name }}
+              </a>
+            </li>
+            {{ end }}
+          </ul>
+        </details>
       {{ end }}
-      {{ partials.IncludeCached "social/follow.html" . }}
+      <div class="nav-social">{{ partials.IncludeCached "social/follow.html" . }}</div>
     </div>
   </div>
 </nav>
