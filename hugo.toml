@@ -4,7 +4,7 @@ title = "Deal Ledger"
 theme = "ananke"
 
 [params]
-  description = "A pre-launch sample deals site focused on useful product picks, price context, and category-based alerts."
+  description = "A curated deals site focused on useful product picks, clear price context, and alerts shaped around reader intent."
   currency_symbol = "$"
 
 [taxonomies]
@@ -18,26 +18,21 @@ theme = "ananke"
     weight = 10
 
   [[menu.main]]
-    name = "Top Savings"
-    url = "/best-deals/"
-    weight = 20
-
-  [[menu.main]]
     name = "Latest"
     url = "/new/"
-    weight = 30
+    weight = 20
 
   [[menu.main]]
     name = "Ending Soon"
     url = "/expiring/"
-    weight = 40
+    weight = 30
 
   [[menu.main]]
     name = "Guides"
     url = "/posts/"
-    weight = 50
+    weight = 40
 
   [[menu.main]]
     name = "Email Alerts"
     url = "/alerts/"
-    weight = 60
+    weight = 50

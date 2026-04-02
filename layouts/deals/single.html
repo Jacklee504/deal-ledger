@@ -49,7 +49,7 @@
       <h2>More deals</h2>
       <div class="deal-grid">
         {{ range $related }}
-          {{ partial "deal-card.html" . }}
+          {{ partial "deal-card.html" (dict "page" . "variant" "list") }}
         {{ end }}
       </div>
     </section>

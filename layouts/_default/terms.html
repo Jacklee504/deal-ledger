@@ -9,7 +9,7 @@
     <div class="deal-grid">
       {{ range sort $pages "Date" "desc" }}
         {{ if eq .Section "deals" }}
-          {{ partial "deal-card.html" . }}
+          {{ partial "deal-card.html" (dict "page" . "variant" "list") }}
         {{ else }}
           <article class="guide-card">
             <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>

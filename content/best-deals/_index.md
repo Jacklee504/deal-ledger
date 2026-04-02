@@ -1,7 +1,6 @@
 +++
-title = "Best discounts"
+title = "Top savings"
 type = "best-deals"
 +++
 
-Top discounts ranked by percent off.
-
+Top savings ranked by discount depth.

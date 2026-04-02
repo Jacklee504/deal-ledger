@@ -1,19 +1,40 @@
 {{ define "main" }}
 <section class="list-shell">
   <div class="list-shell__intro">
-    <h1>All deals</h1>
-    <p>A full view of the sample product pages currently on the site, ordered by the newest additions first.</p>
   </div>
   {{ $deals := where (where .Site.RegularPages "Section" "deals") "Draft" false }}
   {{ if gt (len $deals) 0 }}
-    <div class="deal-grid">
-      {{ range sort $deals "Date" "desc" }}
-        {{ partial "deal-card.html" . }}
-      {{ end }}
-    </div>
+    {{ $topSavings := first 4 (sort $deals "Params.discount_pct" "desc") }}
+    {{ $topSavingsPaths := slice }}
+    {{ range $topSavings }}
+      {{ $topSavingsPaths = $topSavingsPaths | append .RelPermalink }}
+    {{ end }}
+    {{ $remainingDeals := where $deals "RelPermalink" "not in" $topSavingsPaths }}
+    <section class="list-subsection">
+      <div class="list-subsection__intro">
+        <h2>Top savings</h2>
+        <p>The strongest current discounts, surfaced first for readers who want the best-value picks quickly.</p>
+      </div>
+      <div class="deal-grid">
+        {{ range $topSavings }}
+          {{ partial "deal-card.html" (dict "page" . "variant" "list") }}
+        {{ end }}
+      </div>
+    </section>
+
+    <section class="list-subsection">
+      <div class="list-subsection__intro">
+        <h2>All deals</h2>
+        <p>Everything else currently published, ordered by the newest additions first.</p>
+      </div>
+      <div class="deal-grid">
+        {{ range sort $remainingDeals "Date" "desc" }}
+          {{ partial "deal-card.html" (dict "page" . "variant" "list") }}
+        {{ end }}
+      </div>
+    </section>
   {{ else }}
     <p>No deals available yet.</p>
   {{ end }}
 </section>
 {{ end }}
-

@@ -2,7 +2,7 @@
 <section class="list-shell">
   <div class="list-shell__intro">
     <h1>Editorial guides</h1>
-    <p>Short strategy notes and practical roundups that give the site more context than a stream of standalone deal cards.</p>
+    <p>Short strategy notes and practical roundups that reinforce the site’s core promise: fewer, smarter deal picks with enough context to be genuinely useful.</p>
   </div>
   {{ $posts := where (where .Site.RegularPages "Section" "posts") "Draft" false }}
   {{ if gt (len $posts) 0 }}

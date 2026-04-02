@@ -2,4 +2,4 @@
 title = "Deal Ledger"
 +++
 
-Deal Ledger is a pre-launch sample deals site focused on practical product picks, clean pricing context, and category-based alerts.
+Deal Ledger is a curated deals site focused on useful product picks, clear price context, and alerts shaped around what readers actually want to track.

@@ -1,7 +1,7 @@
 {{ define "main" }}
 <section class="list-shell">
   <div class="list-shell__intro">
-    <h1>Best discounts</h1>
+    <h1>Top savings</h1>
     <p>The strongest sample pages by discount depth, useful for readers who want the best-value picks first.</p>
   </div>
   {{ $deals := where (where .Site.RegularPages "Section" "deals") "Draft" false }}
@@ -9,7 +9,7 @@
   {{ if gt (len $sorted) 0 }}
     <div class="deal-grid">
       {{ range first 20 $sorted }}
-        {{ partial "deal-card.html" . }}
+        {{ partial "deal-card.html" (dict "page" . "variant" "list") }}
       {{ end }}
     </div>
   {{ else }}
@@ -17,4 +17,3 @@
   {{ end }}
 </section>
 {{ end }}
-

@@ -10,7 +10,7 @@
   {{ if gt (len $soon) 0 }}
     <div class="deal-grid">
       {{ range first 20 $soon }}
-        {{ partial "deal-card.html" . }}
+        {{ partial "deal-card.html" (dict "page" . "variant" "list") }}
       {{ end }}
     </div>
   {{ else }}
@@ -18,4 +18,3 @@
   {{ end }}
 </section>
 {{ end }}
-
