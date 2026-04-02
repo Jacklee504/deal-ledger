@@ -1,0 +1,23 @@
+{{ define "main" }}
+<section class="list-shell">
+  <div class="list-shell__intro">
+    <h1>Editorial guides</h1>
+    <p>Short strategy notes and practical roundups that give the site more context than a stream of standalone deal cards.</p>
+  </div>
+  {{ $posts := where (where .Site.RegularPages "Section" "posts") "Draft" false }}
+  {{ if gt (len $posts) 0 }}
+    <div class="posts-grid">
+      {{ range sort $posts "Date" "desc" }}
+        <article class="post-card">
+          <div class="post-card__meta">{{ .Date | time.Format "January 2, 2006" }}</div>
+          <h2 class="post-card__title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+          <p class="post-card__excerpt">{{ with .Summary }}{{ . | plainify | truncate 170 }}{{ else }}Read the full post.{{ end }}</p>
+          <a class="post-card__link" href="{{ .RelPermalink }}">Read guide</a>
+        </article>
+      {{ end }}
+    </div>
+  {{ else }}
+    <p>No posts published yet.</p>
+  {{ end }}
+</section>
+{{ end }}

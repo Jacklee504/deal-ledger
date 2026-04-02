@@ -41,13 +41,3 @@ theme = "ananke"
     name = "Email Alerts"
     url = "/alerts/"
     weight = 60
-
-  [[menu.main]]
-    name = "About"
-    url = "/about/"
-    weight = 70
-
-  [[menu.main]]
-    name = "Contact"
-    url = "/contact/"
-    weight = 80

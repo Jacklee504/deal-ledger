@@ -1,8 +1,8 @@
 {{ define "main" }}
 {{ $deals := where .Site.RegularPages "Section" "deals" }}
-{{ $featured := where $deals ".Params.featured" true | first 6 }}
-{{ $best := sort $deals "Params.discount_pct" "desc" | first 6 }}
-{{ $recent := first 6 (sort (where $deals "Draft" false) "Date" "desc") }}
+{{ $featured := where $deals ".Params.featured" true | first 4 }}
+{{ $best := sort $deals "Params.discount_pct" "desc" | first 4 }}
+{{ $recent := first 4 (sort (where $deals "Draft" false) "Date" "desc") }}
 {{ $guides := first 3 (sort (where .Site.RegularPages "Section" "posts") "Date" "desc") }}
 
 <section class="hero-band">
