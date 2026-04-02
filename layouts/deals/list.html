@@ -1,6 +1,7 @@
 {{ define "main" }}
 <section class="list-shell">
   <div class="list-shell__intro">
+    <p>Search and filter the current deal pages by what matters most: strongest savings, newest additions, or items with expiring windows.</p>
   </div>
   {{ $deals := where (where .Site.RegularPages "Section" "deals") "Draft" false }}
   {{ if gt (len $deals) 0 }}
@@ -9,30 +10,97 @@
     {{ range $topSavings }}
       {{ $topSavingsPaths = $topSavingsPaths | append .RelPermalink }}
     {{ end }}
-    {{ $remainingDeals := where $deals "RelPermalink" "not in" $topSavingsPaths }}
+    {{ $latestDeals := first 6 (sort $deals "Date" "desc") }}
+    {{ $latestPaths := slice }}
+    {{ range $latestDeals }}
+      {{ $latestPaths = $latestPaths | append .RelPermalink }}
+    {{ end }}
+    {{ $now := now }}
+    {{ $expiringDeals := sort (where $deals "Params.expires_at" "ne" nil) "Params.expires_at" "asc" }}
+    {{ $expiringPaths := slice }}
+    {{ range $expiringDeals }}
+      {{ if ge .Params.expires_at $now }}
+        {{ $expiringPaths = $expiringPaths | append .RelPermalink }}
+      {{ end }}
+    {{ end }}
+    {{ $orderedDeals := slice }}
+    {{ range $expiringDeals }}
+      {{ if ge .Params.expires_at $now }}
+        {{ $orderedDeals = $orderedDeals | append . }}
+      {{ end }}
+    {{ end }}
+    {{ range sort $deals "Date" "desc" }}
+      {{ if not (in $expiringPaths .RelPermalink) }}
+        {{ $orderedDeals = $orderedDeals | append . }}
+      {{ end }}
+    {{ end }}
     <section class="list-subsection">
       <div class="list-subsection__intro">
-        <h2>Top savings</h2>
-        <p>The strongest current discounts, surfaced first for readers who want the best-value picks quickly.</p>
+        <h2>Browse deals</h2>
       </div>
-      <div class="deal-grid">
-        {{ range $topSavings }}
-          {{ partial "deal-card.html" (dict "page" . "variant" "list") }}
+      <div class="deal-filters" data-deal-filters>
+        <input class="deal-filters__search" type="search" placeholder="Search by product, category, or keyword" aria-label="Search deals" data-deal-search>
+        <div class="deal-filters__tabs" role="tablist" aria-label="Deal filters">
+          <button class="deal-filters__tab is-active" type="button" data-filter="all">All</button>
+          <button class="deal-filters__tab" type="button" data-filter="top-savings">Top savings</button>
+          <button class="deal-filters__tab" type="button" data-filter="latest">Latest</button>
+        </div>
+      </div>
+      <div class="deal-grid deal-grid--browse">
+        {{ range $orderedDeals }}
+          {{ $path := .RelPermalink }}
+          {{ partial "deal-card.html" (dict
+            "page" .
+            "variant" "list"
+            "top_savings" (in $topSavingsPaths $path)
+            "latest" (in $latestPaths $path)
+            "expiring_soon" (in $expiringPaths $path)
+          ) }}
         {{ end }}
       </div>
     </section>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const root = document.querySelector('[data-deal-filters]');
+        if (!root) return;
+        const search = root.querySelector('[data-deal-search]');
+        const tabs = Array.from(root.querySelectorAll('[data-filter]'));
+        const cards = Array.from(root.parentElement.querySelectorAll('[data-filter-card="true"]'));
+        let activeFilter = 'all';
 
-    <section class="list-subsection">
-      <div class="list-subsection__intro">
-        <h2>All deals</h2>
-        <p>Everything else currently published, ordered by the newest additions first.</p>
-      </div>
-      <div class="deal-grid">
-        {{ range sort $remainingDeals "Date" "desc" }}
-          {{ partial "deal-card.html" (dict "page" . "variant" "list") }}
-        {{ end }}
-      </div>
-    </section>
+        const matchesFilter = (card) => {
+          if (activeFilter === 'all') return true;
+          if (activeFilter === 'top-savings') return card.dataset.topSavings === 'true';
+          if (activeFilter === 'latest') return card.dataset.latest === 'true';
+          return true;
+        };
+
+        const matchesSearch = (card) => {
+          const query = (search.value || '').trim().toLowerCase();
+          if (!query) return true;
+          const haystack = [card.dataset.title, card.dataset.summary, card.dataset.tags].join(' ');
+          return haystack.includes(query);
+        };
+
+        const update = () => {
+          cards.forEach((card) => {
+            const visible = matchesFilter(card) && matchesSearch(card);
+            card.classList.toggle('is-hidden', !visible);
+          });
+        };
+
+        tabs.forEach((tab) => {
+          tab.addEventListener('click', () => {
+            activeFilter = tab.dataset.filter;
+            tabs.forEach((item) => item.classList.toggle('is-active', item === tab));
+            update();
+          });
+        });
+
+        search.addEventListener('input', update);
+        update();
+      });
+    </script>
   {{ else }}
     <p>No deals available yet.</p>
   {{ end }}

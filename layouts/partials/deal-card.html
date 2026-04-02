@@ -21,7 +21,28 @@
 {{ $tags := $params.tags }}
 {{ $url := or $params.product_url $params.affiliate_url }}
 {{ $currency := $page.Site.Params.currency_symbol | default "$" }}
-<article class="deal-card{{ if $compact }} deal-card--compact{{ end }}{{ if $listCard }} deal-card--list{{ end }}">
+{{ $timeLeft := "" }}
+  {{ if $expires }}
+    {{ $hoursLeft := div (sub ((time $expires).Unix) (now.Unix)) 3600 }}
+    {{ if ge $hoursLeft 0 }}
+      {{ $daysLeft := div $hoursLeft 24 }}
+      {{ $remainingHours := mod $hoursLeft 24 }}
+      {{ if gt $daysLeft 0 }}
+        {{ $timeLeft = printf "%dd %dh" $daysLeft $remainingHours }}
+      {{ else }}
+        {{ $timeLeft = printf "%dh" $hoursLeft }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ $topSavings := false }}
+{{ $latest := false }}
+{{ $expiringSoon := false }}
+{{ if reflect.IsMap . }}
+  {{ with .top_savings }}{{ $topSavings = . }}{{ end }}
+  {{ with .latest }}{{ $latest = . }}{{ end }}
+  {{ with .expiring_soon }}{{ $expiringSoon = . }}{{ end }}
+{{ end }}
+<article class="deal-card{{ if $compact }} deal-card--compact{{ end }}{{ if $listCard }} deal-card--list{{ end }}"{{ if $listCard }} data-filter-card="true" data-title="{{ lower $title }}" data-summary="{{ with $page.Summary }}{{ . | plainify | lower }}{{ end }}" data-tags="{{ delimit $tags " " | lower }}" data-top-savings="{{ if $topSavings }}true{{ else }}false{{ end }}" data-latest="{{ if $latest }}true{{ else }}false{{ end }}" data-expiring-soon="{{ if $expiringSoon }}true{{ else }}false{{ end }}"{{ end }}>
   {{ if $img }}
     <div class="deal-card__image">
       <img src="{{ $img }}" alt="{{ $title }}" loading="lazy">
@@ -44,7 +65,12 @@
         </div>
         <div class="deal-card__divider"></div>
         {{ if gt $discount 0 }}
-          <span class="deal-card__badge">-{{ printf "%.0f" (mul $discount 100) }}%</span>
+          <div class="deal-card__signal-row">
+            <span class="deal-card__badge">-{{ printf "%.0f" (mul $discount 100) }}%</span>
+            {{ if $timeLeft }}
+              <span class="deal-card__timer">{{ $timeLeft }}</span>
+            {{ end }}
+          </div>
         {{ end }}
         <div class="deal-card__divider"></div>
         <a class="deal-card__cta deal-card__cta--soft" href="{{ $page.RelPermalink }}">View details</a>
@@ -61,6 +87,9 @@
         {{ end }}
         {{ if gt $discount 0 }}
           <span class="deal-card__badge">-{{ printf "%.0f" (mul $discount 100) }}%</span>
+        {{ end }}
+        {{ if $timeLeft }}
+          <span class="deal-card__timer">{{ $timeLeft }}</span>
         {{ end }}
       </div>
       {{ if and (not $compact) $expires }}
