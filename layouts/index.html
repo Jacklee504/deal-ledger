@@ -97,4 +97,14 @@
     <p>New deals will appear once published.</p>
   {{ end }}
 </section>
+
+<form name="alert-request" data-netlify="true" netlify-honeypot="bot-field" hidden aria-hidden="true">
+  <input type="hidden" name="form-name" value="alert-request">
+  <input type="text" name="bot-field">
+  <input type="email" name="email">
+  <input type="text" name="cadence">
+  <input type="text" name="categories">
+  <input type="text" name="keywords">
+  <textarea name="notes"></textarea>
+</form>
 {{ end }}
