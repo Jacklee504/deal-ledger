@@ -22,6 +22,13 @@ jobs:
           submodules: true
           fetch-depth: 0
 
+      - name: Guard against eval-like JavaScript
+        run: |
+          if rg -n "eval\\(|new Function\\(|setTimeout\\(\\s*['\\\"]|setInterval\\(\\s*['\\\"]" layouts static; then
+            echo "Blocked: eval-like JavaScript patterns found. Refactor to safe alternatives."
+            exit 1
+          fi
+
       - name: Setup Python
         uses: actions/setup-python@v5
         with:

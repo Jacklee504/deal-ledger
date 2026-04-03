@@ -1,14 +1,12 @@
 +++
 title = "Disclosure"
-date = 2026-03-31T00:00:00Z
 +++
 
-Deal Ledger may use affiliate links on some pages. That means the site may earn a commission from qualifying purchases at no additional cost to the reader.
+Deal Ledger may include affiliate links. If you buy through those links, we may earn a commission at no extra cost to you.
 
 As an Amazon Associate I earn from qualifying purchases.
 
-Editorial coverage is intended to be based on relevance, value, and product fit for the categories covered on the site. A potential commission does not change the goal of publishing useful, selective recommendations with clear pricing context.
+Affiliate relationships do not change our editorial intent.
+We aim to feature deals based on practical value, relevance, and clarity for readers.
 
-Prices, availability, and deal timing can change quickly. Readers should always confirm the current details on the retailer's website before buying.
-
-If Deal Ledger joins specific affiliate programs with their own disclosure language requirements, this page and any relevant site notices will be updated accordingly.
+Prices and availability can change quickly. Please confirm details on the retailer site before buying.

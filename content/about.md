@@ -1,15 +1,12 @@
 +++
 title = "About"
-date = 2026-03-31T00:00:00Z
 +++
 
-Deal Ledger is a curated deals site built around a simple idea: a deal recommendation should be useful before a reader clicks out to a retailer.
+Deal Ledger is a curated deals site focused on practical product picks with clear price context.
 
-The project focuses on:
+The goal is simple: publish fewer, better deals so readers can decide quickly and confidently.
 
-- curated product picks instead of giant dumps of coupons
-- clear price context, including reference pricing and discount depth
-- category-specific email alerts so readers can follow the topics they actually care about
-- lightweight editorial guides that explain why a product or category is worth watching
+Each listing is selected to be useful on its own, not just as another outbound link.
+We prioritize clear context over volume so the site stays focused and readable.
 
-The goal is to publish a focused stream of practical product picks with enough context to help readers decide whether a deal is worth their attention. Deal Ledger aims to feel selective, readable, and trustworthy rather than like a generic affiliate feed.
+For questions, corrections, or business inquiries: [contact@dealledger.eu](mailto:contact@dealledger.eu).

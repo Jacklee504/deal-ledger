@@ -1,5 +1,7 @@
 {{ $is_home := .IsHome }}
-{{ $description := .Params.description | default .Site.Params.description }}
+{{ $description := .Params.description }}
+{{ $path := lower .RelPermalink }}
+{{ $hideDescription := or (eq $path "/about/") (eq $path "/privacy/") (eq $path "/disclosure/") }}
 <header class="site-top {{ if $is_home }}site-top--home{{ else }}site-top--section{{ end }}">
   <div class="site-top__backdrop">
     {{ partials.Include "site-navigation.html" . }}
@@ -8,9 +10,9 @@
         <h1 class="site-top__title">
           {{ .Title | compare.Default .Site.Title }}
         </h1>
-        {{ with $description }}
+        {{ if and (not $hideDescription) $description }}
           <p class="site-top__description">
-            {{ . }}
+            {{ $description }}
           </p>
         {{ end }}
       </div>
