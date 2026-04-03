@@ -2,10 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>New arrivals on Deal Ledger</title>
-    <link>https://Jacklee504.github.io/deal-ledger/new/</link>
+    <link>https://dealledger.eu/new/</link>
     <description>Recent content in New arrivals on Deal Ledger</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <atom:link href="https://Jacklee504.github.io/deal-ledger/new/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://dealledger.eu/new/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

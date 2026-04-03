@@ -2,52 +2,52 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Deal Ledger</title>
-    <link>https://Jacklee504.github.io/deal-ledger/posts/</link>
+    <link>https://dealledger.eu/posts/</link>
     <description>Recent content in Posts on Deal Ledger</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 30 Mar 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://Jacklee504.github.io/deal-ledger/posts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://dealledger.eu/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How we decide a discount is worth featuring</title>
-      <link>https://Jacklee504.github.io/deal-ledger/posts/post-1/</link>
+      <link>https://dealledger.eu/posts/post-1/</link>
       <pubDate>Mon, 30 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://Jacklee504.github.io/deal-ledger/posts/post-1/</guid>
+      <guid>https://dealledger.eu/posts/post-1/</guid>
       <description>A short look at the editorial rules behind Deal Ledger&amp;rsquo;s product picks.</description>
     </item>
     <item>
       <title>Best home office upgrades under $150</title>
-      <link>https://Jacklee504.github.io/deal-ledger/posts/best-home-office-upgrades-under-150/</link>
+      <link>https://dealledger.eu/posts/best-home-office-upgrades-under-150/</link>
       <pubDate>Sun, 29 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://Jacklee504.github.io/deal-ledger/posts/best-home-office-upgrades-under-150/</guid>
+      <guid>https://dealledger.eu/posts/best-home-office-upgrades-under-150/</guid>
       <description>A roundup showing the kind of editorial content that can support the deals pages.</description>
     </item>
     <item>
       <title>Why category alerts matter more than a generic newsletter</title>
-      <link>https://Jacklee504.github.io/deal-ledger/posts/why-category-alerts-matter/</link>
+      <link>https://dealledger.eu/posts/why-category-alerts-matter/</link>
       <pubDate>Sat, 28 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://Jacklee504.github.io/deal-ledger/posts/why-category-alerts-matter/</guid>
+      <guid>https://dealledger.eu/posts/why-category-alerts-matter/</guid>
       <description>Why readers should be able to subscribe to specific product categories.</description>
     </item>
     <item>
       <title>How to read deal pricing without getting played</title>
-      <link>https://Jacklee504.github.io/deal-ledger/posts/how-to-read-deal-pricing-without-getting-played/</link>
+      <link>https://dealledger.eu/posts/how-to-read-deal-pricing-without-getting-played/</link>
       <pubDate>Fri, 27 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://Jacklee504.github.io/deal-ledger/posts/how-to-read-deal-pricing-without-getting-played/</guid>
+      <guid>https://dealledger.eu/posts/how-to-read-deal-pricing-without-getting-played/</guid>
       <description>A quick framework for deciding whether a sale price is genuinely useful or just dressed up to look urgent.</description>
     </item>
     <item>
       <title>The best categories for a small deals site to own</title>
-      <link>https://Jacklee504.github.io/deal-ledger/posts/the-best-categories-for-a-small-deals-site-to-own/</link>
+      <link>https://dealledger.eu/posts/the-best-categories-for-a-small-deals-site-to-own/</link>
       <pubDate>Thu, 26 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://Jacklee504.github.io/deal-ledger/posts/the-best-categories-for-a-small-deals-site-to-own/</guid>
+      <guid>https://dealledger.eu/posts/the-best-categories-for-a-small-deals-site-to-own/</guid>
       <description>Why a focused deals brand usually grows faster by owning a few practical categories instead of trying to publish everything.</description>
     </item>
     <item>
       <title>Why short deal pages can convert better than long reviews</title>
-      <link>https://Jacklee504.github.io/deal-ledger/posts/why-short-deal-pages-can-convert-better-than-long-reviews/</link>
+      <link>https://dealledger.eu/posts/why-short-deal-pages-can-convert-better-than-long-reviews/</link>
       <pubDate>Wed, 25 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://Jacklee504.github.io/deal-ledger/posts/why-short-deal-pages-can-convert-better-than-long-reviews/</guid>
+      <guid>https://dealledger.eu/posts/why-short-deal-pages-can-convert-better-than-long-reviews/</guid>
       <description>A case for concise, high-intent deal pages that help shoppers decide quickly without turning every listing into a full editorial review.</description>
     </item>
   </channel>
