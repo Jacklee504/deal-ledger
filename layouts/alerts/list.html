@@ -1,17 +1,13 @@
 {{ define "main" }}
+{{ $formspreeEndpoint := .Site.Params.formspree_endpoint | compare.Default "" }}
 <section class="alerts-shell">
   <span class="pill">Request alerts</span>
   <h1>Category email alerts</h1>
   <p class="page-copy">Share what you want to track and how often. Your request is submitted directly from this page.</p>
 
-  <form class="alert-form" id="alert-request-form" name="alert-request" action="/" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
-    <input type="hidden" name="form-name" value="alert-request">
-    <p hidden>
-      <label>
-        Don’t fill this out if you’re human:
-        <input name="bot-field">
-      </label>
-    </p>
+  <form class="alert-form" id="alert-request-form" name="alert-request" action="{{ $formspreeEndpoint }}" method="POST" data-formspree-endpoint="{{ $formspreeEndpoint }}">
+    <input type="hidden" name="_subject" value="New Deal Ledger alert request">
+    <p hidden><label>Leave this empty if you're human: <input name="_gotcha"></label></p>
 
     <section class="alert-form__section alert-form__split">
       <h2 class="alert-form__heading alert-form__heading--span">Where should we send updates?</h2>
@@ -96,6 +92,12 @@
 
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
+      const endpoint = (form.dataset.formspreeEndpoint || '').trim();
+
+      if (!endpoint || endpoint.includes('REPLACE_WITH_YOUR_FORM_ID')) {
+        showToast('Form is not configured yet. Add your Formspree endpoint in hugo.toml.', true);
+        return;
+      }
 
       if (!form.reportValidity()) return;
 
@@ -109,13 +111,13 @@
       if (submitButton) submitButton.disabled = true;
 
       try {
-        const payload = new URLSearchParams(new FormData(form)).toString();
-        const response = await fetch('/', {
+        const formData = new FormData(form);
+        const response = await fetch(endpoint, {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
+            Accept: 'application/json'
           },
-          body: payload
+          body: formData
         });
 
         if (!response.ok) {

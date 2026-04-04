@@ -10,9 +10,9 @@
       <a href="{{ "privacy/" | relURL }}">Privacy</a>
       <a href="{{ "disclosure/" | relURL }}">Disclosure</a>
     </nav>
-    <div class="site-footer__meta">
-      <span>&copy; {{ .Site.Title }} {{ now.Format "2006" }}</span>
-      <div class="site-footer__social">{{ partials.IncludeCached "social/follow.html" . }}</div>
-    </div>
+  </div>
+  <div class="site-footer__meta site-footer__meta--sub">
+    <span>&copy; {{ .Site.Title }} {{ now.Format "2006" }}</span>
+    <div class="site-footer__social">{{ partials.IncludeCached "social/follow.html" . }}</div>
   </div>
 </footer>

@@ -6,6 +6,7 @@ theme = "ananke"
 [params]
   description = "A curated deals site focused on useful product picks, clear price context, and alerts shaped around reader intent."
   currency_symbol = "$"
+  formspree_endpoint = "https://formspree.io/f/mgopnyjd"
 
 [taxonomies]
   category = "categories"

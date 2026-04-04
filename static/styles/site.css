@@ -258,9 +258,9 @@ main.pb7 {
 }
 
 .site-footer {
-  width: min(1120px, calc(100% - 2.75rem));
+  width: min(1160px, calc(100% - 2.5rem));
   margin: 0.45rem auto;
-  padding: 1rem 1.3rem;
+  padding: 0.88rem 1.3rem 0.74rem;
   background: linear-gradient(180deg, rgba(13, 78, 70, 0.96), rgba(20, 43, 36, 0.96));
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 24px;
@@ -275,15 +275,18 @@ main.pb7 {
 }
 
 .site-footer__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) max-content;
   align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  column-gap: 1.15rem;
+  row-gap: 0;
 }
 
 .site-footer__brand {
   display: grid;
   gap: 0;
-  padding: 0.15rem 0.5rem 0.15rem 0.1rem;
+  padding: 0;
+  justify-self: start;
 }
 
 .site-footer__title {
@@ -292,15 +295,15 @@ main.pb7 {
   max-width: none;
   color: #fffdf9;
   font-family: var(--font-display);
-  font-size: 1.15rem;
-  line-height: 1.1;
+  font-size: 0;
+  line-height: 0;
   letter-spacing: -0.01em;
   text-decoration: none;
 }
 
 .site-footer__logo {
   display: block;
-  width: clamp(190px, 22vw, 250px);
+  width: clamp(204px, 24vw, 276px);
   max-width: 100%;
   height: auto;
 }
@@ -308,7 +311,7 @@ main.pb7 {
 .site-footer__tag,
 .site-footer__meta {
   color: rgba(255, 253, 249, 0.72);
-  font-size: 0.92rem;
+  font-size: 0.62rem;
 }
 
 .site-footer__tag {
@@ -318,6 +321,9 @@ main.pb7 {
 
 .site-footer__nav {
   flex-wrap: wrap;
+  justify-content: flex-end;
+  justify-self: end;
+  margin-right: 0;
 }
 
 .site-footer__meta a {
@@ -328,6 +334,21 @@ main.pb7 {
 .site-footer__meta {
   align-items: center;
   flex-wrap: wrap;
+  justify-content: flex-end;
+  justify-self: end;
+  margin-left: 0;
+}
+
+.site-footer__meta--sub {
+  margin-top: -0.5rem;
+  justify-content: flex-end;
+  gap: 0.32rem;
+  opacity: 0.6;
+}
+
+.site-footer__meta--sub .ananke-socials {
+  transform: scale(0.72);
+  transform-origin: right center;
 }
 
 .site-footer__social {
@@ -1385,6 +1406,8 @@ main > article[class^="page-"] .ananke-socials {
   }
 
   .site-footer__inner {
+    display: flex;
+    flex-direction: column;
     align-items: flex-start;
     gap: 0.7rem;
   }
