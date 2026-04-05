@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Home-Gym on Deal Ledger</title>
+    <title>Home Gym on Deal Ledger</title>
     <link>https://dealledger.eu/tags/home-gym/</link>
-    <description>Recent content in Home-Gym on Deal Ledger</description>
+    <description>Recent content in Home Gym on Deal Ledger</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 24 Mar 2026 12:00:00 +0000</lastBuildDate>
@@ -13,14 +13,14 @@
       <link>https://dealledger.eu/deals/compact-air-purifier/</link>
       <pubDate>Tue, 24 Mar 2026 12:00:00 +0000</pubDate>
       <guid>https://dealledger.eu/deals/compact-air-purifier/</guid>
-      <description>Small-room purifier with HEPA filter, quiet sleep mode, and simple controls.</description>
+      <description>Small-room HEPA purifier with sleep mode.</description>
     </item>
     <item>
       <title>Adjustable dumbbell set</title>
       <link>https://dealledger.eu/deals/home-dumbbell-set/</link>
       <pubDate>Fri, 20 Mar 2026 12:00:00 +0000</pubDate>
       <guid>https://dealledger.eu/deals/home-dumbbell-set/</guid>
-      <description>Space-saving weights adjustable from 5–50 lbs per hand.</description>
+      <description>Space-saving adjustable dumbbells for home training.</description>
     </item>
   </channel>
 </rss>
