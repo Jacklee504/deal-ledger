@@ -5,7 +5,7 @@
 {{ $hasAmazonTag := and $isAmazonURL (in $normalizedURL "tag=") }}
 {{ $isAffiliateLink := or .Params.affiliate_url $hasAmazonTag }}
 {{ $canShowLocalPrice := not $isAmazonURL }}
-{{ $currency := .Site.Params.currency_symbol | default "$" }}
+{{ $currency := .Site.Params.currency_symbol | default "€" }}
 <article class="deal-single">
   <div class="deal-single__hero">
     <div>

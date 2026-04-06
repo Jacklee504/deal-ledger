@@ -779,6 +779,11 @@ main > article[class^="page-"] .ananke-socials {
   flex-wrap: wrap;
   align-items: center;
   gap: 0.7rem;
+  width: 100%;
+}
+
+.deal-card__price-row .deal-card__list {
+  margin-left: auto;
 }
 
 .deal-card__signal-row {
@@ -1721,14 +1726,20 @@ main > article[class^="page-"] .ananke-socials {
 
   .deal-card__sale,
   .deal-single .sale {
-    font-size: 1.02rem;
+    font-size: 0.9rem;
+    white-space: nowrap;
   }
 
   .deal-card__list,
   .deal-single .list,
   .deal-card__badge,
   .deal-card__timer {
-    font-size: 0.78rem;
+    font-size: 0.7rem;
+  }
+
+  .deal-card__price-row {
+    flex-wrap: nowrap;
+    gap: 0.5rem;
   }
 
   .deal-card__timer {

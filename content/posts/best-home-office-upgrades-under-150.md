@@ -1,5 +1,5 @@
 ---
-title: "Best home office upgrades under $150"
+title: "Best home office upgrades under €150"
 date: 2026-03-29
 summary: "A roundup showing the kind of editorial content that can support the deals pages."
 ---

@@ -25,7 +25,7 @@
 {{ $hasAmazonTag := and $isAmazonURL (in $normalizedURL "tag=") }}
 {{ $isAffiliateLink := or $params.affiliate_url $hasAmazonTag }}
 {{ $canShowLocalPrice := not $isAmazonURL }}
-{{ $currency := $page.Site.Params.currency_symbol | default "$" }}
+{{ $currency := $page.Site.Params.currency_symbol | default "€" }}
 {{ $timeLeft := "" }}
   {{ if $expires }}
     {{ $hoursLeft := div (sub ((time $expires).Unix) (now.Unix)) 3600 }}
