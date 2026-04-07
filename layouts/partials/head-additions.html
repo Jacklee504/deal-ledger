@@ -6,4 +6,56 @@
 {{ else }}
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data: https:; connect-src 'self' https: https://formspree.io; object-src 'none'; base-uri 'self'; form-action 'self' https://formspree.io; upgrade-insecure-requests">
 {{ end }}
+{{ $base := .Site.BaseURL }}
+{{ $orgID := printf "%s#organization" $base }}
+{{ $siteID := printf "%s#website" $base }}
+{{ $org := dict
+  "@type" "Organization"
+  "@id" $orgID
+  "name" .Site.Title
+  "url" $base
+  "logo" (absURL "images/brand/deal-ledger-logo.svg")
+}}
+{{ $website := dict
+  "@type" "WebSite"
+  "@id" $siteID
+  "url" $base
+  "name" .Site.Title
+  "publisher" (dict "@id" $orgID)
+  "potentialAction" (dict
+    "@type" "SearchAction"
+    "target" (printf "%sdeals/?q={search_term_string}" $base)
+    "query-input" "required name=search_term_string"
+  )
+}}
+{{ $graph := dict "@context" "https://schema.org" "@graph" (slice $org $website) }}
+<script type="application/ld+json">{{ $graph | jsonify | safeJS }}</script>
+{{ if and .IsPage (eq .Section "posts") }}
+  {{ $postSchema := dict
+    "@context" "https://schema.org"
+    "@type" "BlogPosting"
+    "headline" .Title
+    "mainEntityOfPage" .Permalink
+    "url" .Permalink
+    "datePublished" (time.Format "2006-01-02T15:04:05Z07:00" .Date)
+    "dateModified" (time.Format "2006-01-02T15:04:05Z07:00" .Lastmod)
+    "description" (.Params.summary | default (.Summary | plainify))
+    "publisher" (dict "@id" $orgID)
+    "author" (dict "@type" "Organization" "name" .Site.Title)
+  }}
+  {{ with .Params.image }}
+    {{ $postSchema = merge $postSchema (dict "image" (slice (absURL .))) }}
+  {{ end }}
+  {{ $postBreadcrumbs := dict
+    "@context" "https://schema.org"
+    "@type" "BreadcrumbList"
+    "itemListElement" (slice
+      (dict "@type" "ListItem" "position" 1 "name" "Home" "item" .Site.Home.Permalink)
+      (dict "@type" "ListItem" "position" 2 "name" "Guides" "item" (absURL "posts/"))
+      (dict "@type" "ListItem" "position" 3 "name" .Title "item" .Permalink)
+    )
+  }}
+  <script type="application/ld+json">{{ $postSchema | jsonify | safeJS }}</script>
+  <script type="application/ld+json">{{ $postBreadcrumbs | jsonify | safeJS }}</script>
+{{ end }}
 <link rel="stylesheet" href="{{ "styles/site.css" | relURL }}?v={{ now.Unix }}">

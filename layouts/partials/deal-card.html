@@ -18,16 +18,16 @@
 {{ $sale := $params.sale_price }}
 {{ $discount := $params.discount_pct }}
 {{ $expires := $params.expires_at }}
+{{ $timeLeft := $params.time_left | default "" }}
 {{ $tags := $params.tags }}
 {{ $url := or $params.product_url $params.affiliate_url }}
 {{ $normalizedURL := lower (printf "%v" $url) }}
 {{ $isAmazonURL := and $url (or (in $normalizedURL "amazon.") (in $normalizedURL "amzn.to")) }}
 {{ $hasAmazonTag := and $isAmazonURL (in $normalizedURL "tag=") }}
 {{ $isAffiliateLink := or $params.affiliate_url $hasAmazonTag }}
-{{ $canShowLocalPrice := not $isAmazonURL }}
+{{ $canShowLocalPrice := $params.show_local_price | default true }}
 {{ $currency := $page.Site.Params.currency_symbol | default "€" }}
-{{ $timeLeft := "" }}
-  {{ if $expires }}
+  {{ if and (eq $timeLeft "") $expires }}
     {{ $hoursLeft := div (sub ((time $expires).Unix) (now.Unix)) 3600 }}
     {{ if ge $hoursLeft 0 }}
       {{ $daysLeft := div $hoursLeft 24 }}
@@ -47,10 +47,16 @@
   {{ with .latest }}{{ $latest = . }}{{ end }}
   {{ with .expiring_soon }}{{ $expiringSoon = . }}{{ end }}
 {{ end }}
-<article class="deal-card{{ if $compact }} deal-card--compact{{ end }}{{ if $listCard }} deal-card--list{{ end }}"{{ if $listCard }} data-filter-card="true" data-title="{{ lower $title }}" data-summary="{{ with $page.Summary }}{{ . | plainify | lower }}{{ end }}" data-tags="{{ delimit $tags " " | lower }}" data-top-savings="{{ if $topSavings }}true{{ else }}false{{ end }}" data-latest="{{ if $latest }}true{{ else }}false{{ end }}" data-expiring-soon="{{ if $expiringSoon }}true{{ else }}false{{ end }}" data-discount="{{ printf "%.6f" (or $discount 0) }}" data-date="{{ $page.Date.Unix }}"{{ end }}>
+<article class="deal-card{{ if $compact }} deal-card--compact{{ end }}{{ if $listCard }} deal-card--list{{ end }}"{{ if $listCard }} data-filter-card="true" data-title="{{ lower $title }}" data-summary="{{ with $page.Summary }}{{ . | plainify | lower }}{{ end }}" data-tags="{{ delimit $tags " " | lower }}" data-top-savings="{{ if $topSavings }}true{{ else }}false{{ end }}" data-latest="{{ if $latest }}true{{ else }}false{{ end }}" data-expiring-soon="{{ if $expiringSoon }}true{{ else }}false{{ end }}" data-discount="{{ printf "%.6f" (or $discount 0) }}" data-date="{{ $page.Lastmod.Unix }}" data-affiliate="{{ if $isAffiliateLink }}true{{ else }}false{{ end }}"{{ end }}>
   {{ if $img }}
     <div class="deal-card__image">
-      <img src="{{ $img }}" alt="{{ $title }}" loading="lazy">
+      {{ partial "responsive-image.html" (dict
+        "src" $img
+        "alt" $title
+        "sizes" "(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
+        "loading" "lazy"
+        "decoding" "async"
+      ) }}
     </div>
   {{ else }}
     <div class="deal-card__placeholder">Deal pick</div>

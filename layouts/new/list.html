@@ -2,9 +2,9 @@
 <section class="list-shell">
   <div class="list-shell__intro">
     <h1>New arrivals</h1>
-    <p>The newest deal pages and product notes added to the site.</p>
+    <p>The most recently updated deal pages and product notes.</p>
   </div>
-  {{ $deals := sort (where (where .Site.RegularPages "Section" "deals") "Draft" false) "Date" "desc" }}
+  {{ $deals := sort (where (where .Site.RegularPages "Section" "deals") "Draft" false) "Lastmod" "desc" }}
   {{ if gt (len $deals) 0 }}
     <div class="deal-grid">
       {{ range first 20 $deals }}

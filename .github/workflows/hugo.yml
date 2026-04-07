@@ -51,7 +51,12 @@ jobs:
           hugo-version: 'latest'
 
       - name: Build
-        run: hugo
+        run: hugo --environment production
+
+      - name: SEO audit
+        run: |
+          chmod +x scripts/seo_audit.sh
+          ./scripts/seo_audit.sh public
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3

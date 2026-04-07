@@ -1,0 +1,44 @@
+{{ $src := .src }}
+{{ $alt := .alt | default "" }}
+{{ $class := .class | default "" }}
+{{ $sizes := .sizes | default "100vw" }}
+{{ $loading := .loading | default "lazy" }}
+{{ $decoding := .decoding | default "async" }}
+{{ $fetchpriority := .fetchpriority | default "auto" }}
+
+{{ $isRemote := or (hasPrefix $src "http://") (hasPrefix $src "https://") }}
+{{ $resource := nil }}
+{{ if and $src (not $isRemote) }}
+  {{ $clean := strings.TrimPrefix "/" $src }}
+  {{ $resource = resources.Get $clean }}
+{{ end }}
+
+{{ if and $resource (in (slice "jpeg" "jpg" "png" "webp") $resource.MediaType.SubType) }}
+  {{ $small := $resource.Fit "480x320 webp q80" }}
+  {{ $medium := $resource.Fit "768x512 webp q80" }}
+  {{ $large := $resource.Fit "1200x800 webp q80" }}
+  <img
+    src="{{ $medium.RelPermalink }}"
+    srcset="{{ $small.RelPermalink }} 480w, {{ $medium.RelPermalink }} 768w, {{ $large.RelPermalink }} 1200w"
+    sizes="{{ $sizes }}"
+    alt="{{ $alt }}"
+    class="{{ $class }}"
+    loading="{{ $loading }}"
+    decoding="{{ $decoding }}"
+    fetchpriority="{{ $fetchpriority }}"
+    width="{{ $medium.Width }}"
+    height="{{ $medium.Height }}"
+  >
+{{ else }}
+  <img
+    src="{{ $src }}"
+    alt="{{ $alt }}"
+    class="{{ $class }}"
+    loading="{{ $loading }}"
+    decoding="{{ $decoding }}"
+    fetchpriority="{{ $fetchpriority }}"
+    width="960"
+    height="540"
+    sizes="{{ $sizes }}"
+  >
+{{ end }}

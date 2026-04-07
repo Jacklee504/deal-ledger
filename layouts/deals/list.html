@@ -1,8 +1,5 @@
 {{ define "main" }}
 <section class="list-shell">
-  <div class="list-shell__intro">
-    <p>Search and filter the current deal pages by what matters most: strongest savings, newest additions, or items with expiring windows. Retailer links are added selectively as listings are finalized.</p>
-  </div>
   {{ $deals := where (where .Site.RegularPages "Section" "deals") "Draft" false }}
   {{ if gt (len $deals) 0 }}
     {{ $topSavings := first 4 (sort $deals "Params.discount_pct" "desc") }}
@@ -10,7 +7,7 @@
     {{ range $topSavings }}
       {{ $topSavingsPaths = $topSavingsPaths | append .RelPermalink }}
     {{ end }}
-    {{ $latestDeals := first 6 (sort $deals "Date" "desc") }}
+    {{ $latestDeals := first 6 (sort $deals "Lastmod" "desc") }}
     {{ $latestPaths := slice }}
     {{ range $latestDeals }}
       {{ $latestPaths = $latestPaths | append .RelPermalink }}
@@ -29,11 +26,66 @@
         {{ $orderedDeals = $orderedDeals | append . }}
       {{ end }}
     {{ end }}
-    {{ range sort $deals "Date" "desc" }}
+    {{ range sort $deals "Lastmod" "desc" }}
       {{ if not (in $expiringPaths .RelPermalink) }}
         {{ $orderedDeals = $orderedDeals | append . }}
       {{ end }}
     {{ end }}
+    {{ $affiliateOrdered := slice }}
+    {{ $nonAffiliateOrdered := slice }}
+    {{ range $orderedDeals }}
+      {{ $candidateURL := lower (printf "%v" (or .Params.affiliate_url .Params.product_url)) }}
+      {{ $isAffiliate := or .Params.affiliate_url (in $candidateURL "tag=") }}
+      {{ if $isAffiliate }}
+        {{ $affiliateOrdered = $affiliateOrdered | append . }}
+      {{ else }}
+        {{ $nonAffiliateOrdered = $nonAffiliateOrdered | append . }}
+      {{ end }}
+    {{ end }}
+    {{ $interleavedDeals := slice }}
+    {{ $maxLen := len $affiliateOrdered }}
+    {{ if gt (len $nonAffiliateOrdered) $maxLen }}
+      {{ $maxLen = len $nonAffiliateOrdered }}
+    {{ end }}
+    {{ if gt $maxLen 0 }}
+      {{ range seq 0 (sub $maxLen 1) }}
+        {{ $i := . }}
+        {{ if lt $i (len $affiliateOrdered) }}
+          {{ $interleavedDeals = $interleavedDeals | append (index $affiliateOrdered $i) }}
+        {{ end }}
+        {{ if lt $i (len $nonAffiliateOrdered) }}
+          {{ $interleavedDeals = $interleavedDeals | append (index $nonAffiliateOrdered $i) }}
+        {{ end }}
+      {{ end }}
+      {{ $orderedDeals = $interleavedDeals }}
+    {{ end }}
+    {{ $breadcrumbs := dict
+      "@context" "https://schema.org"
+      "@type" "BreadcrumbList"
+      "itemListElement" (slice
+        (dict "@type" "ListItem" "position" 1 "name" "Home" "item" .Site.Home.Permalink)
+        (dict "@type" "ListItem" "position" 2 "name" "Deals" "item" .Permalink)
+      )
+    }}
+    {{ $listItems := slice }}
+    {{ range $index, $deal := $orderedDeals }}
+      {{ $listItems = $listItems | append (dict
+        "@type" "ListItem"
+        "position" (add $index 1)
+        "name" $deal.Title
+        "url" $deal.Permalink
+      ) }}
+    {{ end }}
+    {{ $itemListSchema := dict
+      "@context" "https://schema.org"
+      "@type" "ItemList"
+      "name" "Deal listings"
+      "itemListOrder" "https://schema.org/ItemListOrderAscending"
+      "numberOfItems" (len $orderedDeals)
+      "itemListElement" $listItems
+    }}
+    <script type="application/ld+json">{{ $breadcrumbs | jsonify | safeJS }}</script>
+    <script type="application/ld+json">{{ $itemListSchema | jsonify | safeJS }}</script>
     <section class="list-subsection">
       <div class="list-subsection__intro">
         <h2>Browse deals</h2>
@@ -88,6 +140,15 @@
         };
 
         const update = () => {
+          const query = (search.value || '').trim();
+          if (query) {
+            cards.forEach((card) => {
+              card.querySelectorAll('details[open]').forEach((detailsEl) => {
+                detailsEl.removeAttribute('open');
+              });
+            });
+          }
+
           const visibleCards = [];
 
           cards.forEach((card) => {
@@ -97,12 +158,23 @@
           });
 
           const sortedVisible = visibleCards.slice().sort((a, b) => {
+            const affiliateRank = (el) => (el.dataset.affiliate === 'true' ? 1 : 0);
             if (activeFilter === 'top-savings') {
-              return parseFloat(b.dataset.discount || '0') - parseFloat(a.dataset.discount || '0');
+              const byDiscount = parseFloat(b.dataset.discount || '0') - parseFloat(a.dataset.discount || '0');
+              if (byDiscount !== 0) return byDiscount;
+              return affiliateRank(b) - affiliateRank(a);
             }
             if (activeFilter === 'latest') {
-              return parseInt(b.dataset.date || '0', 10) - parseInt(a.dataset.date || '0', 10);
+              const byDate = parseInt(b.dataset.date || '0', 10) - parseInt(a.dataset.date || '0', 10);
+              if (byDate !== 0) return byDate;
+              return affiliateRank(b) - affiliateRank(a);
             }
+            const byDiscount = parseFloat(b.dataset.discount || '0') - parseFloat(a.dataset.discount || '0');
+            if (byDiscount !== 0) return byDiscount;
+            const byDate = parseInt(b.dataset.date || '0', 10) - parseInt(a.dataset.date || '0', 10);
+            if (byDate !== 0) return byDate;
+            const byAffiliate = affiliateRank(b) - affiliateRank(a);
+            if (byAffiliate !== 0) return byAffiliate;
             return parseInt(a.dataset.originalIndex || '0', 10) - parseInt(b.dataset.originalIndex || '0', 10);
           });
 
@@ -123,7 +195,14 @@
           });
         });
 
-        search.addEventListener('input', update);
+        search.addEventListener('input', () => {
+          cards.forEach((card) => {
+            card.querySelectorAll('details[open]').forEach((detailsEl) => {
+              detailsEl.removeAttribute('open');
+            });
+          });
+          update();
+        });
         update();
       });
     </script>

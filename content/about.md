@@ -13,4 +13,29 @@ We regularly review older listings and guidance to keep things accurate and rele
 
 Deal Ledger is built for readers who want fast signal, not endless browsing. The intent is to save time while still giving enough detail to make a better buying decision.
 
+## How Deal Ledger works
+
+Deal Ledger is built for one thing: helping you save money on products you actually want.
+
+What you will see on this site:
+
+- focused deal picks instead of hundreds of random listings
+- clear current price and old price when available
+- quick expiry windows so you can act before a deal ends
+- category-based alerts so emails stay relevant
+
+How we keep it useful:
+
+- we prioritize practical products people are already shopping for
+- we avoid filler deals that do not look like real value
+- we keep descriptions short on cards and put extra details behind expansion
+
+You can browse all current picks on the deals page, or set category alerts and only hear about the topics you care about.
+
+## Resources
+
+- [Deal roundups]({{< relref "/roundups/_index.md" >}})
+- [Budget deal collections]({{< relref "/budget-deals/_index.md" >}})
+- [Retailer policy notes]({{< relref "/retailer-policies/_index.md" >}})
+
 For questions, corrections, or business inquiries: [contact@dealledger.eu](mailto:contact@dealledger.eu).

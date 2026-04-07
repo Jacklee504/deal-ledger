@@ -4,9 +4,53 @@
 {{ $isAmazonURL := and $url (or (in $normalizedURL "amazon.") (in $normalizedURL "amzn.to")) }}
 {{ $hasAmazonTag := and $isAmazonURL (in $normalizedURL "tag=") }}
 {{ $isAffiliateLink := or .Params.affiliate_url $hasAmazonTag }}
-{{ $canShowLocalPrice := not $isAmazonURL }}
+{{ $canShowLocalPrice := .Params.show_local_price | default true }}
 {{ $currency := .Site.Params.currency_symbol | default "€" }}
+{{ $currencyCode := .Site.Params.currency_code | default "EUR" }}
+{{ $timeLeft := .Params.time_left | default "" }}
+{{ $description := .Params.summary | default (.Summary | plainify) }}
+{{ $dealImage := .Params.image }}
+{{ $schema := dict
+  "@context" "https://schema.org"
+  "@type" "Product"
+  "name" .Title
+  "description" $description
+  "url" .Permalink
+  "mainEntityOfPage" .Permalink
+  "brand" (dict "@type" "Brand" "name" .Site.Title)
+}}
+{{ if $dealImage }}
+  {{ $schema = merge $schema (dict "image" (slice (absURL $dealImage))) }}
+{{ end }}
+{{ if and $canShowLocalPrice (gt (.Params.sale_price | default 0) 0) }}
+  {{ $offer := dict
+    "@type" "Offer"
+    "url" (or $url .Permalink)
+    "priceCurrency" $currencyCode
+    "price" (printf "%.2f" (.Params.sale_price | default 0))
+    "availability" "https://schema.org/InStock"
+  }}
+  {{ with .Params.expires_at }}
+    {{ $offer = merge $offer (dict "priceValidUntil" (time.Format "2006-01-02T15:04:05Z07:00" (time .))) }}
+  {{ end }}
+  {{ $schema = merge $schema (dict "offers" $offer) }}
+{{ end }}
+{{ $breadcrumbs := dict
+  "@context" "https://schema.org"
+  "@type" "BreadcrumbList"
+  "itemListElement" (slice
+    (dict "@type" "ListItem" "position" 1 "name" "Home" "item" .Site.Home.Permalink)
+    (dict "@type" "ListItem" "position" 2 "name" "Deals" "item" (printf "%sdeals/" .Site.BaseURL))
+    (dict "@type" "ListItem" "position" 3 "name" .Title "item" .Permalink)
+  )
+}}
 <article class="deal-single">
+  <script type="application/ld+json">
+    {{ $schema | jsonify | safeJS }}
+  </script>
+  <script type="application/ld+json">
+    {{ $breadcrumbs | jsonify | safeJS }}
+  </script>
   <div class="deal-single__hero">
     <div>
       <header>
@@ -22,7 +66,11 @@
         {{ else }}
           <div class="meta">See Amazon for current price and availability.</div>
         {{ end }}
-        {{ with .Params.expires_at }}<div class="meta">Expires {{ time.Format "Jan 2, 2006" (time .) }}</div>{{ end }}
+        {{ if $timeLeft }}
+          <div class="meta">Ends in {{ $timeLeft }}</div>
+        {{ else }}
+          {{ with .Params.expires_at }}<div class="meta">Expires {{ time.Format "Jan 2, 2006" (time .) }}</div>{{ end }}
+        {{ end }}
       </div>
 
       {{ if $url }}
@@ -42,7 +90,13 @@
 
     {{ if .Params.image }}
       <div class="deal-single__image">
-        <img src="{{ .Params.image }}" alt="{{ .Title }}" loading="lazy">
+        {{ partial "responsive-image.html" (dict
+          "src" .Params.image
+          "alt" .Title
+          "sizes" "(max-width: 60rem) 100vw, 40vw"
+          "loading" "lazy"
+          "decoding" "async"
+        ) }}
       </div>
     {{ else }}
       <div class="deal-single__placeholder">Product page preview</div>

@@ -1,60 +1,57 @@
 {{ define "main" }}
 {{ $deals := where .Site.RegularPages "Section" "deals" }}
-{{ $posts := where .Site.RegularPages "Section" "posts" }}
-{{ $featured := where $deals ".Params.featured" true | first 4 }}
-{{ $recent := first 4 (sort (where $deals "Draft" false) "Date" "desc") }}
-{{ $guides := first 3 (sort $posts "Date" "desc") }}
-
-<section class="hero-band">
-  <div class="hero-band__eyebrow">Curated deal picks</div>
-  <div class="hero-band__grid">
-    <div class="hero-band__content">
-      <h1 class="hero-band__headline">Useful deals, not deal spam.</h1>
-      <p class="hero-band__copy">Deal Ledger is a curated product-discovery site built around a simple promise: fewer picks, better context, and alerts shaped by reader intent. The goal is not to cover everything. It is to help people track practical products and understand why a deal is worth their attention.</p>
-      <div class="hero-band__actions">
-        <a class="button-link button-link--primary" href="{{ "deals/" | relURL }}">Browse deal picks</a>
-        <a class="button-link button-link--secondary" href="{{ "alerts/" | relURL }}">Join alert waitlist</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="home-section">
-  <div class="home-section__intro">
-    <h2>Categories people can subscribe to</h2>
-    <p>The email strategy is aimed at reader intent, not inbox noise: readers choose a category, add keywords if needed, and only hear about the products they actually care about.</p>
-  </div>
-  <div class="category-strip">
-    <a href="{{ "tags/audio/" | relURL }}">Audio</a>
-    <a href="{{ "tags/running/" | relURL }}">Running gear</a>
-    <a href="{{ "tags/productivity/" | relURL }}">Home office</a>
-    <a href="{{ "tags/home-gym/" | relURL }}">Home gym</a>
-    <a href="{{ "alerts/" | relURL }}">Category alerts</a>
-  </div>
-</section>
-
-{{ if gt (len $guides) 0 }}
-<section class="home-section">
-  <div class="home-section__intro">
-    <h2>Editorial guides</h2>
-    <p>Lightweight editorial guides help the site explain its point of view, so the experience feels more like a trusted buyer assistant than a pile of links.</p>
-  </div>
-  <div class="guide-grid">
-    {{ range $guides }}
-      <article class="guide-card">
-        <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-        <p>{{ with .Summary }}{{ . | plainify | truncate 150 }}{{ else }}Read the full guide.{{ end }}</p>
-        <a class="guide-card__link" href="{{ .RelPermalink }}">Read guide</a>
-      </article>
-    {{ end }}
-  </div>
-</section>
+{{ $liveDeals := where $deals "Draft" false }}
+{{ $featured := first 4 (sort $liveDeals "Params.discount_pct" "desc") }}
+{{ $recent := first 4 (sort $liveDeals "Lastmod" "desc") }}
+{{ $featuredListItems := slice }}
+{{ range $index, $deal := $featured }}
+  {{ $featuredListItems = $featuredListItems | append (dict
+    "@type" "ListItem"
+    "position" (add $index 1)
+    "name" $deal.Title
+    "url" $deal.Permalink
+  ) }}
 {{ end }}
+{{ $recentListItems := slice }}
+{{ range $index, $deal := $recent }}
+  {{ $recentListItems = $recentListItems | append (dict
+    "@type" "ListItem"
+    "position" (add $index 1)
+    "name" $deal.Title
+    "url" $deal.Permalink
+  ) }}
+{{ end }}
+{{ if gt (len $featuredListItems) 0 }}
+  {{ $featuredSchema := dict
+    "@context" "https://schema.org"
+    "@type" "ItemList"
+    "name" "Featured deals"
+    "itemListOrder" "https://schema.org/ItemListOrderAscending"
+    "numberOfItems" (len $featuredListItems)
+    "itemListElement" $featuredListItems
+  }}
+  <script type="application/ld+json">{{ $featuredSchema | jsonify | safeJS }}</script>
+{{ end }}
+{{ if gt (len $recentListItems) 0 }}
+  {{ $recentSchema := dict
+    "@context" "https://schema.org"
+    "@type" "ItemList"
+    "name" "Recent deals"
+    "itemListOrder" "https://schema.org/ItemListOrderAscending"
+    "numberOfItems" (len $recentListItems)
+    "itemListElement" $recentListItems
+  }}
+  <script type="application/ld+json">{{ $recentSchema | jsonify | safeJS }}</script>
+{{ end }}
+
+<section class="home-value-strip" aria-label="Deal Ledger highlights">
+  <p>Simple picks • Clear value • Smarter spending</p>
+</section>
 
 <section class="home-section">
   <div class="home-section__intro">
     <h2>Featured picks</h2>
-    <p>These are the kinds of products the site would highlight on the front page: practical categories, clear price context, and just enough editorial framing to be useful before a click ever happens.</p>
+    <p>Top deals worth checking right now.</p>
   </div>
   {{ if gt (len $featured) 0 }}
     <div class="deal-grid deal-grid--browse">
@@ -69,8 +66,22 @@
 
 <section class="home-section">
   <div class="home-section__intro">
+    <h2>Shop by category</h2>
+    <p>Pick the category you care about and get straight to the best savings.</p>
+  </div>
+  <div class="category-strip">
+    <a href="{{ "tags/audio/" | relURL }}">Audio</a>
+    <a href="{{ "tags/running/" | relURL }}">Running gear</a>
+    <a href="{{ "tags/productivity/" | relURL }}">Home office</a>
+    <a href="{{ "tags/home-gym/" | relURL }}">Home gym</a>
+    <a href="{{ "alerts/" | relURL }}">Category alerts</a>
+  </div>
+</section>
+
+<section class="home-section">
+  <div class="home-section__intro">
     <h2>Recent additions</h2>
-    <p>New picks, fresh categories, and updated notes land here first. This keeps the homepage active without turning it into a constant stream of low-signal offers.</p>
+    <p>Latest deals added to the site.</p>
   </div>
   {{ if gt (len $recent) 0 }}
     <div class="deal-grid deal-grid--browse">

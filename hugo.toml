@@ -2,10 +2,13 @@ baseURL = "https://dealledger.eu/"
 languageCode = "en-us"
 title = "Deal Ledger"
 theme = "ananke"
+enableGitInfo = true
+enableRobotsTXT = true
 
 [params]
   description = "A curated deals site focused on useful product picks, clear price context, and alerts shaped around reader intent."
   currency_symbol = "€"
+  currency_code = "EUR"
   formspree_endpoint = "https://formspree.io/f/mgopnyjd"
 
 [taxonomies]
@@ -19,11 +22,6 @@ theme = "ananke"
     weight = 10
 
   [[menu.main]]
-    name = "Guides"
-    url = "/posts/"
-    weight = 20
-
-  [[menu.main]]
     name = "Email Alerts"
     url = "/alerts/"
-    weight = 30
+    weight = 20
