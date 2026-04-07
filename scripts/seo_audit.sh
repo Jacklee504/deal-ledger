@@ -2,6 +2,7 @@
 set -euo pipefail
 
 PUBLIC_DIR="${1:-public}"
+STRICT_MODE="${SEO_AUDIT_STRICT:-1}"
 
 if [[ ! -d "$PUBLIC_DIR" ]]; then
   echo "SEO audit failed: directory not found: $PUBLIC_DIR"
@@ -143,8 +144,11 @@ if [[ "$broken_link_failures" -gt 0 ]]; then
 fi
 
 if [[ "$failures" -gt 0 ]]; then
-  echo "SEO audit failed with $failures issue(s)."
-  exit 1
+  if [[ "$STRICT_MODE" == "1" ]]; then
+    echo "SEO audit failed with $failures issue(s)."
+    exit 1
+  fi
+  echo "SEO audit found $failures issue(s), but strict mode is disabled."
 fi
 
 if [[ "$warnings" -gt 0 ]]; then

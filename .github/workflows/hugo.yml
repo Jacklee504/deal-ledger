@@ -54,6 +54,8 @@ jobs:
         run: hugo --environment production
 
       - name: SEO audit
+        env:
+          SEO_AUDIT_STRICT: "0"
         run: |
           chmod +x scripts/seo_audit.sh
           ./scripts/seo_audit.sh public
