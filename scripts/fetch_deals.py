@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List
@@ -29,10 +30,25 @@ except ModuleNotFoundError:
 
 ROOT = Path(__file__).resolve().parents[1]
 SEEDS_PATH = ROOT / "scripts" / "seeds.json"
+QUALITY_POLICY_PATH = ROOT / "scripts" / "quality_policy.json"
 OUTPUT_DIR = ROOT / "review-queue" / "deals"
 
 REQUIRED_ENVS = ["AMZ_PAAPI_ACCESS_KEY", "AMZ_PAAPI_SECRET_KEY", "AMZ_PARTNER_TAG"]
 MIN_DISCOUNT = 0.05
+
+
+DEFAULT_QUALITY_POLICY = {
+    "require_reputable_brand": True,
+    "allowed_brands": [
+        "Amazon", "Anker", "Sony", "Logitech", "Corsair", "LEGO", "Soundcore",
+        "Apple", "Samsung", "Philips", "TP-Link", "Bose", "JBL", "SanDisk"
+    ],
+    "blocked_brand_terms": [
+        "generic", "unknown", "no brand", "unbranded"
+    ],
+    "require_fulfilled_by_amazon_or_amazon_seller": True,
+    "trusted_seller_terms": ["amazon"],
+}
 
 
 def has_required_env() -> bool:
@@ -53,6 +69,19 @@ def load_seeds():
     marketplace = os.getenv("AMZ_MARKETPLACE") or data.get("marketplace") or "www.amazon.com"
     tags_map = data.get("tags", {})
     return marketplace, asins, tags_map
+
+
+def load_quality_policy() -> dict:
+    if not QUALITY_POLICY_PATH.exists():
+        return DEFAULT_QUALITY_POLICY
+    try:
+        user = json.loads(QUALITY_POLICY_PATH.read_text())
+        merged = dict(DEFAULT_QUALITY_POLICY)
+        merged.update(user)
+        return merged
+    except json.JSONDecodeError:
+        print("[fetch_deals] quality_policy.json invalid; using defaults")
+        return DEFAULT_QUALITY_POLICY
 
 
 def host_to_country(host: str) -> str:
@@ -117,6 +146,61 @@ def is_affiliate_ready(url: str) -> bool:
         return False
     normalized = url.lower()
     return "tag=" in normalized or "amzn.to" in normalized
+
+
+def normalize_text(value: str) -> str:
+    return re.sub(r"\s+", " ", re.sub(r"[^a-z0-9\s]", " ", (value or "").lower())).strip()
+
+
+def contains_any(text: str, terms: List[str]) -> bool:
+    n = normalize_text(text)
+    for term in terms or []:
+        if normalize_text(term) in n:
+            return True
+    return False
+
+
+def extract_brand(product) -> str:
+    raw = product.raw or {}
+    brand = ""
+    byline = (((raw.get("ItemInfo") or {}).get("ByLineInfo") or {}).get("Brand") or {})
+    if isinstance(byline, dict):
+        brand = byline.get("DisplayValue") or ""
+    if not brand:
+        brand = getattr(product, "brand", "") or ""
+    return str(brand).strip()
+
+
+def is_reputable_brand(brand: str, policy: dict) -> bool:
+    if not policy.get("require_reputable_brand", True):
+        return True
+    if not brand:
+        return False
+    if contains_any(brand, policy.get("blocked_brand_terms", [])):
+        return False
+    allowed = policy.get("allowed_brands", [])
+    if not allowed:
+        return True
+    return contains_any(brand, allowed)
+
+
+def is_trusted_fulfillment(listing: dict, policy: dict) -> bool:
+    if not policy.get("require_fulfilled_by_amazon_or_amazon_seller", True):
+        return True
+
+    if listing.get("IsFulfilledByAmazon") is True:
+        return True
+
+    merchant_name = ((listing.get("MerchantInfo") or {}).get("Name") or "")
+    if contains_any(merchant_name, policy.get("trusted_seller_terms", ["amazon"])):
+        return True
+
+    # Some responses include an OfferProgramEligibility dict with Prime flags.
+    ope = listing.get("OfferProgramEligibility") or {}
+    if isinstance(ope, dict) and ope.get("IsPrimeExclusive") is True:
+        return True
+
+    return False
 
 
 def toml_escape(value: str) -> str:
@@ -202,6 +286,7 @@ def main():
         return
 
     marketplace, asins, tags_map = seeds
+    quality_policy = load_quality_policy()
     country = host_to_country(marketplace)
     api = client(country)
 
@@ -226,11 +311,21 @@ def main():
             asin = product.asin
             raw_offers: Dict = (product.raw or {}).get("Offers") or {}
             listings = raw_offers.get("Listings") or []
+            brand = extract_brand(product)
+
+            if not is_reputable_brand(brand, quality_policy):
+                print(f"[fetch_deals] skip {asin}: non-reputable or blocked brand '{brand or '-'}'")
+                continue
 
             price = None
             list_price = None
             if listings:
                 listing = listings[0]
+                if is_trusted_fulfillment(listing, quality_policy):
+                    pass
+                else:
+                    print(f"[fetch_deals] skip {asin}: seller/fulfillment not trusted")
+                    continue
                 price_info = listing.get("Price") or {}
                 savings = price_info.get("Savings") or {}
                 amount = price_info.get("Amount")

@@ -91,6 +91,7 @@ Automation:
 - `.github/workflows/exact-item-alerts.yml` runs every 30 minutes.
 - It parses new Discord submissions, sends exact-item alert emails, and commits state updates.
 - `.github/workflows/sample-exact-item-email.yml` is a manual test workflow to send a branded sample email to any recipient.
+- `.github/workflows/sample-signup-option-email.yml` is a manual test workflow for category, keyword, weekly digest, and strongest-deals sample emails.
 
 ## Setup
 
@@ -111,8 +112,14 @@ Set in `Settings -> Secrets and variables -> Actions`:
 ### Seed ASINs
 Edit:
 - `scripts/seeds.json`
+- `scripts/quality_policy.json`
 
 Replace `EDIT_ME_*` entries with real ASINs.
+
+Quality policy controls automated intake filters:
+- allow reputable brands only (`allowed_brands`)
+- block low-trust brand terms (`blocked_brand_terms`)
+- require fulfilled-by-Amazon or trusted seller terms
 
 ## Local run
 ```bash

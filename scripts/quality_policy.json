@@ -1,0 +1,29 @@
+{
+  "require_reputable_brand": true,
+  "allowed_brands": [
+    "Amazon",
+    "Anker",
+    "Sony",
+    "Logitech",
+    "Corsair",
+    "LEGO",
+    "Soundcore",
+    "Apple",
+    "Samsung",
+    "Philips",
+    "TP-Link",
+    "Bose",
+    "JBL",
+    "SanDisk"
+  ],
+  "blocked_brand_terms": [
+    "generic",
+    "unknown",
+    "no brand",
+    "unbranded"
+  ],
+  "require_fulfilled_by_amazon_or_amazon_seller": true,
+  "trusted_seller_terms": [
+    "amazon"
+  ]
+}

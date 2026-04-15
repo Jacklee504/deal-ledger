@@ -1,0 +1,78 @@
+name: Send sample signup-option email
+
+on:
+  workflow_dispatch:
+    inputs:
+      recipient_email:
+        description: "Recipient email address"
+        required: true
+        type: string
+      sample_type:
+        description: "Which signup option sample to send"
+        required: true
+        type: choice
+        options:
+          - category
+          - keyword
+          - weekly_digest
+          - strongest
+      category_option:
+        description: "Category filter (used when sample_type=category)"
+        required: true
+        type: choice
+        options:
+          - home
+          - audio
+          - charging
+          - desk
+          - gaming
+          - toys
+      keyword_option:
+        description: "Keyword filter (used when sample_type=keyword)"
+        required: true
+        type: choice
+        options:
+          - headphones
+          - keyboard
+          - power bank
+          - fire tv stick
+          - monitor stand
+          - lego
+
+jobs:
+  send-sample:
+    runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Send sample signup-option email
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          SMTP_FROM: ${{ secrets.SMTP_FROM }}
+          SMTP_USE_TLS: "true"
+          SITE_BASE_URL: "https://dealledger.eu"
+        run: |
+          QUERY=""
+          if [ "${{ inputs.sample_type }}" = "category" ]; then
+            QUERY="${{ inputs.category_option }}"
+          elif [ "${{ inputs.sample_type }}" = "keyword" ]; then
+            QUERY="${{ inputs.keyword_option }}"
+          fi
+          python scripts/send_sample_signup_alerts.py \
+            --to "${{ inputs.recipient_email }}" \
+            --type "${{ inputs.sample_type }}" \
+            --query "$QUERY"
