@@ -265,8 +265,7 @@ def build_email_body(email: str, matches: list[dict[str, Any]], site_base: str) 
         list_txt = f"€{list_price:.2f}" if isinstance(list_price, (int, float)) else "-"
         lines.extend(
             [
-                f"- Request: {compact_request(m['requested_item'])}",
-                f"  Item: {m['title']}",
+                f"- Item: {m['title']}",
                 f"  Price: {sale_txt} (was {list_txt}, -{pct}%)",
                 f"  Deal page: {m['deal_page_url']}",
                 f"  Retailer: {compact_url(m['retailer_url'])}",
@@ -308,10 +307,9 @@ def build_email_html(matches: list[dict[str, Any]], site_base: str) -> str:
                   <tr>
                     <td style="width:240px;vertical-align:top;padding-right:14px;">{img_html}</td>
                     <td style="vertical-align:top;">
-                      <p style="margin:0 0 6px;font-size:12px;color:#5d6f66;">Request: {compact_request(m['requested_item'])}</p>
                       <h3 style="margin:0 0 8px;font-size:16px;line-height:1.35;color:#17332e;">{m['title']}</h3>
                       <p style="margin:0 0 10px;font-size:14px;color:#17332e;"><strong>{sale_txt}</strong> <span style="color:#6e7d75;">(was {list_txt}, -{pct}%)</span></p>
-                      <p style="margin:0 0 8px;font-size:13px;"><a href="{m['deal_page_url']}" style="color:#0d4e46;text-decoration:none;">View deal page</a></p>
+                      <p style="margin:0 0 8px;font-size:13px;"><a href="{m['deal_page_url']}" style="display:inline-block;background:#17332e;color:#fffdf9;text-decoration:none;padding:8px 12px;border-radius:999px;">View deal page</a></p>
                       <p style="margin:0;font-size:12px;color:#6e7d75;">Retailer: {compact_url(m['retailer_url'])}</p>
                     </td>
                   </tr>
