@@ -31,6 +31,7 @@ import re
 import smtplib
 from dataclasses import dataclass
 from datetime import datetime, timezone
+from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from pathlib import Path
 from typing import Any
@@ -51,6 +52,7 @@ class Deal:
     summary: str
     product_url: str
     listing_url: str
+    listing_image: str
     discount_pct: float
     sale_price: float | None
     list_price: float | None
@@ -145,6 +147,7 @@ def load_deals() -> list[Deal]:
         summary = get_str(front, "summary") or get_str(front, "listing_summary")
         product_url = get_str(front, "product_url")
         listing_url = get_str(front, "listing_url")
+        listing_image = get_str(front, "listing_image")
         discount_pct = (
             get_float(front, "listing_discount_pct")
             or get_float(front, "discount_pct")
@@ -161,6 +164,7 @@ def load_deals() -> list[Deal]:
                 summary=summary,
                 product_url=product_url,
                 listing_url=listing_url,
+                listing_image=listing_image,
                 discount_pct=discount_pct,
                 sale_price=sale_price,
                 list_price=list_price,
@@ -168,6 +172,28 @@ def load_deals() -> list[Deal]:
             )
         )
     return deals
+
+
+def compact_request(value: str) -> str:
+    value = (value or "").strip()
+    asin = extract_asin(value)
+    if asin:
+        host = urlparse(value).netloc or "amazon"
+        return f"{host}/dp/{asin}"
+    if len(value) > 90:
+        return value[:87] + "..."
+    return value
+
+
+def compact_url(value: str) -> str:
+    value = (value or "").strip()
+    if not value:
+        return "-"
+    parsed = urlparse(value)
+    asin = extract_asin(value)
+    if asin:
+        return f"{parsed.netloc}/dp/{asin}"
+    return parsed.netloc + parsed.path if parsed.netloc else value
 
 
 def deal_matches_exact_item(deal: Deal, item: str) -> bool:
@@ -226,7 +252,7 @@ def update_subscriptions(requests_payload: dict[str, Any], subs: dict[str, Any])
 
 def build_email_body(email: str, matches: list[dict[str, Any]], site_base: str) -> str:
     lines = [
-        "Your exact-item deal alert from Deal Ledger",
+        "Deal Ledger: Exact-item discount alert",
         "",
         f"We found {len(matches)} discounted match(es) for your tracked items:",
         "",
@@ -239,10 +265,11 @@ def build_email_body(email: str, matches: list[dict[str, Any]], site_base: str) 
         list_txt = f"€{list_price:.2f}" if isinstance(list_price, (int, float)) else "-"
         lines.extend(
             [
-                f"- Request: {m['requested_item']}",
+                f"- Request: {compact_request(m['requested_item'])}",
                 f"  Item: {m['title']}",
                 f"  Price: {sale_txt} (was {list_txt}, -{pct}%)",
-                f"  Link: {m['url']}",
+                f"  Deal page: {m['deal_page_url']}",
+                f"  Retailer: {compact_url(m['retailer_url'])}",
                 "",
             ]
         )
@@ -250,13 +277,82 @@ def build_email_body(email: str, matches: list[dict[str, Any]], site_base: str) 
         [
             f"Browse more deals: {site_base.rstrip('/')}/deals/",
             "",
-            "You received this because you requested exact item tracking on Deal Ledger.",
+            "Thanks for using Deal Ledger.",
+            "The Deal Ledger Team",
+            "You received this because you requested exact item tracking.",
         ]
     )
     return "\n".join(lines)
 
 
-def send_email(to_email: str, subject: str, body: str) -> None:
+def build_email_html(matches: list[dict[str, Any]], site_base: str) -> str:
+    logo_url = f"{site_base.rstrip('/')}/images/brand/deal-ledger-logo.svg"
+    cards: list[str] = []
+    for m in matches:
+        pct = int(round(float(m["discount_pct"]) * 100))
+        sale = m.get("sale_price")
+        list_price = m.get("list_price")
+        sale_txt = f"€{sale:.2f}" if isinstance(sale, (int, float)) else "-"
+        list_txt = f"€{list_price:.2f}" if isinstance(list_price, (int, float)) else "-"
+        img = (m.get("image_url") or "").strip()
+        img_html = (
+            f'<img src="{img}" alt="{m["title"]}" width="240" style="display:block;width:100%;max-width:240px;height:auto;border-radius:10px;border:1px solid #e8ede8;">'
+            if img
+            else ""
+        )
+        cards.append(
+            f"""
+            <tr>
+              <td style="padding:14px 0;border-top:1px solid #edf1ed;">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td style="width:240px;vertical-align:top;padding-right:14px;">{img_html}</td>
+                    <td style="vertical-align:top;">
+                      <p style="margin:0 0 6px;font-size:12px;color:#5d6f66;">Request: {compact_request(m['requested_item'])}</p>
+                      <h3 style="margin:0 0 8px;font-size:16px;line-height:1.35;color:#17332e;">{m['title']}</h3>
+                      <p style="margin:0 0 10px;font-size:14px;color:#17332e;"><strong>{sale_txt}</strong> <span style="color:#6e7d75;">(was {list_txt}, -{pct}%)</span></p>
+                      <p style="margin:0 0 8px;font-size:13px;"><a href="{m['deal_page_url']}" style="color:#0d4e46;text-decoration:none;">View deal page</a></p>
+                      <p style="margin:0;font-size:12px;color:#6e7d75;">Retailer: {compact_url(m['retailer_url'])}</p>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            """
+        )
+
+    return f"""<!doctype html>
+<html>
+  <body style="margin:0;padding:0;background:#f6f8f6;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#17332e;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f6f8f6;padding:20px 10px;">
+      <tr>
+        <td align="center">
+          <table role="presentation" width="640" cellpadding="0" cellspacing="0" style="width:100%;max-width:640px;background:#ffffff;border:1px solid #e8ede8;border-radius:14px;overflow:hidden;">
+            <tr>
+              <td style="padding:18px 20px;background:#17332e;">
+                <img src="{logo_url}" alt="Deal Ledger" width="220" style="display:block;width:220px;max-width:100%;height:auto;">
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:18px 20px;">
+                <h2 style="margin:0 0 8px;font-size:20px;color:#17332e;">Exact-item discount alert</h2>
+                <p style="margin:0 0 12px;font-size:14px;color:#4d5f57;">We found {len(matches)} discounted match(es) for your tracked items.</p>
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                  {''.join(cards)}
+                </table>
+                <p style="margin:14px 0 0;font-size:13px;color:#5d6f66;">Browse more deals: <a href="{site_base.rstrip('/')}/deals/" style="color:#0d4e46;text-decoration:none;">{site_base.rstrip('/')}/deals/</a></p>
+                <p style="margin:12px 0 0;font-size:13px;color:#5d6f66;">Thanks for using Deal Ledger.<br>The Deal Ledger Team</p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>"""
+
+
+def send_email(to_email: str, subject: str, body: str, html_body: str) -> None:
     host = os.getenv("SMTP_HOST", "").strip()
     user = os.getenv("SMTP_USERNAME", "").strip()
     password = os.getenv("SMTP_PASSWORD", "").strip()
@@ -267,10 +363,12 @@ def send_email(to_email: str, subject: str, body: str) -> None:
     if not (host and user and password and sender):
         raise RuntimeError("SMTP not configured. Set SMTP_HOST/SMTP_USERNAME/SMTP_PASSWORD/SMTP_FROM.")
 
-    msg = MIMEText(body, "plain", "utf-8")
+    msg = MIMEMultipart("alternative")
     msg["Subject"] = subject
     msg["From"] = sender
     msg["To"] = to_email
+    msg.attach(MIMEText(body, "plain", "utf-8"))
+    msg.attach(MIMEText(html_body, "html", "utf-8"))
 
     with smtplib.SMTP(host, port, timeout=25) as smtp:
         smtp.ehlo()
@@ -285,10 +383,38 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Send exact-item discount alerts by email.")
     parser.add_argument("--requests", default=str(DEFAULT_REQUESTS), help="Parsed alerts JSON path.")
     parser.add_argument("--dry-run", action="store_true", help="Print would-send emails without sending.")
+    parser.add_argument("--test-email-to", default="", help="Send a single sample branded email to this address.")
     args = parser.parse_args()
 
     site_base = os.getenv("SITE_BASE_URL", "https://dealledger.eu").strip()
     requests_path = Path(args.requests)
+    deals = load_deals()
+
+    if args.test_email_to.strip():
+        sample_deal = next((d for d in deals if d.discount_pct > 0), None)
+        if not sample_deal:
+            raise SystemExit("No discounted deals found to build sample email.")
+        sample_match = {
+            "requested_item": sample_deal.product_url or sample_deal.listing_url or sample_deal.title,
+            "title": sample_deal.title or sample_deal.listing_title,
+            "discount_pct": sample_deal.discount_pct,
+            "sale_price": sample_deal.sale_price,
+            "list_price": sample_deal.list_price,
+            "retailer_url": sample_deal.product_url or sample_deal.listing_url,
+            "deal_page_url": f"{site_base.rstrip('/')}/deals/{sample_deal.slug}/",
+            "image_url": sample_deal.listing_image,
+            "deal_slug": sample_deal.slug,
+            "dedupe_key": "sample",
+        }
+        subject = "Deal Ledger: sample exact-item discount alert"
+        body = build_email_body(email=args.test_email_to, matches=[sample_match], site_base=site_base)
+        html_body = build_email_html(matches=[sample_match], site_base=site_base)
+        if args.dry_run:
+            print(f"[dry-run] sample email prepared for {args.test_email_to}")
+        else:
+            send_email(args.test_email_to.strip(), subject, body, html_body)
+            print(f"[sent] sample email -> {args.test_email_to.strip()}")
+        return
 
     requests_payload = read_json(requests_path, {"records": []})
     print(f"[send_exact_item_alerts] loaded_request_records={len(requests_payload.get('records', []))}")
@@ -297,7 +423,6 @@ def main() -> None:
     notify_map = notify_state.setdefault("last_sent", {})
 
     subscriptions = update_subscriptions(requests_payload, subscriptions)
-    deals = load_deals()
 
     queued_by_email: dict[str, list[dict[str, Any]]] = {}
     now_iso = datetime.now(timezone.utc).isoformat()
@@ -323,6 +448,7 @@ def main() -> None:
                     continue
 
                 url = deal.product_url or deal.listing_url or f"{site_base.rstrip('/')}/deals/{deal.slug}/"
+                deal_page_url = f"{site_base.rstrip('/')}/deals/{deal.slug}/"
                 queued_by_email.setdefault(email, []).append(
                     {
                         "requested_item": requested_item,
@@ -330,7 +456,9 @@ def main() -> None:
                         "discount_pct": deal.discount_pct,
                         "sale_price": deal.sale_price,
                         "list_price": deal.list_price,
-                        "url": url,
+                        "retailer_url": url,
+                        "deal_page_url": deal_page_url,
+                        "image_url": deal.listing_image,
                         "deal_slug": deal.slug,
                         "dedupe_key": dedupe_key,
                     }
@@ -340,11 +468,12 @@ def main() -> None:
     for email, matches in queued_by_email.items():
         subject = f"Deal Ledger: {len(matches)} exact-item discount match{'es' if len(matches) != 1 else ''}"
         body = build_email_body(email=email, matches=matches, site_base=site_base)
+        html_body = build_email_html(matches=matches, site_base=site_base)
 
         if args.dry_run:
             print(f"[dry-run] would email {email} with {len(matches)} match(es)")
         else:
-            send_email(email, subject, body)
+            send_email(email, subject, body, html_body)
             print(f"[sent] {email} ({len(matches)} match(es))")
 
         sent_count += 1

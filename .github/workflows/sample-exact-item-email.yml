@@ -1,0 +1,38 @@
+name: Send sample exact-item email
+
+on:
+  workflow_dispatch:
+    inputs:
+      recipient_email:
+        description: "Recipient email address for sample send"
+        required: true
+        type: string
+
+jobs:
+  send-sample:
+    runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Send sample branded email
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          SMTP_FROM: ${{ secrets.SMTP_FROM }}
+          SMTP_USE_TLS: "true"
+          SITE_BASE_URL: "https://dealledger.eu"
+        run: |
+          python scripts/send_exact_item_alerts.py --test-email-to "${{ inputs.recipient_email }}"

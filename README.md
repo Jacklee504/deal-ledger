@@ -90,6 +90,7 @@ State files used:
 Automation:
 - `.github/workflows/exact-item-alerts.yml` runs every 30 minutes.
 - It parses new Discord submissions, sends exact-item alert emails, and commits state updates.
+- `.github/workflows/sample-exact-item-email.yml` is a manual test workflow to send a branded sample email to any recipient.
 
 ## Setup
 
