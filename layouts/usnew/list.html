@@ -1,0 +1,26 @@
+{{ define "main" }}
+<section class="list-shell">
+  <div class="list-shell__intro">
+    <h1>US new arrivals</h1>
+    <p>The most recently updated US-domain deal pages and product notes.</p>
+  </div>
+  {{ $allLiveDeals := where (where .Site.RegularPages "Section" "deals") "Draft" false }}
+  {{ $deals := slice }}
+  {{ range $allLiveDeals }}
+    {{ $dealURL := lower (printf "%v" (or .Params.listing_url .Params.product_url .Params.affiliate_url)) }}
+    {{ if and $dealURL (or (in $dealURL "amazon.com/") (in $dealURL "amzn.to/")) }}
+      {{ $deals = $deals | append . }}
+    {{ end }}
+  {{ end }}
+  {{ $deals = sort $deals "Lastmod" "desc" }}
+  {{ if gt (len $deals) 0 }}
+    <div class="deal-grid">
+      {{ range first 20 $deals }}
+        {{ partial "deal-card.html" (dict "page" . "variant" "list") }}
+      {{ end }}
+    </div>
+  {{ else }}
+    <p>No recent US deals yet.</p>
+  {{ end }}
+</section>
+{{ end }}

@@ -17,7 +17,7 @@ listing_summary = "Sony WH-CH720N Noise Cancelling Wireless Bluetooth Headphones
 listing_sale_price = 79.12
 listing_list_price = 129.00
 listing_discount_pct = 0.39
-listing_synced_at = "2026-04-16T06:12:09.127454+00:00"
+listing_synced_at = "2026-04-16T21:12:34.148530+00:00"
 listing_image = "https://m.media-amazon.com/images/I/71iWkjXCu9L._AC_SL1500_.jpg"
 +++
 

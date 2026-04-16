@@ -113,7 +113,20 @@
     </div>
   {{ end }}
 
-  {{ $related := first 3 (where (where .Site.RegularPages "Section" "deals") "Permalink" "ne" .Permalink) }}
+  {{ $relatedPool := where (where .Site.RegularPages "Section" "deals") "Permalink" "ne" .Permalink }}
+  {{ $relatedUS := slice }}
+  {{ $currentDealURL := lower (printf "%v" $url) }}
+  {{ $isUSDeal := and $currentDealURL (or (in $currentDealURL "amazon.com/") (in $currentDealURL "amzn.to/")) }}
+  {{ range $relatedPool }}
+    {{ $relatedURL := lower (printf "%v" (or .Params.listing_url .Params.product_url .Params.affiliate_url)) }}
+    {{ if and $relatedURL (or
+      (and $isUSDeal (or (in $relatedURL "amazon.com/") (in $relatedURL "amzn.to/")))
+      (and (not $isUSDeal) (or (in $relatedURL "amazon.ie/") (in $relatedURL "amazon.co.uk/") (in $relatedURL "amazon.de/") (in $relatedURL "amazon.fr/") (in $relatedURL "amazon.it/") (in $relatedURL "amazon.es/") (in $relatedURL "amazon.nl/") (in $relatedURL "amazon.se/") (in $relatedURL "amazon.pl/")))
+    ) }}
+      {{ $relatedUS = $relatedUS | append . }}
+    {{ end }}
+  {{ end }}
+  {{ $related := first 3 $relatedUS }}
   {{ if gt (len $related) 0 }}
     <section class="related">
       <h2>More deals</h2>

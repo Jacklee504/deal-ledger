@@ -1,0 +1,105 @@
+{{ define "main" }}
+<section class="list-shell">
+  {{ $allLiveDeals := where (where .Site.RegularPages "Section" "deals") "Draft" false }}
+  {{ $deals := slice }}
+  {{ range $allLiveDeals }}
+    {{ $dealURL := lower (printf "%v" (or .Params.listing_url .Params.product_url .Params.affiliate_url)) }}
+    {{ if and $dealURL (or (in $dealURL "amazon.com/") (in $dealURL "amzn.to/")) }}
+      {{ $deals = $deals | append . }}
+    {{ end }}
+  {{ end }}
+  {{ if gt (len $deals) 0 }}
+    {{ $topSavings := first 4 (sort $deals "Params.discount_pct" "desc") }}
+    {{ $topSavingsPaths := slice }}
+    {{ range $topSavings }}
+      {{ $topSavingsPaths = $topSavingsPaths | append .RelPermalink }}
+    {{ end }}
+    {{ $latestDeals := first 6 (sort $deals "Lastmod" "desc") }}
+    {{ $latestPaths := slice }}
+    {{ range $latestDeals }}
+      {{ $latestPaths = $latestPaths | append .RelPermalink }}
+    {{ end }}
+    {{ $now := now }}
+    {{ $expiringDeals := sort (where $deals "Params.expires_at" "ne" nil) "Params.expires_at" "asc" }}
+    {{ $expiringPaths := slice }}
+    {{ range $expiringDeals }}
+      {{ if ge .Params.expires_at $now }}
+        {{ $expiringPaths = $expiringPaths | append .RelPermalink }}
+      {{ end }}
+    {{ end }}
+    {{ $orderedDeals := slice }}
+    {{ range $expiringDeals }}
+      {{ if ge .Params.expires_at $now }}
+        {{ $orderedDeals = $orderedDeals | append . }}
+      {{ end }}
+    {{ end }}
+    {{ range sort $deals "Lastmod" "desc" }}
+      {{ if not (in $expiringPaths .RelPermalink) }}
+        {{ $orderedDeals = $orderedDeals | append . }}
+      {{ end }}
+    {{ end }}
+    {{ $affiliateOrdered := slice }}
+    {{ $nonAffiliateOrdered := slice }}
+    {{ range $orderedDeals }}
+      {{ $candidateURL := lower (printf "%v" (or .Params.listing_url .Params.affiliate_url .Params.product_url)) }}
+      {{ $isAffiliate := or .Params.affiliate_url (in $candidateURL "tag=") }}
+      {{ if $isAffiliate }}
+        {{ $affiliateOrdered = $affiliateOrdered | append . }}
+      {{ else }}
+        {{ $nonAffiliateOrdered = $nonAffiliateOrdered | append . }}
+      {{ end }}
+    {{ end }}
+    {{ $interleavedDeals := slice }}
+    {{ $maxLen := len $affiliateOrdered }}
+    {{ if gt (len $nonAffiliateOrdered) $maxLen }}
+      {{ $maxLen = len $nonAffiliateOrdered }}
+    {{ end }}
+    {{ if gt $maxLen 0 }}
+      {{ range seq 0 (sub $maxLen 1) }}
+        {{ $i := . }}
+        {{ if lt $i (len $affiliateOrdered) }}
+          {{ $interleavedDeals = $interleavedDeals | append (index $affiliateOrdered $i) }}
+        {{ end }}
+        {{ if lt $i (len $nonAffiliateOrdered) }}
+          {{ $interleavedDeals = $interleavedDeals | append (index $nonAffiliateOrdered $i) }}
+        {{ end }}
+      {{ end }}
+      {{ $orderedDeals = $interleavedDeals }}
+    {{ end }}
+    <section class="list-subsection">
+      <div class="list-subsection__intro">
+        <h2>US deals</h2>
+      </div>
+      <div class="deal-filters" data-deal-filters>
+        <input id="deal-search" name="deal-search" class="deal-filters__search" type="search" placeholder="Search by product, category, or keyword" aria-label="Search deals" data-deal-search>
+        <div class="deal-filters__tabs" role="tablist" aria-label="Deal filters">
+          <button class="deal-filters__tab is-active" type="button" data-filter="all">All</button>
+          <button class="deal-filters__tab" type="button" data-filter="top-savings">Top savings</button>
+          <button class="deal-filters__tab" type="button" data-filter="latest">Latest</button>
+        </div>
+      </div>
+      <p class="list-shell__count deal-no-results is-hidden" data-no-results>
+        No items found for "<span data-no-results-query></span>".
+      </p>
+      <p class="list-shell__count deal-no-results deal-no-results__hint is-hidden" data-no-results-hint>
+        Other items you may like:
+      </p>
+      <div class="deal-grid deal-grid--browse">
+        {{ range $orderedDeals }}
+          {{ $path := .RelPermalink }}
+          {{ partial "deal-card.html" (dict
+            "page" .
+            "variant" "list"
+            "top_savings" (in $topSavingsPaths $path)
+            "latest" (in $latestPaths $path)
+            "expiring_soon" (in $expiringPaths $path)
+          ) }}
+        {{ end }}
+      </div>
+    </section>
+    <script type="module" src="{{ "scripts/deals-search.js" | relURL }}?v={{ now.Unix }}"></script>
+  {{ else }}
+    <p>No US deals available yet.</p>
+  {{ end }}
+</section>
+{{ end }}

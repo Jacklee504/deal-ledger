@@ -18,7 +18,7 @@ listing_sale_price = 70.90
 listing_list_price = 109.90
 listing_discount_pct = 0.3549
 listing_image = "https://m.media-amazon.com/images/I/61DzAk62YOL._AC_SL1500_.jpg"
-listing_synced_at = "2026-04-16T06:12:09.127454+00:00"
+listing_synced_at = "2026-04-16T21:12:34.148530+00:00"
 +++
 
 Compact foldable charging station designed for iPhone, AirPods, and Apple Watch.

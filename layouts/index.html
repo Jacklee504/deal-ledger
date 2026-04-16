@@ -1,6 +1,14 @@
 {{ define "main" }}
 {{ $deals := where .Site.RegularPages "Section" "deals" }}
 {{ $liveDeals := where $deals "Draft" false }}
+{{ $euDeals := slice }}
+{{ range $liveDeals }}
+  {{ $dealURL := lower (printf "%v" (or .Params.listing_url .Params.product_url .Params.affiliate_url)) }}
+  {{ if and $dealURL (or (in $dealURL "amazon.ie/") (in $dealURL "amazon.co.uk/") (in $dealURL "amazon.de/") (in $dealURL "amazon.fr/") (in $dealURL "amazon.it/") (in $dealURL "amazon.es/") (in $dealURL "amazon.nl/") (in $dealURL "amazon.se/") (in $dealURL "amazon.pl/")) }}
+    {{ $euDeals = $euDeals | append . }}
+  {{ end }}
+{{ end }}
+{{ $liveDeals = $euDeals }}
 {{ $featured := first 4 (sort $liveDeals "Params.discount_pct" "desc") }}
 {{ $now := now }}
 {{ $expiringDeals := sort (where $liveDeals "Params.expires_at" "ne" nil) "Params.expires_at" "asc" }}
@@ -24,7 +32,7 @@
 {{ $affiliateOrdered := slice }}
 {{ $nonAffiliateOrdered := slice }}
 {{ range $orderedDeals }}
-  {{ $candidateURL := lower (printf "%v" (or .Params.affiliate_url .Params.product_url)) }}
+  {{ $candidateURL := lower (printf "%v" (or .Params.listing_url .Params.affiliate_url .Params.product_url)) }}
   {{ $isAffiliate := or .Params.affiliate_url (in $candidateURL "tag=") }}
   {{ if $isAffiliate }}
     {{ $affiliateOrdered = $affiliateOrdered | append . }}
@@ -50,21 +58,7 @@
   {{ $orderedDeals = $interleavedDeals }}
 {{ end }}
 {{ $recent := first 4 (sort $orderedDeals "Lastmod" "desc") }}
-{{ $homeKeywords := slice "home" "house" "kitchen" "bathroom" "living" "furniture" "decor" "appliance" "cleaning" }}
-{{ $homeDeals := slice }}
-{{ range $liveDeals }}
-  {{ $pool := lower (printf "%s %s %s %s %s" .Title (.Params.summary | default "") (delimit (.Params.tags | default (slice)) " ") (delimit (.Params.categories | default (slice)) " ") (.Params.listing_title | default "")) }}
-  {{ $isHome := false }}
-  {{ range $homeKeywords }}
-    {{ if in $pool . }}
-      {{ $isHome = true }}
-    {{ end }}
-  {{ end }}
-  {{ if $isHome }}
-    {{ $homeDeals = $homeDeals | append . }}
-  {{ end }}
-{{ end }}
-{{ $homeDeals = first 4 (sort $homeDeals "Params.discount_pct" "desc") }}
+{{ $dealsBase := partials.Include "func/market/deals-base-url.html" . | strings.TrimSpace }}
 {{ $featuredListItems := slice }}
 {{ range $index, $deal := $featured }}
   {{ $featuredListItems = $featuredListItems | append (dict
@@ -128,32 +122,16 @@
 
 <section class="home-section">
   <div class="home-section__intro">
-    <h2>Home deals</h2>
-    <p>Top home picks with strong savings right now.</p>
-  </div>
-  {{ if gt (len $homeDeals) 0 }}
-    <div class="deal-grid deal-grid--browse">
-      {{ range $homeDeals }}
-        {{ partial "deal-card.html" (dict "page" . "variant" "list") }}
-      {{ end }}
-    </div>
-  {{ else }}
-    <p>Home deals will appear here as listings are added.</p>
-  {{ end }}
-</section>
-
-<section class="home-section">
-  <div class="home-section__intro">
     <h2>Quick categories</h2>
     <p>Jump straight into deals for what you need.</p>
   </div>
   <div class="category-strip">
-    <a href="{{ "deals/?q=home" | relURL }}">Home essentials</a>
-    <a href="{{ "deals/?q=audio" | relURL }}">Audio</a>
-    <a href="{{ "deals/?q=charging" | relURL }}">Charging</a>
-    <a href="{{ "deals/?q=desk" | relURL }}">Desk setup</a>
-    <a href="{{ "deals/?q=gaming" | relURL }}">Gaming gear</a>
-    <a href="{{ "deals/?q=toys+gift" | relURL }}">Toys & gifts</a>
+    <a href="{{ printf "%s?q=home" $dealsBase | relURL }}">Home essentials</a>
+    <a href="{{ printf "%s?q=audio" $dealsBase | relURL }}">Audio</a>
+    <a href="{{ printf "%s?q=charging" $dealsBase | relURL }}">Charging</a>
+    <a href="{{ printf "%s?q=desk" $dealsBase | relURL }}">Desk setup</a>
+    <a href="{{ printf "%s?q=gaming" $dealsBase | relURL }}">Gaming gear</a>
+    <a href="{{ printf "%s?q=toys+gift" $dealsBase | relURL }}">Toys & gifts</a>
   </div>
 </section>
 

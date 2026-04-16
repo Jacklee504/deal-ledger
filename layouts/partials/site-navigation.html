@@ -1,6 +1,12 @@
 <nav class="pv3 ph3 ph4-ns" role="navigation">
+  {{ $path := lower .RelPermalink }}
+  {{ $isUSSection := or (eq $path "/us/") (hasPrefix $path "/us/") }}
+  {{ $homeHref := .Site.Home.RelPermalink }}
+  {{ if $isUSSection }}
+    {{ $homeHref = "/us/" }}
+  {{ end }}
   <div class="flex-l center items-center justify-between nav-shell">
-    <a href="{{ .Site.Home.RelPermalink }}" class="nav-brand no-underline" aria-label="{{ .Site.Title }}">
+    <a href="{{ $homeHref }}" class="nav-brand no-underline" aria-label="{{ .Site.Title }}">
       <img class="nav-brand__logo" src="{{ "images/brand/deal-ledger-logo.svg" | relURL }}" alt="{{ .Site.Title }}" width="220" height="56" loading="eager" decoding="async">
     </a>
     <div class="flex-l items-center nav-actions">

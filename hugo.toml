@@ -7,8 +7,8 @@ enableRobotsTXT = true
 
 [params]
   description = "A curated deals site focused on useful product picks, clear price context, and alerts shaped around reader intent."
-  currency_symbol = "€"
-  currency_code = "EUR"
+  currency_symbol = "$"
+  currency_code = "USD"
   formspree_endpoint = "https://formspree.io/f/mgopnyjd"
 
 [taxonomies]
@@ -18,10 +18,10 @@ enableRobotsTXT = true
 [menu]
   [[menu.main]]
     name = "Deals"
-    url = "/deals/"
+    url = "/us/deals/"
     weight = 10
 
   [[menu.main]]
     name = "Email Alerts"
-    url = "/alerts/"
+    url = "/us/alerts/"
     weight = 20

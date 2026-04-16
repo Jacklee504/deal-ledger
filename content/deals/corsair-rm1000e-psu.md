@@ -17,8 +17,8 @@ listing_summary = "2025 RMe Series, RM1000e, 1000 Watt, ATX 3.1, PCIe 5.1, Cyben
 listing_sale_price = 116.50
 listing_list_price = 190.00
 listing_discount_pct = 0.3868
-listing_image = "https://m.media-amazon.com/images/I/61aU0wJ7WgL._AC_SL1000_.jpg"
-listing_synced_at = "2026-04-16T06:12:09.127454+00:00"
+listing_image = "https://m.media-amazon.com/images/I/61Tba4skKkL._AC_SL1000_.jpg"
+listing_synced_at = "2026-04-16T21:12:34.148530+00:00"
 +++
 
 High-capacity modular PSU aimed at gaming and workstation systems.

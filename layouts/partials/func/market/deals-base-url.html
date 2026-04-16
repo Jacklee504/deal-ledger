@@ -1,0 +1,6 @@
+{{ $path := lower .RelPermalink }}
+{{ if or (eq $path "/us/") (hasPrefix $path "/us/") }}
+  /us/deals/
+{{ else }}
+  /deals/
+{{ end }}

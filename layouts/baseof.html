@@ -84,6 +84,6 @@
     <main class="pb7" role="main">
       {{ block "main" . }}{{ end }}
     </main>
-    {{ block "footer" . }}{{ partials.IncludeCached "site-footer.html" . }}{{ end }}
+    {{ block "footer" . }}{{ partials.Include "site-footer.html" . }}{{ end }}
   </body>
 </html>

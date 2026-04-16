@@ -1,0 +1,28 @@
+{{ define "main" }}
+<section class="list-shell">
+  <div class="list-shell__intro">
+    <h1>US expiring soon</h1>
+    <p>US-domain deals with expiration windows, ordered by urgency.</p>
+  </div>
+  {{ $now := now }}
+  {{ $allDeals := where .Site.RegularPages "Section" "deals" }}
+  {{ $liveDeals := where $allDeals "Draft" false }}
+  {{ $deals := slice }}
+  {{ range $liveDeals }}
+    {{ $dealURL := lower (printf "%v" (or .Params.listing_url .Params.product_url .Params.affiliate_url)) }}
+    {{ if and $dealURL (or (in $dealURL "amazon.com/") (in $dealURL "amzn.to/")) }}
+      {{ $deals = $deals | append . }}
+    {{ end }}
+  {{ end }}
+  {{ $soon := sort (where (where $deals "Params.expires_at" "ne" nil) "Params.expires_at" "ge" $now) "Params.expires_at" "asc" }}
+  {{ if gt (len $soon) 0 }}
+    <div class="deal-grid">
+      {{ range first 20 $soon }}
+        {{ partial "deal-card.html" (dict "page" . "variant" "list") }}
+      {{ end }}
+    </div>
+  {{ else }}
+    <p>No US expiring deals at the moment.</p>
+  {{ end }}
+</section>
+{{ end }}

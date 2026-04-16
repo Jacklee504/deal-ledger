@@ -1,6 +1,13 @@
 {{ define "main" }}
 <section class="list-shell">
-  {{ $deals := where (where .Site.RegularPages "Section" "deals") "Draft" false }}
+  {{ $allLiveDeals := where (where .Site.RegularPages "Section" "deals") "Draft" false }}
+  {{ $deals := slice }}
+  {{ range $allLiveDeals }}
+    {{ $dealURL := lower (printf "%v" (or .Params.listing_url .Params.product_url .Params.affiliate_url)) }}
+    {{ if and $dealURL (or (in $dealURL "amazon.ie/") (in $dealURL "amazon.co.uk/") (in $dealURL "amazon.de/") (in $dealURL "amazon.fr/") (in $dealURL "amazon.it/") (in $dealURL "amazon.es/") (in $dealURL "amazon.nl/") (in $dealURL "amazon.se/") (in $dealURL "amazon.pl/")) }}
+      {{ $deals = $deals | append . }}
+    {{ end }}
+  {{ end }}
   {{ if gt (len $deals) 0 }}
     {{ $topSavings := first 4 (sort $deals "Params.discount_pct" "desc") }}
     {{ $topSavingsPaths := slice }}
@@ -34,7 +41,7 @@
     {{ $affiliateOrdered := slice }}
     {{ $nonAffiliateOrdered := slice }}
     {{ range $orderedDeals }}
-      {{ $candidateURL := lower (printf "%v" (or .Params.affiliate_url .Params.product_url)) }}
+      {{ $candidateURL := lower (printf "%v" (or .Params.listing_url .Params.affiliate_url .Params.product_url)) }}
       {{ $isAffiliate := or .Params.affiliate_url (in $candidateURL "tag=") }}
       {{ if $isAffiliate }}
         {{ $affiliateOrdered = $affiliateOrdered | append . }}

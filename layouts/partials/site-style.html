@@ -1,0 +1,12 @@
+{{/* Local override: avoid cached resource handles that can go stale in some render modes */}}
+{{ with partials.Include "func/style/GetMainCSS.html" . }}
+<link rel="stylesheet" href="{{ .RelPermalink }}">
+{{ end }}
+
+{{ range site.Params.custom_css }}
+  {{ with partials.Include "func/style/GetResource.html" . }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}">
+  {{ else }}
+    <link rel="stylesheet" href="{{ urls.RelURL (.) }}">
+  {{ end }}
+{{ end }}
