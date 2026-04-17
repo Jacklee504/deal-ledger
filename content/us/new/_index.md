@@ -1,8 +1,8 @@
 +++
-title = "US New Deals"
-description = "Most recent US-domain deals."
+title = "New arrivals"
+description = "Recently added deals, ordered by latest first."
 type = "usnew"
 layout = "list"
 +++
 
-Latest deals with US retailer links.
+Freshly added deals, newest first.

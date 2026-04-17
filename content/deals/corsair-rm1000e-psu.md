@@ -8,7 +8,7 @@ expires_at = 2026-09-30T23:59:00Z
 time_left = "2d"
 featured = false
 product_url = "https://www.amazon.ie/RM1000e-Cybenetics-Certified-Modular-Supply/dp/B0DMTKVDYR?pf_rd_r=7W59NE8DAS0ZWS7WBYXC&pf_rd_p=d73fcff6-4492-4857-9389-5cfcb522e91d&th=1&linkCode=ll2&tag=dealledger-21&linkId=97e4880afbc08cd905ad4458c9b6afa4&ref_=as_li_ss_tl"
-tags = ["pc", "power supply", "gaming", "components"]
+tags = ["pc components", "gaming", "power"]
 categories = ["electronics"]
 summary = "1000W fully modular ATX power supply for high-performance PC builds."
 listing_url = "https://www.amazon.ie/dp/B0DMTKVDYR"

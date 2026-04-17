@@ -8,7 +8,7 @@ expires_at = 2026-09-01T23:59:00Z
 time_left = "12h"
 product_url = "https://www.amazon.ie/CORSAIR-WIRELESS-Multiplatform-Gaming-Headset/dp/B09TTMBTY5?pf_rd_r=1ARHMH44AG38Q3VJ21FP&pf_rd_p=d73fcff6-4492-4857-9389-5cfcb522e91d&th=1&linkCode=ll2&tag=dealledger-21&linkId=712f9984ff689f76d71f4ff98a814e60&ref_=as_li_ss_tl"
 featured = true
-tags = ["audio", "gaming", "wireless"]
+tags = ["audio", "gaming", "headset"]
 categories = ["electronics"]
 summary = "Wireless Dolby Atmos headset for console and PC."
 listing_url = "https://www.amazon.ie/dp/B09TTMBTY5"

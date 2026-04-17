@@ -1,8 +1,8 @@
 +++
-title = "US Best Deals"
-description = "Top US deals by discount."
+title = "Top savings"
+description = "The highest percentage discounts across current picks."
 type = "usbestdeals"
 layout = "list"
 +++
 
-Best-value US deals first.
+Top savings ranked by discount depth.

@@ -1,8 +1,8 @@
 {{ define "main" }}
 <section class="list-shell">
   <div class="list-shell__intro">
-    <h1>US top savings</h1>
-    <p>The strongest US-domain deals by discount depth.</p>
+    <h1>Top savings</h1>
+    <p>The strongest pages by discount depth, useful for readers who want the best-value picks first.</p>
   </div>
   {{ $allLiveDeals := where (where .Site.RegularPages "Section" "deals") "Draft" false }}
   {{ $deals := slice }}
@@ -20,7 +20,7 @@
       {{ end }}
     </div>
   {{ else }}
-    <p>No US discounts to show yet.</p>
+    <p>No discounts to show yet.</p>
   {{ end }}
 </section>
 {{ end }}

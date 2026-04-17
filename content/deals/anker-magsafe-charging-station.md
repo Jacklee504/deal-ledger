@@ -8,7 +8,7 @@ expires_at = 2026-09-30T23:59:00Z
 time_left = "2d"
 featured = false
 product_url = "https://www.amazon.ie/Anker-Certified-MagSafe-Compatible-Foldable/dp/B0CFDPQXN4?pf_rd_r=QD4CX36G8WSD1MCVTEN3&pf_rd_p=d73fcff6-4492-4857-9389-5cfcb522e91d&th=1&linkCode=ll2&tag=dealledger-21&linkId=0bf284f774e0bf8025e28e5df1e42b92&ref_=as_li_ss_tl"
-tags = ["charging", "apple", "magsafe", "desk"]
+tags = ["charging", "mobile", "accessories"]
 categories = ["electronics", "productivity"]
 summary = "Foldable MagSafe-compatible stand for multi-device charging."
 listing_url = "https://www.amazon.ie/dp/B0CFDPQXN4"

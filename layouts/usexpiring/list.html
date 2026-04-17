@@ -1,8 +1,8 @@
 {{ define "main" }}
 <section class="list-shell">
   <div class="list-shell__intro">
-    <h1>US expiring soon</h1>
-    <p>US-domain deals with expiration windows, ordered by urgency.</p>
+    <h1>Expiring soon</h1>
+    <p>Pages with expiration windows, ordered so the most time-sensitive picks appear first.</p>
   </div>
   {{ $now := now }}
   {{ $allDeals := where .Site.RegularPages "Section" "deals" }}
@@ -22,7 +22,7 @@
       {{ end }}
     </div>
   {{ else }}
-    <p>No US expiring deals at the moment.</p>
+    <p>No expiring deals at the moment.</p>
   {{ end }}
 </section>
 {{ end }}

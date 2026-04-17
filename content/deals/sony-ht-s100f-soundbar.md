@@ -6,7 +6,7 @@ sale_price = 98.00
 discount_pct = 0.17
 featured = false
 product_url = "https://www.amazon.com/Sony-Speaker-Integrated-Bluetooth-HTS100F/dp/B0797MY6JB?&linkCode=ll2&tag=dealledger-20&linkId=3e2666f5d50a29cf53ffe52df772df74&language=en_US&ref_=as_li_ss_tl"
-tags = ["audio", "home theater", "soundbar"]
+tags = ["audio", "tv", "home"]
 categories = ["electronics"]
 summary = "Compact Sony soundbar with integrated tweeter and Bluetooth support."
 listing_url = "https://www.amazon.com/dp/B0797MY6JB"

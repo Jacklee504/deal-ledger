@@ -8,7 +8,7 @@ expires_at = 2026-09-17T23:59:00Z
 time_left = "2w"
 featured = true
 product_url = "https://www.amazon.ie/ELIVED-Bracket-200x200mm-Articulating-EV012/dp/B087PCNFVK?pf_rd_r=40XMWS3FW7G6CWC79Z40&pf_rd_p=d73fcff6-4492-4857-9389-5cfcb522e91d&linkCode=ll2&tag=dealledger-21&linkId=c74a408fe62816d2be58b96d40ade4d6&ref_=as_li_ss_tl"
-tags = ["home theater", "tv", "accessories"]
+tags = ["tv", "home", "accessories"]
 categories = ["electronics"]
 summary = "Full-motion TV wall bracket for 14-42 inch screens."
 listing_url = "https://www.amazon.ie/dp/B087PCNFVK"

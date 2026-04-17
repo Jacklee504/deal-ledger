@@ -1,8 +1,8 @@
 +++
-title = "US Expiring Deals"
-description = "US deals closing soon."
+title = "Expiring soon"
+description = "Deals that are closest to ending."
 type = "usexpiring"
 layout = "list"
 +++
 
-Time-sensitive US deal picks.
+Deals ending soonest show up here first.

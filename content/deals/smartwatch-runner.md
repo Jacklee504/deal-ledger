@@ -8,7 +8,7 @@ expires_at = 2026-09-05T23:59:00Z
 time_left = "3d"
 product_url = "https://www.amazon.ie/soundcore-Cancelling-Headphones-Bluetooth-Traveling/dp/B0B5VHRX7F?pf_rd_r=1ARHMH44AG38Q3VJ21FP&pf_rd_p=d73fcff6-4492-4857-9389-5cfcb522e91d&th=1&linkCode=ll2&tag=dealledger-21&linkId=623a8f9f35a28f658975b1165be0e2e2&ref_=as_li_ss_tl"
 featured = true
-tags = ["audio", "travel", "wireless"]
+tags = ["audio", "headphones", "travel"]
 categories = ["electronics"]
 summary = "Adaptive ANC headphones with 50-hour battery life."
 listing_url = "https://www.amazon.ie/dp/B0B5VHRX7F"

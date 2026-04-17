@@ -8,7 +8,7 @@ expires_at = 2026-09-30T23:59:00Z
 time_left = "2d"
 featured = false
 product_url = "https://www.amazon.ie/BONTEC-Monitor-Platform-Ergonomic-Organiser/dp/B01M4S7ZGM?pf_rd_r=3YQXTWG4JDCRVA8WB51F&pf_rd_p=d73fcff6-4492-4857-9389-5cfcb522e91d&th=1&linkCode=ll2&tag=dealledger-21&linkId=dd0a7c2aebcc3893ab9a779aef0c240e&ref_=as_li_ss_tl"
-tags = ["home office", "desk", "ergonomic", "home"]
+tags = ["desk setup", "home office", "accessories"]
 categories = ["home", "productivity"]
 summary = "Desk monitor riser with storage shelf and ergonomic lift."
 listing_url = "https://www.amazon.ie/dp/B01M4S7ZGM"

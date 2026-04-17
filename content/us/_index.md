@@ -1,14 +1,6 @@
 +++
-title = "United States"
-description = "US-focused deal routing and links."
+title = "Deal Ledger"
+description = "A curated deals site focused on useful product picks, clear price context, and alerts shaped around what readers actually want to track."
 +++
 
-Welcome to the US market view for Deal Ledger.
-
-- Browse current picks: [US deals](/us/deals/)
-- Alerts signup: [US email alerts](/us/alerts/)
-- New arrivals: [US new deals](/us/new/)
-- Top savings: [US best deals](/us/best-deals/)
-- Expiring soon: [US expiring deals](/us/expiring/)
-
-US-specific affiliate routing is being expanded. Where available, we prioritize US-ready links on this section.
+Deal Ledger is a curated deals site focused on useful product picks, clear price context, and alerts shaped around what readers actually want to track.

@@ -8,7 +8,7 @@ expires_at = 2026-09-02T23:59:00Z
 time_left = "1d"
 product_url = "https://www.amazon.ie/ULTIMEA-Soundbar-Subwoofer-Adjustable-Bluetooth/dp/B0FMRFNKNL?pf_rd_r=RX6VPCR6NS0SZG29XGFD&pf_rd_p=d73fcff6-4492-4857-9389-5cfcb522e91d&th=1&linkCode=ll2&tag=dealledger-21&linkId=41a23702af165131cf11441739aa7f59&ref_=as_li_ss_tl"
 featured = false
-tags = ["audio", "home theater", "soundbar"]
+tags = ["audio", "tv", "home"]
 categories = ["electronics"]
 summary = "5.1 soundbar system with subwoofer and rear speakers."
 listing_url = "https://www.amazon.ie/dp/B0FMRFNKNL"

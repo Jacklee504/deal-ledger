@@ -1,11 +1,13 @@
-{{ $is_home := .IsHome }}
-{{ $description := .Params.description }}
 {{ $path := lower .RelPermalink }}
+{{ $is_market_home := or .IsHome (eq $path "/us/") (eq $path "/us") }}
+{{ $is_deals_hub := or (eq $path "/deals/") (eq $path "/deals") (eq $path "/us/deals/") (eq $path "/us/deals") }}
+{{ $is_compact_header := or $is_market_home $is_deals_hub }}
+{{ $description := .Params.description }}
 {{ $hideDescription := or (eq $path "/about/") (eq $path "/privacy/") (eq $path "/disclosure/") }}
-<header class="site-top {{ if $is_home }}site-top--home{{ else }}site-top--section{{ end }}">
+<header class="site-top {{ if $is_compact_header }}site-top--home{{ else }}site-top--section{{ end }}">
   <div class="site-top__backdrop">
     {{ partials.Include "site-navigation.html" . }}
-    {{ if not $is_home }}
+    {{ if not $is_compact_header }}
       <div class="site-top__intro">
         <h1 class="site-top__title">
           {{ .Title | compare.Default .Site.Title }}

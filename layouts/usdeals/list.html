@@ -68,7 +68,7 @@
     {{ end }}
     <section class="list-subsection">
       <div class="list-subsection__intro">
-        <h2>US deals</h2>
+        <h2>Browse deals</h2>
       </div>
       <div class="deal-filters" data-deal-filters>
         <input id="deal-search" name="deal-search" class="deal-filters__search" type="search" placeholder="Search by product, category, or keyword" aria-label="Search deals" data-deal-search>
@@ -99,7 +99,7 @@
     </section>
     <script type="module" src="{{ "scripts/deals-search.js" | relURL }}?v={{ now.Unix }}"></script>
   {{ else }}
-    <p>No US deals available yet.</p>
+    <p>No deals available yet.</p>
   {{ end }}
 </section>
 {{ end }}

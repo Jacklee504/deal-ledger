@@ -6,7 +6,7 @@ sale_price = 246.75
 discount_pct = 0.25
 featured = false
 product_url = "https://www.amazon.com/Ray-Ban-Glasses-Wayfarer-Capture-high-def-photos/dp/B0CGXYVQ1P?&linkCode=ll2&tag=dealledger-20&linkId=a6353d2a4fff23255069390e81e0de66&language=en_US&ref_=as_li_ss_tl"
-tags = ["wearables", "smart glasses", "camera"]
+tags = ["wearables", "audio", "camera"]
 categories = ["electronics"]
 summary = "Ray-Ban Meta Wayfarer smart glasses with camera capture and open-ear audio."
 listing_url = "https://www.amazon.com/dp/B0CGXYVQ1P"

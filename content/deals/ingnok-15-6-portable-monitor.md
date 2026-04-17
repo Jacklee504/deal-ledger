@@ -6,7 +6,7 @@ sale_price = 65.97
 discount_pct = 0.27
 featured = false
 product_url = "https://www.amazon.com/Ingnok-15-6-FHD-Portable-Monitor/dp/B0CP7XRW9S?crid=14U0OR7993L99&dib=eyJ2IjoiMSJ9.yXe4NvRl-KXRk8b10nKGX-W3JfFT195FyXP9w1iw9Cwxu-hQeZE2qmWDOxVBB34tJs9v_TLHTUZkVjK_Lnihn4_7Y1Px0zzCRG-q_C_5XqzbZGrgSuCCo2tKarZPxb07NgaDF8tGGavzWckjl0FnLasd-2Iat1s6F7nK2b7WGu2SmpwMiqu8I2ohkWVlREZCug6y1u5pw3TyqNt1UvBkWh9krQ4ijimD_G2QKRCkneAKqfvcClTlK4WhmEid7qX1omooUSpAy1uuMkGhHXkOwKbPOahceghPS8EAAsqtWSM.Drp4daCs2Cw3OAE93-ZSy7hQWZ3x5awBV5n-vVfAdu8&dib_tag=se&keywords=office&qid=1776373058&refinements=p_36%3A3200-39000&rnid=386442011&s=pc&sprefix=office%2Belectronics%2Ccomputers%2C229&sr=1-6&th=1&linkCode=ll2&tag=dealledger-20&linkId=68a5aebb9ed0949894290d01a88def5d&language=en_US&ref_=as_li_ss_tl"
-tags = ["monitor", "portable", "productivity"]
+tags = ["monitor", "productivity", "portable"]
 categories = ["electronics"]
 summary = "15.6-inch portable FHD monitor for travel, remote work, and dual-screen setups."
 listing_url = "https://www.amazon.com/dp/B0CP7XRW9S"

@@ -8,7 +8,7 @@ expires_at = 2026-09-30T23:59:00Z
 time_left = "3d"
 featured = false
 product_url = "https://www.amazon.ie/LEGO-Champions-Bugatti-Vision-Sports/dp/B0FPVT4VG6?pf_rd_r=YSVEK8NQ3HWE3NJWFF57&pf_rd_p=d73fcff6-4492-4857-9389-5cfcb522e91d&linkCode=ll2&tag=dealledger-21&linkId=ec20231260386599c4c74d8d3dc2d08d&ref_=as_li_ss_tl"
-tags = ["lego", "toys", "collectible", "gift"]
+tags = ["toys", "gifts", "collectibles"]
 categories = ["home"]
 summary = "LEGO Speed Champions Bugatti set for display or build play."
 listing_url = "https://www.amazon.ie/dp/B0FPVT4VG6"
