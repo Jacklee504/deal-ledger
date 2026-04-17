@@ -17,7 +17,7 @@ listing_summary = "Logitech G G213 Prodigy Gaming Keyboard, LIGHTSYNC RGB Backli
 listing_sale_price = 51.54
 listing_list_price = 84.99
 listing_discount_pct = 0.39
-listing_synced_at = "2026-04-16T21:12:34.148530+00:00"
+listing_synced_at = "2026-04-17T06:12:26.795997+00:00"
 listing_image = "https://m.media-amazon.com/images/I/61Nt8geXzWL._AC_SL1500_.jpg"
 +++
 

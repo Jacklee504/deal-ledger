@@ -18,7 +18,7 @@ listing_sale_price = 116.50
 listing_list_price = 190.00
 listing_discount_pct = 0.3868
 listing_image = "https://m.media-amazon.com/images/I/61Tba4skKkL._AC_SL1000_.jpg"
-listing_synced_at = "2026-04-16T21:12:34.148530+00:00"
+listing_synced_at = "2026-04-17T06:12:26.795997+00:00"
 +++
 
 High-capacity modular PSU aimed at gaming and workstation systems.

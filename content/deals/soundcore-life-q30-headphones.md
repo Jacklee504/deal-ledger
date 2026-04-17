@@ -16,7 +16,7 @@ listing_image = "https://m.media-amazon.com/images/I/514RLTa36cL._AC_SL1200_.jpg
 listing_sale_price = 47.53
 listing_list_price = 79.99
 listing_discount_pct = 0.30
-listing_synced_at = "2026-04-16T21:12:34.148530+00:00"
+listing_synced_at = "2026-04-17T06:12:26.795997+00:00"
 +++
 
 Good-value active noise-cancelling headphones for work and commute use.
