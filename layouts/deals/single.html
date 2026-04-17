@@ -37,7 +37,7 @@
     "@type" "Offer"
     "url" (or $url .Permalink)
     "priceCurrency" $currencyCode
-    "price" (printf "%.2f" ($salePrice | default 0))
+    "price" (printf "%.2f" (float ($salePrice | default 0)))
     "availability" "https://schema.org/InStock"
   }}
   {{ with .Params.expires_at }}
@@ -70,8 +70,8 @@
 
       <div class="deal-single__pricing">
         {{ if $canShowLocalPrice }}
-          {{ with $salePrice }}{{ if gt . 0 }}<span class="sale">{{ printf "%s%.2f" $currency . }}</span>{{ end }}{{ end }}
-          {{ with $listPrice }}{{ if gt . 0 }}<span class="list">{{ printf "%s%.2f" $currency . }}</span>{{ end }}{{ end }}
+          {{ with $salePrice }}{{ if gt . 0 }}<span class="sale">{{ printf "%s%.2f" $currency (float .) }}</span>{{ end }}{{ end }}
+          {{ with $listPrice }}{{ if gt . 0 }}<span class="list">{{ printf "%s%.2f" $currency (float .) }}</span>{{ end }}{{ end }}
           {{ with $discountPct }}{{ if gt . 0 }}<span class="badge">-{{ printf "%.0f" (mul . 100) }}%</span>{{ end }}{{ end }}
         {{ else }}
           <div class="meta">See Amazon for current price and availability.</div>

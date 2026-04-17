@@ -57,10 +57,10 @@
         <div class="deal-card__divider"></div>
         <div class="deal-card__price-row deal-card__price-row--compact">
           {{ if and $canShowLocalPrice (gt $sale 0) }}
-            <span class="deal-card__sale">{{ printf "%s%.2f" $currency $sale }}</span>
+            <span class="deal-card__sale">{{ printf "%s%.2f" $currency (float $sale) }}</span>
           {{ end }}
           {{ if and $canShowLocalPrice (gt $list 0) }}
-            <span class="deal-card__list">{{ printf "%s%.2f" $currency $list }}</span>
+            <span class="deal-card__list">{{ printf "%s%.2f" $currency (float $list) }}</span>
           {{ end }}
           {{ if and $canShowLocalPrice (gt $discount 0) }}
             <span class="deal-card__badge">-{{ printf "%.0f" (mul $discount 100) }}%</span>
@@ -95,10 +95,10 @@
       <h3 class="deal-card__title">{{ $title }}</h3>
       <div class="deal-card__pricing">
         {{ if and $canShowLocalPrice (gt $sale 0) }}
-          <span class="deal-card__sale">{{ printf "%s%.2f" $currency $sale }}</span>
+          <span class="deal-card__sale">{{ printf "%s%.2f" $currency (float $sale) }}</span>
         {{ end }}
         {{ if and $canShowLocalPrice (gt $list 0) }}
-          <span class="deal-card__list">{{ printf "%s%.2f" $currency $list }}</span>
+          <span class="deal-card__list">{{ printf "%s%.2f" $currency (float $list) }}</span>
         {{ end }}
         {{ if and $canShowLocalPrice (gt $discount 0) }}
           <span class="deal-card__badge">-{{ printf "%.0f" (mul $discount 100) }}%</span>

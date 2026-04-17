@@ -1,6 +1,6 @@
 <link rel="icon" type="image/svg+xml" href="{{ "favicon.svg" | relURL }}">
 <link rel="shortcut icon" href="{{ "favicon.svg" | relURL }}">
-<link rel="apple-touch-icon" href="{{ "favicon.svg" | relURL }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ "apple-touch-icon.png" | relURL }}">
 {{ if hugo.IsServer }}
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data: https:; connect-src 'self' https: ws: wss: https://formspree.io https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self' https://formspree.io">
 {{ else }}
