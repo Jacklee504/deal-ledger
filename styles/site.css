@@ -1538,6 +1538,14 @@ main article[class^="page-"] > header > time.f6.mv4.dib.tracked {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  .site-footer {
+    width: min(1225px, calc(100% - 2.5rem));
+  }
+
+  .site-footer__inner {
+    column-gap: 2.1rem;
+  }
+
 }
 
 @media (max-width: 60rem) {
