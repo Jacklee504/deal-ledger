@@ -19,6 +19,7 @@ listing_list_price = 199.99
 listing_discount_pct = 0.1146
 listing_synced_at = "2026-04-17T06:12:26.795997+00:00"
 listing_image = "https://m.media-amazon.com/images/I/610iptZZxYL._AC_SL1500_.jpg"
+aliases = ["/deals/bluetooth-speaker/"]
 +++
 
 TV soundbar bundle built for clearer dialogue and fuller movie audio.

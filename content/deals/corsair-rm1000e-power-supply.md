@@ -14,11 +14,12 @@ summary = "1000W fully modular ATX power supply for high-performance PC builds."
 listing_url = "https://www.amazon.ie/dp/B0DMTKVDYR"
 listing_title = "2025 RMe Series, RM1000e, 1000 Watt, ATX 3.1, PCIe 5.1, Cybenetics GOLD Certified, Fully Modular Power Supply : Amazon.ie: Electronics"
 listing_summary = "2025 RMe Series, RM1000e, 1000 Watt, ATX 3.1, PCIe 5.1, Cybenetics GOLD Certified, Fully Modular Power Supply : Amazon.ie: Electronics"
-listing_sale_price = 116.50
+listing_sale_price = 119.9
 listing_list_price = 190.00
 listing_discount_pct = 0.3868
 listing_image = "https://m.media-amazon.com/images/I/61Tba4skKkL._AC_SL1000_.jpg"
-listing_synced_at = "2026-04-17T06:12:26.795997+00:00"
+listing_synced_at = "2026-04-17T17:31:34.001972+00:00"
+aliases = ["/deals/corsair-rm1000e-psu/"]
 +++
 
 High-capacity modular PSU aimed at gaming and workstation systems.

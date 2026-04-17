@@ -17,6 +17,7 @@ listing_sale_price = 93.37
 listing_list_price = 149.99
 listing_discount_pct = 0.27
 listing_synced_at = "2026-04-17T06:12:26.795997+00:00"
+aliases = ["/deals/samsung-essential-27-monitor/"]
 +++
 
 Solid budget-friendly monitor option for office work, study, and browsing.

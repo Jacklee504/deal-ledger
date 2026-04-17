@@ -36,6 +36,8 @@ export default {
       if (targetPath) {
         const target = new URL(request.url);
         target.pathname = targetPath;
+        // Keep URL bar clean once manual market is consumed.
+        target.searchParams.delete("market");
         const res = new Response(null, {
           status: 307,
           headers: {
@@ -50,6 +52,25 @@ export default {
           );
         }
         return res;
+      }
+
+      // If manual market is provided but path is already correct, clean the query param.
+      if (manualMarket && request.method === "GET") {
+        const clean = new URL(request.url);
+        clean.searchParams.delete("market");
+        if (clean.toString() !== request.url) {
+          const res = new Response(null, {
+            status: 307,
+            headers: {
+              Location: clean.toString(),
+            },
+          });
+          res.headers.append(
+            "Set-Cookie",
+            `market=${manualMarket}; Path=/; Max-Age=31536000; SameSite=Lax; Secure`
+          );
+          return res;
+        }
       }
 
       const originRes = await fetch(request);

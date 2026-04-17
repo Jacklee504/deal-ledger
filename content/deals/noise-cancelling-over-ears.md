@@ -14,11 +14,12 @@ summary = "Wireless Sony ANC headphones with long battery life."
 listing_url = "https://www.amazon.ie/dp/B0BTDX26B2"
 listing_title = "Sony WH-CH720N Noise Cancelling Wireless Bluetooth Headphones - Up to 35 hours battery life and Quick Charge - Black : Amazon.ie: Electronics"
 listing_summary = "Sony WH-CH720N Noise Cancelling Wireless Bluetooth Headphones - Up to 35 hours battery life and Quick Charge - Black : Amazon.ie: Electronics"
-listing_sale_price = 79.12
+listing_sale_price = 79.32
 listing_list_price = 129.00
 listing_discount_pct = 0.39
-listing_synced_at = "2026-04-17T06:12:26.795997+00:00"
+listing_synced_at = "2026-04-17T17:31:34.001972+00:00"
 listing_image = "https://m.media-amazon.com/images/I/71iWkjXCu9L._AC_SL1500_.jpg"
+aliases = ["/deals/noise-cancelling-headphones/"]
 +++
 
 Lightweight wireless ANC headphones for commute and work.

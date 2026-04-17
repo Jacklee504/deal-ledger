@@ -19,6 +19,7 @@ listing_list_price = 149.90
 listing_discount_pct = 0.3336
 listing_synced_at = "2026-04-17T06:12:26.795997+00:00"
 listing_image = "https://m.media-amazon.com/images/I/71y9B19C5LL._AC_SL1500_.jpg"
+aliases = ["/deals/smartwatch-runner/"]
 +++
 
 Travel-ready ANC headphones with strong battery life.

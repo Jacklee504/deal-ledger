@@ -17,6 +17,7 @@ listing_title = "Amazon.com: Spacrea Metal Desk Organizers and Accessories, Dual
 listing_summary = "Amazon.com: Spacrea Metal Desk Organizers and Accessories, Dual Monitor Stand Riser with Drawer and 2 Pen Holders, Book Racks, Desk Accessories & Workspace Desktop Organizers for Office Supplies (Black) : Electronics"
 listing_image = "https://m.media-amazon.com/images/I/71M6MOVdupL._AC_SL1500_.jpg"
 listing_synced_at = "2026-04-17T06:12:26.795997+00:00"
+aliases = ["/deals/spacrea-desk-organizer/"]
 +++
 
 Practical desk organizer bundle to tidy cables, pens, and small accessories.

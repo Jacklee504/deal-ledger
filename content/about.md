@@ -32,10 +32,4 @@ How we keep it useful:
 
 You can browse all current picks on the deals page, or set category alerts and only hear about the topics you care about.
 
-## Resources
-
-- [Deal roundups]({{< relref "/roundups/_index.md" >}})
-- [Budget deal collections]({{< relref "/budget-deals/_index.md" >}})
-- [Retailer policy notes]({{< relref "/retailer-policies/_index.md" >}})
-
 For questions, corrections, or business inquiries: [contact@dealledger.eu](mailto:contact@dealledger.eu).

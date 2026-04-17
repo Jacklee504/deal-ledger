@@ -18,10 +18,10 @@ enableRobotsTXT = true
 [menu]
   [[menu.main]]
     name = "Deals"
-    url = "/us/deals/"
+    url = "/deals/"
     weight = 10
 
   [[menu.main]]
     name = "Email Alerts"
-    url = "/us/alerts/"
+    url = "/alerts/"
     weight = 20

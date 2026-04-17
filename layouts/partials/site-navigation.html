@@ -2,8 +2,12 @@
   {{ $path := lower .RelPermalink }}
   {{ $isUSSection := or (eq $path "/us/") (hasPrefix $path "/us/") }}
   {{ $homeHref := .Site.Home.RelPermalink }}
+  {{ $dealsHref := "/deals/" }}
+  {{ $alertsHref := "/alerts/" }}
   {{ if $isUSSection }}
     {{ $homeHref = "/us/" }}
+    {{ $dealsHref = "/us/deals/" }}
+    {{ $alertsHref = "/us/alerts/" }}
   {{ end }}
   <div class="flex-l center items-center justify-between nav-shell">
     <a href="{{ $homeHref }}" class="nav-brand no-underline" aria-label="{{ .Site.Title }}">
@@ -16,27 +20,24 @@
           <option value="us" {{ if $isUSSection }}selected{{ end }}>US</option>
         </select>
       </div>
-      {{ if .Site.Menus.main }}
-        <div class="nav-menu" data-nav-menu>
-          <button class="nav-menu__toggle" type="button" aria-label="Toggle navigation" aria-haspopup="true" aria-expanded="false" aria-controls="site-nav-links">
-            <span class="nav-menu__icon" aria-hidden="true">
-              <span></span>
-              <span></span>
-              <span></span>
-            </span>
-            <span class="nav-menu__label">Menu</span>
-          </button>
-          <ul class="pl0 nav-links" id="site-nav-links">
-            {{ range .Site.Menus.main.ByWeight }}
-            <li class="list dib nav-links__item">
-              <a class="nav-links__anchor no-underline" href="{{ .URL }}">
-                {{ .Name }}
-              </a>
-            </li>
-            {{ end }}
-          </ul>
-        </div>
-      {{ end }}
+      <div class="nav-menu" data-nav-menu>
+        <button class="nav-menu__toggle" type="button" aria-label="Toggle navigation" aria-haspopup="true" aria-expanded="false" aria-controls="site-nav-links">
+          <span class="nav-menu__icon" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+          <span class="nav-menu__label">Menu</span>
+        </button>
+        <ul class="pl0 nav-links" id="site-nav-links">
+          <li class="list dib nav-links__item">
+            <a class="nav-links__anchor no-underline" href="{{ $dealsHref }}">Deals</a>
+          </li>
+          <li class="list dib nav-links__item">
+            <a class="nav-links__anchor no-underline" href="{{ $alertsHref }}">Email Alerts</a>
+          </li>
+        </ul>
+      </div>
       <div class="nav-social">{{ partials.IncludeCached "social/follow.html" . }}</div>
     </div>
   </div>

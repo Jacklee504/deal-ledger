@@ -19,6 +19,7 @@ listing_list_price = 34.90
 listing_discount_pct = 0.2579
 listing_synced_at = "2026-04-17T06:12:26.795997+00:00"
 listing_image = "https://m.media-amazon.com/images/I/61BgnPuSS2L._AC_SL1500_.jpg"
+aliases = ["/deals/compact-air-purifier/"]
 +++
 
 Compact magnetic charger for quick top-ups during the day.

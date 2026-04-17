@@ -1,7 +1,6 @@
 {{ define "main" }}
 {{ $formspreeEndpoint := .Site.Params.formspree_endpoint | compare.Default "" }}
 <section class="alerts-shell">
-  <span class="pill">Request alerts</span>
   <h1>Email alerts</h1>
   <p class="page-copy">Tell us how often you want updates, then fill the matching section below.</p>
 
@@ -222,7 +221,7 @@
       }
 
       if (submitButton) {
-        submitButton.textContent = instant ? 'Send exact-item request' : 'Send regular alert request';
+        submitButton.textContent = instant ? 'Send exact-item request' : 'Send alert request';
       }
     };
 

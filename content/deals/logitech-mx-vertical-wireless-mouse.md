@@ -17,6 +17,7 @@ listing_sale_price = 74.99
 listing_list_price = 119.99
 listing_discount_pct = 0.38
 listing_synced_at = "2026-04-17T06:12:26.795997+00:00"
+aliases = ["/deals/logitech-mx-vertical-mouse/"]
 +++
 
 Great ergonomic upgrade for long work sessions and daily desk use.

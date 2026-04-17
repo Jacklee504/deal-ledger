@@ -19,6 +19,7 @@ listing_list_price = 25.77
 listing_discount_pct = 0.4571
 listing_synced_at = "2026-04-17T06:12:26.795997+00:00"
 listing_image = "https://m.media-amazon.com/images/I/71wMjhpx2NL._AC_SL1500_.jpg"
+aliases = ["/deals/ultrawide-monitor/"]
 +++
 
 Adjustable TV wall mount for compact living-room setups.

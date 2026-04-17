@@ -17,6 +17,7 @@ listing_sale_price = 134.5
 listing_list_price = 219.99
 listing_discount_pct = 0.39
 listing_synced_at = "2026-04-17T06:12:26.795997+00:00"
+aliases = ["/deals/gigabyte-b650-motherboard/"]
 +++
 
 Strong-value board for mid-range to high-performance custom PC setups.

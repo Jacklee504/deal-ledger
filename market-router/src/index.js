@@ -35,6 +35,7 @@ export default {
     if (targetPath) {
       const target = new URL(request.url);
       target.pathname = targetPath;
+      target.searchParams.delete("market");
       const res = Response.redirect(target.toString(), 307);
 
       if (manualMarket) {
@@ -44,6 +45,19 @@ export default {
         );
       }
       return res;
+    }
+
+    if (manualMarket && request.method === "GET") {
+      const clean = new URL(request.url);
+      clean.searchParams.delete("market");
+      if (clean.toString() !== request.url) {
+        const res = Response.redirect(clean.toString(), 307);
+        res.headers.append(
+          "Set-Cookie",
+          `market=${manualMarket}; Path=/; Max-Age=31536000; SameSite=Lax; Secure`
+        );
+        return res;
+      }
     }
 
     const originRes = await fetch(request);
@@ -69,4 +83,3 @@ function parseCookies(raw) {
   }
   return out;
 }
-

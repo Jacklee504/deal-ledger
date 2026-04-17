@@ -17,6 +17,7 @@ listing_sale_price = 47.53
 listing_list_price = 79.99
 listing_discount_pct = 0.30
 listing_synced_at = "2026-04-17T06:12:26.795997+00:00"
+aliases = ["/deals/soundcore-life-q30-headphones/"]
 +++
 
 Good-value active noise-cancelling headphones for work and commute use.

@@ -56,6 +56,16 @@ Auto-apply stale listing price/discount updates:
 python scripts/validate_discount_freshness.py --apply
 ```
 
+Write JSON report (includes stale/unreachable/unknown status per deal):
+```bash
+python scripts/validate_discount_freshness.py --json-out review-queue/deal-validity-report.json
+```
+
+Fail CI if stale prices or unreachable links are found:
+```bash
+python scripts/validate_discount_freshness.py --fail-on-stale --fail-on-unreachable
+```
+
 ### 5b) Review tag relevance (title/category/url based)
 Suggest tags that match each item based on product signals (without using description text):
 ```bash

@@ -17,6 +17,7 @@ listing_sale_price = 246.75
 listing_list_price = 329.00
 listing_discount_pct = 0.25
 listing_synced_at = "2026-04-17T06:12:26.795997+00:00"
+aliases = ["/deals/ray-ban-meta-wayfarer-glasses/"]
 +++
 
 Premium wearable pick for hands-free photo/video capture and everyday audio.

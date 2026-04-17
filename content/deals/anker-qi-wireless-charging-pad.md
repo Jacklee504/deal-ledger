@@ -19,6 +19,7 @@ listing_list_price = 14.90
 listing_discount_pct = 0.3356
 listing_synced_at = "2026-04-17T06:12:26.795997+00:00"
 listing_image = "https://m.media-amazon.com/images/I/51ywUBQcrbL._AC_SL1500_.jpg"
+aliases = ["/deals/home-dumbbell-set/"]
 +++
 
 Low-profile wireless charging pad for everyday phone charging.
