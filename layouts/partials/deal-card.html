@@ -17,30 +17,17 @@
 {{ $list := or $params.listing_list_price $params.list_price }}
 {{ $sale := or $params.listing_sale_price $params.sale_price }}
 {{ $discount := or $params.listing_discount_pct $params.discount_pct }}
-{{ $expires := $params.expires_at }}
-{{ $timeLeft := $params.time_left | default "" }}
 {{ $tags := $params.tags }}
 {{ $url := or $params.listing_url $params.product_url $params.affiliate_url }}
 {{ $summary := or $params.summary $params.listing_summary ($page.Summary | plainify) }}
-{{ $showExpiryMeta := not $url }}
 {{ $normalizedURL := lower (printf "%v" $url) }}
 {{ $isAmazonURL := and $url (or (in $normalizedURL "amazon.") (in $normalizedURL "amzn.to")) }}
 {{ $hasAmazonTag := and $isAmazonURL (in $normalizedURL "tag=") }}
 {{ $isAffiliateLink := or $params.affiliate_url $hasAmazonTag }}
 {{ $canShowLocalPrice := $params.show_local_price | default true }}
-{{ $currency := $page.Site.Params.currency_symbol | default "€" }}
-  {{ if and (eq $timeLeft "") $expires }}
-    {{ $hoursLeft := div (sub ((time $expires).Unix) (now.Unix)) 3600 }}
-    {{ if ge $hoursLeft 0 }}
-      {{ $daysLeft := div $hoursLeft 24 }}
-      {{ $remainingHours := mod $hoursLeft 24 }}
-      {{ if gt $daysLeft 0 }}
-        {{ $timeLeft = printf "%dd %dh" $daysLeft $remainingHours }}
-      {{ else }}
-        {{ $timeLeft = printf "%dh" $hoursLeft }}
-      {{ end }}
-    {{ end }}
-  {{ end }}
+{{ $isUSDDeal := or (in $normalizedURL "amazon.com/") (and (in $normalizedURL "amzn.to/") (in $normalizedURL "dealledger-20")) }}
+{{ $currency := "€" }}
+{{ if $isUSDDeal }}{{ $currency = "$" }}{{ end }}
 {{ $topSavings := false }}
 {{ $latest := false }}
 {{ $expiringSoon := false }}
@@ -68,23 +55,17 @@
       <div class="deal-card__stack">
         <h3 class="deal-card__title">{{ $title }}</h3>
         <div class="deal-card__divider"></div>
-        <div class="deal-card__price-row">
+        <div class="deal-card__price-row deal-card__price-row--compact">
           {{ if and $canShowLocalPrice (gt $sale 0) }}
             <span class="deal-card__sale">{{ printf "%s%.2f" $currency $sale }}</span>
           {{ end }}
           {{ if and $canShowLocalPrice (gt $list 0) }}
             <span class="deal-card__list">{{ printf "%s%.2f" $currency $list }}</span>
           {{ end }}
-        </div>
-        <div class="deal-card__divider"></div>
-        {{ if and $canShowLocalPrice (gt $discount 0) }}
-          <div class="deal-card__signal-row">
+          {{ if and $canShowLocalPrice (gt $discount 0) }}
             <span class="deal-card__badge">-{{ printf "%.0f" (mul $discount 100) }}%</span>
-            {{ if and $showExpiryMeta $timeLeft }}
-              <span class="deal-card__timer">{{ $timeLeft }}</span>
-            {{ end }}
-          </div>
-        {{ end }}
+          {{ end }}
+        </div>
         <div class="deal-card__divider"></div>
         <details class="deal-card__details">
           <summary class="deal-card__details-toggle">More details</summary>
@@ -96,9 +77,6 @@
               <div class="deal-card__details-rich">{{ . }}</div>
             {{ else }}
               {{ with $params.summary }}<p>{{ . }}</p>{{ end }}
-            {{ end }}
-            {{ if and (not $compact) $showExpiryMeta $expires }}
-              <div class="deal-card__meta">Expires: {{ time.Format "Jan 2" (time $expires) }}</div>
             {{ end }}
             {{ if and (not $compact) $tags }}
               <div class="deal-card__tags">
@@ -125,13 +103,7 @@
         {{ if and $canShowLocalPrice (gt $discount 0) }}
           <span class="deal-card__badge">-{{ printf "%.0f" (mul $discount 100) }}%</span>
         {{ end }}
-        {{ if and $showExpiryMeta $timeLeft }}
-          <span class="deal-card__timer">{{ $timeLeft }}</span>
-        {{ end }}
       </div>
-      {{ if and (not $compact) $showExpiryMeta $expires }}
-        <div class="deal-card__meta">Expires: {{ time.Format "Jan 2" (time $expires) }}</div>
-      {{ end }}
       {{ if and (not $compact) $tags }}
         <div class="deal-card__tags">
           {{ range first 3 $tags }}<span class="deal-card__tag">#{{ . }}</span>{{ end }}

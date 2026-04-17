@@ -1,0 +1,32 @@
+{
+  "name": "market-router",
+  "main": "src/worker.js",
+  "workers_dev": true,
+  "preview_urls": false,
+  "compatibility_date": "2026-04-17",
+  "routes": [
+    {
+      "pattern": "www.dealledger.eu/*",
+      "zone_name": "dealledger.eu"
+    },
+    {
+      "pattern": "dealledger.eu/*",
+      "zone_name": "dealledger.eu"
+    }
+  ],
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1,
+    "logs": {
+      "enabled": true,
+      "head_sampling_rate": 1,
+      "persist": true,
+      "invocation_logs": true
+    },
+    "traces": {
+      "enabled": false,
+      "persist": true,
+      "head_sampling_rate": 1
+    }
+  }
+}

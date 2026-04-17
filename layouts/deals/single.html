@@ -5,8 +5,13 @@
 {{ $hasAmazonTag := and $isAmazonURL (in $normalizedURL "tag=") }}
 {{ $isAffiliateLink := or .Params.affiliate_url $hasAmazonTag }}
 {{ $canShowLocalPrice := .Params.show_local_price | default true }}
-{{ $currency := .Site.Params.currency_symbol | default "€" }}
-{{ $currencyCode := .Site.Params.currency_code | default "EUR" }}
+{{ $isUSDDeal := or (in $normalizedURL "amazon.com/") (and (in $normalizedURL "amzn.to/") (in $normalizedURL "dealledger-20")) }}
+{{ $currency := "€" }}
+{{ $currencyCode := "EUR" }}
+{{ if $isUSDDeal }}
+  {{ $currency = "$" }}
+  {{ $currencyCode = "USD" }}
+{{ end }}
 {{ $timeLeft := .Params.time_left | default "" }}
 {{ $displayTitle := or .Title .Params.listing_title }}
 {{ $description := or .Params.listing_summary .Params.summary (.Summary | plainify) }}
