@@ -80,7 +80,7 @@ If you subscribe to alerts or contact us directly, we retain only the informatio
 <link rel="shortcut icon" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/favicon.svg">
 
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data: https:; connect-src 'self' https: https://formspree.io; object-src 'none'; base-uri 'self'; form-action 'self' https://formspree.io; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data: https:; connect-src 'self' https: https://formspree.io https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self' https://formspree.io; upgrade-insecure-requests">
 
 
 
@@ -90,7 +90,7 @@ If you subscribe to alerts or contact us directly, we retain only the informatio
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://dealledger.eu/#organization","@type":"Organization","logo":"https://dealledger.eu/images/brand/deal-ledger-logo.svg","name":"Deal Ledger","url":"https://dealledger.eu/"},{"@id":"https://dealledger.eu/#website","@type":"WebSite","name":"Deal Ledger","potentialAction":{"@type":"SearchAction","query-input":"required name=search_term_string","target":"https://dealledger.eu/deals/?q={search_term_string}"},"publisher":{"@id":"https://dealledger.eu/#organization"},"url":"https://dealledger.eu/"}]}</script>
 
-<link rel="stylesheet" href="/styles/site.css?v=1776432468">
+<link rel="stylesheet" href="/styles/site.css?v=1776441260">
 
   </head><body class="ma0 avenir bg-near-white production is-page is-page page-privacy">
     
@@ -112,6 +112,12 @@ If you subscribe to alerts or contact us directly, we retain only the informatio
       <img class="nav-brand__logo" src="/images/brand/deal-ledger-logo.svg" alt="Deal Ledger" width="220" height="56" loading="eager" decoding="async">
     </a>
     <div class="flex-l items-center nav-actions">
+      <div class="nav-market">
+        <select id="market-select" class="nav-market__select" name="market-select" aria-label="Select market">
+          <option value="eu" >EU</option>
+          <option value="us" selected>US</option>
+        </select>
+      </div>
       
         <div class="nav-menu" data-nav-menu>
           <button class="nav-menu__toggle" type="button" aria-label="Toggle navigation" aria-haspopup="true" aria-expanded="false" aria-controls="site-nav-links">
@@ -178,6 +184,36 @@ If you subscribe to alerts or contact us directly, we retain only the informatio
     window.addEventListener('resize', () => {
       if (window.innerWidth > 960) closeMenu();
     });
+
+    const marketSelect = document.getElementById('market-select');
+    if (marketSelect) {
+      const cookieMap = (document.cookie || '')
+        .split(';')
+        .map((item) => item.trim())
+        .filter(Boolean)
+        .reduce((acc, item) => {
+          const eqIdx = item.indexOf('=');
+          if (eqIdx === -1) return acc;
+          const key = item.slice(0, eqIdx).trim();
+          const value = item.slice(eqIdx + 1).trim();
+          acc[key] = value;
+          return acc;
+        }, {});
+
+      if (cookieMap.market === 'us' || cookieMap.market === 'eu') {
+        marketSelect.value = cookieMap.market;
+      } else {
+        marketSelect.value = window.location.pathname.startsWith('/us/') || window.location.pathname === '/us' ? 'us' : 'eu';
+      }
+
+      marketSelect.addEventListener('change', () => {
+        const targetMarket = marketSelect.value === 'us' ? 'us' : 'eu';
+        const secure = window.location.protocol === 'https:' ? '; Secure' : '';
+        document.cookie = `market=${targetMarket}; Path=/; Max-Age=31536000; SameSite=Lax${secure}`;
+        const targetPath = targetMarket === 'us' ? '/us/' : '/';
+        window.location.assign(`${window.location.origin}${targetPath}`);
+      });
+    }
   });
 </script>
 

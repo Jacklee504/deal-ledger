@@ -74,7 +74,7 @@
 <link rel="shortcut icon" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/favicon.svg">
 
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data: https:; connect-src 'self' https: https://formspree.io; object-src 'none'; base-uri 'self'; form-action 'self' https://formspree.io; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data: https:; connect-src 'self' https: https://formspree.io https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self' https://formspree.io; upgrade-insecure-requests">
 
 
 
@@ -84,7 +84,7 @@
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://dealledger.eu/#organization","@type":"Organization","logo":"https://dealledger.eu/images/brand/deal-ledger-logo.svg","name":"Deal Ledger","url":"https://dealledger.eu/"},{"@id":"https://dealledger.eu/#website","@type":"WebSite","name":"Deal Ledger","potentialAction":{"@type":"SearchAction","query-input":"required name=search_term_string","target":"https://dealledger.eu/deals/?q={search_term_string}"},"publisher":{"@id":"https://dealledger.eu/#organization"},"url":"https://dealledger.eu/"}]}</script>
 
-<link rel="stylesheet" href="/styles/site.css?v=1776432468">
+<link rel="stylesheet" href="/styles/site.css?v=1776441260">
 
   </head><body class="ma0 avenir bg-near-white production is-page is-page page-monitor-stand-riser">
     
@@ -105,6 +105,12 @@
       <img class="nav-brand__logo" src="/images/brand/deal-ledger-logo.svg" alt="Deal Ledger" width="220" height="56" loading="eager" decoding="async">
     </a>
     <div class="flex-l items-center nav-actions">
+      <div class="nav-market">
+        <select id="market-select" class="nav-market__select" name="market-select" aria-label="Select market">
+          <option value="eu" selected>EU</option>
+          <option value="us" >US</option>
+        </select>
+      </div>
       
         <div class="nav-menu" data-nav-menu>
           <button class="nav-menu__toggle" type="button" aria-label="Toggle navigation" aria-haspopup="true" aria-expanded="false" aria-controls="site-nav-links">
@@ -171,6 +177,36 @@
     window.addEventListener('resize', () => {
       if (window.innerWidth > 960) closeMenu();
     });
+
+    const marketSelect = document.getElementById('market-select');
+    if (marketSelect) {
+      const cookieMap = (document.cookie || '')
+        .split(';')
+        .map((item) => item.trim())
+        .filter(Boolean)
+        .reduce((acc, item) => {
+          const eqIdx = item.indexOf('=');
+          if (eqIdx === -1) return acc;
+          const key = item.slice(0, eqIdx).trim();
+          const value = item.slice(eqIdx + 1).trim();
+          acc[key] = value;
+          return acc;
+        }, {});
+
+      if (cookieMap.market === 'us' || cookieMap.market === 'eu') {
+        marketSelect.value = cookieMap.market;
+      } else {
+        marketSelect.value = window.location.pathname.startsWith('/us/') || window.location.pathname === '/us' ? 'us' : 'eu';
+      }
+
+      marketSelect.addEventListener('change', () => {
+        const targetMarket = marketSelect.value === 'us' ? 'us' : 'eu';
+        const secure = window.location.protocol === 'https:' ? '; Secure' : '';
+        document.cookie = `market=${targetMarket}; Path=/; Max-Age=31536000; SameSite=Lax${secure}`;
+        const targetPath = targetMarket === 'us' ? '/us/' : '/';
+        window.location.assign(`${window.location.origin}${targetPath}`);
+      });
+    }
   });
 </script>
 
@@ -205,6 +241,8 @@
 
 
 
+
+
   
 
 
@@ -217,7 +255,7 @@
 
 <article class="deal-single">
   <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"Product","brand":{"@type":"Brand","name":"Deal Ledger"},"description":"BONTEC Monitor Stand Riser, Wooden Desk Riser for Screen and Laptop, 420mm Wide PC Platform with Cable Slots, Phone Holder, 30kg Load, Ergonomic Desktop Organiser for Home Office Use : Amazon.ie: Electronics","image":["https://m.media-amazon.com/images/I/81BuZYHIjLL._AC_SL1500_.jpg"],"mainEntityOfPage":"https://dealledger.eu/deals/monitor-stand-riser/","name":"BONTEC Monitor Stand Riser","offers":{"@type":"Offer","availability":"https://schema.org/InStock","price":"20.35","priceCurrency":"USD","priceValidUntil":"2026-09-30T23:59:00Z","url":"https://www.amazon.ie/dp/B01M4S7ZGM"},"url":"https://dealledger.eu/deals/monitor-stand-riser/"}
+    {"@context":"https://schema.org","@type":"Product","brand":{"@type":"Brand","name":"Deal Ledger"},"description":"Desk monitor riser with storage shelf and ergonomic lift.","image":["https://m.media-amazon.com/images/I/81BuZYHIjLL._AC_SL1500_.jpg"],"mainEntityOfPage":"https://dealledger.eu/deals/monitor-stand-riser/","name":"BONTEC Monitor Stand Riser","offers":{"@type":"Offer","availability":"https://schema.org/InStock","price":"20.35","priceCurrency":"EUR","priceValidUntil":"2026-09-30T23:59:00Z","url":"https://www.amazon.ie/dp/B01M4S7ZGM"},"url":"https://dealledger.eu/deals/monitor-stand-riser/"}
   </script>
   <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://dealledger.eu/","name":"Home","position":1},{"@type":"ListItem","item":"https://dealledger.eu/deals/","name":"Deals","position":2},{"@type":"ListItem","item":"https://dealledger.eu/deals/monitor-stand-riser/","name":"BONTEC Monitor Stand Riser","position":3}]}
@@ -226,13 +264,13 @@
     <div>
       <header>
         <h1>BONTEC Monitor Stand Riser</h1>
-        <p class="lead">BONTEC Monitor Stand Riser, Wooden Desk Riser for Screen and Laptop, 420mm Wide PC Platform with Cable Slots, Phone Holder, 30kg Load, Ergonomic Desktop Organiser for Home Office Use : Amazon.ie: Electronics</p>
+        <p class="lead">Desk monitor riser with storage shelf and ergonomic lift.</p>
       </header>
 
       <div class="deal-single__pricing">
         
-          <span class="sale">$20.35</span>
-          <span class="list">$24.99</span>
+          <span class="sale">€20.35</span>
+          <span class="list">€24.99</span>
           <span class="badge">-19%</span>
         
         
@@ -423,8 +461,6 @@
 
 
 
-  
-
 
 
 
@@ -466,21 +502,17 @@
       <div class="deal-card__stack">
         <h3 class="deal-card__title">Amazon Fire TV Stick HD</h3>
         <div class="deal-card__divider"></div>
-        <div class="deal-card__price-row">
+        <div class="deal-card__price-row deal-card__price-row--compact">
           
-            <span class="deal-card__sale">$45.93</span>
+            <span class="deal-card__sale">€45.93</span>
           
           
-            <span class="deal-card__list">$48.33</span>
+            <span class="deal-card__list">€48.33</span>
+          
+          
+            <span class="deal-card__badge">-5%</span>
           
         </div>
-        <div class="deal-card__divider"></div>
-        
-          <div class="deal-card__signal-row">
-            <span class="deal-card__badge">-5%</span>
-            
-          </div>
-        
         <div class="deal-card__divider"></div>
         <details class="deal-card__details">
           <summary class="deal-card__details-toggle">More details</summary>
@@ -495,7 +527,6 @@
 <li>Alexa voice remote included</li>
 </ul>
 </div>
-            
             
             
               <div class="deal-card__tags">
@@ -542,8 +573,6 @@
 
 
 
-  
-
 
 
 
@@ -585,21 +614,17 @@
       <div class="deal-card__stack">
         <h3 class="deal-card__title">Corsair RM1000e Power Supply</h3>
         <div class="deal-card__divider"></div>
-        <div class="deal-card__price-row">
+        <div class="deal-card__price-row deal-card__price-row--compact">
           
-            <span class="deal-card__sale">$116.50</span>
+            <span class="deal-card__sale">€116.50</span>
           
           
-            <span class="deal-card__list">$190.00</span>
+            <span class="deal-card__list">€190.00</span>
+          
+          
+            <span class="deal-card__badge">-39%</span>
           
         </div>
-        <div class="deal-card__divider"></div>
-        
-          <div class="deal-card__signal-row">
-            <span class="deal-card__badge">-39%</span>
-            
-          </div>
-        
         <div class="deal-card__divider"></div>
         <details class="deal-card__details">
           <summary class="deal-card__details-toggle">More details</summary>
@@ -614,7 +639,6 @@
 <li>fully modular cabling</li>
 </ul>
 </div>
-            
             
             
               <div class="deal-card__tags">
@@ -661,8 +685,6 @@
 
 
 
-  
-
 
 
 
@@ -704,21 +726,17 @@
       <div class="deal-card__stack">
         <h3 class="deal-card__title">Anker MagSafe Charging Station</h3>
         <div class="deal-card__divider"></div>
-        <div class="deal-card__price-row">
+        <div class="deal-card__price-row deal-card__price-row--compact">
           
-            <span class="deal-card__sale">$70.90</span>
+            <span class="deal-card__sale">€70.90</span>
           
           
-            <span class="deal-card__list">$109.90</span>
+            <span class="deal-card__list">€109.90</span>
+          
+          
+            <span class="deal-card__badge">-35%</span>
           
         </div>
-        <div class="deal-card__divider"></div>
-        
-          <div class="deal-card__signal-row">
-            <span class="deal-card__badge">-35%</span>
-            
-          </div>
-        
         <div class="deal-card__divider"></div>
         <details class="deal-card__details">
           <summary class="deal-card__details-toggle">More details</summary>
@@ -733,7 +751,6 @@
 <li>tidy single-stand desk setup</li>
 </ul>
 </div>
-            
             
             
               <div class="deal-card__tags">

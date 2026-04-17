@@ -71,7 +71,7 @@
 <link rel="shortcut icon" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/favicon.svg">
 
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data: https:; connect-src 'self' https: https://formspree.io; object-src 'none'; base-uri 'self'; form-action 'self' https://formspree.io; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data: https:; connect-src 'self' https: https://formspree.io https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self' https://formspree.io; upgrade-insecure-requests">
 
 
 
@@ -81,7 +81,7 @@
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://dealledger.eu/#organization","@type":"Organization","logo":"https://dealledger.eu/images/brand/deal-ledger-logo.svg","name":"Deal Ledger","url":"https://dealledger.eu/"},{"@id":"https://dealledger.eu/#website","@type":"WebSite","name":"Deal Ledger","potentialAction":{"@type":"SearchAction","query-input":"required name=search_term_string","target":"https://dealledger.eu/deals/?q={search_term_string}"},"publisher":{"@id":"https://dealledger.eu/#organization"},"url":"https://dealledger.eu/"}]}</script>
 
-<link rel="stylesheet" href="/styles/site.css?v=1776432468">
+<link rel="stylesheet" href="/styles/site.css?v=1776441260">
 
   </head><body class="ma0 avenir bg-near-white production is-home">
     
@@ -102,6 +102,12 @@
       <img class="nav-brand__logo" src="/images/brand/deal-ledger-logo.svg" alt="Deal Ledger" width="220" height="56" loading="eager" decoding="async">
     </a>
     <div class="flex-l items-center nav-actions">
+      <div class="nav-market">
+        <select id="market-select" class="nav-market__select" name="market-select" aria-label="Select market">
+          <option value="eu" selected>EU</option>
+          <option value="us" >US</option>
+        </select>
+      </div>
       
         <div class="nav-menu" data-nav-menu>
           <button class="nav-menu__toggle" type="button" aria-label="Toggle navigation" aria-haspopup="true" aria-expanded="false" aria-controls="site-nav-links">
@@ -168,6 +174,36 @@
     window.addEventListener('resize', () => {
       if (window.innerWidth > 960) closeMenu();
     });
+
+    const marketSelect = document.getElementById('market-select');
+    if (marketSelect) {
+      const cookieMap = (document.cookie || '')
+        .split(';')
+        .map((item) => item.trim())
+        .filter(Boolean)
+        .reduce((acc, item) => {
+          const eqIdx = item.indexOf('=');
+          if (eqIdx === -1) return acc;
+          const key = item.slice(0, eqIdx).trim();
+          const value = item.slice(eqIdx + 1).trim();
+          acc[key] = value;
+          return acc;
+        }, {});
+
+      if (cookieMap.market === 'us' || cookieMap.market === 'eu') {
+        marketSelect.value = cookieMap.market;
+      } else {
+        marketSelect.value = window.location.pathname.startsWith('/us/') || window.location.pathname === '/us' ? 'us' : 'eu';
+      }
+
+      marketSelect.addEventListener('change', () => {
+        const targetMarket = marketSelect.value === 'us' ? 'us' : 'eu';
+        const secure = window.location.protocol === 'https:' ? '; Secure' : '';
+        document.cookie = `market=${targetMarket}; Path=/; Max-Age=31536000; SameSite=Lax${secure}`;
+        const targetPath = targetMarket === 'us' ? '/us/' : '/';
+        window.location.assign(`${window.location.origin}${targetPath}`);
+      });
+    }
   });
 </script>
 
@@ -658,8 +694,6 @@
 
 
 
-  
-
 
 
 
@@ -701,21 +735,17 @@
       <div class="deal-card__stack">
         <h3 class="deal-card__title">ELIVED Full-Motion TV Wall Bracket</h3>
         <div class="deal-card__divider"></div>
-        <div class="deal-card__price-row">
+        <div class="deal-card__price-row deal-card__price-row--compact">
           
-            <span class="deal-card__sale">$13.99</span>
+            <span class="deal-card__sale">€13.99</span>
           
           
-            <span class="deal-card__list">$25.77</span>
+            <span class="deal-card__list">€25.77</span>
+          
+          
+            <span class="deal-card__badge">-46%</span>
           
         </div>
-        <div class="deal-card__divider"></div>
-        
-          <div class="deal-card__signal-row">
-            <span class="deal-card__badge">-46%</span>
-            
-          </div>
-        
         <div class="deal-card__divider"></div>
         <details class="deal-card__details">
           <summary class="deal-card__details-toggle">More details</summary>
@@ -730,7 +760,6 @@
 <li>VESA-compatible fit</li>
 </ul>
 </div>
-            
             
             
               <div class="deal-card__tags">
@@ -777,8 +806,6 @@
 
 
 
-  
-
 
 
 
@@ -820,21 +847,17 @@
       <div class="deal-card__stack">
         <h3 class="deal-card__title">Noise-cancelling over-ears</h3>
         <div class="deal-card__divider"></div>
-        <div class="deal-card__price-row">
+        <div class="deal-card__price-row deal-card__price-row--compact">
           
-            <span class="deal-card__sale">$79.12</span>
+            <span class="deal-card__sale">€79.12</span>
           
           
-            <span class="deal-card__list">$129.00</span>
+            <span class="deal-card__list">€129.00</span>
+          
+          
+            <span class="deal-card__badge">-39%</span>
           
         </div>
-        <div class="deal-card__divider"></div>
-        
-          <div class="deal-card__signal-row">
-            <span class="deal-card__badge">-39%</span>
-            
-          </div>
-        
         <div class="deal-card__divider"></div>
         <details class="deal-card__details">
           <summary class="deal-card__details-toggle">More details</summary>
@@ -849,7 +872,6 @@
 <li>quick-charge support</li>
 </ul>
 </div>
-            
             
             
               <div class="deal-card__tags">
@@ -896,8 +918,6 @@
 
 
 
-  
-
 
 
 
@@ -939,21 +959,17 @@
       <div class="deal-card__stack">
         <h3 class="deal-card__title">Compact mechanical keyboard</h3>
         <div class="deal-card__divider"></div>
-        <div class="deal-card__price-row">
+        <div class="deal-card__price-row deal-card__price-row--compact">
           
-            <span class="deal-card__sale">$51.54</span>
+            <span class="deal-card__sale">€51.54</span>
           
           
-            <span class="deal-card__list">$84.99</span>
+            <span class="deal-card__list">€84.99</span>
+          
+          
+            <span class="deal-card__badge">-39%</span>
           
         </div>
-        <div class="deal-card__divider"></div>
-        
-          <div class="deal-card__signal-row">
-            <span class="deal-card__badge">-39%</span>
-            
-          </div>
-        
         <div class="deal-card__divider"></div>
         <details class="deal-card__details">
           <summary class="deal-card__details-toggle">More details</summary>
@@ -968,7 +984,6 @@
 <li>spill-resistant chassis</li>
 </ul>
 </div>
-            
             
             
               <div class="deal-card__tags">
@@ -1015,8 +1030,6 @@
 
 
 
-  
-
 
 
 
@@ -1058,21 +1071,17 @@
       <div class="deal-card__stack">
         <h3 class="deal-card__title">Corsair RM1000e Power Supply</h3>
         <div class="deal-card__divider"></div>
-        <div class="deal-card__price-row">
+        <div class="deal-card__price-row deal-card__price-row--compact">
           
-            <span class="deal-card__sale">$116.50</span>
+            <span class="deal-card__sale">€116.50</span>
           
           
-            <span class="deal-card__list">$190.00</span>
+            <span class="deal-card__list">€190.00</span>
+          
+          
+            <span class="deal-card__badge">-39%</span>
           
         </div>
-        <div class="deal-card__divider"></div>
-        
-          <div class="deal-card__signal-row">
-            <span class="deal-card__badge">-39%</span>
-            
-          </div>
-        
         <div class="deal-card__divider"></div>
         <details class="deal-card__details">
           <summary class="deal-card__details-toggle">More details</summary>
@@ -1087,7 +1096,6 @@
 <li>fully modular cabling</li>
 </ul>
 </div>
-            
             
             
               <div class="deal-card__tags">
@@ -1161,8 +1169,6 @@
 
 
 
-  
-
 
 
 
@@ -1204,21 +1210,17 @@
       <div class="deal-card__stack">
         <h3 class="deal-card__title">CORSAIR HS80 RGB Wireless Headset</h3>
         <div class="deal-card__divider"></div>
-        <div class="deal-card__price-row">
+        <div class="deal-card__price-row deal-card__price-row--compact">
           
-            <span class="deal-card__sale">$108.88</span>
+            <span class="deal-card__sale">€108.88</span>
           
           
-            <span class="deal-card__list">$149.99</span>
+            <span class="deal-card__list">€149.99</span>
+          
+          
+            <span class="deal-card__badge">-27%</span>
           
         </div>
-        <div class="deal-card__divider"></div>
-        
-          <div class="deal-card__signal-row">
-            <span class="deal-card__badge">-27%</span>
-            
-          </div>
-        
         <div class="deal-card__divider"></div>
         <details class="deal-card__details">
           <summary class="deal-card__details-toggle">More details</summary>
@@ -1233,7 +1235,6 @@
 <li>low-latency wireless connection</li>
 </ul>
 </div>
-            
             
             
               <div class="deal-card__tags">
@@ -1280,8 +1281,6 @@
 
 
 
-  
-
 
 
 
@@ -1323,21 +1322,17 @@
       <div class="deal-card__stack">
         <h3 class="deal-card__title">ULTIMEA Soundbar with Subwoofer</h3>
         <div class="deal-card__divider"></div>
-        <div class="deal-card__price-row">
+        <div class="deal-card__price-row deal-card__price-row--compact">
           
-            <span class="deal-card__sale">$177.07</span>
+            <span class="deal-card__sale">€177.07</span>
           
           
-            <span class="deal-card__list">$199.99</span>
+            <span class="deal-card__list">€199.99</span>
+          
+          
+            <span class="deal-card__badge">-11%</span>
           
         </div>
-        <div class="deal-card__divider"></div>
-        
-          <div class="deal-card__signal-row">
-            <span class="deal-card__badge">-11%</span>
-            
-          </div>
-        
         <div class="deal-card__divider"></div>
         <details class="deal-card__details">
           <summary class="deal-card__details-toggle">More details</summary>
@@ -1352,7 +1347,6 @@
 <li>app control with adjustable bass</li>
 </ul>
 </div>
-            
             
             
               <div class="deal-card__tags">
@@ -1399,8 +1393,6 @@
 
 
 
-  
-
 
 
 
@@ -1442,21 +1434,17 @@
       <div class="deal-card__stack">
         <h3 class="deal-card__title">Noise-cancelling over-ears</h3>
         <div class="deal-card__divider"></div>
-        <div class="deal-card__price-row">
+        <div class="deal-card__price-row deal-card__price-row--compact">
           
-            <span class="deal-card__sale">$79.12</span>
+            <span class="deal-card__sale">€79.12</span>
           
           
-            <span class="deal-card__list">$129.00</span>
+            <span class="deal-card__list">€129.00</span>
+          
+          
+            <span class="deal-card__badge">-39%</span>
           
         </div>
-        <div class="deal-card__divider"></div>
-        
-          <div class="deal-card__signal-row">
-            <span class="deal-card__badge">-39%</span>
-            
-          </div>
-        
         <div class="deal-card__divider"></div>
         <details class="deal-card__details">
           <summary class="deal-card__details-toggle">More details</summary>
@@ -1471,7 +1459,6 @@
 <li>quick-charge support</li>
 </ul>
 </div>
-            
             
             
               <div class="deal-card__tags">
@@ -1518,8 +1505,6 @@
 
 
 
-  
-
 
 
 
@@ -1561,21 +1546,17 @@
       <div class="deal-card__stack">
         <h3 class="deal-card__title">soundcore Noise Cancelling Headphones</h3>
         <div class="deal-card__divider"></div>
-        <div class="deal-card__price-row">
+        <div class="deal-card__price-row deal-card__price-row--compact">
           
-            <span class="deal-card__sale">$99.90</span>
+            <span class="deal-card__sale">€99.90</span>
           
           
-            <span class="deal-card__list">$149.90</span>
+            <span class="deal-card__list">€149.90</span>
+          
+          
+            <span class="deal-card__badge">-33%</span>
           
         </div>
-        <div class="deal-card__divider"></div>
-        
-          <div class="deal-card__signal-row">
-            <span class="deal-card__badge">-33%</span>
-            
-          </div>
-        
         <div class="deal-card__divider"></div>
         <details class="deal-card__details">
           <summary class="deal-card__details-toggle">More details</summary>
@@ -1590,7 +1571,6 @@
 <li>foldable over-ear design</li>
 </ul>
 </div>
-            
             
             
               <div class="deal-card__tags">

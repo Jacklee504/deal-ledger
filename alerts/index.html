@@ -71,7 +71,7 @@
 <link rel="shortcut icon" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/favicon.svg">
 
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data: https:; connect-src 'self' https: https://formspree.io; object-src 'none'; base-uri 'self'; form-action 'self' https://formspree.io; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data: https:; connect-src 'self' https: https://formspree.io https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self' https://formspree.io; upgrade-insecure-requests">
 
 
 
@@ -81,7 +81,7 @@
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://dealledger.eu/#organization","@type":"Organization","logo":"https://dealledger.eu/images/brand/deal-ledger-logo.svg","name":"Deal Ledger","url":"https://dealledger.eu/"},{"@id":"https://dealledger.eu/#website","@type":"WebSite","name":"Deal Ledger","potentialAction":{"@type":"SearchAction","query-input":"required name=search_term_string","target":"https://dealledger.eu/deals/?q={search_term_string}"},"publisher":{"@id":"https://dealledger.eu/#organization"},"url":"https://dealledger.eu/"}]}</script>
 
-<link rel="stylesheet" href="/styles/site.css?v=1776432468">
+<link rel="stylesheet" href="/styles/site.css?v=1776441260">
 
   </head><body class="ma0 avenir bg-near-white production is-section is-section">
     
@@ -102,6 +102,12 @@
       <img class="nav-brand__logo" src="/images/brand/deal-ledger-logo.svg" alt="Deal Ledger" width="220" height="56" loading="eager" decoding="async">
     </a>
     <div class="flex-l items-center nav-actions">
+      <div class="nav-market">
+        <select id="market-select" class="nav-market__select" name="market-select" aria-label="Select market">
+          <option value="eu" selected>EU</option>
+          <option value="us" >US</option>
+        </select>
+      </div>
       
         <div class="nav-menu" data-nav-menu>
           <button class="nav-menu__toggle" type="button" aria-label="Toggle navigation" aria-haspopup="true" aria-expanded="false" aria-controls="site-nav-links">
@@ -168,6 +174,36 @@
     window.addEventListener('resize', () => {
       if (window.innerWidth > 960) closeMenu();
     });
+
+    const marketSelect = document.getElementById('market-select');
+    if (marketSelect) {
+      const cookieMap = (document.cookie || '')
+        .split(';')
+        .map((item) => item.trim())
+        .filter(Boolean)
+        .reduce((acc, item) => {
+          const eqIdx = item.indexOf('=');
+          if (eqIdx === -1) return acc;
+          const key = item.slice(0, eqIdx).trim();
+          const value = item.slice(eqIdx + 1).trim();
+          acc[key] = value;
+          return acc;
+        }, {});
+
+      if (cookieMap.market === 'us' || cookieMap.market === 'eu') {
+        marketSelect.value = cookieMap.market;
+      } else {
+        marketSelect.value = window.location.pathname.startsWith('/us/') || window.location.pathname === '/us' ? 'us' : 'eu';
+      }
+
+      marketSelect.addEventListener('change', () => {
+        const targetMarket = marketSelect.value === 'us' ? 'us' : 'eu';
+        const secure = window.location.protocol === 'https:' ? '; Secure' : '';
+        document.cookie = `market=${targetMarket}; Path=/; Max-Age=31536000; SameSite=Lax${secure}`;
+        const targetPath = targetMarket === 'us' ? '/us/' : '/';
+        window.location.assign(`${window.location.origin}${targetPath}`);
+      });
+    }
   });
 </script>
 
@@ -196,6 +232,7 @@
 
   <form class="alert-form" id="alert-request-form" name="alert-request" action="https://formspree.io/f/mgopnyjd" method="POST" data-formspree-endpoint="https://formspree.io/f/mgopnyjd">
     <input type="hidden" name="_subject" value="New Deal Ledger alert request">
+    <input type="hidden" id="country" name="country" value="">
     <p hidden><label>Leave this empty if you're human: <input name="_gotcha"></label></p>
 
     <section class="alert-form__section alert-form__split">
@@ -208,11 +245,6 @@
       <div class="alert-form__field">
         <label class="alert-form__label" for="alert-email">Email address</label>
         <input id="alert-email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
-      </div>
-
-      <div class="alert-form__field">
-        <label class="alert-form__label" for="country">Country</label>
-        <input id="country" name="country" type="text" list="country-options" placeholder="Start typing your country" autocomplete="country-name" required>
       </div>
 
       <div class="alert-form__field">
@@ -230,10 +262,10 @@
       <div class="alert-form__field">
         <p class="alert-form__label">Quick categories</p>
         <div class="alert-options">
-          <label><span class="alert-option__row"><input type="checkbox" name="categories" value="audio"> Audio and headphones</span><small>Travel, desk, and portable listening.</small></label>
-          <label><span class="alert-option__row"><input type="checkbox" name="categories" value="running"> Running tech</span><small>Watches, earbuds, and training gear.</small></label>
-          <label><span class="alert-option__row"><input type="checkbox" name="categories" value="productivity"> Home office</span><small>Keyboards, monitors, and desk upgrades.</small></label>
-          <label><span class="alert-option__row"><input type="checkbox" name="categories" value="fitness"> Home gym</span><small>Compact equipment and strength basics.</small></label>
+          <label><span class="alert-option__row"><input type="checkbox" name="categories" value="audio"> Audio</span><small>Headphones, speakers, and everyday listening gear.</small></label>
+          <label><span class="alert-option__row"><input type="checkbox" name="categories" value="home_office"> Home office</span><small>Monitors, mice, keyboards, and desk setup upgrades.</small></label>
+          <label><span class="alert-option__row"><input type="checkbox" name="categories" value="gaming"> Gaming</span><small>PC and console accessories and components.</small></label>
+          <label><span class="alert-option__row"><input type="checkbox" name="categories" value="tv"> TV & streaming</span><small>Streaming sticks, soundbars, and TV extras.</small></label>
         </div>
       </div>
 
@@ -268,8 +300,6 @@
   <p class="alert-toast" id="alert-toast" role="status" aria-live="polite"></p>
 </section>
 
-<datalist id="country-options"></datalist>
-
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('alert-request-form');
@@ -290,51 +320,21 @@
     const defaultKeywordsPlaceholder = 'Examples: over-ear headphones, ultrawide monitor';
     const mobileKeywordsPlaceholder = 'Eg: monitor, headphone';
 
-    const allCountries = [
-      'Afghanistan', 'Albania', 'Algeria', 'Andorra', 'Angola', 'Antigua and Barbuda',
-      'Argentina', 'Armenia', 'Australia', 'Austria', 'Azerbaijan', 'Bahamas', 'Bahrain',
-      'Bangladesh', 'Barbados', 'Belarus', 'Belgium', 'Belize', 'Benin', 'Bhutan',
-      'Bolivia', 'Bosnia and Herzegovina', 'Botswana', 'Brazil', 'Brunei', 'Bulgaria',
-      'Burkina Faso', 'Burundi', 'Cabo Verde', 'Cambodia', 'Cameroon', 'Canada',
-      'Central African Republic', 'Chad', 'Chile', 'China', 'Colombia', 'Comoros',
-      'Congo', 'Costa Rica', 'Cote d\'Ivoire', 'Croatia', 'Cuba', 'Cyprus', 'Czechia',
-      'Democratic Republic of the Congo', 'Denmark', 'Djibouti', 'Dominica',
-      'Dominican Republic', 'Ecuador', 'Egypt', 'El Salvador', 'Equatorial Guinea',
-      'Eritrea', 'Estonia', 'Eswatini', 'Ethiopia', 'Fiji', 'Finland', 'France', 'Gabon',
-      'Gambia', 'Georgia', 'Germany', 'Ghana', 'Greece', 'Grenada', 'Guatemala',
-      'Guinea', 'Guinea-Bissau', 'Guyana', 'Haiti', 'Honduras', 'Hungary', 'Iceland',
-      'India', 'Indonesia', 'Iran', 'Iraq', 'Ireland', 'Israel', 'Italy', 'Jamaica',
-      'Japan', 'Jordan', 'Kazakhstan', 'Kenya', 'Kiribati', 'Kuwait', 'Kyrgyzstan',
-      'Laos', 'Latvia', 'Lebanon', 'Lesotho', 'Liberia', 'Libya', 'Liechtenstein',
-      'Lithuania', 'Luxembourg', 'Madagascar', 'Malawi', 'Malaysia', 'Maldives', 'Mali',
-      'Malta', 'Marshall Islands', 'Mauritania', 'Mauritius', 'Mexico', 'Micronesia',
-      'Moldova', 'Monaco', 'Mongolia', 'Montenegro', 'Morocco', 'Mozambique', 'Myanmar',
-      'Namibia', 'Nauru', 'Nepal', 'Netherlands', 'New Zealand', 'Nicaragua', 'Niger',
-      'Nigeria', 'North Korea', 'North Macedonia', 'Norway', 'Oman', 'Pakistan', 'Palau',
-      'Panama', 'Papua New Guinea', 'Paraguay', 'Peru', 'Philippines', 'Poland',
-      'Portugal', 'Qatar', 'Romania', 'Russia', 'Rwanda', 'Saint Kitts and Nevis',
-      'Saint Lucia', 'Saint Vincent and the Grenadines', 'Samoa', 'San Marino',
-      'Sao Tome and Principe', 'Saudi Arabia', 'Senegal', 'Serbia', 'Seychelles',
-      'Sierra Leone', 'Singapore', 'Slovakia', 'Slovenia', 'Solomon Islands', 'Somalia',
-      'South Africa', 'South Korea', 'South Sudan', 'Spain', 'Sri Lanka', 'Sudan',
-      'Suriname', 'Sweden', 'Switzerland', 'Syria', 'Taiwan', 'Tajikistan', 'Tanzania',
-      'Thailand', 'Timor-Leste', 'Togo', 'Tonga', 'Trinidad and Tobago', 'Tunisia',
-      'Turkey', 'Turkmenistan', 'Tuvalu', 'Uganda', 'Ukraine', 'United Arab Emirates',
-      'United Kingdom', 'United States', 'Uruguay', 'Uzbekistan', 'Vanuatu',
-      'Vatican City', 'Venezuela', 'Vietnam', 'Yemen', 'Zambia', 'Zimbabwe'
-    ];
-    const countrySet = new Set(allCountries);
-    const countryList = document.getElementById('country-options');
-
-    if (countryList) {
-      countryList.innerHTML = allCountries
-        .slice()
-        .sort((a, b) => a.localeCompare(b))
-        .map((country) => `<option value="${country}"></option>`)
-        .join('');
-    }
-
     const detectDefaultCountry = () => {
+      const cookieMap = (document.cookie || '')
+        .split(';')
+        .map((item) => item.trim())
+        .filter(Boolean)
+        .reduce((acc, item) => {
+          const eqIdx = item.indexOf('=');
+          if (eqIdx === -1) return acc;
+          const key = item.slice(0, eqIdx).trim();
+          const value = item.slice(eqIdx + 1).trim();
+          acc[key] = value;
+          return acc;
+        }, {});
+      if (cookieMap.market === 'us') return 'United States';
+      if (cookieMap.market === 'eu') return 'Ireland';
       const host = (window.location.hostname || '').toLowerCase();
       const path = (window.location.pathname || '').toLowerCase();
       if (host.startsWith('us.') || path === '/us' || path.startsWith('/us/')) return 'United States';
@@ -359,25 +359,21 @@
     }
 
     const categoryMeta = {
-      home: {
-        label: 'Home essentials',
-        terms: ['home', 'house', 'household', 'kitchen', 'appliance', 'cleaning', 'vacuum', 'storage', 'living room', 'bathroom']
-      },
       audio: {
-        label: 'Audio and headphones',
-        terms: ['audio', 'headphones', 'earbuds', 'earphones', 'speaker', 'speakers', 'bluetooth', 'noise', 'anc', 'music', 'technology', 'tech', 'electronics', 'devices', 'gadget']
+        label: 'Audio',
+        terms: ['audio', 'headphones', 'earbuds', 'earphones', 'speaker', 'speakers', 'soundbar', 'bluetooth', 'noise', 'anc', 'music']
       },
-      running: {
-        label: 'Running tech',
-        terms: ['running', 'runner', 'run', 'gps', 'watch', 'smartwatch', 'wearables', 'training', 'pace', 'cardio', 'technology', 'tech', 'electronics', 'devices']
-      },
-      productivity: {
+      home_office: {
         label: 'Home office',
-        terms: ['office', 'desk', 'productivity', 'keyboard', 'monitor', 'ultrawide', 'display', 'mouse', 'workspace', 'technology', 'tech', 'electronics', 'devices', 'gadget']
+        terms: ['home office', 'office', 'desk', 'desk setup', 'workspace', 'productivity', 'monitor', 'ultrawide', 'display', 'mouse', 'keyboard', 'ergonomic']
       },
-      fitness: {
-        label: 'Home gym',
-        terms: ['fitness', 'gym', 'weights', 'dumbbell', 'strength', 'workout', 'training', 'resistance', 'home gym', 'active', 'health']
+      gaming: {
+        label: 'Gaming',
+        terms: ['gaming', 'gamer', 'headset', 'pc build', 'pc components', 'motherboard', 'psu', 'keyboard', 'laptop']
+      },
+      tv: {
+        label: 'TV & streaming',
+        terms: ['tv', 'television', 'streaming', 'fire tv', 'stick', 'soundbar', 'home theater']
       }
     };
 
@@ -471,31 +467,6 @@
       });
     };
 
-    const bindCountryValidation = () => {
-      if (!countryInput) return;
-      countryInput.addEventListener('input', () => {
-        countryInput.setCustomValidity('');
-      });
-      countryInput.addEventListener('invalid', () => {
-        const value = countryInput.value.trim();
-        if (!value) {
-          countryInput.setCustomValidity('Please enter your country.');
-          return;
-        }
-        if (!countrySet.has(value)) {
-          countryInput.setCustomValidity('Choose a country from the suggestions or type the full country name.');
-          return;
-        }
-        countryInput.setCustomValidity('');
-      });
-      countryInput.addEventListener('blur', () => {
-        const value = countryInput.value.trim();
-        if (!value) return;
-        const exactMatch = allCountries.find((country) => country.toLowerCase() === value.toLowerCase());
-        if (exactMatch) countryInput.value = exactMatch;
-      });
-    };
-
     let toastTimer;
     const showToast = (message, isError = false) => {
       if (!toast) return;
@@ -509,7 +480,6 @@
     };
 
     bindEmailValidation();
-    bindCountryValidation();
     if (cadenceInput) cadenceInput.addEventListener('change', toggleMode);
     toggleMode();
 

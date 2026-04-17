@@ -74,7 +74,7 @@
 <link rel="shortcut icon" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/favicon.svg">
 
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data: https:; connect-src 'self' https: https://formspree.io; object-src 'none'; base-uri 'self'; form-action 'self' https://formspree.io; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data: https:; connect-src 'self' https: https://formspree.io https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self' https://formspree.io; upgrade-insecure-requests">
 
 
 
@@ -84,7 +84,7 @@
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://dealledger.eu/#organization","@type":"Organization","logo":"https://dealledger.eu/images/brand/deal-ledger-logo.svg","name":"Deal Ledger","url":"https://dealledger.eu/"},{"@id":"https://dealledger.eu/#website","@type":"WebSite","name":"Deal Ledger","potentialAction":{"@type":"SearchAction","query-input":"required name=search_term_string","target":"https://dealledger.eu/deals/?q={search_term_string}"},"publisher":{"@id":"https://dealledger.eu/#organization"},"url":"https://dealledger.eu/"}]}</script>
 
-<link rel="stylesheet" href="/styles/site.css?v=1776432468">
+<link rel="stylesheet" href="/styles/site.css?v=1776441260">
 
   </head><body class="ma0 avenir bg-near-white production is-page is-page page-hyperx-cloud-iii-headset">
     
@@ -105,6 +105,12 @@
       <img class="nav-brand__logo" src="/images/brand/deal-ledger-logo.svg" alt="Deal Ledger" width="220" height="56" loading="eager" decoding="async">
     </a>
     <div class="flex-l items-center nav-actions">
+      <div class="nav-market">
+        <select id="market-select" class="nav-market__select" name="market-select" aria-label="Select market">
+          <option value="eu" selected>EU</option>
+          <option value="us" >US</option>
+        </select>
+      </div>
       
         <div class="nav-menu" data-nav-menu>
           <button class="nav-menu__toggle" type="button" aria-label="Toggle navigation" aria-haspopup="true" aria-expanded="false" aria-controls="site-nav-links">
@@ -171,6 +177,36 @@
     window.addEventListener('resize', () => {
       if (window.innerWidth > 960) closeMenu();
     });
+
+    const marketSelect = document.getElementById('market-select');
+    if (marketSelect) {
+      const cookieMap = (document.cookie || '')
+        .split(';')
+        .map((item) => item.trim())
+        .filter(Boolean)
+        .reduce((acc, item) => {
+          const eqIdx = item.indexOf('=');
+          if (eqIdx === -1) return acc;
+          const key = item.slice(0, eqIdx).trim();
+          const value = item.slice(eqIdx + 1).trim();
+          acc[key] = value;
+          return acc;
+        }, {});
+
+      if (cookieMap.market === 'us' || cookieMap.market === 'eu') {
+        marketSelect.value = cookieMap.market;
+      } else {
+        marketSelect.value = window.location.pathname.startsWith('/us/') || window.location.pathname === '/us' ? 'us' : 'eu';
+      }
+
+      marketSelect.addEventListener('change', () => {
+        const targetMarket = marketSelect.value === 'us' ? 'us' : 'eu';
+        const secure = window.location.protocol === 'https:' ? '; Secure' : '';
+        document.cookie = `market=${targetMarket}; Path=/; Max-Age=31536000; SameSite=Lax${secure}`;
+        const targetPath = targetMarket === 'us' ? '/us/' : '/';
+        window.location.assign(`${window.location.origin}${targetPath}`);
+      });
+    }
   });
 </script>
 
@@ -194,6 +230,11 @@
 
 
 
+
+
+
+  
+  
 
 
 
@@ -413,8 +454,6 @@
 
 
 
-  
-
 
 
 
@@ -456,21 +495,17 @@
       <div class="deal-card__stack">
         <h3 class="deal-card__title">KAIGERR 15.6-inch Gaming Laptop</h3>
         <div class="deal-card__divider"></div>
-        <div class="deal-card__price-row">
+        <div class="deal-card__price-row deal-card__price-row--compact">
           
             <span class="deal-card__sale">$499.99</span>
           
           
             <span class="deal-card__list">$1699.99</span>
           
-        </div>
-        <div class="deal-card__divider"></div>
-        
-          <div class="deal-card__signal-row">
+          
             <span class="deal-card__badge">-71%</span>
-            
-          </div>
-        
+          
+        </div>
         <div class="deal-card__divider"></div>
         <details class="deal-card__details">
           <summary class="deal-card__details-toggle">More details</summary>
@@ -481,7 +516,6 @@
             
               <div class="deal-card__details-rich"><p>High-discount laptop listing for buyers targeting a low entry price.</p>
 </div>
-            
             
             
               <div class="deal-card__tags">
@@ -528,8 +562,6 @@
 
 
 
-  
-
 
 
 
@@ -571,21 +603,17 @@
       <div class="deal-card__stack">
         <h3 class="deal-card__title">Ingnok 15.6-inch FHD Portable Monitor</h3>
         <div class="deal-card__divider"></div>
-        <div class="deal-card__price-row">
+        <div class="deal-card__price-row deal-card__price-row--compact">
           
             <span class="deal-card__sale">$65.97</span>
           
           
             <span class="deal-card__list">$89.99</span>
           
-        </div>
-        <div class="deal-card__divider"></div>
-        
-          <div class="deal-card__signal-row">
+          
             <span class="deal-card__badge">-27%</span>
-            
-          </div>
-        
+          
+        </div>
         <div class="deal-card__divider"></div>
         <details class="deal-card__details">
           <summary class="deal-card__details-toggle">More details</summary>
@@ -596,7 +624,6 @@
             
               <div class="deal-card__details-rich"><p>Useful second-screen option for laptop users who need extra workspace on the go.</p>
 </div>
-            
             
             
               <div class="deal-card__tags">
@@ -643,8 +670,6 @@
 
 
 
-  
-
 
 
 
@@ -686,21 +711,17 @@
       <div class="deal-card__stack">
         <h3 class="deal-card__title">gianotter Desk Organizer</h3>
         <div class="deal-card__divider"></div>
-        <div class="deal-card__price-row">
+        <div class="deal-card__price-row deal-card__price-row--compact">
           
             <span class="deal-card__sale">$16.99</span>
           
           
             <span class="deal-card__list">$24.99</span>
           
-        </div>
-        <div class="deal-card__divider"></div>
-        
-          <div class="deal-card__signal-row">
+          
             <span class="deal-card__badge">-32%</span>
-            
-          </div>
-        
+          
+        </div>
         <div class="deal-card__divider"></div>
         <details class="deal-card__details">
           <summary class="deal-card__details-toggle">More details</summary>
@@ -711,7 +732,6 @@
             
               <div class="deal-card__details-rich"><p>Budget-friendly organizer for decluttering small desk essentials.</p>
 </div>
-            
             
             
               <div class="deal-card__tags">
