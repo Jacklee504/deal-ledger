@@ -371,6 +371,32 @@ def build_alert_links() -> tuple[str, str]:
     return unsubscribe, feedback
 
 
+def pick_collection_query(matches: list[dict[str, Any]]) -> str:
+    # Prefer preference signal (e.g. "headphones"), then the requested item text.
+    for m in matches:
+        hits = m.get("preference_hits") or []
+        if isinstance(hits, list):
+            for hit in hits:
+                cleaned = normalize(str(hit))
+                if cleaned:
+                    return cleaned
+
+    for m in matches:
+        requested = normalize(str(m.get("requested_item", "")))
+        if requested:
+            return " ".join(requested.split()[:3])
+
+    title = normalize(str(matches[0].get("title", ""))) if matches else ""
+    if title:
+        return " ".join(title.split()[:3])
+    return "deals"
+
+
+def build_collection_url(site_base: str, matches: list[dict[str, Any]]) -> str:
+    query = pick_collection_query(matches)
+    return f"{site_base.rstrip('/')}/deals/?q={quote(query)}"
+
+
 def build_email_body(
     email: str,
     matches: list[dict[str, Any]],
@@ -378,10 +404,13 @@ def build_email_body(
     unsubscribe_url: str,
     feedback_url: str,
 ) -> str:
+    collection_url = build_collection_url(site_base, matches)
     lines = [
         "Deal Ledger: Exact-item discount alert",
         "",
         f"We found {len(matches)} discounted match(es) for your tracked items:",
+        "",
+        f"See all matching deals: {collection_url}",
         "",
     ]
     for m in matches:
@@ -394,18 +423,14 @@ def build_email_body(
         lines.append(f"  Price: {sale_txt} (was {list_txt}, -{pct}%)")
         if m.get("preference_hits"):
             lines.append("  Preference match: " + ", ".join(m.get("preference_hits", [])))
-        lines.append(f"  Deal page: {m['deal_page_url']}")
-        lines.append(f"  Retailer: {compact_url(m['retailer_url'])}")
+        lines.append(f"  Retailer: {m['retailer_url']}")
         lines.append("")
     lines.extend(
         [
-            f"Browse more deals: {site_base.rstrip('/')}/deals/",
-            "",
             "Thanks for using Deal Ledger.",
             "The Deal Ledger Team",
             "You received this because you requested exact item tracking.",
             f"Unsubscribe: {unsubscribe_url}",
-            f"Did we get this wrong? {feedback_url}",
         ]
     )
     return "\n".join(lines)
@@ -418,6 +443,7 @@ def build_email_html(
     feedback_url: str,
 ) -> str:
     logo_url = f"{site_base.rstrip('/')}/images/brand/deal-ledger-logo.svg"
+    collection_url = build_collection_url(site_base, matches)
     cards: list[str] = []
     for m in matches:
         pct = int(round(float(m["discount_pct"]) * 100))
@@ -446,7 +472,7 @@ def build_email_html(
                         if m.get("preference_hits")
                         else ""
                       }
-                      <p style="margin:0 0 8px;font-size:13px;"><a href="{m['deal_page_url']}" style="display:inline-block;background:#17332e;color:#fffdf9;text-decoration:none;padding:8px 12px;border-radius:999px;">View deal page</a></p>
+                      <p style="margin:0 0 8px;font-size:13px;"><a href="{m['retailer_url']}" style="display:inline-block;background:#17332e;color:#fffdf9;text-decoration:none;padding:8px 12px;border-radius:999px;">Go to retailer</a></p>
                       <p style="margin:0;font-size:12px;color:#6e7d75;">Retailer: {compact_url(m['retailer_url'])}</p>
                     </td>
                   </tr>
@@ -472,16 +498,14 @@ def build_email_html(
               <td style="padding:18px 20px;">
                 <h2 style="margin:0 0 8px;font-size:20px;color:#17332e;">Exact-item discount alert</h2>
                 <p style="margin:0 0 12px;font-size:14px;color:#4d5f57;">We found {len(matches)} discounted match(es) for your tracked items.</p>
+                <p style="margin:0 0 12px;font-size:13px;"><a href="{collection_url}" style="display:inline-block;background:#edf4f1;color:#17332e;text-decoration:none;padding:7px 11px;border-radius:999px;border:1px solid #d9e4de;">See all matching deals</a></p>
                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
                   {''.join(cards)}
                 </table>
-                <p style="margin:14px 0 0;font-size:13px;color:#5d6f66;">Browse more deals: <a href="{site_base.rstrip('/')}/deals/" style="color:#0d4e46;text-decoration:none;">{site_base.rstrip('/')}/deals/</a></p>
                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:14px;border-top:1px solid #edf1ed;">
                   <tr>
                     <td style="padding-top:12px;font-size:12px;line-height:1.5;color:#5d6f66;">
                       <a href="{unsubscribe_url}" style="color:#0d4e46;text-decoration:none;">Unsubscribe</a>
-                      &nbsp;|&nbsp;
-                      <a href="{feedback_url}" style="color:#0d4e46;text-decoration:none;">Did we get this wrong?</a>
                     </td>
                   </tr>
                 </table>

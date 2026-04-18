@@ -1,3 +1,5 @@
 public/
 review-queue/
 content/deals-review/generated/
+.env
+.env.*

@@ -154,7 +154,6 @@ def build_text(sample_type: str, query: str, deals: list[Deal], site_base: str) 
                 f"- {d.title}",
                 f"  Price: {sale} (was {list_price}, -{pct}%)",
                 f"  Deal page: {site_base.rstrip('/')}/deals/{d.slug}/",
-                f"  Retailer: {compact_url(d.product_url or d.listing_url)}",
                 "",
             ]
         )
@@ -186,7 +185,6 @@ def build_html(sample_type: str, query: str, deals: list[Deal], site_base: str) 
                       <h3 style="margin:0 0 8px;font-size:16px;line-height:1.35;color:#17332e;">{d.title}</h3>
                       <p style="margin:0 0 10px;font-size:14px;color:#17332e;"><strong>{sale}</strong> <span style="color:#6e7d75;">(was {list_price}, -{pct}%)</span></p>
                       <p style="margin:0 0 8px;font-size:13px;"><a href="{site_base.rstrip('/')}/deals/{d.slug}/" style="display:inline-block;background:#17332e;color:#fffdf9;text-decoration:none;padding:8px 12px;border-radius:999px;">View deal page</a></p>
-                      <p style="margin:0;font-size:12px;color:#6e7d75;">Retailer: {compact_url(d.product_url or d.listing_url)}</p>
                     </td>
                   </tr>
                 </table>
@@ -215,7 +213,6 @@ def build_html(sample_type: str, query: str, deals: list[Deal], site_base: str) 
                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
                   {''.join(cards)}
                 </table>
-                <p style="margin:14px 0 0;font-size:13px;color:#5d6f66;">Browse more deals: <a href="{site_base.rstrip('/')}/deals/" style="color:#0d4e46;text-decoration:none;">{site_base.rstrip('/')}/deals/</a></p>
                 <p style="margin:12px 0 0;font-size:13px;color:#5d6f66;">Thanks for using Deal Ledger.<br>The Deal Ledger Team</p>
               </td>
             </tr>

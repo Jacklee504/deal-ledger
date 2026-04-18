@@ -104,6 +104,22 @@ Dry run:
 python scripts/send_exact_item_alerts.py --dry-run
 ```
 
+### 7b) Send sample emails locally (no GitHub Actions)
+Use one helper script to send sample alert emails directly:
+```bash
+python scripts/send_sample_email.py --to you@example.com --type exact
+python scripts/send_sample_email.py --to you@example.com --type category --query audio
+python scripts/send_sample_email.py --to you@example.com --type keyword --query headphones
+python scripts/send_sample_email.py --to you@example.com --type weekly_digest
+```
+
+Required env vars:
+- `SMTP_HOST`
+- `SMTP_PORT`
+- `SMTP_USERNAME`
+- `SMTP_PASSWORD`
+- `SMTP_FROM`
+
 State files used:
 - `.state/exact-item-subscriptions.json` (request registry)
 - `.state/exact-item-alert-state.json` (dedupe / last sent discount)
