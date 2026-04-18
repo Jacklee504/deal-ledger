@@ -211,18 +211,18 @@ def build_html(sample_type: str, query: str, deals: list[Deal], site_base: str) 
         discover_url = build_discover_url(site_base, d.categories, d.tags, d.title, query)
         img = d.listing_image.strip()
         img_html = (
-            f'<img src="{img}" alt="{d.title}" width="240" height="160" style="display:block;width:240px;height:160px;object-fit:cover;border-radius:10px;border:1px solid #e8ede8;background:#ffffff;">'
+            f'<img class="dl-media-img" src="{img}" alt="{d.title}" width="280" height="220" style="display:block;width:280px;height:220px;object-fit:contain;border-radius:10px;border:1px solid #e8ede8;background:#ffffff;">'
             if img
-            else '<div style="width:240px;height:160px;border-radius:10px;border:1px solid #e8ede8;background:#f5f8f6;"></div>'
+            else '<div class="dl-media-ph" style="width:280px;height:220px;border-radius:10px;border:1px solid #e8ede8;background:#f5f8f6;"></div>'
         )
         cards.append(
             f"""
             <tr>
               <td style="padding:14px 0;border-top:1px solid #edf1ed;">
-                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e3ebe6;border-radius:12px;overflow:hidden;background:#ffffff;">
+                <table class="dl-card" role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e3ebe6;border-radius:12px;overflow:hidden;background:#ffffff;">
                   <tr>
-                    <td style="width:250px;vertical-align:top;padding:10px 8px 10px 10px;">{img_html}</td>
-                    <td style="vertical-align:top;padding:12px 14px;">
+                    <td class="dl-media" style="width:290px;vertical-align:top;padding:10px 8px 10px 10px;line-height:0;">{img_html}</td>
+                    <td class="dl-content" style="vertical-align:top;padding:12px 14px;">
                       <h3 style="margin:0 0 8px;font-size:16px;line-height:1.35;color:#17332e;">{d.title}</h3>
                       <p style="margin:0 0 10px;font-size:14px;color:#17332e;"><strong>{sale}</strong> <span style="color:#6e7d75;">(was {list_price}, -{pct}%)</span></p>
                     </td>
@@ -231,11 +231,11 @@ def build_html(sample_type: str, query: str, deals: list[Deal], site_base: str) 
                     <td colspan="2" style="padding:0 10px 12px 10px;">
                       <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
                         <tr>
-                          <td style="padding-right:6px;vertical-align:top;">
-                            <a href="{retailer_url}" style="display:block;text-align:center;background:#17332e;color:#fffdf9;text-decoration:none;padding:10px 12px;border-radius:999px;font-weight:700;font-size:13px;">{cta_label}</a>
+                          <td class="dl-action-col" width="50%" style="width:50%;padding-right:6px;vertical-align:top;">
+                            <a class="dl-btn" href="{retailer_url}" style="display:block;text-align:center;background:#17332e;color:#fffdf9;text-decoration:none;padding:10px 12px;border-radius:999px;border:1px solid #17332e;font-weight:700;font-size:13px;line-height:1.2;box-sizing:border-box;width:100%;">{cta_label}</a>
                           </td>
-                          <td style="padding-left:6px;vertical-align:top;">
-                            <a href="{discover_url}" style="display:block;text-align:center;background:#edf4f1;color:#17332e;text-decoration:none;padding:10px 12px;border-radius:999px;border:1px solid #d9e4de;font-weight:700;font-size:13px;">View category on Deal Ledger</a>
+                          <td class="dl-action-col" width="50%" style="width:50%;padding-left:6px;vertical-align:top;">
+                            <a class="dl-btn" href="{discover_url}" style="display:block;text-align:center;background:#edf4f1;color:#17332e;text-decoration:none;padding:10px 12px;border-radius:999px;border:1px solid #d9e4de;font-weight:700;font-size:13px;line-height:1.2;box-sizing:border-box;width:100%;">View category on Deal Ledger</a>
                           </td>
                         </tr>
                       </table>
@@ -250,11 +250,27 @@ def build_html(sample_type: str, query: str, deals: list[Deal], site_base: str) 
     filter_line = f"<p style='margin:0 0 12px;font-size:14px;color:#4d5f57;'>Filter: {query}</p>" if query else ""
     return f"""<!doctype html>
 <html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      @media only screen and (max-width: 620px) {{
+        .dl-wrap {{ padding: 12px 6px !important; }}
+        .dl-shell {{ width: 100% !important; max-width: 100% !important; border-radius: 0 !important; }}
+        .dl-card td {{ display: block !important; width: 100% !important; box-sizing: border-box !important; }}
+        .dl-media {{ padding: 10px 10px 0 10px !important; }}
+        .dl-content {{ padding: 10px 12px !important; }}
+        .dl-media-img {{ width: 100% !important; height: auto !important; max-width: none !important; max-height: 260px !important; }}
+        .dl-media-ph {{ width: 100% !important; height: 220px !important; }}
+        .dl-action-col {{ display: block !important; width: 100% !important; padding: 0 0 8px 0 !important; }}
+        .dl-btn {{ width: 100% !important; display: block !important; }}
+      }}
+    </style>
+  </head>
   <body style="margin:0;padding:0;background:#f6f8f6;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#17332e;">
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f6f8f6;padding:20px 10px;">
+    <table class="dl-wrap" role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f6f8f6;padding:20px 10px;">
       <tr>
         <td align="center">
-          <table role="presentation" width="640" cellpadding="0" cellspacing="0" style="width:100%;max-width:640px;background:#ffffff;border:1px solid #e8ede8;border-radius:14px;overflow:hidden;">
+          <table class="dl-shell" role="presentation" width="640" cellpadding="0" cellspacing="0" style="width:100%;max-width:640px;background:#ffffff;border:1px solid #e8ede8;border-radius:14px;overflow:hidden;">
             <tr>
               <td style="padding:18px 20px;background:#17332e;">
                 <img src="{logo_url}" alt="Deal Ledger" width="220" style="display:block;width:220px;max-width:100%;height:auto;">
