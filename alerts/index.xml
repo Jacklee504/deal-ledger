@@ -7,5 +7,12 @@
     <generator>Hugo</generator>
     <language>en-us</language>
     <atom:link href="https://dealledger.eu/alerts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Unsubscribe from Alerts</title>
+      <link>https://dealledger.eu/alerts/unsubscribe/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://dealledger.eu/alerts/unsubscribe/</guid>
+      <description>&lt;p&gt;Use this page to unsubscribe from alert emails.&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>

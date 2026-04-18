@@ -8,7 +8,7 @@
     <language>en-us</language>
     <atom:link href="https://dealledger.eu/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>httpsmp Neon Rope Lights</title>
+      <title>Neon Rope Lights</title>
       <link>https://dealledger.eu/deals/httpsmp-neon-rope-lights/</link>
       <pubDate>Fri, 17 Apr 2026 10:10:00 +0000</pubDate>
       <guid>https://dealledger.eu/deals/httpsmp-neon-rope-lights/</guid>
@@ -300,6 +300,20 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://dealledger.eu/us/privacy/</guid>
       <description>&lt;p&gt;Deal Ledger may collect limited information when you visit the site or contact us, including email messages you send and basic analytics or server data.&lt;/p&gt;&#xA;&lt;p&gt;This information is used to operate and improve the site, and to respond to inquiries.&lt;/p&gt;&#xA;&lt;p&gt;Deal Ledger does not sell personal information. Third-party services (such as hosting, analytics, or retailers you click to) may process data under their own policies.&lt;/p&gt;&#xA;&lt;p&gt;If you subscribe to alerts or contact us directly, we retain only the information needed to deliver that service and handle support. We aim to keep this data limited, secure, and relevant to the original request.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Unsubscribe from Alerts</title>
+      <link>https://dealledger.eu/alerts/unsubscribe/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://dealledger.eu/alerts/unsubscribe/</guid>
+      <description>&lt;p&gt;Use this page to unsubscribe from alert emails.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Unsubscribe from Alerts</title>
+      <link>https://dealledger.eu/us/alerts/unsubscribe/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://dealledger.eu/us/alerts/unsubscribe/</guid>
+      <description>&lt;p&gt;Use this page to unsubscribe from alert emails.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
