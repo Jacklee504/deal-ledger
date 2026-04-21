@@ -13,10 +13,10 @@ listing_url = "https://www.amazon.com/dp/B0797MY6JB"
 listing_title = "Amazon.com: Sony S100F 2.0ch Soundbar with Bass Reflex Speaker, Integrated Tweeter and Bluetooth, (HTS100F), easy setup, compact, home office use with clear sound black : Electronics"
 listing_summary = "Amazon.com: Sony S100F 2.0ch Soundbar with Bass Reflex Speaker, Integrated Tweeter and Bluetooth, (HTS100F), easy setup, compact, home office use with clear sound black : Electronics"
 listing_image = "https://m.media-amazon.com/images/I/510P8uQSOLL._AC_SL1500_.jpg"
-listing_sale_price = 98.00
+listing_sale_price = 118
 listing_list_price = 118.00
 listing_discount_pct = 0.17
-listing_synced_at = "2026-04-18T14:25:46.486843+00:00"
+listing_synced_at = "2026-04-21T06:12:08.285181+00:00"
 +++
 
 Simple TV audio upgrade with a smaller footprint and straightforward setup.
