@@ -15,6 +15,14 @@ on:
           - category
           - keyword
           - weekly_digest
+      country:
+        description: "Deal country filter"
+        required: true
+        type: choice
+        default: ie
+        options:
+          - ie
+          - us
       query:
         description: "Free-text query (required for category/keyword, e.g. vinyl)"
         required: false
@@ -75,7 +83,8 @@ jobs:
 
           CMD=(python scripts/send_sample_signup_alerts.py \
             --to "${{ inputs.recipient_email }}" \
-            --type "${{ inputs.sample_type }}")
+            --type "${{ inputs.sample_type }}" \
+            --country "${{ inputs.country }}")
 
           if [ -n "$QUERY_INPUT" ]; then
             CMD+=(--query "$QUERY_INPUT")

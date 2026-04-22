@@ -78,6 +78,15 @@ def normalize(value: str) -> str:
     return re.sub(r"\s+", " ", re.sub(r"[^a-z0-9\s]", " ", (value or "").lower())).strip()
 
 
+def infer_deal_country(deal: Deal) -> str:
+    url = (deal.product_url or deal.listing_url or "").lower()
+    if "amazon.ie" in url:
+        return "ie"
+    if "amazon.com" in url:
+        return "us"
+    return ""
+
+
 def parse_multi_query(query: str) -> list[str]:
     parts = [normalize(part) for part in (query or "").split(",")]
     return [part for part in parts if part]
@@ -196,7 +205,11 @@ def build_unsubscribe_page_url(site_base: str, email: str) -> str:
     return f"{site_base.rstrip('/')}/alerts/unsubscribe/?email={email_q}&type=general"
 
 
-def pick_deals(deals: list[Deal], sample_type: str, query: str) -> list[Deal]:
+def pick_deals(deals: list[Deal], sample_type: str, query: str, country: str = "") -> list[Deal]:
+    country_norm = (country or "").strip().lower()
+    if country_norm:
+        deals = [d for d in deals if infer_deal_country(d) == country_norm]
+
     q = normalize(query)
     if sample_type == "weekly_digest":
         return sorted(deals, key=lambda d: d.discount_pct, reverse=True)[:4]
@@ -418,6 +431,7 @@ def main() -> None:
     parser.add_argument("--to", required=True, help="Recipient email")
     parser.add_argument("--type", required=True, choices=["category", "keyword", "weekly_digest"])
     parser.add_argument("--query", default="", help="Category/keyword query for category/keyword sample types")
+    parser.add_argument("--country", default="", choices=["", "ie", "us"], help="Filter deals by country marketplace")
     parser.add_argument("--dry-run", action="store_true", help="Render output without sending email.")
     parser.add_argument(
         "--preview-dir",
@@ -428,7 +442,7 @@ def main() -> None:
 
     site_base = (os.getenv("SITE_BASE_URL") or "https://dealledger.eu").strip()
     deals = load_deals()
-    selected = pick_deals(deals, args.type, args.query)
+    selected = pick_deals(deals, args.type, args.query, country=args.country)
     if not selected:
         raise SystemExit("No deals available for sample.")
 

@@ -2,9 +2,10 @@
 
 Usage:
   python scripts/sync_listing_from_urls.py
+  python scripts/sync_listing_from_urls.py content/deals/new-item.md
 
 Behavior:
-  - Scans content/deals/*.md (excluding _index.md)
+  - Scans content/deals/*.md (excluding _index.md), or only files passed as args
   - Reads product_url/affiliate_url/listing_url from front matter
   - Fetches page HTML and extracts visible metadata where possible
   - Upserts listing_* fields used by templates
@@ -15,6 +16,7 @@ Notes:
 """
 from __future__ import annotations
 
+import argparse
 import html
 import re
 from datetime import datetime, timezone
@@ -186,13 +188,53 @@ def clean_summary(value: Optional[str], title: Optional[str]) -> str:
     return ""
 
 
+def resolve_paths(file_args: list[str]) -> list[Path]:
+    if not file_args:
+        return sorted(p for p in DEALS_DIR.glob("*.md") if p.name != "_index.md")
+
+    selected: list[Path] = []
+    for raw in file_args:
+        candidate = Path(raw)
+        if not candidate.is_absolute():
+            candidate = (ROOT / candidate).resolve()
+        if candidate.is_dir():
+            selected.extend(sorted(p for p in candidate.glob("*.md") if p.name != "_index.md"))
+            continue
+        if candidate.exists() and candidate.suffix == ".md" and candidate.name != "_index.md":
+            selected.append(candidate)
+
+    unique: list[Path] = []
+    seen: set[Path] = set()
+    for path in selected:
+        if path not in seen:
+            unique.append(path)
+            seen.add(path)
+    return unique
+
+
 def main() -> None:
+    parser = argparse.ArgumentParser(description="Sync listing_* fields from retailer URLs.")
+    parser.add_argument(
+        "files",
+        nargs="*",
+        help="Optional markdown files (or directory) to sync. Defaults to all content/deals/*.md",
+    )
+    parser.add_argument(
+        "--touch-synced-at",
+        action="store_true",
+        help="Always update listing_synced_at even if no other listing fields changed.",
+    )
+    args = parser.parse_args()
+
     updated = 0
     now_iso = datetime.now(timezone.utc).isoformat()
 
-    for path in sorted(DEALS_DIR.glob("*.md")):
-        if path.name == "_index.md":
-            continue
+    paths = resolve_paths(args.files)
+    if not paths:
+        print("[sync_listing_from_urls] no files selected")
+        return
+
+    for path in paths:
 
         raw = path.read_text()
         split = split_front_matter(raw)
@@ -231,10 +273,16 @@ def main() -> None:
             next_front = upsert_line(next_front, "listing_list_price", list_price)
         if discount is not None:
             next_front = upsert_line(next_front, "listing_discount_pct", discount)
-        next_front = upsert_line(next_front, "listing_synced_at", now_iso)
 
-        if next_front != front:
-            path.write_text(f"+++\n{next_front.rstrip()}\n+++\n{body}")
+        should_update_synced_at = args.touch_synced_at or (next_front != front) or (
+            get_front_value(front, "listing_synced_at") is None
+        )
+        final_front = (
+            upsert_line(next_front, "listing_synced_at", now_iso) if should_update_synced_at else next_front
+        )
+
+        if final_front != front:
+            path.write_text(f"+++\n{final_front.rstrip()}\n+++\n{body}")
             updated += 1
             print(f"[sync_listing_from_urls] updated {path.relative_to(ROOT)}")
 
