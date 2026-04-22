@@ -37,7 +37,7 @@
   {{ end }}
 {{ end }}
 {{ $tags := $params.tags }}
-{{ $url := or $params.listing_url $params.product_url $params.affiliate_url }}
+{{ $url := or $params.affiliate_url $params.product_url $params.listing_url }}
 {{ $summary := or $params.summary $params.listing_summary $title }}
 {{ $normalizedURL := lower (printf "%v" $url) }}
 {{ $isAmazonURL := and $url (or (in $normalizedURL "amazon.") (in $normalizedURL "amzn.to")) }}

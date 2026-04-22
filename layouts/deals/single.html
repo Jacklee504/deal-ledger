@@ -1,5 +1,5 @@
 {{ define "main" }}
-{{ $url := or .Params.listing_url .Params.product_url .Params.affiliate_url }}
+{{ $url := or .Params.affiliate_url .Params.product_url .Params.listing_url }}
 {{ $normalizedURL := lower (printf "%v" $url) }}
 {{ $isAmazonURL := and $url (or (in $normalizedURL "amazon.") (in $normalizedURL "amzn.to")) }}
 {{ $hasAmazonTag := and $isAmazonURL (in $normalizedURL "tag=") }}
