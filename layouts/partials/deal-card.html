@@ -14,9 +14,28 @@
 {{ $params := $page.Params }}
 {{ $title := or $page.Title $params.listing_title }}
 {{ $img := or $params.listing_image $params.image }}
-{{ $list := or $params.list_price $params.listing_list_price }}
-{{ $sale := or $params.sale_price $params.listing_sale_price }}
+{{ $baseList := $params.list_price }}
+{{ $baseSale := $params.sale_price }}
+{{ $listingList := $params.listing_list_price }}
+{{ $listingSale := $params.listing_sale_price }}
 {{ $discount := or $params.discount_pct $params.listing_discount_pct }}
+{{ $list := or $baseList $listingList }}
+{{ $sale := or $baseSale $listingSale }}
+{{ $discountValue := float (or $discount 0) }}
+{{ if and (gt $discountValue 0) (gt (float (or $list 0)) 0) }}
+  {{ $listingLooksCoupon := and
+    (gt (float (or $listingSale 0)) 0)
+    (gt (float (or $listingList 0)) 0)
+    (eq (printf "%.2f" (float $listingSale)) (printf "%.2f" (float $listingList)))
+  }}
+  {{ if $listingLooksCoupon }}
+    {{ if and (gt (float (or $baseSale 0)) 0) (lt (float $baseSale) (float $list)) }}
+      {{ $sale = $baseSale }}
+    {{ else }}
+      {{ $sale = mul (float $list) (sub 1 $discountValue) }}
+    {{ end }}
+  {{ end }}
+{{ end }}
 {{ $tags := $params.tags }}
 {{ $url := or $params.listing_url $params.product_url $params.affiliate_url }}
 {{ $summary := or $params.summary $params.listing_summary $title }}

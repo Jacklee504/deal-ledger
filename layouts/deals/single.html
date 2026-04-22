@@ -16,9 +16,28 @@
 {{ $displayTitle := or .Title .Params.listing_title }}
 {{ $description := or .Params.summary .Params.listing_summary .Title }}
 {{ $dealImage := or .Params.listing_image .Params.image }}
-{{ $salePrice := or .Params.sale_price .Params.listing_sale_price }}
-{{ $listPrice := or .Params.list_price .Params.listing_list_price }}
+{{ $baseSalePrice := .Params.sale_price }}
+{{ $baseListPrice := .Params.list_price }}
+{{ $listingSalePrice := .Params.listing_sale_price }}
+{{ $listingListPrice := .Params.listing_list_price }}
 {{ $discountPct := or .Params.discount_pct .Params.listing_discount_pct }}
+{{ $salePrice := or $baseSalePrice $listingSalePrice }}
+{{ $listPrice := or $baseListPrice $listingListPrice }}
+{{ $discountValue := float (or $discountPct 0) }}
+{{ if and (gt $discountValue 0) (gt (float (or $listPrice 0)) 0) }}
+  {{ $listingLooksCoupon := and
+    (gt (float (or $listingSalePrice 0)) 0)
+    (gt (float (or $listingListPrice 0)) 0)
+    (eq (printf "%.2f" (float $listingSalePrice)) (printf "%.2f" (float $listingListPrice)))
+  }}
+  {{ if $listingLooksCoupon }}
+    {{ if and (gt (float (or $baseSalePrice 0)) 0) (lt (float $baseSalePrice) (float $listPrice)) }}
+      {{ $salePrice = $baseSalePrice }}
+    {{ else }}
+      {{ $salePrice = mul (float $listPrice) (sub 1 $discountValue) }}
+    {{ end }}
+  {{ end }}
+{{ end }}
 {{ $showExpiryMeta := not $url }}
 {{ $schema := dict
   "@context" "https://schema.org"
