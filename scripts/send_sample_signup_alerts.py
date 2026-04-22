@@ -18,6 +18,7 @@ import os
 import re
 import smtplib
 from dataclasses import dataclass
+from datetime import datetime, timedelta, timezone
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from pathlib import Path
@@ -31,6 +32,7 @@ DEALS_DIR = ROOT / "content" / "deals"
 @dataclass
 class Deal:
     slug: str
+    created_at: datetime | None
     title: str
     summary: str
     product_url: str
@@ -72,6 +74,26 @@ def get_array(front: str, key: str) -> list[str]:
     if not m:
         return []
     return [s.strip().strip('"').strip("'") for s in m.group(1).split(",") if s.strip()]
+
+
+def parse_front_date(front: str) -> datetime | None:
+    m = re.search(r'^date\s*=\s*"?([^"\n]+)"?\s*$', front, re.MULTILINE)
+    if not m:
+        return None
+    raw = m.group(1).strip()
+    if not raw:
+        return None
+    normalized = raw.replace("Z", "+00:00")
+    try:
+        dt = datetime.fromisoformat(normalized)
+    except ValueError:
+        try:
+            dt = datetime.fromisoformat(f"{raw}T00:00:00+00:00")
+        except ValueError:
+            return None
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    return dt.astimezone(timezone.utc)
 
 
 def normalize(value: str) -> str:
@@ -140,6 +162,7 @@ def load_deals() -> list[Deal]:
         deals.append(
             Deal(
                 slug=slug,
+                created_at=parse_front_date(front),
                 title=get_str(front, "title") or get_str(front, "listing_title"),
                 summary=get_str(front, "summary") or get_str(front, "listing_summary"),
                 product_url=get_str(front, "product_url"),
@@ -205,10 +228,16 @@ def build_unsubscribe_page_url(site_base: str, email: str) -> str:
     return f"{site_base.rstrip('/')}/alerts/unsubscribe/?email={email_q}&type=general"
 
 
-def pick_deals(deals: list[Deal], sample_type: str, query: str, country: str = "") -> list[Deal]:
+def pick_deals(
+    deals: list[Deal], sample_type: str, query: str, country: str = "", days_back: int = 0
+) -> list[Deal]:
     country_norm = (country or "").strip().lower()
     if country_norm:
         deals = [d for d in deals if infer_deal_country(d) == country_norm]
+
+    if days_back > 0:
+        cutoff = datetime.now(timezone.utc) - timedelta(days=days_back)
+        deals = [d for d in deals if d.created_at is not None and d.created_at >= cutoff]
 
     q = normalize(query)
     if sample_type == "weekly_digest":
@@ -432,6 +461,7 @@ def main() -> None:
     parser.add_argument("--type", required=True, choices=["category", "keyword", "weekly_digest"])
     parser.add_argument("--query", default="", help="Category/keyword query for category/keyword sample types")
     parser.add_argument("--country", default="", choices=["", "ie", "us"], help="Filter deals by country marketplace")
+    parser.add_argument("--days-back", type=int, default=0, choices=range(0, 366), help="Only include deals added in the last N days")
     parser.add_argument("--dry-run", action="store_true", help="Render output without sending email.")
     parser.add_argument(
         "--preview-dir",
@@ -442,7 +472,7 @@ def main() -> None:
 
     site_base = (os.getenv("SITE_BASE_URL") or "https://dealledger.eu").strip()
     deals = load_deals()
-    selected = pick_deals(deals, args.type, args.query, country=args.country)
+    selected = pick_deals(deals, args.type, args.query, country=args.country, days_back=args.days_back)
     if not selected:
         raise SystemExit("No deals available for sample.")
 

@@ -23,6 +23,18 @@ on:
         options:
           - ie
           - us
+      days_back:
+        description: "Only include deals added in the last N days"
+        required: true
+        type: choice
+        default: "1"
+        options:
+          - "1"
+          - "2"
+          - "3"
+          - "4"
+          - "5"
+          - "7"
       query:
         description: "Free-text query (required for category/keyword, e.g. vinyl)"
         required: false
@@ -84,7 +96,8 @@ jobs:
           CMD=(python scripts/send_sample_signup_alerts.py \
             --to "${{ inputs.recipient_email }}" \
             --type "${{ inputs.sample_type }}" \
-            --country "${{ inputs.country }}")
+            --country "${{ inputs.country }}" \
+            --days-back "${{ inputs.days_back }}")
 
           if [ -n "$QUERY_INPUT" ]; then
             CMD+=(--query "$QUERY_INPUT")
