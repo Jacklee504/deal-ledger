@@ -44,12 +44,55 @@ jobs:
         run: python scripts/fetch_deals.py
 
       - name: Sync listing details (from URLs)
-        if: ${{ env.AMZ_PAAPI_ACCESS_KEY != '' && env.AMZ_PAAPI_SECRET_KEY != '' && env.AMZ_PARTNER_TAG != '' && env.AMZ_MARKETPLACE != '' }}
         run: python scripts/sync_listing_from_urls.py
 
-      - name: Skip deal refresh (keys missing)
+      - name: Skip PA-API fetch (keys missing)
         if: ${{ env.AMZ_PAAPI_ACCESS_KEY == '' || env.AMZ_PAAPI_SECRET_KEY == '' || env.AMZ_PARTNER_TAG == '' || env.AMZ_MARKETPLACE == '' }}
-        run: echo "AMZ_* secrets missing. Skipping PA-API refresh and building with existing content."
+        run: echo "AMZ_* secrets missing. Skipping PA-API refresh; URL metadata sync still runs."
+
+      - name: Enforce sync metadata for newly added deals
+        if: ${{ github.event_name == 'push' }}
+        run: |
+          set -euo pipefail
+          BEFORE="${{ github.event.before }}"
+          AFTER="${{ github.sha }}"
+
+          if [ -z "$BEFORE" ] || [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then
+            echo "No valid base SHA found for this push; skipping new-deal sync guard."
+            exit 0
+          fi
+
+          mapfile -t NEW_DEALS < <(git diff --name-status "$BEFORE" "$AFTER" -- 'content/deals/*.md' | awk '$1=="A"{print $2}')
+
+          if [ "${#NEW_DEALS[@]}" -eq 0 ]; then
+            echo "No newly added deal files detected."
+            exit 0
+          fi
+
+          missing=0
+          for file in "${NEW_DEALS[@]}"; do
+            if ! rg -q '^listing_title\s*=\s*".+"' "$file"; then
+              echo "Missing required synced field listing_title in $file"
+              missing=1
+            fi
+            if ! rg -q '^listing_image\s*=\s*".+"' "$file"; then
+              echo "Missing required synced field listing_image in $file"
+              missing=1
+            fi
+            if ! rg -q '^listing_url\s*=\s*".+"' "$file"; then
+              echo "Missing required synced field listing_url in $file"
+              missing=1
+            fi
+            if ! rg -q '^listing_synced_at\s*=\s*".+"' "$file"; then
+              echo "Missing required synced field listing_synced_at in $file"
+              missing=1
+            fi
+          done
+
+          if [ "$missing" -ne 0 ]; then
+            echo "Newly added deal files must be synced (python scripts/sync_listing_from_urls.py) before deploy."
+            exit 1
+          fi
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
