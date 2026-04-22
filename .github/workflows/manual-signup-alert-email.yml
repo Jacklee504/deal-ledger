@@ -19,6 +19,10 @@ on:
         description: "Free-text query (required for category/keyword, e.g. vinyl)"
         required: false
         type: string
+      categories:
+        description: "Comma-separated categories (used when sample_type=category, e.g. audio, desk, gaming)"
+        required: false
+        type: string
       dry_run:
         description: "Render only (do not send)"
         required: true
@@ -44,8 +48,13 @@ jobs:
 
       - name: Validate inputs
         run: |
-          if [ "${{ inputs.sample_type }}" != "weekly_digest" ] && [ -z "${{ inputs.query }}" ]; then
-            echo "query is required for category/keyword sends."
+          if [ "${{ inputs.sample_type }}" = "category" ]; then
+            if [ -z "${{ inputs.categories }}" ] && [ -z "${{ inputs.query }}" ]; then
+              echo "Provide categories (preferred) or query when sample_type=category."
+              exit 1
+            fi
+          elif [ "${{ inputs.sample_type }}" = "keyword" ] && [ -z "${{ inputs.query }}" ]; then
+            echo "query is required when sample_type=keyword."
             exit 1
           fi
 
@@ -59,12 +68,17 @@ jobs:
           SMTP_USE_TLS: "true"
           SITE_BASE_URL: "https://dealledger.eu"
         run: |
+          QUERY_INPUT="${{ inputs.query }}"
+          if [ "${{ inputs.sample_type }}" = "category" ] && [ -n "${{ inputs.categories }}" ]; then
+            QUERY_INPUT="${{ inputs.categories }}"
+          fi
+
           CMD=(python scripts/send_sample_signup_alerts.py \
             --to "${{ inputs.recipient_email }}" \
             --type "${{ inputs.sample_type }}")
 
-          if [ -n "${{ inputs.query }}" ]; then
-            CMD+=(--query "${{ inputs.query }}")
+          if [ -n "$QUERY_INPUT" ]; then
+            CMD+=(--query "$QUERY_INPUT")
           fi
 
           if [ "${{ inputs.dry_run }}" = "true" ]; then

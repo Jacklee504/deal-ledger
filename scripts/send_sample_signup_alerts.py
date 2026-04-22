@@ -78,6 +78,11 @@ def normalize(value: str) -> str:
     return re.sub(r"\s+", " ", re.sub(r"[^a-z0-9\s]", " ", (value or "").lower())).strip()
 
 
+def parse_multi_query(query: str) -> list[str]:
+    parts = [normalize(part) for part in (query or "").split(",")]
+    return [part for part in parts if part]
+
+
 def resolve_deal_prices(front: str, discount_pct: float) -> tuple[float | None, float | None]:
     listing_sale = get_float(front, "listing_sale_price")
     listing_list = get_float(front, "listing_list_price")
@@ -196,7 +201,23 @@ def pick_deals(deals: list[Deal], sample_type: str, query: str) -> list[Deal]:
     if sample_type == "weekly_digest":
         return sorted(deals, key=lambda d: d.discount_pct, reverse=True)[:4]
 
-    # category / keyword
+    # category
+    if sample_type == "category":
+        terms = parse_multi_query(query)
+        if not terms and q:
+            terms = [q]
+        matched = []
+        for d in deals:
+            hay = normalize(
+                f"{d.title} {d.summary} {' '.join(d.tags)} {' '.join(d.categories)}"
+            )
+            if not terms or any(term in hay for term in terms):
+                matched.append(d)
+        if matched:
+            return sorted(matched, key=lambda d: d.discount_pct, reverse=True)[:4]
+        return sorted(deals, key=lambda d: d.discount_pct, reverse=True)[:4]
+
+    # keyword
     matched = []
     for d in deals:
         hay = normalize(f"{d.title} {d.summary} {' '.join(d.tags)} {' '.join(d.categories)}")

@@ -71,19 +71,19 @@ jobs:
 
           missing=0
           for file in "${NEW_DEALS[@]}"; do
-            if ! rg -q '^listing_title\s*=\s*".+"' "$file"; then
+            if ! grep -Eq '^listing_title[[:space:]]*=[[:space:]]*".+"' "$file"; then
               echo "Missing required synced field listing_title in $file"
               missing=1
             fi
-            if ! rg -q '^listing_image\s*=\s*".+"' "$file"; then
+            if ! grep -Eq '^listing_image[[:space:]]*=[[:space:]]*".+"' "$file"; then
               echo "Missing required synced field listing_image in $file"
               missing=1
             fi
-            if ! rg -q '^listing_url\s*=\s*".+"' "$file"; then
+            if ! grep -Eq '^listing_url[[:space:]]*=[[:space:]]*".+"' "$file"; then
               echo "Missing required synced field listing_url in $file"
               missing=1
             fi
-            if ! rg -q '^listing_synced_at\s*=\s*".+"' "$file"; then
+            if ! grep -Eq '^listing_synced_at[[:space:]]*=[[:space:]]*".+"' "$file"; then
               echo "Missing required synced field listing_synced_at in $file"
               missing=1
             fi
