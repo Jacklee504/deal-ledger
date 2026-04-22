@@ -80,7 +80,7 @@
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://dealledger.eu/#organization","@type":"Organization","logo":"https://dealledger.eu/images/brand/deal-ledger-logo.svg","name":"Deal Ledger","url":"https://dealledger.eu/"},{"@id":"https://dealledger.eu/#website","@type":"WebSite","name":"Deal Ledger","potentialAction":{"@type":"SearchAction","query-input":"required name=search_term_string","target":"https://dealledger.eu/deals/?q={search_term_string}"},"publisher":{"@id":"https://dealledger.eu/#organization"},"url":"https://dealledger.eu/"}]}</script>
 
-<link rel="stylesheet" href="/styles/site.css?v=1776839934">
+<link rel="stylesheet" href="/styles/site.css?v=1776864701">
 
   </head><body class="ma0 avenir bg-near-white production is-section is-section">
     
@@ -515,6 +515,41 @@
   <p>Simple picks • Clear value • Smarter spending</p>
 </section>
 
+<section class="home-filter-rail" aria-label="Sample deal filters">
+  <div class="home-filter-rail__top">
+    <div class="home-filter-rail__intro">
+      <h2>Start with a quick filter</h2>
+      <p>Jump into common deal searches in one click.</p>
+    </div>
+    <div class="home-filter-rail__action">
+      <a class="button-link button-link--primary" href="/us/deals/">View all deals</a>
+    </div>
+  </div>
+  <div class="home-filter-rail__row" data-home-filter-row>
+    <button class="home-filter-rail__search-trigger" type="button" data-home-filter-search-toggle aria-expanded="false" aria-label="Open search">&#128269;</button>
+    <div class="home-filter-rail__chips">
+      <a href="/us/deals/?q=audio">Audio</a>
+      <a href="/us/deals/?q=laptop">Laptops</a>
+      <a href="/us/deals/?q=monitor">Monitors</a>
+      <a href="/us/deals/?q=accessories">Accessories</a>
+      <a href="/us/deals/?q=gaming">Gaming</a>
+      <a href="/us/deals/?q=desk">Desk</a>
+    </div>
+    <form class="home-filter-rail__search-form" action="/us/deals/" method="get" role="search" data-home-filter-search-form>
+      <input
+        type="search"
+        name="q"
+        class="home-filter-rail__search-input"
+        placeholder="Search deals"
+        aria-label="Search deals"
+        data-home-filter-search-input
+      >
+      <button type="submit" class="home-filter-rail__search-submit">Go</button>
+      <button type="button" class="home-filter-rail__search-close" data-home-filter-search-close>Close</button>
+    </form>
+  </div>
+</section>
+
 <section class="home-section">
   <div class="home-section__intro">
     <h2>Featured picks</h2>
@@ -945,21 +980,6 @@
 
 <section class="home-section">
   <div class="home-section__intro">
-    <h2>Quick categories</h2>
-    <p>Jump straight into deals for what you need.</p>
-  </div>
-  <div class="category-strip">
-    <a href="/us/deals/?q=home&#43;office">Home office</a>
-    <a href="/us/deals/?q=audio">Audio</a>
-    <a href="/us/deals/?q=charging">Charging</a>
-    <a href="/us/deals/?q=monitor">Monitors</a>
-    <a href="/us/deals/?q=gaming">Gaming</a>
-    <a href="/us/deals/?q=tv">TV</a>
-  </div>
-</section>
-
-<section class="home-section">
-  <div class="home-section__intro">
     <h2>Recent additions</h2>
     <p>Latest deals added to the site.</p>
   </div>
@@ -1385,6 +1405,8 @@
     </div>
   
 </section>
+
+<script type="module" src="/scripts/home-filter-rail.js?v=1776864701"></script>
 
 
     </main>
