@@ -779,6 +779,12 @@ main.pb7 {
   transform: translateY(-1px);
 }
 
+@media (min-width: 54.001rem) {
+  .home-filter-rail__chips a {
+    padding: 0.44rem 1.8rem;
+  }
+}
+
 .home-filter-rail__search-form {
   display: none;
   flex: 1 1 auto;
@@ -890,7 +896,7 @@ main.pb7 {
   .home-filter-rail__chips {
     order: 3;
     width: 100%;
-    justify-content: flex-start;
+    justify-content: space-evenly;
     gap: 0.35rem;
   }
 
@@ -2813,6 +2819,20 @@ main article[class^="page-"] > header > time.f6.mv4.dib.tracked {
     gap: 0.4rem 0.8rem;
   }
 
+  .deal-card--list .deal-card__price-row--compact .deal-card__sale {
+    order: 1;
+    flex: 0 0 100%;
+    text-align: center;
+  }
+
+  .deal-card--list .deal-card__price-row--compact .deal-card__list {
+    order: 2;
+  }
+
+  .deal-card--list .deal-card__price-row--compact .deal-card__badge {
+    order: 3;
+  }
+
   .deal-card--list .deal-card__sale {
     font-size: 0.82rem;
     letter-spacing: -0.01em;
@@ -2848,8 +2868,6 @@ main article[class^="page-"] > header > time.f6.mv4.dib.tracked {
   }
 
   .deal-card--list .deal-card__price-row--compact .deal-card__badge {
-    grid-column: auto;
-    justify-self: auto;
     padding: 0.2rem 0.42rem;
   }
 }
