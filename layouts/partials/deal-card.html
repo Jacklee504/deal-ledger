@@ -43,6 +43,8 @@
 {{ $isAmazonURL := and $url (or (in $normalizedURL "amazon.") (in $normalizedURL "amzn.to")) }}
 {{ $hasAmazonTag := and $isAmazonURL (in $normalizedURL "tag=") }}
 {{ $isAffiliateLink := or $params.affiliate_url $hasAmazonTag }}
+{{ $ctaLabel := "View deal" }}
+{{ if $isAmazonURL }}{{ $ctaLabel = "View on Amazon" }}{{ end }}
 {{ $canShowLocalPrice := $params.show_local_price | default true }}
 {{ $isUSDDeal := or (in $normalizedURL "amazon.com/") (and (in $normalizedURL "amzn.to/") (in $normalizedURL "dealledger-20")) }}
 {{ $currency := "€" }}
@@ -100,7 +102,7 @@
           </div>
         </details>
         {{ if $url }}
-          <a class="deal-card__cta" href="{{ $url }}" rel="noopener noreferrer" target="_blank">View retailer&nbsp;page</a>
+          <a class="deal-card__cta" href="{{ $url }}" rel="noopener noreferrer" target="_blank">{{ $ctaLabel }}</a>
         {{ else }}
           <a class="deal-card__cta deal-card__cta--soft" href="{{ "alerts/" | relURL }}">Get alerts</a>
         {{ end }}
@@ -124,7 +126,7 @@
         </div>
       {{ end }}
       {{ if $url }}
-        <a class="deal-card__cta" href="{{ $url }}" rel="noopener noreferrer" target="_blank">View retailer&nbsp;page</a>
+        <a class="deal-card__cta" href="{{ $url }}" rel="noopener noreferrer" target="_blank">{{ $ctaLabel }}</a>
       {{ else }}
         <a class="deal-card__cta deal-card__cta--soft" href="{{ "alerts/" | relURL }}">Get alerts</a>
       {{ end }}

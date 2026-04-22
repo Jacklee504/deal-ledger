@@ -5,7 +5,7 @@ list_price = 421.37
 sale_price = 153.87
 discount_pct = 0.634834
 featured = false
-show_local_price = false
+show_local_price = true
 product_url = "https://www.amazon.ie/Conditioner-Evaporative-Space-Saving-Oscillation-Pet-Friendly/dp/B0GJS6D8JR?crid=27L5O9ZC59ZN7&dib=eyJ2IjoiMSJ9._RVjLta-__iwYfoKaXWwTAT8sc-Xg2z2I1WoTnbCAgTXa1Km4Lolt4PzX0y6AAvQDR21ffpAUy8cyaRyN6RFEjwSXvRG5Zs-P8b6PsdmkyYmwawXx26-frzT0qK10qStLJIsQwZrAOWxeM9ysHV69YAMvzspKEL9rH7jRjh9XZxrGKaKwVImEp2tuLoOaW-tDWhLPLcYHcfhAx0M688M5sYFjiYdvB7Qyfyq5d1KnamOSwH-wtN0cZ7E4xW-MZaNW4pHAy1sR-7Nivw5iu14M7qHK7JxPNNarQOSJEdZWrk.gx8SRjRFrdfElP0bMzZJN1_yr8Qe56BXCBOwahzvA8s&dib_tag=se&keywords=home+office&qid=1776877547&refinements=p_n_deal_type%3A94791403031&rnid=94791364031&sprefix=home+offic%2Caps%2C256&sr=8-9&linkCode=ll2&tag=dealledger-21&linkId=f6f78e503f5d8f4bb84cda918beced6f&ref_=as_li_ss_tl"
 tags = ["home", "cooling", "air-conditioner"]
 categories = ["home"]

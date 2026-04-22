@@ -5,7 +5,7 @@ list_price = 235.46
 sale_price = 235.46
 discount_pct = 0
 featured = false
-show_local_price = false
+show_local_price = true
 product_url = "https://www.amazon.ie/Sennheiser-Headphones-Crystal-Clear-Cancellation-Customizable/dp/B0CCRZPKR1?crid=2JYUCQWOSTQ9V&dib=eyJ2IjoiMSJ9.EbngGFBNvWz5Uci7hepd2SNnm2uT6XoUxn45ak2yqT3x8EhQkEUxnKOsszgwhEV59UVEV0LDK_qLSlgJ9LUZ5KsRlVsYNgCyDLkU8mjXJ5iXLaEQQHLEy0C8dB3A-JedpjmQs6ye2wg-CwVbJpYkWdRzc0qgqS5BDEkMG6vMPcWHMLpME4UUdvpB3Wm-4z7ysWydjBYMX_YX0sb9iSRag1E3T_MAVk-qkxm8Wn0NtPxHVqahOhXBV2y2zAJqSmScdrk8bFOSQlU023sC0VotGrRhbuVisq4nvqHtl0qPD9g.6Jdm7G4JriN33BVQ0og9WgDePEPUlevYHbwEwchxBu0&dib_tag=se&keywords=sennheiser+momentum+4&qid=1776873007&sprefix=sennheiser%2Caps%2C173&sr=8-1&linkCode=ll2&tag=dealledger-21&linkId=84a7f13c005f81beb3749e300e9558c0&ref_=as_li_ss_tl"
 tags = ["audio", "headphones", "wireless", "sennheiser"]
 categories = ["electronics"]

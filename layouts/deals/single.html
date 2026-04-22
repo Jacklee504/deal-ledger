@@ -4,6 +4,8 @@
 {{ $isAmazonURL := and $url (or (in $normalizedURL "amazon.") (in $normalizedURL "amzn.to")) }}
 {{ $hasAmazonTag := and $isAmazonURL (in $normalizedURL "tag=") }}
 {{ $isAffiliateLink := or .Params.affiliate_url $hasAmazonTag }}
+{{ $ctaLabel := "View deal" }}
+{{ if $isAmazonURL }}{{ $ctaLabel = "View on Amazon" }}{{ end }}
 {{ $canShowLocalPrice := .Params.show_local_price | default true }}
 {{ $isUSDDeal := or (in $normalizedURL "amazon.com/") (and (in $normalizedURL "amzn.to/") (in $normalizedURL "dealledger-20")) }}
 {{ $currency := "€" }}
@@ -105,7 +107,7 @@
       </div>
 
       {{ if $url }}
-        <p><a class="deal-single__cta" href="{{ $url }}" rel="noopener noreferrer" target="_blank">View retailer page</a></p>
+        <p><a class="deal-single__cta" href="{{ $url }}" rel="noopener noreferrer" target="_blank">{{ $ctaLabel }}</a></p>
       {{ else }}
         <p><a class="deal-single__cta deal-single__cta--soft" href="{{ "alerts/" | relURL }}">Join category alerts</a></p>
         <p class="deal-single__note">Retailer links are added selectively as listings are finalized.</p>

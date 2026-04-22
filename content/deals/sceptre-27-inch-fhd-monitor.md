@@ -5,7 +5,7 @@ list_price = 122.97
 sale_price = 97.97
 discount_pct = 0.203302
 featured = false
-show_local_price = false
+show_local_price = true
 product_url = "https://www.amazon.com/Sceptre-DisplayPort-FreeSync-Frameless-E275W-FW100T/dp/B0CHHSFMRL?crid=1QJB8GY0XXNN3&dib=eyJ2IjoiMSJ9.xbPWrjXwaW82FlSQGaGScHz3fh_lDnY98wZbw8ACHurD5fZ6JCh8OmCfQx_qFSatseFHnrCuIqcz7zbpodzQXvJiOMenow3o2PmsfznHArFAaJOJKPT-zlO-eeoPhTks8uH2gQkWEgK8svYLPuVHtt6Sl5qKVdCA8j-J1hOFIT52_ra-PnKuaniErig0tTCnhc8FE_tyv4DwYiJpsBSxNnTtPpH5diNWbYQA3PvGxVY.sA1olxn-JQ49S3tegR6Im9XPazol4C4iyBbCQHzUok8&dib_tag=se&keywords=monitor&qid=1776879137&sprefix=monito%2Caps%2C646&sr=8-20&th=1&linkCode=ll2&tag=dealledger-20&linkId=cf43fb8a96260fdfd4280be2e6890d4f&language=en_US&ref_=as_li_ss_tl"
 tags = ["monitor", "display", "fhd", "sceptre"]
 categories = ["electronics"]

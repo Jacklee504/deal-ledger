@@ -5,7 +5,7 @@ list_price = 49.99
 sale_price = 39.97
 discount_pct = 0.20044
 featured = false
-show_local_price = false
+show_local_price = true
 product_url = "https://www.amazon.com/LEVOIT-Purifiers-Freshener-Core-Mini/dp/B09GTRVJQM?crid=N9HYL4M63OOF&dib=eyJ2IjoiMSJ9.wDVrOeRu9cm5047VCAFoHIZEe4qeljJhUmypmr2MnTE.qiQybxod8vacfDdgeVNGwllRnKwT0KBuKostExhUxrs&dib_tag=se&keywords=office&qid=1776878587&sprefix=office%2B%2Caps%2C430&sr=8-20&xpid=aZWeNbVGevO43&th=1&linkCode=ll2&tag=dealledger-20&linkId=4e9df5f7bca1a54d5e873ce344ac69c9&language=en_US&ref_=as_li_ss_tl"
 tags = ["home", "air-purifier", "office", "levoit"]
 categories = ["home", "office"]

@@ -5,7 +5,7 @@ list_price = 70
 sale_price = 34.43
 discount_pct = 0.508143
 featured = false
-show_local_price = false
+show_local_price = true
 product_url = "https://www.amazon.ie/Logitech-Condenser-Microphone-LIGHTSYNC-Streaming/dp/B07W6JBTXW?crid=U9PO5QF85DY6&dib=eyJ2IjoiMSJ9.U61QKdhpEHlLvOB5IJtmUPiMA09gqLfjlp_WA_EvuodciwdEh1jOcGIupvgPQrlU6NsHUWVbgFMK7Iqx0gFzVXcwZ585zYsKFIiM7cQ03Ww2QDwcSD-BdjiQkOp8dT2MMIBCYDOiA6lMUzSsEVKqzol2VXQXcwrZRCvDbfsXRcb-m0LnC_lWFDugR8DbjLwOCWwlex0MFiOSvgdfH2RJNYSWkD6ytmxL72VML_WBI1LfKFeDQv19CSiMMw3Q-pJcQc9VwA0S5hQBL1No-CDkWrjlyTJKy444IBDdyyFV13w.PxvyJS1PLghPGwSccUL5lKb_Hfs5ev8AwXi_PVJDDlo&dib_tag=se&keywords=gaming&qid=1776877213&refinements=p_n_deal_type%3A94791403031&rnid=94791364031&sprefix=ga%2Caps%2C483&sr=8-30&th=1&linkCode=ll2&tag=dealledger-21&linkId=75d1efc30218efc9046031cfefd25e62&ref_=as_li_ss_tl"
 tags = ["audio", "microphone", "gaming", "streaming", "logitech"]
 categories = ["electronics"]

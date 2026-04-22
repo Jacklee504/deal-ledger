@@ -5,7 +5,7 @@ list_price = 90.11
 sale_price = 70
 discount_pct = 0.22306
 featured = false
-show_local_price = false
+show_local_price = true
 product_url = "https://www.amazon.ie/ErGear-Electric-Standing-Height-Adjustable/dp/B0D9MGDDHD?crid=27L5O9ZC59ZN7&dib=eyJ2IjoiMSJ9.Rl7gksa1499McNTxEMiVCiExXdlp_ujNfJ2WputbamQ5rMysTrfHo4-GwvKqCkspGBJcbq0MOUgGwoOxtVggoS4T1gihAX4ZaBpJSUB938Gjgls7ql487hthmReHN0mlxuRRdAhWTQe_e6a6ATm-ZFs_oabOscD1PrJNgZImQbW515DKRIDF3oKCK82RktV_lJ6TqzLtl3U6CKUxmM0tASRS9fs9lwqufXB6B0-sG51JMEohGXt2kxZ4zGphPnzWtEp6c1t-6bLhLiLkuq71NTFfaycJmuW9kB4ZWuafGj0.iY9TQ8TDKiTCLvCNZ08mBGFI4rh23-UffFhZyyJOCVw&dib_tag=se&keywords=home%2Boffice&qid=1776877427&sprefix=home%2Boffic%2Caps%2C256&sr=8-6&th=1&linkCode=ll2&tag=dealledger-21&linkId=7e322ff240a8f4e26eaba63330696427&ref_=as_li_ss_tl"
 tags = ["desk", "office", "standing-desk", "ergonomic"]
 categories = ["home", "electronics"]

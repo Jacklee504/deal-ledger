@@ -5,7 +5,7 @@ list_price = 299.99
 sale_price = 179.99
 discount_pct = 0.400013
 featured = false
-show_local_price = false
+show_local_price = true
 product_url = "https://www.amazon.com/INSIGNIA-50-inch-4K-UHD-Fire-TV/dp/B0F19KLHG3?crid=XFBBBJ4DIZFH&dib=eyJ2IjoiMSJ9.V_Q7md-IoYAkDUXE5AbzGzTT8sKZQVw6r_yKfZspyZ_Q_m4tWcMrlmk_m0FdmX_J3XMTO8QD0IDS0Oii5VoDfMomJfF4fL31E_EIp-9myF7Sudj_cOztIPEfiliqLqAa9Z2e5GPtRiiAh_vmnrcNqdiWGcqGljzmcyWxOeAa_u_lF-2xcBIijueVoOJOnBRT9vOtxW3ArR3bG7dChsHRGhr44q17Sn3HKaJGSiJMYGo.zUgUfWy0BVhcJBRjYJD7Yvv7Qu-aK4kH0A-r3h1kqLU&dib_tag=se&keywords=tv&qid=1776879087&sprefix=tv%2Caps%2C473&sr=8-4&th=1&linkCode=ll2&tag=dealledger-20&linkId=387aa4c0233308394006e140de011bc7&language=en_US&ref_=as_li_ss_tl"
 tags = ["tv", "4k", "fire-tv", "insignia"]
 categories = ["electronics"]
