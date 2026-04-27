@@ -19,7 +19,6 @@
           <option value="us" {{ if eq $marketKey "us" }}selected{{ end }}>US</option>
           <option value="de" {{ if eq $marketKey "de" }}selected{{ end }}>DE</option>
           <option value="nl" {{ if eq $marketKey "nl" }}selected{{ end }}>NL</option>
-          <option value="fr" {{ if eq $marketKey "fr" }}selected{{ end }}>FR</option>
         </select>
       </div>
       <div class="nav-menu" data-nav-menu>
@@ -94,12 +93,12 @@
           return acc;
         }, {});
 
-      if (cookieMap.market === 'us' || cookieMap.market === 'eu' || cookieMap.market === 'de' || cookieMap.market === 'nl' || cookieMap.market === 'fr') {
+      if (cookieMap.market === 'us' || cookieMap.market === 'eu' || cookieMap.market === 'de' || cookieMap.market === 'nl') {
         marketSelect.value = cookieMap.market;
       }
 
       marketSelect.addEventListener('change', () => {
-        const allowedMarkets = new Set(['eu', 'us', 'de', 'nl', 'fr']);
+        const allowedMarkets = new Set(['eu', 'us', 'de', 'nl']);
         const targetMarket = allowedMarkets.has(marketSelect.value) ? marketSelect.value : 'eu';
         const secure = window.location.protocol === 'https:' ? '; Secure' : '';
         document.cookie = `market=${targetMarket}; Path=/; Max-Age=31536000; SameSite=Lax${secure}`;
