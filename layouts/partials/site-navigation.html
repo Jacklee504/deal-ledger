@@ -81,6 +81,14 @@
 
     const marketSelect = document.getElementById('market-select');
     if (marketSelect) {
+      const marketFromPath = (() => {
+        const path = window.location.pathname || '/';
+        if (path === '/us' || path.startsWith('/us/')) return 'us';
+        if (path === '/de' || path.startsWith('/de/')) return 'de';
+        if (path === '/nl' || path.startsWith('/nl/')) return 'nl';
+        if (path === '/fr' || path.startsWith('/fr/')) return 'fr';
+        return 'eu';
+      })();
       const cookieMap = (document.cookie || '')
         .split(';')
         .map((item) => item.trim())
@@ -94,7 +102,12 @@
           return acc;
         }, {});
 
-      if (cookieMap.market === 'us' || cookieMap.market === 'eu' || cookieMap.market === 'de' || cookieMap.market === 'nl' || cookieMap.market === 'fr') {
+      marketSelect.value = marketFromPath;
+
+      if (
+        marketFromPath === 'eu' &&
+        (cookieMap.market === 'us' || cookieMap.market === 'eu' || cookieMap.market === 'de' || cookieMap.market === 'nl' || cookieMap.market === 'fr')
+      ) {
         marketSelect.value = cookieMap.market;
       }
 

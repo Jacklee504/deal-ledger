@@ -1,7 +1,6 @@
 {{ define "main" }}
 {{ $formspreeEndpoint := .Site.Params.formspree_endpoint | compare.Default "" }}
 {{ $marketLocale := partials.Include "func/market/locale.html" . | strings.TrimSpace }}
-{{ $alertsTitle := partial "func/market/t.html" (dict "context" . "key" "alerts_title") | strings.TrimSpace }}
 {{ $alertsIntro := partial "func/market/t.html" (dict "context" . "key" "alerts_intro") | strings.TrimSpace }}
 {{ $alertsFormSubject := partial "func/market/t.html" (dict "context" . "key" "alerts_form_subject") | strings.TrimSpace }}
 {{ $alertsHoneypotLabel := partial "func/market/t.html" (dict "context" . "key" "alerts_honeypot_label") | strings.TrimSpace }}
@@ -53,7 +52,6 @@
 {{ $alertsCountryValidityRequired := partial "func/market/t.html" (dict "context" . "key" "alerts_country_validity_required") | strings.TrimSpace }}
 {{ $alertsCountryValidityList := partial "func/market/t.html" (dict "context" . "key" "alerts_country_validity_list") | strings.TrimSpace }}
 <section class="alerts-shell">
-  <h1 class="alerts-shell__title">{{ $alertsTitle }}</h1>
   <p class="page-copy alerts-shell__intro">{{ $alertsIntro }}</p>
 
   <form class="alert-form" id="alert-request-form" name="alert-request" action="{{ $formspreeEndpoint }}" method="POST" data-formspree-endpoint="{{ $formspreeEndpoint }}">

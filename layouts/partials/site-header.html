@@ -19,10 +19,11 @@
 {{ end }}
 {{ $isLegalPage := in (slice "about" "privacy" "disclosure") $contentBaseName }}
 {{ $hideDescription := $isLegalPage }}
+{{ $hideTitle := or $isAlertsSignup $isLegalPage }}
 <header class="site-top {{ if $is_compact_header }}site-top--home{{ else }}site-top--section{{ end }}">
   <div class="site-top__backdrop">
     {{ partials.Include "site-navigation.html" . }}
-    {{ if not $is_compact_header }}
+    {{ if and (not $is_compact_header) (not $hideTitle) }}
       <div class="site-top__intro{{ if $isAlertsSignup }} site-top__intro--alerts{{ end }}">
         <h1 class="site-top__title">
           {{ .Title | compare.Default .Site.Title }}
