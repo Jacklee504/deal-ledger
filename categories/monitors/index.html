@@ -82,10 +82,11 @@
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://dealledger.eu/#organization","@type":"Organization","logo":"https://dealledger.eu/images/brand/deal-ledger-logo.svg","name":"Deal Ledger","url":"https://dealledger.eu/"},{"@id":"https://dealledger.eu/#website","@type":"WebSite","name":"Deal Ledger","potentialAction":{"@type":"SearchAction","query-input":"required name=search_term_string","target":"https://dealledger.eu/deals/?q={search_term_string}"},"publisher":{"@id":"https://dealledger.eu/#organization"},"url":"https://dealledger.eu/"}]}</script>
 
-<link rel="stylesheet" href="/styles/site.css?v=1777411754">
+<link rel="stylesheet" href="/styles/site.css?v=1777415927">
 
   </head><body class="ma0 avenir bg-near-white production is-term">
     
+
 
 
 
@@ -185,6 +186,14 @@
 
     const marketSelect = document.getElementById('market-select');
     if (marketSelect) {
+      const marketFromPath = (() => {
+        const path = window.location.pathname || '/';
+        if (path === '/us' || path.startsWith('/us/')) return 'us';
+        if (path === '/de' || path.startsWith('/de/')) return 'de';
+        if (path === '/nl' || path.startsWith('/nl/')) return 'nl';
+        if (path === '/fr' || path.startsWith('/fr/')) return 'fr';
+        return 'eu';
+      })();
       const cookieMap = (document.cookie || '')
         .split(';')
         .map((item) => item.trim())
@@ -198,7 +207,12 @@
           return acc;
         }, {});
 
-      if (cookieMap.market === 'us' || cookieMap.market === 'eu' || cookieMap.market === 'de' || cookieMap.market === 'nl' || cookieMap.market === 'fr') {
+      marketSelect.value = marketFromPath;
+
+      if (
+        marketFromPath === 'eu' &&
+        (cookieMap.market === 'us' || cookieMap.market === 'eu' || cookieMap.market === 'de' || cookieMap.market === 'nl' || cookieMap.market === 'fr')
+      ) {
         marketSelect.value = cookieMap.market;
       }
 

@@ -80,7 +80,7 @@
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://dealledger.eu/#organization","@type":"Organization","logo":"https://dealledger.eu/images/brand/deal-ledger-logo.svg","name":"Deal Ledger","url":"https://dealledger.eu/"},{"@id":"https://dealledger.eu/#website","@type":"WebSite","name":"Deal Ledger","potentialAction":{"@type":"SearchAction","query-input":"required name=search_term_string","target":"https://dealledger.eu/deals/?q={search_term_string}"},"publisher":{"@id":"https://dealledger.eu/#organization"},"url":"https://dealledger.eu/"}]}</script>
 
-<link rel="stylesheet" href="/styles/site.css?v=1777411756">
+<link rel="stylesheet" href="/styles/site.css?v=1777415929">
 
   </head><body class="ma0 avenir bg-near-white production is-section is-section">
     
@@ -96,6 +96,7 @@
 
 
   
+
 
 
 
@@ -185,6 +186,14 @@
 
     const marketSelect = document.getElementById('market-select');
     if (marketSelect) {
+      const marketFromPath = (() => {
+        const path = window.location.pathname || '/';
+        if (path === '/us' || path.startsWith('/us/')) return 'us';
+        if (path === '/de' || path.startsWith('/de/')) return 'de';
+        if (path === '/nl' || path.startsWith('/nl/')) return 'nl';
+        if (path === '/fr' || path.startsWith('/fr/')) return 'fr';
+        return 'eu';
+      })();
       const cookieMap = (document.cookie || '')
         .split(';')
         .map((item) => item.trim())
@@ -198,7 +207,12 @@
           return acc;
         }, {});
 
-      if (cookieMap.market === 'us' || cookieMap.market === 'eu' || cookieMap.market === 'de' || cookieMap.market === 'nl' || cookieMap.market === 'fr') {
+      marketSelect.value = marketFromPath;
+
+      if (
+        marketFromPath === 'eu' &&
+        (cookieMap.market === 'us' || cookieMap.market === 'eu' || cookieMap.market === 'de' || cookieMap.market === 'nl' || cookieMap.market === 'fr')
+      ) {
         marketSelect.value = cookieMap.market;
       }
 
@@ -298,7 +312,7 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="apple airpods pro 2" data-summary="airpods pro 2 avec réduction active du bruit à prix réduit sur amazon fr." data-tags="audio apple airpods bluetooth anc" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.160643" data-date="1777411691" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="apple airpods pro 2" data-summary="airpods pro 2 avec réduction active du bruit à prix réduit sur amazon fr." data-tags="audio apple airpods bluetooth anc" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.160643" data-date="1777411766" data-affiliate="true">
   
     <div class="deal-card__image">
       
@@ -420,7 +434,7 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="apple iphone 256gb" data-summary="iphone 256 go avec remise immédiate sur amazon fr." data-tags="apple iphone smartphone 256gb" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.082559" data-date="1777411691" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="apple iphone 256gb" data-summary="iphone 256 go avec remise immédiate sur amazon fr." data-tags="apple iphone smartphone 256gb" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.082559" data-date="1777411766" data-affiliate="true">
   
     <div class="deal-card__image">
       
@@ -542,7 +556,7 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="asus vy279hgr eye care monitor" data-summary="moniteur asus vy279hgr avec remise sur amazon fr." data-tags="monitor asus eye-care" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.339956" data-date="1777411691" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="asus vy279hgr eye care monitor" data-summary="moniteur asus vy279hgr avec remise sur amazon fr." data-tags="monitor asus eye-care" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.339956" data-date="1777411766" data-affiliate="true">
   
     <div class="deal-card__image">
       
@@ -664,7 +678,7 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="jbl casque sans fil" data-summary="casque jbl sans fil avec forte réduction sur amazon fr." data-tags="audio jbl casque sans-fil" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.558570" data-date="1777411691" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="jbl casque sans fil" data-summary="casque jbl sans fil avec forte réduction sur amazon fr." data-tags="audio jbl casque sans-fil" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.558570" data-date="1777411766" data-affiliate="true">
   
     <div class="deal-card__image">
       
@@ -786,7 +800,7 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="msi g255f 24.5 gaming monitor" data-summary="moniteur gaming msi g255f 24,5 pouces avec grosse remise sur amazon fr." data-tags="gaming monitor msi 24.5-inch" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.433362" data-date="1777411691" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="msi g255f 24.5 gaming monitor" data-summary="moniteur gaming msi g255f 24,5 pouces avec grosse remise sur amazon fr." data-tags="gaming monitor msi 24.5-inch" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.433362" data-date="1777411766" data-affiliate="true">
   
     <div class="deal-card__image">
       
@@ -908,7 +922,7 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="msi mag 27c6f curved monitor" data-summary="écran incurvé msi mag 27c6f en promotion sur amazon fr." data-tags="gaming msi monitor curved" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.109337" data-date="1777411691" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="msi mag 27c6f curved monitor" data-summary="écran incurvé msi mag 27c6f en promotion sur amazon fr." data-tags="gaming msi monitor curved" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.109337" data-date="1777411766" data-affiliate="true">
   
     <div class="deal-card__image">
       
@@ -969,6 +983,616 @@
         </details>
         
           <a class="deal-card__cta" href="https://www.amazon.fr/-/en/MSI-MAG-27C6F-Curved-Monitor/dp/B0CS3W1DMF?crid=GAEKDEZY1K7K&amp;dib=eyJ2IjoiMSJ9.zWo0hzmy37xDO7p6Nx5sWljke2fFWSzcDAsojWjnPW6zIYvaSeX9SUCfhkL6OITRPhzuyE0p4hCndE_GcsfzrOT4LnjCm872VK8EPwZO9gc.kFSik9V8tRXxEvfRuDOnhEQNvuvZnMUjOBldbEbBOjc&amp;dib_tag=se&amp;keywords=gaming&amp;qid=1777407377&amp;s=electronics&amp;sprefix=gamin%2Celectronics%2C355&amp;sr=1-34&amp;xpid=jOdHdKW06qAq2&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger01-21&amp;linkId=32d358d69e51f52a4a61b77621411b2f&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">Voir sur Amazon</a>
+        
+      </div>
+    
+  </div>
+</article>
+
+      
+        
+
+
+
+  
+  
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="razer deathadder essential" data-summary="souris gaming razer deathadder essential à prix promo sur amazon fr." data-tags="gaming razer mouse deathadder" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.527382" data-date="1777411766" data-affiliate="true">
+  
+    <div class="deal-card__image">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  <img
+    src="https://m.media-amazon.com/images/I/81Wl3jXuL6L._AC_SL1500_.jpg"
+    alt="Razer DeathAdder Essential"
+    class=""
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
+  >
+
+
+    </div>
+  
+  <div class="deal-card__body">
+    
+      <div class="deal-card__stack">
+        <h3 class="deal-card__title">Razer DeathAdder Essential</h3>
+        <div class="deal-card__divider"></div>
+        <div class="deal-card__price-row deal-card__price-row--compact">
+          
+            <span class="deal-card__sale">€18.90</span>
+          
+          
+            <span class="deal-card__list">€39.99</span>
+          
+          
+            <span class="deal-card__badge">-53%</span>
+          
+        </div>
+        <div class="deal-card__divider"></div>
+        <details class="deal-card__details">
+          <summary class="deal-card__details-toggle">Plus de détails</summary>
+          <div class="deal-card__details-body">
+            
+              <p class="deal-card__details-summary">Souris gaming Razer DeathAdder Essential à prix promo sur Amazon FR.</p>
+            
+            
+              <div class="deal-card__tags">
+                <span class="deal-card__tag">#gaming</span><span class="deal-card__tag">#razer</span><span class="deal-card__tag">#mouse</span>
+              </div>
+            
+          </div>
+        </details>
+        
+          <a class="deal-card__cta" href="https://www.amazon.fr/-/en/Razer-DeathAdder-Essential-Ergonomic-Programmable/dp/B092R5MCB3?crid=GAEKDEZY1K7K&amp;dib=eyJ2IjoiMSJ9.MqO36PWe5JmwNQYHnzOrPFULb8ETwHFUCC-lRm_F9yw8U4zVspRmbNc-iVt3JcMBWsrYUsDtG2iyowIiPu0wkBN0_Mpb8eQ5J_GUkp3NNq8DNixFvq767bH3Gp_GUtdZ-WQAkFUncskhtItU6w3GSTYwDN5_tlN-AYwFAVfDOyw7ptOM6xL9qslBpFwKO4PJvfmDKSZl5_aJcIQV2VKlyXoZj7ficj4IyZsbsh_Yb9qbe9nEtrekiiInHj2VVgc0aojnYSo--RM4OPU0YE8l7jlB7HRWfHFPAcWDeBcVYpo.2GBaCsPJCvxsAscC8z9LhYJBV3mYzbyrTXG8Js_heKc&amp;dib_tag=se&amp;keywords=gaming&amp;qid=1777407285&amp;s=electronics&amp;sprefix=gamin%2Celectronics%2C355&amp;sr=1-31&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger01-21&amp;linkId=e7516cab155394333acc4ff5a1aa6934&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">Voir sur Amazon</a>
+        
+      </div>
+    
+  </div>
+</article>
+
+      
+        
+
+
+
+  
+  
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="rolanstar desk with storage" data-summary="bureau rolanstar avec rangement à prix promo sur amazon fr." data-tags="home-office rolanstar desk storage" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.138770" data-date="1777411766" data-affiliate="true">
+  
+    <div class="deal-card__image">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  <img
+    src="https://m.media-amazon.com/images/I/71ALnXKD-zL._AC_SL1500_.jpg"
+    alt="Rolanstar Desk With Storage"
+    class=""
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
+  >
+
+
+    </div>
+  
+  <div class="deal-card__body">
+    
+      <div class="deal-card__stack">
+        <h3 class="deal-card__title">Rolanstar Desk With Storage</h3>
+        <div class="deal-card__divider"></div>
+        <div class="deal-card__price-row deal-card__price-row--compact">
+          
+            <span class="deal-card__sale">€89.99</span>
+          
+          
+            <span class="deal-card__list">€104.49</span>
+          
+          
+            <span class="deal-card__badge">-14%</span>
+          
+        </div>
+        <div class="deal-card__divider"></div>
+        <details class="deal-card__details">
+          <summary class="deal-card__details-toggle">Plus de détails</summary>
+          <div class="deal-card__details-body">
+            
+              <p class="deal-card__details-summary">Bureau Rolanstar avec rangement à prix promo sur Amazon FR.</p>
+            
+            
+              <div class="deal-card__tags">
+                <span class="deal-card__tag">#home-office</span><span class="deal-card__tag">#rolanstar</span><span class="deal-card__tag">#desk</span>
+              </div>
+            
+          </div>
+        </details>
+        
+          <a class="deal-card__cta" href="https://www.amazon.fr/-/en/Rolanstar-Desk-Storage-100-Computer/dp/B0CMCL7PD6?dib=eyJ2IjoiMSJ9.ThnWT12uOnRchn9Kl-2TC034ZIZgWtaZsQltW4I9Ica_m2Ag_mT4QZxkDjq2KyA2yBPRaU7TjF78QCP741ZnYH76-2L_QqtZnhNpPAiWwYzk_1JDYocjnKDb0qBf6kSsV5roWC0DR3uXTOKWLkPFp56-7kcx52hxLdJx3csOCDSVPZAzdfMnckR333wcPKTAboy91lEO02DXMlsHGpSmCH9hoow42TV_rQVsAcUory6ywxoqrbbvs-V8p5EUACM7ccl_GXuVk3goP8B98CoVK19Bt1PotIOoLEz9mxMykUo.xPh0E9-P_lg_OOOdbL8sPZqnAlSj2vv9bWgOSqIAo4A&amp;dib_tag=se&amp;keywords=home%2Boffice&amp;qid=1777407566&amp;refinements=p_n_deal_type%3A26902977031&amp;rnid=26902974031&amp;sr=8-8&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger01-21&amp;linkId=ae8a9938a38eeb118632013815f23aac&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">Voir sur Amazon</a>
+        
+      </div>
+    
+  </div>
+</article>
+
+      
+        
+
+
+
+  
+  
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="songmics chaise gaming" data-summary="chaise gaming songmics réglable avec remise sur amazon fr." data-tags="gaming songmics chaise bureau" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.208351" data-date="1777411766" data-affiliate="true">
+  
+    <div class="deal-card__image">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  <img
+    src="https://m.media-amazon.com/images/I/711vkcZQtxL._AC_SL1500_.jpg"
+    alt="SONGMICS Chaise Gaming"
+    class=""
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
+  >
+
+
+    </div>
+  
+  <div class="deal-card__body">
+    
+      <div class="deal-card__stack">
+        <h3 class="deal-card__title">SONGMICS Chaise Gaming</h3>
+        <div class="deal-card__divider"></div>
+        <div class="deal-card__price-row deal-card__price-row--compact">
+          
+            <span class="deal-card__sale">€94.99</span>
+          
+          
+            <span class="deal-card__list">€119.99</span>
+          
+          
+            <span class="deal-card__badge">-21%</span>
+          
+        </div>
+        <div class="deal-card__divider"></div>
+        <details class="deal-card__details">
+          <summary class="deal-card__details-toggle">Plus de détails</summary>
+          <div class="deal-card__details-body">
+            
+              <p class="deal-card__details-summary">Chaise gaming SONGMICS réglable avec remise sur Amazon FR.</p>
+            
+            
+              <div class="deal-card__tags">
+                <span class="deal-card__tag">#gaming</span><span class="deal-card__tag">#songmics</span><span class="deal-card__tag">#chaise</span>
+              </div>
+            
+          </div>
+        </details>
+        
+          <a class="deal-card__cta" href="https://www.amazon.fr/-/en/SONGMICS-Adjustable-Telescopic-Footrest-OBG073B03/dp/B086MC977H?crid=GAEKDEZY1K7K&amp;dib=eyJ2IjoiMSJ9.MqO36PWe5JmwNQYHnzOrPFULb8ETwHFUCC-lRm_F9yw8U4zVspRmbNc-iVt3JcMBWsrYUsDtG2iyowIiPu0wkBN0_Mpb8eQ5J_GUkp3NNq8DNixFvq767bH3Gp_GUtdZ-WQAkFUncskhtItU6w3GSTYwDN5_tlN-AYwFAVfDOyw7ptOM6xL9qslBpFwKO4PJvfmDKSZl5_aJcIQV2VKlyXoZj7ficj4IyZsbsh_Yb9qbe9nEtrekiiInHj2VVgc0aojnYSo--RM4OPU0YE8l7jlB7HRWfHFPAcWDeBcVYpo.2GBaCsPJCvxsAscC8z9LhYJBV3mYzbyrTXG8Js_heKc&amp;dib_tag=se&amp;keywords=gaming&amp;qid=1777407285&amp;s=electronics&amp;sprefix=gamin%2Celectronics%2C355&amp;sr=1-6&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger01-21&amp;linkId=790609d9190729d89a0e809ee524a01e&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">Voir sur Amazon</a>
+        
+      </div>
+    
+  </div>
+</article>
+
+      
+        
+
+
+
+  
+  
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="songmics electric standing desk" data-summary="bureau assis-debout électrique songmics avec réduction sur amazon fr." data-tags="home-office songmics desk standing-desk" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.206680" data-date="1777411766" data-affiliate="true">
+  
+    <div class="deal-card__image">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  <img
+    src="https://m.media-amazon.com/images/I/71nhQpnEUML._AC_SL1500_.jpg"
+    alt="SONGMICS Electric Standing Desk"
+    class=""
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
+  >
+
+
+    </div>
+  
+  <div class="deal-card__body">
+    
+      <div class="deal-card__stack">
+        <h3 class="deal-card__title">SONGMICS Electric Standing Desk</h3>
+        <div class="deal-card__divider"></div>
+        <div class="deal-card__price-row deal-card__price-row--compact">
+          
+            <span class="deal-card__sale">€118.99</span>
+          
+          
+            <span class="deal-card__list">€149.99</span>
+          
+          
+            <span class="deal-card__badge">-21%</span>
+          
+        </div>
+        <div class="deal-card__divider"></div>
+        <details class="deal-card__details">
+          <summary class="deal-card__details-toggle">Plus de détails</summary>
+          <div class="deal-card__details-body">
+            
+              <p class="deal-card__details-summary">Bureau assis-debout électrique SONGMICS avec réduction sur Amazon FR.</p>
+            
+            
+              <div class="deal-card__tags">
+                <span class="deal-card__tag">#home-office</span><span class="deal-card__tag">#songmics</span><span class="deal-card__tag">#desk</span>
+              </div>
+            
+          </div>
+        </details>
+        
+          <a class="deal-card__cta" href="https://www.amazon.fr/-/en/SONGMICS-Electric-Adjustable-Sit-Stand-LSD136K01/dp/B0CV4V22XL?dib=eyJ2IjoiMSJ9.C8obXFV25U22boaOTo098ayW-bSfZn20TA1DjPsc0IM0nNw_h3aam5BQeHYmPXvNL5anghdzl7Yd-1alm5AyRySRU5FKWr1ZztN2wEUlCmyg1LIGCX1h_Zz6Ai7LPxpdx1HediSVO8jepbY7n0xsio1tTpzAxK5Mq1opHktPYt-nnAPhuckJqu-7FPYA5B1dYgtmm17NKqhtB7mpXnorGnyAS_Qyf8eiEEuwoszQbiL8DmVfCASoHgm5Sad0ilEXJ1oABDkULdgNiVrXXOUPgLxPJd1HVtw8WoMdEEo47ew.CT0YsAavEpL3dS-kUVag2KMQ30fGkk8ErG_IVxxE0LM&amp;dib_tag=se&amp;keywords=home%2Boffice&amp;qid=1777407412&amp;sr=8-8&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger01-21&amp;linkId=dd708628468ca03ce0a7ffd8c6a633f5&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">Voir sur Amazon</a>
+        
+      </div>
+    
+  </div>
+</article>
+
+      
+        
+
+
+
+  
+  
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="thomson non-smart tv" data-summary="tv thomson non connectée avec réduction importante sur amazon fr." data-tags="tv thomson home-entertainment" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.347186" data-date="1777411766" data-affiliate="true">
+  
+    <div class="deal-card__image">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  <img
+    src="https://m.media-amazon.com/images/I/919PuNH9X5L._AC_SL1500_.jpg"
+    alt="THOMSON Non-Smart TV"
+    class=""
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
+  >
+
+
+    </div>
+  
+  <div class="deal-card__body">
+    
+      <div class="deal-card__stack">
+        <h3 class="deal-card__title">THOMSON Non-Smart TV</h3>
+        <div class="deal-card__divider"></div>
+        <div class="deal-card__price-row deal-card__price-row--compact">
+          
+            <span class="deal-card__sale">€129.91</span>
+          
+          
+            <span class="deal-card__list">€199.00</span>
+          
+          
+            <span class="deal-card__badge">-35%</span>
+          
+        </div>
+        <div class="deal-card__divider"></div>
+        <details class="deal-card__details">
+          <summary class="deal-card__details-toggle">Plus de détails</summary>
+          <div class="deal-card__details-body">
+            
+              <p class="deal-card__details-summary">TV THOMSON non connectée avec réduction importante sur Amazon FR.</p>
+            
+            
+              <div class="deal-card__tags">
+                <span class="deal-card__tag">#tv</span><span class="deal-card__tag">#thomson</span><span class="deal-card__tag">#home-entertainment</span>
+              </div>
+            
+          </div>
+        </details>
+        
+          <a class="deal-card__cta" href="https://www.amazon.fr/-/en/THOMSON-Non-Smart-Multimedia-Backlit-Control/dp/B0CGY4N1RF?crid=212J7FJ79E2S2&amp;dib=eyJ2IjoiMSJ9.oKUuJfJKN9bK2TvVfRT5GzIUlDXq1R_Ebp-l3FQwNvUAP-JGWD_tMnuT6xr91_VCzV9LLZ9tWCyCueUgZUQm30xNTniKn2xD9bVn1Zb01oGH4buXvyQs5xyhZxialTR_U9r4_fCcyqVm2fJHQXYtyMS7CZYZE8A1doUNdtwHK6Ee2XskUFQnIA8vOrxsjsj3QMJlFoaYRZan5XGaoJYVnDcjOjB68BrWVEnchMoaa25JnA-QisomSuTPkosgpQR45uLp8YCHE1dLD0xaEcRXCASTn7lpGQ4chTHbPOjNH3E.0bz7CUzqdg0SRRcOA4TzWZMJ42rytO7qd5bvu4DOLTo&amp;dib_tag=se&amp;keywords=tv&amp;qid=1777407659&amp;sprefix=tv%2Ban%2Caps%2C447&amp;sr=8-9&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger01-21&amp;linkId=6c880b127aa465706eeec389177eaa80&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">Voir sur Amazon</a>
         
       </div>
     
@@ -1091,616 +1715,6 @@
         </details>
         
           <a class="deal-card__cta" href="https://www.amazon.fr/-/en/Razer-BlackShark-V2-Multiplatform-Cancellation/dp/B09QFYNJMB?crid=GAEKDEZY1K7K&amp;dib=eyJ2IjoiMSJ9.zWo0hzmy37xDO7p6Nx5sWljke2fFWSzcDAsojWjnPW6zIYvaSeX9SUCfhkL6OITRPhzuyE0p4hCndE_GcsfzrOT4LnjCm872VK8EPwZO9gc.kFSik9V8tRXxEvfRuDOnhEQNvuvZnMUjOBldbEbBOjc&amp;dib_tag=se&amp;keywords=gaming&amp;qid=1777407377&amp;s=electronics&amp;sprefix=gamin%2Celectronics%2C355&amp;sr=1-33&amp;xpid=jOdHdKW06qAq2&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger01-21&amp;linkId=f69cb3e50b4519b34dc7b5f37989298f&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">Voir sur Amazon</a>
-        
-      </div>
-    
-  </div>
-</article>
-
-      
-        
-
-
-
-  
-  
-    
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="razer deathadder essential" data-summary="souris gaming razer deathadder essential à prix promo sur amazon fr." data-tags="gaming razer mouse deathadder" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.527382" data-date="1777411691" data-affiliate="true">
-  
-    <div class="deal-card__image">
-      
-
-
-
-
-
-
-
-
-
-
-
-
-  <img
-    src="https://m.media-amazon.com/images/I/81Wl3jXuL6L._AC_SL1500_.jpg"
-    alt="Razer DeathAdder Essential"
-    class=""
-    loading="lazy"
-    decoding="async"
-    fetchpriority="auto"
-    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
-  >
-
-
-    </div>
-  
-  <div class="deal-card__body">
-    
-      <div class="deal-card__stack">
-        <h3 class="deal-card__title">Razer DeathAdder Essential</h3>
-        <div class="deal-card__divider"></div>
-        <div class="deal-card__price-row deal-card__price-row--compact">
-          
-            <span class="deal-card__sale">€18.90</span>
-          
-          
-            <span class="deal-card__list">€39.99</span>
-          
-          
-            <span class="deal-card__badge">-53%</span>
-          
-        </div>
-        <div class="deal-card__divider"></div>
-        <details class="deal-card__details">
-          <summary class="deal-card__details-toggle">Plus de détails</summary>
-          <div class="deal-card__details-body">
-            
-              <p class="deal-card__details-summary">Souris gaming Razer DeathAdder Essential à prix promo sur Amazon FR.</p>
-            
-            
-              <div class="deal-card__tags">
-                <span class="deal-card__tag">#gaming</span><span class="deal-card__tag">#razer</span><span class="deal-card__tag">#mouse</span>
-              </div>
-            
-          </div>
-        </details>
-        
-          <a class="deal-card__cta" href="https://www.amazon.fr/-/en/Razer-DeathAdder-Essential-Ergonomic-Programmable/dp/B092R5MCB3?crid=GAEKDEZY1K7K&amp;dib=eyJ2IjoiMSJ9.MqO36PWe5JmwNQYHnzOrPFULb8ETwHFUCC-lRm_F9yw8U4zVspRmbNc-iVt3JcMBWsrYUsDtG2iyowIiPu0wkBN0_Mpb8eQ5J_GUkp3NNq8DNixFvq767bH3Gp_GUtdZ-WQAkFUncskhtItU6w3GSTYwDN5_tlN-AYwFAVfDOyw7ptOM6xL9qslBpFwKO4PJvfmDKSZl5_aJcIQV2VKlyXoZj7ficj4IyZsbsh_Yb9qbe9nEtrekiiInHj2VVgc0aojnYSo--RM4OPU0YE8l7jlB7HRWfHFPAcWDeBcVYpo.2GBaCsPJCvxsAscC8z9LhYJBV3mYzbyrTXG8Js_heKc&amp;dib_tag=se&amp;keywords=gaming&amp;qid=1777407285&amp;s=electronics&amp;sprefix=gamin%2Celectronics%2C355&amp;sr=1-31&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger01-21&amp;linkId=e7516cab155394333acc4ff5a1aa6934&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">Voir sur Amazon</a>
-        
-      </div>
-    
-  </div>
-</article>
-
-      
-        
-
-
-
-  
-  
-    
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="rolanstar desk with storage" data-summary="bureau rolanstar avec rangement à prix promo sur amazon fr." data-tags="home-office rolanstar desk storage" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.138770" data-date="1777411691" data-affiliate="true">
-  
-    <div class="deal-card__image">
-      
-
-
-
-
-
-
-
-
-
-
-
-
-  <img
-    src="https://m.media-amazon.com/images/I/71ALnXKD-zL._AC_SL1500_.jpg"
-    alt="Rolanstar Desk With Storage"
-    class=""
-    loading="lazy"
-    decoding="async"
-    fetchpriority="auto"
-    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
-  >
-
-
-    </div>
-  
-  <div class="deal-card__body">
-    
-      <div class="deal-card__stack">
-        <h3 class="deal-card__title">Rolanstar Desk With Storage</h3>
-        <div class="deal-card__divider"></div>
-        <div class="deal-card__price-row deal-card__price-row--compact">
-          
-            <span class="deal-card__sale">€89.99</span>
-          
-          
-            <span class="deal-card__list">€104.49</span>
-          
-          
-            <span class="deal-card__badge">-14%</span>
-          
-        </div>
-        <div class="deal-card__divider"></div>
-        <details class="deal-card__details">
-          <summary class="deal-card__details-toggle">Plus de détails</summary>
-          <div class="deal-card__details-body">
-            
-              <p class="deal-card__details-summary">Bureau Rolanstar avec rangement à prix promo sur Amazon FR.</p>
-            
-            
-              <div class="deal-card__tags">
-                <span class="deal-card__tag">#home-office</span><span class="deal-card__tag">#rolanstar</span><span class="deal-card__tag">#desk</span>
-              </div>
-            
-          </div>
-        </details>
-        
-          <a class="deal-card__cta" href="https://www.amazon.fr/-/en/Rolanstar-Desk-Storage-100-Computer/dp/B0CMCL7PD6?dib=eyJ2IjoiMSJ9.ThnWT12uOnRchn9Kl-2TC034ZIZgWtaZsQltW4I9Ica_m2Ag_mT4QZxkDjq2KyA2yBPRaU7TjF78QCP741ZnYH76-2L_QqtZnhNpPAiWwYzk_1JDYocjnKDb0qBf6kSsV5roWC0DR3uXTOKWLkPFp56-7kcx52hxLdJx3csOCDSVPZAzdfMnckR333wcPKTAboy91lEO02DXMlsHGpSmCH9hoow42TV_rQVsAcUory6ywxoqrbbvs-V8p5EUACM7ccl_GXuVk3goP8B98CoVK19Bt1PotIOoLEz9mxMykUo.xPh0E9-P_lg_OOOdbL8sPZqnAlSj2vv9bWgOSqIAo4A&amp;dib_tag=se&amp;keywords=home%2Boffice&amp;qid=1777407566&amp;refinements=p_n_deal_type%3A26902977031&amp;rnid=26902974031&amp;sr=8-8&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger01-21&amp;linkId=ae8a9938a38eeb118632013815f23aac&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">Voir sur Amazon</a>
-        
-      </div>
-    
-  </div>
-</article>
-
-      
-        
-
-
-
-  
-  
-    
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="songmics chaise gaming" data-summary="chaise gaming songmics réglable avec remise sur amazon fr." data-tags="gaming songmics chaise bureau" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.208351" data-date="1777411691" data-affiliate="true">
-  
-    <div class="deal-card__image">
-      
-
-
-
-
-
-
-
-
-
-
-
-
-  <img
-    src="https://m.media-amazon.com/images/I/711vkcZQtxL._AC_SL1500_.jpg"
-    alt="SONGMICS Chaise Gaming"
-    class=""
-    loading="lazy"
-    decoding="async"
-    fetchpriority="auto"
-    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
-  >
-
-
-    </div>
-  
-  <div class="deal-card__body">
-    
-      <div class="deal-card__stack">
-        <h3 class="deal-card__title">SONGMICS Chaise Gaming</h3>
-        <div class="deal-card__divider"></div>
-        <div class="deal-card__price-row deal-card__price-row--compact">
-          
-            <span class="deal-card__sale">€94.99</span>
-          
-          
-            <span class="deal-card__list">€119.99</span>
-          
-          
-            <span class="deal-card__badge">-21%</span>
-          
-        </div>
-        <div class="deal-card__divider"></div>
-        <details class="deal-card__details">
-          <summary class="deal-card__details-toggle">Plus de détails</summary>
-          <div class="deal-card__details-body">
-            
-              <p class="deal-card__details-summary">Chaise gaming SONGMICS réglable avec remise sur Amazon FR.</p>
-            
-            
-              <div class="deal-card__tags">
-                <span class="deal-card__tag">#gaming</span><span class="deal-card__tag">#songmics</span><span class="deal-card__tag">#chaise</span>
-              </div>
-            
-          </div>
-        </details>
-        
-          <a class="deal-card__cta" href="https://www.amazon.fr/-/en/SONGMICS-Adjustable-Telescopic-Footrest-OBG073B03/dp/B086MC977H?crid=GAEKDEZY1K7K&amp;dib=eyJ2IjoiMSJ9.MqO36PWe5JmwNQYHnzOrPFULb8ETwHFUCC-lRm_F9yw8U4zVspRmbNc-iVt3JcMBWsrYUsDtG2iyowIiPu0wkBN0_Mpb8eQ5J_GUkp3NNq8DNixFvq767bH3Gp_GUtdZ-WQAkFUncskhtItU6w3GSTYwDN5_tlN-AYwFAVfDOyw7ptOM6xL9qslBpFwKO4PJvfmDKSZl5_aJcIQV2VKlyXoZj7ficj4IyZsbsh_Yb9qbe9nEtrekiiInHj2VVgc0aojnYSo--RM4OPU0YE8l7jlB7HRWfHFPAcWDeBcVYpo.2GBaCsPJCvxsAscC8z9LhYJBV3mYzbyrTXG8Js_heKc&amp;dib_tag=se&amp;keywords=gaming&amp;qid=1777407285&amp;s=electronics&amp;sprefix=gamin%2Celectronics%2C355&amp;sr=1-6&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger01-21&amp;linkId=790609d9190729d89a0e809ee524a01e&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">Voir sur Amazon</a>
-        
-      </div>
-    
-  </div>
-</article>
-
-      
-        
-
-
-
-  
-  
-    
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="songmics electric standing desk" data-summary="bureau assis-debout électrique songmics avec réduction sur amazon fr." data-tags="home-office songmics desk standing-desk" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.206680" data-date="1777411691" data-affiliate="true">
-  
-    <div class="deal-card__image">
-      
-
-
-
-
-
-
-
-
-
-
-
-
-  <img
-    src="https://m.media-amazon.com/images/I/71nhQpnEUML._AC_SL1500_.jpg"
-    alt="SONGMICS Electric Standing Desk"
-    class=""
-    loading="lazy"
-    decoding="async"
-    fetchpriority="auto"
-    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
-  >
-
-
-    </div>
-  
-  <div class="deal-card__body">
-    
-      <div class="deal-card__stack">
-        <h3 class="deal-card__title">SONGMICS Electric Standing Desk</h3>
-        <div class="deal-card__divider"></div>
-        <div class="deal-card__price-row deal-card__price-row--compact">
-          
-            <span class="deal-card__sale">€118.99</span>
-          
-          
-            <span class="deal-card__list">€149.99</span>
-          
-          
-            <span class="deal-card__badge">-21%</span>
-          
-        </div>
-        <div class="deal-card__divider"></div>
-        <details class="deal-card__details">
-          <summary class="deal-card__details-toggle">Plus de détails</summary>
-          <div class="deal-card__details-body">
-            
-              <p class="deal-card__details-summary">Bureau assis-debout électrique SONGMICS avec réduction sur Amazon FR.</p>
-            
-            
-              <div class="deal-card__tags">
-                <span class="deal-card__tag">#home-office</span><span class="deal-card__tag">#songmics</span><span class="deal-card__tag">#desk</span>
-              </div>
-            
-          </div>
-        </details>
-        
-          <a class="deal-card__cta" href="https://www.amazon.fr/-/en/SONGMICS-Electric-Adjustable-Sit-Stand-LSD136K01/dp/B0CV4V22XL?dib=eyJ2IjoiMSJ9.C8obXFV25U22boaOTo098ayW-bSfZn20TA1DjPsc0IM0nNw_h3aam5BQeHYmPXvNL5anghdzl7Yd-1alm5AyRySRU5FKWr1ZztN2wEUlCmyg1LIGCX1h_Zz6Ai7LPxpdx1HediSVO8jepbY7n0xsio1tTpzAxK5Mq1opHktPYt-nnAPhuckJqu-7FPYA5B1dYgtmm17NKqhtB7mpXnorGnyAS_Qyf8eiEEuwoszQbiL8DmVfCASoHgm5Sad0ilEXJ1oABDkULdgNiVrXXOUPgLxPJd1HVtw8WoMdEEo47ew.CT0YsAavEpL3dS-kUVag2KMQ30fGkk8ErG_IVxxE0LM&amp;dib_tag=se&amp;keywords=home%2Boffice&amp;qid=1777407412&amp;sr=8-8&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger01-21&amp;linkId=dd708628468ca03ce0a7ffd8c6a633f5&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">Voir sur Amazon</a>
-        
-      </div>
-    
-  </div>
-</article>
-
-      
-        
-
-
-
-  
-  
-    
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="thomson non-smart tv" data-summary="tv thomson non connectée avec réduction importante sur amazon fr." data-tags="tv thomson home-entertainment" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.347186" data-date="1777411691" data-affiliate="true">
-  
-    <div class="deal-card__image">
-      
-
-
-
-
-
-
-
-
-
-
-
-
-  <img
-    src="https://m.media-amazon.com/images/I/919PuNH9X5L._AC_SL1500_.jpg"
-    alt="THOMSON Non-Smart TV"
-    class=""
-    loading="lazy"
-    decoding="async"
-    fetchpriority="auto"
-    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
-  >
-
-
-    </div>
-  
-  <div class="deal-card__body">
-    
-      <div class="deal-card__stack">
-        <h3 class="deal-card__title">THOMSON Non-Smart TV</h3>
-        <div class="deal-card__divider"></div>
-        <div class="deal-card__price-row deal-card__price-row--compact">
-          
-            <span class="deal-card__sale">€129.91</span>
-          
-          
-            <span class="deal-card__list">€199.00</span>
-          
-          
-            <span class="deal-card__badge">-35%</span>
-          
-        </div>
-        <div class="deal-card__divider"></div>
-        <details class="deal-card__details">
-          <summary class="deal-card__details-toggle">Plus de détails</summary>
-          <div class="deal-card__details-body">
-            
-              <p class="deal-card__details-summary">TV THOMSON non connectée avec réduction importante sur Amazon FR.</p>
-            
-            
-              <div class="deal-card__tags">
-                <span class="deal-card__tag">#tv</span><span class="deal-card__tag">#thomson</span><span class="deal-card__tag">#home-entertainment</span>
-              </div>
-            
-          </div>
-        </details>
-        
-          <a class="deal-card__cta" href="https://www.amazon.fr/-/en/THOMSON-Non-Smart-Multimedia-Backlit-Control/dp/B0CGY4N1RF?crid=212J7FJ79E2S2&amp;dib=eyJ2IjoiMSJ9.oKUuJfJKN9bK2TvVfRT5GzIUlDXq1R_Ebp-l3FQwNvUAP-JGWD_tMnuT6xr91_VCzV9LLZ9tWCyCueUgZUQm30xNTniKn2xD9bVn1Zb01oGH4buXvyQs5xyhZxialTR_U9r4_fCcyqVm2fJHQXYtyMS7CZYZE8A1doUNdtwHK6Ee2XskUFQnIA8vOrxsjsj3QMJlFoaYRZan5XGaoJYVnDcjOjB68BrWVEnchMoaa25JnA-QisomSuTPkosgpQR45uLp8YCHE1dLD0xaEcRXCASTn7lpGQ4chTHbPOjNH3E.0bz7CUzqdg0SRRcOA4TzWZMJ42rytO7qd5bvu4DOLTo&amp;dib_tag=se&amp;keywords=tv&amp;qid=1777407659&amp;sprefix=tv%2Ban%2Caps%2C447&amp;sr=8-9&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger01-21&amp;linkId=6c880b127aa465706eeec389177eaa80&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">Voir sur Amazon</a>
         
       </div>
     

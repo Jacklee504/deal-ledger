@@ -80,7 +80,7 @@
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://dealledger.eu/#organization","@type":"Organization","logo":"https://dealledger.eu/images/brand/deal-ledger-logo.svg","name":"Deal Ledger","url":"https://dealledger.eu/"},{"@id":"https://dealledger.eu/#website","@type":"WebSite","name":"Deal Ledger","potentialAction":{"@type":"SearchAction","query-input":"required name=search_term_string","target":"https://dealledger.eu/deals/?q={search_term_string}"},"publisher":{"@id":"https://dealledger.eu/#organization"},"url":"https://dealledger.eu/"}]}</script>
 
-<link rel="stylesheet" href="/styles/site.css?v=1777411756">
+<link rel="stylesheet" href="/styles/site.css?v=1777415929">
 
   </head><body class="ma0 avenir bg-near-white production is-section is-section">
     
@@ -96,6 +96,7 @@
 
 
   
+
 
 
 
@@ -185,6 +186,14 @@
 
     const marketSelect = document.getElementById('market-select');
     if (marketSelect) {
+      const marketFromPath = (() => {
+        const path = window.location.pathname || '/';
+        if (path === '/us' || path.startsWith('/us/')) return 'us';
+        if (path === '/de' || path.startsWith('/de/')) return 'de';
+        if (path === '/nl' || path.startsWith('/nl/')) return 'nl';
+        if (path === '/fr' || path.startsWith('/fr/')) return 'fr';
+        return 'eu';
+      })();
       const cookieMap = (document.cookie || '')
         .split(';')
         .map((item) => item.trim())
@@ -198,7 +207,12 @@
           return acc;
         }, {});
 
-      if (cookieMap.market === 'us' || cookieMap.market === 'eu' || cookieMap.market === 'de' || cookieMap.market === 'nl' || cookieMap.market === 'fr') {
+      marketSelect.value = marketFromPath;
+
+      if (
+        marketFromPath === 'eu' &&
+        (cookieMap.market === 'us' || cookieMap.market === 'eu' || cookieMap.market === 'de' || cookieMap.market === 'nl' || cookieMap.market === 'fr')
+      ) {
         marketSelect.value = cookieMap.market;
       }
 
@@ -525,7 +539,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","itemListElement":[{"@type":"ListItem","name":"OPNICE Desk Organizers and Accessories","position":1,"url":"https://dealledger.eu/deals/opnice-desk-organizers-accessories/"},{"@type":"ListItem","name":"Ingnok 15.6-inch FHD Portable Monitor","position":2,"url":"https://dealledger.eu/deals/ingnok-15-6-inch-fhd-portable-monitor/"},{"@type":"ListItem","name":"Spacrea Desk Organizer Set","position":3,"url":"https://dealledger.eu/deals/spacrea-desk-organizer-set/"},{"@type":"ListItem","name":"Ray-Ban Meta Wayfarer Smart Glasses","position":4,"url":"https://dealledger.eu/deals/ray-ban-meta-wayfarer-smart-glasses/"}],"itemListOrder":"https://schema.org/ItemListOrderAscending","name":"Recent deals","numberOfItems":4}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","itemListElement":[{"@type":"ListItem","name":"OPNICE Desk Organizers and Accessories","position":1,"url":"https://dealledger.eu/deals/opnice-desk-organizers-accessories/"},{"@type":"ListItem","name":"HyperX Cloud III Gaming Headset","position":2,"url":"https://dealledger.eu/deals/hyperx-cloud-iii-gaming-headset/"},{"@type":"ListItem","name":"GIGABYTE B650 Gaming X AX V2 Motherboard","position":3,"url":"https://dealledger.eu/deals/gigabyte-b650-gaming-x-ax-v2-motherboard/"},{"@type":"ListItem","name":"Ray-Ban Meta Wayfarer Smart Glasses","position":4,"url":"https://dealledger.eu/deals/ray-ban-meta-wayfarer-smart-glasses/"}],"itemListOrder":"https://schema.org/ItemListOrderAscending","name":"Recent deals","numberOfItems":4}</script>
 
 
 <section class="home-value-strip" aria-label="Deal Ledger highlights">
@@ -990,7 +1004,7 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="hyperx cloud iii gaming headset" data-summary="wired hyperx cloud iii headset with clear mic pickup and multi-platform support." data-tags="audio gaming headset" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.350435" data-date="1777327072" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="hyperx cloud iii gaming headset" data-summary="wired hyperx cloud iii headset with clear mic pickup and multi-platform support." data-tags="audio gaming headset" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.350435" data-date="1777411766" data-affiliate="true">
   
     <div class="deal-card__image">
       
@@ -1124,7 +1138,7 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="opnice desk organizers and accessories" data-summary="desk organizer set deal for cleaner office workspace setups." data-tags="desk organizer office accessories" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.333444" data-date="1777411691" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="opnice desk organizers and accessories" data-summary="desk organizer set deal for cleaner office workspace setups." data-tags="desk organizer office accessories" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.333444" data-date="1777411766" data-affiliate="true">
   
     <div class="deal-card__image">
       
@@ -1246,7 +1260,7 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="ingnok 15.6-inch fhd portable monitor" data-summary="15.6-inch portable fhd monitor for travel, remote work, and dual-screen setups." data-tags="monitor productivity portable" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.270000" data-date="1777411691" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="hyperx cloud iii gaming headset" data-summary="wired hyperx cloud iii headset with clear mic pickup and multi-platform support." data-tags="audio gaming headset" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.350435" data-date="1777411766" data-affiliate="true">
   
     <div class="deal-card__image">
       
@@ -1263,8 +1277,8 @@
 
 
   <img
-    src="https://m.media-amazon.com/images/I/71mqjfuT4HL._AC_SL1500_.jpg"
-    alt="Ingnok 15.6-inch FHD Portable Monitor"
+    src="https://m.media-amazon.com/images/I/71AMEEP3HLL._AC_SL1500_.jpg"
+    alt="HyperX Cloud III Gaming Headset"
     class=""
     loading="lazy"
     decoding="async"
@@ -1278,17 +1292,17 @@
   <div class="deal-card__body">
     
       <div class="deal-card__stack">
-        <h3 class="deal-card__title">Ingnok 15.6-inch FHD Portable Monitor</h3>
+        <h3 class="deal-card__title">HyperX Cloud III Gaming Headset</h3>
         <div class="deal-card__divider"></div>
         <div class="deal-card__price-row deal-card__price-row--compact">
           
-            <span class="deal-card__sale">$65.97</span>
+            <span class="deal-card__sale">$64.95</span>
           
           
-            <span class="deal-card__list">$89.99</span>
+            <span class="deal-card__list">$99.99</span>
           
           
-            <span class="deal-card__badge">-27%</span>
+            <span class="deal-card__badge">-35%</span>
           
         </div>
         <div class="deal-card__divider"></div>
@@ -1296,17 +1310,17 @@
           <summary class="deal-card__details-toggle">More details</summary>
           <div class="deal-card__details-body">
             
-              <p class="deal-card__details-summary">15.6-inch portable FHD monitor for travel, remote work, and dual-screen setups.</p>
+              <p class="deal-card__details-summary">Wired HyperX Cloud III headset with clear mic pickup and multi-platform support.</p>
             
             
               <div class="deal-card__tags">
-                <span class="deal-card__tag">#monitor</span><span class="deal-card__tag">#productivity</span><span class="deal-card__tag">#portable</span>
+                <span class="deal-card__tag">#audio</span><span class="deal-card__tag">#gaming</span><span class="deal-card__tag">#headset</span>
               </div>
             
           </div>
         </details>
         
-          <a class="deal-card__cta" href="https://www.amazon.com/Ingnok-15-6-FHD-Portable-Monitor/dp/B0CP7XRW9S?crid=14U0OR7993L99&amp;dib=eyJ2IjoiMSJ9.yXe4NvRl-KXRk8b10nKGX-W3JfFT195FyXP9w1iw9Cwxu-hQeZE2qmWDOxVBB34tJs9v_TLHTUZkVjK_Lnihn4_7Y1Px0zzCRG-q_C_5XqzbZGrgSuCCo2tKarZPxb07NgaDF8tGGavzWckjl0FnLasd-2Iat1s6F7nK2b7WGu2SmpwMiqu8I2ohkWVlREZCug6y1u5pw3TyqNt1UvBkWh9krQ4ijimD_G2QKRCkneAKqfvcClTlK4WhmEid7qX1omooUSpAy1uuMkGhHXkOwKbPOahceghPS8EAAsqtWSM.Drp4daCs2Cw3OAE93-ZSy7hQWZ3x5awBV5n-vVfAdu8&amp;dib_tag=se&amp;keywords=office&amp;qid=1776373058&amp;refinements=p_36%3A3200-39000&amp;rnid=386442011&amp;s=pc&amp;sprefix=office%2Belectronics%2Ccomputers%2C229&amp;sr=1-6&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger-20&amp;linkId=68a5aebb9ed0949894290d01a88def5d&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">View on Amazon</a>
+          <a class="deal-card__cta" href="https://www.amazon.com/HyperX-Cloud-III-Ultra-Clear-USB/dp/B0C3BSZ56D?crid=2Q8EJTFV8HC0Q&amp;dib=eyJ2IjoiMSJ9.x6ATgVmhVooGMj8GeDMCR4oM1UWRcsJ1l1t5jGS_cp0Nt-OP_qzYSjYJ_nvBF4eoWGVRBvPd5ZNFIUPU1RUVLG-BhWjNv1RGW9XY3isJIibFj5fNtJyd3YeJykMeVaFHGqFBgsxnNNESfINbvSLLffzgVshfal15p3ca-6ISnuwhbB08tT6nszUt8pPWKzYQGNLkuBVeE2iOjux4sKP6y2cnAITHpjt_2xJ2weHp0VzbJXKDbe1aucsPB2XV-1A8-eUrGm7OF29zOuCTcpSBgYNCFrAcBjqSba07Uk2V-b4.-inLWWb7csngyd3_YI2rF07R4IfghsOd669q6XrpV2s&amp;dib_tag=se&amp;keywords=gaming&amp;qid=1776373119&amp;refinements=p_36%3A3500-57000&amp;rnid=386442011&amp;s=pc&amp;sprefix=gami%2Ccomputers%2C269&amp;sr=1-11&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger-20&amp;linkId=6cfd60ae062a90425a4bc185254fb6ee&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">View on Amazon</a>
         
       </div>
     
@@ -1368,7 +1382,7 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="spacrea desk organizer set" data-summary="desk accessories organizer set for cleaner workspace storage." data-tags="desk setup home office organization" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.220073" data-date="1777411691" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="gigabyte b650 gaming x ax v2 motherboard" data-summary="am5 b650 motherboard deal for new ryzen desktop builds." data-tags="pc components gaming pc build" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.318196" data-date="1777411766" data-affiliate="true">
   
     <div class="deal-card__image">
       
@@ -1385,8 +1399,8 @@
 
 
   <img
-    src="https://m.media-amazon.com/images/I/71M6MOVdupL._AC_SL1500_.jpg"
-    alt="Spacrea Desk Organizer Set"
+    src="https://m.media-amazon.com/images/I/81JFKzNyl&#43;L._AC_SL1500_.jpg"
+    alt="GIGABYTE B650 Gaming X AX V2 Motherboard"
     class=""
     loading="lazy"
     decoding="async"
@@ -1400,17 +1414,17 @@
   <div class="deal-card__body">
     
       <div class="deal-card__stack">
-        <h3 class="deal-card__title">Spacrea Desk Organizer Set</h3>
+        <h3 class="deal-card__title">GIGABYTE B650 Gaming X AX V2 Motherboard</h3>
         <div class="deal-card__divider"></div>
         <div class="deal-card__price-row deal-card__price-row--compact">
           
-            <span class="deal-card__sale">$23.39</span>
+            <span class="deal-card__sale">$149.99</span>
           
           
-            <span class="deal-card__list">$29.99</span>
+            <span class="deal-card__list">$219.99</span>
           
           
-            <span class="deal-card__badge">-22%</span>
+            <span class="deal-card__badge">-32%</span>
           
         </div>
         <div class="deal-card__divider"></div>
@@ -1418,17 +1432,17 @@
           <summary class="deal-card__details-toggle">More details</summary>
           <div class="deal-card__details-body">
             
-              <p class="deal-card__details-summary">Desk accessories organizer set for cleaner workspace storage.</p>
+              <p class="deal-card__details-summary">AM5 B650 motherboard deal for new Ryzen desktop builds.</p>
             
             
               <div class="deal-card__tags">
-                <span class="deal-card__tag">#desk setup</span><span class="deal-card__tag">#home office</span><span class="deal-card__tag">#organization</span>
+                <span class="deal-card__tag">#pc components</span><span class="deal-card__tag">#gaming</span><span class="deal-card__tag">#pc build</span>
               </div>
             
           </div>
         </details>
         
-          <a class="deal-card__cta" href="https://www.amazon.com/Spacrea-Organizers-Accessories-Workspace-Supplies/dp/B0F1YFDDV6?crid=14U0OR7993L99&amp;dib=eyJ2IjoiMSJ9._k2g9SHoJA7UhFqrtboMXv63iW21il5kuYDl5R9tAYoGhioxO4gp67L0PRLSbRy020yeMZoUtCaAYGxRM6BdvZzfbBN0e_eD9mocWUS_rx6jn9EH7h5ni3ED-_A9YS0EYSSw-UuPsqWzlzvOT47JBq4C1kloisxgMUMsf74LPC8DBXKTx06qP9_V40XCQSUN99rGVhtKKSJr5UVpqd4sJdqPrQoHPEUKy4Z-xIam2v0TZJ3DxQDy-VRtGPUqAAHhiVavWujD-D_iW5De1_agCxjdAwEgjirdBMhqcbew0Ds.oiIRPv0J3KOhOihX7Eofln_gehh_Phd6021hA4ozaOA&amp;dib_tag=se&amp;keywords=office&amp;qid=1776372928&amp;s=pc&amp;sprefix=office%2Belectronics%2Ccomputers%2C229&amp;sr=1-10&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger-20&amp;linkId=2ab6c3d0df46b9edd74e6ee37384d7e5&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">View on Amazon</a>
+          <a class="deal-card__cta" href="https://www.amazon.com/GIGABYTE-B650-Warranty-EZ-Latch-Motherboard/dp/B0BH7GTY9C?pd_rd_w=P7BoY&amp;content-id=amzn1.sym.ebdc7bfb-dc16-4d1d-8496-a4b584c7f443&amp;pf_rd_p=ebdc7bfb-dc16-4d1d-8496-a4b584c7f443&amp;pf_rd_r=Q5Z2H7T6ZFTR3N4TPVVK&amp;pd_rd_wg=V4yHk&amp;pd_rd_r=c72d789c-f34e-4c44-8622-9ce8d51a6fc0&amp;pd_rd_i=B0BH7GTY9C&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger-20&amp;linkId=69e936fc9b5707ae5dcf518f7f823122&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">View on Amazon</a>
         
       </div>
     
@@ -1490,7 +1504,7 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="ray-ban meta wayfarer smart glasses" data-summary="ray-ban meta wayfarer smart glasses with camera capture and open-ear audio." data-tags="wearables audio camera" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.250000" data-date="1777411691" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="ray-ban meta wayfarer smart glasses" data-summary="ray-ban meta wayfarer smart glasses with camera capture and open-ear audio." data-tags="wearables audio camera" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.250000" data-date="1777411766" data-affiliate="true">
   
     <div class="deal-card__image">
       
@@ -1562,7 +1576,7 @@
   
 </section>
 
-<script type="module" src="/scripts/home-filter-rail.js?v=1777411757"></script>
+<script type="module" src="/scripts/home-filter-rail.js?v=1777415929"></script>
 
 
     </main>

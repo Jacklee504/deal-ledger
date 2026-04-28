@@ -80,7 +80,7 @@
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://dealledger.eu/#organization","@type":"Organization","logo":"https://dealledger.eu/images/brand/deal-ledger-logo.svg","name":"Deal Ledger","url":"https://dealledger.eu/"},{"@id":"https://dealledger.eu/#website","@type":"WebSite","name":"Deal Ledger","potentialAction":{"@type":"SearchAction","query-input":"required name=search_term_string","target":"https://dealledger.eu/deals/?q={search_term_string}"},"publisher":{"@id":"https://dealledger.eu/#organization"},"url":"https://dealledger.eu/"}]}</script>
 
-<link rel="stylesheet" href="/styles/site.css?v=1777411755">
+<link rel="stylesheet" href="/styles/site.css?v=1777415927">
 
   </head><body class="ma0 avenir bg-near-white production is-section is-section">
     
@@ -96,6 +96,7 @@
 
 
   
+
 
 
 
@@ -185,6 +186,14 @@
 
     const marketSelect = document.getElementById('market-select');
     if (marketSelect) {
+      const marketFromPath = (() => {
+        const path = window.location.pathname || '/';
+        if (path === '/us' || path.startsWith('/us/')) return 'us';
+        if (path === '/de' || path.startsWith('/de/')) return 'de';
+        if (path === '/nl' || path.startsWith('/nl/')) return 'nl';
+        if (path === '/fr' || path.startsWith('/fr/')) return 'fr';
+        return 'eu';
+      })();
       const cookieMap = (document.cookie || '')
         .split(';')
         .map((item) => item.trim())
@@ -198,7 +207,12 @@
           return acc;
         }, {});
 
-      if (cookieMap.market === 'us' || cookieMap.market === 'eu' || cookieMap.market === 'de' || cookieMap.market === 'nl' || cookieMap.market === 'fr') {
+      marketSelect.value = marketFromPath;
+
+      if (
+        marketFromPath === 'eu' &&
+        (cookieMap.market === 'us' || cookieMap.market === 'eu' || cookieMap.market === 'de' || cookieMap.market === 'nl' || cookieMap.market === 'fr')
+      ) {
         marketSelect.value = cookieMap.market;
       }
 
@@ -502,7 +516,7 @@
     
     
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://dealledger.eu/","name":"Startseite","position":1},{"@type":"ListItem","item":"https://dealledger.eu/de/deals/","name":"Angebote","position":2}]}</script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","itemListElement":[{"@type":"ListItem","name":"naspaluro Ergonomischer Bürostuhl","position":1,"url":"https://dealledger.eu/deals/naspaluro-ergonomic-office-chair-de/"},{"@type":"ListItem","name":"Airchros Ergonomischer Bürostuhl","position":2,"url":"https://dealledger.eu/deals/airchros-ergonomic-office-chair-de/"},{"@type":"ListItem","name":"Coleshome L-förmiger Schreibtisch","position":3,"url":"https://dealledger.eu/deals/coleshome-l-shaped-desk-de/"},{"@type":"ListItem","name":"VASAGLE Höhenverstellbarer Schreibtisch","position":4,"url":"https://dealledger.eu/deals/vasagle-standing-desk-lsd310wz03-de/"},{"@type":"ListItem","name":"Sony WH-CH720N Bluetooth-Kopfhörer","position":5,"url":"https://dealledger.eu/deals/sony-wh-ch720n-headphones-de/"},{"@type":"ListItem","name":"soundcore P20i Bluetooth In-Ear-Kopfhörer","position":6,"url":"https://dealledger.eu/deals/soundcore-p20i-wireless-earbuds-de/"},{"@type":"ListItem","name":"Apple AirPods 4","position":7,"url":"https://dealledger.eu/deals/apple-airpods-4-de/"},{"@type":"ListItem","name":"BONTEC Ergonomischer Laptopständer","position":8,"url":"https://dealledger.eu/deals/bontec-ergonomic-laptop-stand-de/"},{"@type":"ListItem","name":"Aothia Schreibtischunterlage aus Leder","position":9,"url":"https://dealledger.eu/deals/aothia-leather-desk-pad-de/"},{"@type":"ListItem","name":"BONTEC Monitorständer höhenverstellbar","position":10,"url":"https://dealledger.eu/deals/bontec-monitor-stand-adjustable-de/"},{"@type":"ListItem","name":"UGREEN Auto-Ladegerät mit ausziehbarem Kabel","position":11,"url":"https://dealledger.eu/deals/ugreen-retractable-car-charger-de/"},{"@type":"ListItem","name":"INIU Powerbank 10000 mAh","position":12,"url":"https://dealledger.eu/deals/iniu-power-bank-10000mah-de/"}],"itemListOrder":"https://schema.org/ItemListOrderAscending","name":"Angebotsliste","numberOfItems":12}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","itemListElement":[{"@type":"ListItem","name":"naspaluro Ergonomischer Bürostuhl","position":1,"url":"https://dealledger.eu/deals/naspaluro-ergonomic-office-chair-de/"},{"@type":"ListItem","name":"Airchros Ergonomischer Bürostuhl","position":2,"url":"https://dealledger.eu/deals/airchros-ergonomic-office-chair-de/"},{"@type":"ListItem","name":"VASAGLE Höhenverstellbarer Schreibtisch","position":3,"url":"https://dealledger.eu/deals/vasagle-standing-desk-lsd310wz03-de/"},{"@type":"ListItem","name":"Sony WH-CH720N Bluetooth-Kopfhörer","position":4,"url":"https://dealledger.eu/deals/sony-wh-ch720n-headphones-de/"},{"@type":"ListItem","name":"soundcore P20i Bluetooth In-Ear-Kopfhörer","position":5,"url":"https://dealledger.eu/deals/soundcore-p20i-wireless-earbuds-de/"},{"@type":"ListItem","name":"Apple AirPods 4","position":6,"url":"https://dealledger.eu/deals/apple-airpods-4-de/"},{"@type":"ListItem","name":"BONTEC Ergonomischer Laptopständer","position":7,"url":"https://dealledger.eu/deals/bontec-ergonomic-laptop-stand-de/"},{"@type":"ListItem","name":"Aothia Schreibtischunterlage aus Leder","position":8,"url":"https://dealledger.eu/deals/aothia-leather-desk-pad-de/"},{"@type":"ListItem","name":"BONTEC Monitorständer höhenverstellbar","position":9,"url":"https://dealledger.eu/deals/bontec-monitor-stand-adjustable-de/"},{"@type":"ListItem","name":"UGREEN Auto-Ladegerät mit ausziehbarem Kabel","position":10,"url":"https://dealledger.eu/deals/ugreen-retractable-car-charger-de/"},{"@type":"ListItem","name":"INIU Powerbank 10000 mAh","position":11,"url":"https://dealledger.eu/deals/iniu-power-bank-10000mah-de/"},{"@type":"ListItem","name":"Coleshome L-förmiger Schreibtisch","position":12,"url":"https://dealledger.eu/deals/coleshome-l-shaped-desk-de/"}],"itemListOrder":"https://schema.org/ItemListOrderAscending","name":"Angebotsliste","numberOfItems":12}</script>
     <section class="list-subsection">
       <div class="list-subsection__intro">
         <h2>Angebote durchsuchen</h2>
@@ -578,7 +592,7 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="naspaluro ergonomischer bürostuhl" data-summary="naspaluro bürostuhl mit verstellbaren armlehnen und ergonomischer rückenstütze." data-tags="homeoffice stuhl ergonomie büro" data-top-savings="false" data-latest="true" data-expiring-soon="false" data-discount="0.110000" data-date="1777411691" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="naspaluro ergonomischer bürostuhl" data-summary="naspaluro bürostuhl mit verstellbaren armlehnen und ergonomischer rückenstütze." data-tags="homeoffice stuhl ergonomie büro" data-top-savings="false" data-latest="true" data-expiring-soon="false" data-discount="0.110000" data-date="1777411766" data-affiliate="true">
   
     <div class="deal-card__image">
       
@@ -701,7 +715,7 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="airchros ergonomischer bürostuhl" data-summary="ergonomischer bürostuhl von airchros mit hoher rückenlehne und starkem rabatt." data-tags="homeoffice stuhl ergonomie büro" data-top-savings="true" data-latest="true" data-expiring-soon="false" data-discount="0.310000" data-date="1777411691" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="airchros ergonomischer bürostuhl" data-summary="ergonomischer bürostuhl von airchros mit hoher rückenlehne und starkem rabatt." data-tags="homeoffice stuhl ergonomie büro" data-top-savings="true" data-latest="true" data-expiring-soon="false" data-discount="0.310000" data-date="1777411766" data-affiliate="true">
   
     <div class="deal-card__image">
       
@@ -824,130 +838,7 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="coleshome l-förmiger schreibtisch" data-summary="kompakter l-schreibtisch von coleshome für kleine räume und arbeitsplätze." data-tags="homeoffice schreibtisch l-form möbel" data-top-savings="false" data-latest="true" data-expiring-soon="false" data-discount="0.150000" data-date="1777411691" data-affiliate="true">
-  
-    <div class="deal-card__image">
-      
-
-
-
-
-
-
-
-
-
-
-
-
-  <img
-    src="https://m.media-amazon.com/images/I/71zkBKbEWcL._AC_SL1500_.jpg"
-    alt="Coleshome L-förmiger Schreibtisch"
-    class=""
-    loading="lazy"
-    decoding="async"
-    fetchpriority="auto"
-    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
-  >
-
-
-    </div>
-  
-  <div class="deal-card__body">
-    
-      <div class="deal-card__stack">
-        <h3 class="deal-card__title">Coleshome L-förmiger Schreibtisch</h3>
-        <div class="deal-card__divider"></div>
-        <div class="deal-card__price-row deal-card__price-row--compact">
-          
-            <span class="deal-card__sale">€34.28</span>
-          
-          
-            <span class="deal-card__list">€40.33</span>
-          
-          
-            <span class="deal-card__badge">-15%</span>
-          
-        </div>
-        <div class="deal-card__divider"></div>
-        <details class="deal-card__details">
-          <summary class="deal-card__details-toggle">Mehr Details</summary>
-          <div class="deal-card__details-body">
-            
-              <p class="deal-card__details-summary">Kompakter L-Schreibtisch von Coleshome für kleine Räume und Arbeitsplätze.</p>
-            
-            
-              <div class="deal-card__tags">
-                <span class="deal-card__tag">#homeoffice</span><span class="deal-card__tag">#schreibtisch</span><span class="deal-card__tag">#l-form</span>
-              </div>
-            
-          </div>
-        </details>
-        
-          <a class="deal-card__cta" href="https://www.amazon.de/-/en/Coleshome-Reversible-Compartment-Space-Saving-L-shaped/dp/B0FDB3Y1YT?crid=17MBAYEGKDHK4&amp;dib=eyJ2IjoiMSJ9.OTJhPz7OZJf0Il6lZbImqQAmLPir2RK-DgHjO2beVEP-HqKrxymi7nJL6S_PINy57yzMYH_10ZdJC9I_Zp6jR6LeXVldRMTmOc6ntVVhAICz0O8_ifrV_0DwHVdpzkXd9xmE0CMnd5Wuu4X8eWLaICcGKccKx1VFdn-24v7axg0X-QmmGyrNhZgTvudbS-2TyyvQwtcOyaqkXak8HWkt0BmPaRvNxHHTTmaqKIfND7dSMVD-iQdqC8OGUXBpY4HwLi3X7XXnM2Z67YkY2Q9lyNcZtkPRqN8fTPjJzcD4PYI.Yf09rHJ3HsAiYO25aOZgh5gdvIL380RFANQHrjnPKas&amp;dib_tag=se&amp;keywords=desk&amp;qid=1777323232&amp;sprefix=desk%2Caps%2C138&amp;sr=8-11&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger05-21&amp;linkId=ea148b2e7560fed05ed7f3b8b12db70c&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">Bei Amazon ansehen</a>
-        
-      </div>
-    
-  </div>
-</article>
-
-        
-          
-          
-
-
-
-  
-  
-    
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="vasagle höhenverstellbarer schreibtisch" data-summary="vasagle schreibtisch für homeoffice-setups mit gutem preis-leistungs-rabatt." data-tags="homeoffice schreibtisch möbel ergonomie" data-top-savings="false" data-latest="true" data-expiring-soon="false" data-discount="0.180000" data-date="1777411691" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="vasagle höhenverstellbarer schreibtisch" data-summary="vasagle schreibtisch für homeoffice-setups mit gutem preis-leistungs-rabatt." data-tags="homeoffice schreibtisch möbel ergonomie" data-top-savings="false" data-latest="true" data-expiring-soon="false" data-discount="0.180000" data-date="1777411766" data-affiliate="true">
   
     <div class="deal-card__image">
       
@@ -1070,7 +961,7 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="sony wh-ch720n bluetooth-kopfhörer" data-summary="sony over-ear-kopfhörer mit noise cancelling und attraktivem rabatt." data-tags="audio sony kopfhörer noise-cancelling" data-top-savings="false" data-latest="true" data-expiring-soon="false" data-discount="0.190000" data-date="1777411691" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="sony wh-ch720n bluetooth-kopfhörer" data-summary="sony over-ear-kopfhörer mit noise cancelling und attraktivem rabatt." data-tags="audio sony kopfhörer noise-cancelling" data-top-savings="false" data-latest="true" data-expiring-soon="false" data-discount="0.190000" data-date="1777411766" data-affiliate="true">
   
     <div class="deal-card__image">
       
@@ -1193,7 +1084,7 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="soundcore p20i bluetooth in-ear-kopfhörer" data-summary="preiswerte soundcore in-ears mit bluetooth und solider ersparnis auf amazon de." data-tags="audio soundcore earbuds kabellos" data-top-savings="false" data-latest="true" data-expiring-soon="false" data-discount="0.200000" data-date="1777411691" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="soundcore p20i bluetooth in-ear-kopfhörer" data-summary="preiswerte soundcore in-ears mit bluetooth und solider ersparnis auf amazon de." data-tags="audio soundcore earbuds kabellos" data-top-savings="false" data-latest="true" data-expiring-soon="false" data-discount="0.200000" data-date="1777411766" data-affiliate="true">
   
     <div class="deal-card__image">
       
@@ -1316,7 +1207,7 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="apple airpods 4" data-summary="apple airpods 4 mit bluetooth und personalisiertem audio zu stark reduziertem preis." data-tags="audio apple earbuds kabellos" data-top-savings="true" data-latest="false" data-expiring-soon="false" data-discount="0.240000" data-date="1777411691" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="apple airpods 4" data-summary="apple airpods 4 mit bluetooth und personalisiertem audio zu stark reduziertem preis." data-tags="audio apple earbuds kabellos" data-top-savings="true" data-latest="true" data-expiring-soon="false" data-discount="0.240000" data-date="1777411766" data-affiliate="true">
   
     <div class="deal-card__image">
       
@@ -1439,7 +1330,7 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="bontec ergonomischer laptopständer" data-summary="bontec notebookständer für 10 bis 17,3 zoll mit ergonomischer arbeitshöhe." data-tags="homeoffice laptop ergonomie zubehör" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.200000" data-date="1777411691" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="bontec ergonomischer laptopständer" data-summary="bontec notebookständer für 10 bis 17,3 zoll mit ergonomischer arbeitshöhe." data-tags="homeoffice laptop ergonomie zubehör" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.200000" data-date="1777411766" data-affiliate="true">
   
     <div class="deal-card__image">
       
@@ -1562,7 +1453,7 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="aothia schreibtischunterlage aus leder" data-summary="rutschfeste leder-schreibtischmatte von aothia für ein aufgeräumtes homeoffice." data-tags="homeoffice schreibtisch zubehör leder" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.200000" data-date="1777411691" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="aothia schreibtischunterlage aus leder" data-summary="rutschfeste leder-schreibtischmatte von aothia für ein aufgeräumtes homeoffice." data-tags="homeoffice schreibtisch zubehör leder" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.200000" data-date="1777411766" data-affiliate="true">
   
     <div class="deal-card__image">
       
@@ -1685,7 +1576,7 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="bontec monitorständer höhenverstellbar" data-summary="ergonomischer bontec-monitorständer mit verstellbarer höhe für den arbeitsplatz." data-tags="homeoffice monitor schreibtisch ergonomie" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.190000" data-date="1777411691" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="bontec monitorständer höhenverstellbar" data-summary="ergonomischer bontec-monitorständer mit verstellbarer höhe für den arbeitsplatz." data-tags="homeoffice monitor schreibtisch ergonomie" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.190000" data-date="1777411766" data-affiliate="true">
   
     <div class="deal-card__image">
       
@@ -1808,7 +1699,7 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="ugreen auto-ladegerät mit ausziehbarem kabel" data-summary="ugreen-autolader mit ausziehbarem ladekabel und starkem preisnachlass auf amazon de." data-tags="technik auto ladegerät usb-c" data-top-savings="true" data-latest="false" data-expiring-soon="false" data-discount="0.330000" data-date="1777411691" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="ugreen auto-ladegerät mit ausziehbarem kabel" data-summary="ugreen-autolader mit ausziehbarem ladekabel und starkem preisnachlass auf amazon de." data-tags="technik auto ladegerät usb-c" data-top-savings="true" data-latest="false" data-expiring-soon="false" data-discount="0.330000" data-date="1777411766" data-affiliate="true">
   
     <div class="deal-card__image">
       
@@ -1931,7 +1822,7 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="iniu powerbank 10000 mah" data-summary="kompakte iniu-powerbank mit 10000 mah und gutem rabatt auf amazon de." data-tags="technik powerbank akku mobil" data-top-savings="true" data-latest="false" data-expiring-soon="false" data-discount="0.210000" data-date="1777411691" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="iniu powerbank 10000 mah" data-summary="kompakte iniu-powerbank mit 10000 mah und gutem rabatt auf amazon de." data-tags="technik powerbank akku mobil" data-top-savings="true" data-latest="false" data-expiring-soon="false" data-discount="0.210000" data-date="1777411766" data-affiliate="true">
   
     <div class="deal-card__image">
       
@@ -1999,9 +1890,132 @@
 </article>
 
         
+          
+          
+
+
+
+  
+  
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="coleshome l-förmiger schreibtisch" data-summary="kompakter l-schreibtisch von coleshome für kleine räume und arbeitsplätze." data-tags="homeoffice schreibtisch l-form möbel" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.150000" data-date="1777411691" data-affiliate="true">
+  
+    <div class="deal-card__image">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  <img
+    src="https://m.media-amazon.com/images/I/71zkBKbEWcL._AC_SL1500_.jpg"
+    alt="Coleshome L-förmiger Schreibtisch"
+    class=""
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
+  >
+
+
+    </div>
+  
+  <div class="deal-card__body">
+    
+      <div class="deal-card__stack">
+        <h3 class="deal-card__title">Coleshome L-förmiger Schreibtisch</h3>
+        <div class="deal-card__divider"></div>
+        <div class="deal-card__price-row deal-card__price-row--compact">
+          
+            <span class="deal-card__sale">€34.28</span>
+          
+          
+            <span class="deal-card__list">€40.33</span>
+          
+          
+            <span class="deal-card__badge">-15%</span>
+          
+        </div>
+        <div class="deal-card__divider"></div>
+        <details class="deal-card__details">
+          <summary class="deal-card__details-toggle">Mehr Details</summary>
+          <div class="deal-card__details-body">
+            
+              <p class="deal-card__details-summary">Kompakter L-Schreibtisch von Coleshome für kleine Räume und Arbeitsplätze.</p>
+            
+            
+              <div class="deal-card__tags">
+                <span class="deal-card__tag">#homeoffice</span><span class="deal-card__tag">#schreibtisch</span><span class="deal-card__tag">#l-form</span>
+              </div>
+            
+          </div>
+        </details>
+        
+          <a class="deal-card__cta" href="https://www.amazon.de/-/en/Coleshome-Reversible-Compartment-Space-Saving-L-shaped/dp/B0FDB3Y1YT?crid=17MBAYEGKDHK4&amp;dib=eyJ2IjoiMSJ9.OTJhPz7OZJf0Il6lZbImqQAmLPir2RK-DgHjO2beVEP-HqKrxymi7nJL6S_PINy57yzMYH_10ZdJC9I_Zp6jR6LeXVldRMTmOc6ntVVhAICz0O8_ifrV_0DwHVdpzkXd9xmE0CMnd5Wuu4X8eWLaICcGKccKx1VFdn-24v7axg0X-QmmGyrNhZgTvudbS-2TyyvQwtcOyaqkXak8HWkt0BmPaRvNxHHTTmaqKIfND7dSMVD-iQdqC8OGUXBpY4HwLi3X7XXnM2Z67YkY2Q9lyNcZtkPRqN8fTPjJzcD4PYI.Yf09rHJ3HsAiYO25aOZgh5gdvIL380RFANQHrjnPKas&amp;dib_tag=se&amp;keywords=desk&amp;qid=1777323232&amp;sprefix=desk%2Caps%2C138&amp;sr=8-11&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger05-21&amp;linkId=ea148b2e7560fed05ed7f3b8b12db70c&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">Bei Amazon ansehen</a>
+        
+      </div>
+    
+  </div>
+</article>
+
+        
       </div>
     </section>
-    <script type="module" src="/scripts/deals-search.js?v=1777411755"></script>
+    <script type="module" src="/scripts/deals-search.js?v=1777415927"></script>
   
 </section>
 

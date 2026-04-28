@@ -79,7 +79,7 @@
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://dealledger.eu/#organization","@type":"Organization","logo":"https://dealledger.eu/images/brand/deal-ledger-logo.svg","name":"Deal Ledger","url":"https://dealledger.eu/"},{"@id":"https://dealledger.eu/#website","@type":"WebSite","name":"Deal Ledger","potentialAction":{"@type":"SearchAction","query-input":"required name=search_term_string","target":"https://dealledger.eu/deals/?q={search_term_string}"},"publisher":{"@id":"https://dealledger.eu/#organization"},"url":"https://dealledger.eu/"}]}</script>
 
-<link rel="stylesheet" href="/styles/site.css?v=1777411756">
+<link rel="stylesheet" href="/styles/site.css?v=1777415928">
 
   </head><body class="ma0 avenir bg-near-white production is-page is-page page-razer-deathadder-essential-fr">
     
@@ -95,6 +95,7 @@
 
 
   
+
 
 
 
@@ -184,6 +185,14 @@
 
     const marketSelect = document.getElementById('market-select');
     if (marketSelect) {
+      const marketFromPath = (() => {
+        const path = window.location.pathname || '/';
+        if (path === '/us' || path.startsWith('/us/')) return 'us';
+        if (path === '/de' || path.startsWith('/de/')) return 'de';
+        if (path === '/nl' || path.startsWith('/nl/')) return 'nl';
+        if (path === '/fr' || path.startsWith('/fr/')) return 'fr';
+        return 'eu';
+      })();
       const cookieMap = (document.cookie || '')
         .split(';')
         .map((item) => item.trim())
@@ -197,7 +206,12 @@
           return acc;
         }, {});
 
-      if (cookieMap.market === 'us' || cookieMap.market === 'eu' || cookieMap.market === 'de' || cookieMap.market === 'nl' || cookieMap.market === 'fr') {
+      marketSelect.value = marketFromPath;
+
+      if (
+        marketFromPath === 'eu' &&
+        (cookieMap.market === 'us' || cookieMap.market === 'eu' || cookieMap.market === 'de' || cookieMap.market === 'nl' || cookieMap.market === 'fr')
+      ) {
         marketSelect.value = cookieMap.market;
       }
 
@@ -411,7 +425,7 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="apple airpods pro 2" data-summary="airpods pro 2 avec réduction active du bruit à prix réduit sur amazon fr." data-tags="audio apple airpods bluetooth anc" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.160643" data-date="1777411691" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="apple airpods pro 2" data-summary="airpods pro 2 avec réduction active du bruit à prix réduit sur amazon fr." data-tags="audio apple airpods bluetooth anc" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.160643" data-date="1777411766" data-affiliate="true">
   
     <div class="deal-card__image">
       
@@ -533,7 +547,7 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="apple iphone 256gb" data-summary="iphone 256 go avec remise immédiate sur amazon fr." data-tags="apple iphone smartphone 256gb" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.082559" data-date="1777411691" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="apple iphone 256gb" data-summary="iphone 256 go avec remise immédiate sur amazon fr." data-tags="apple iphone smartphone 256gb" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.082559" data-date="1777411766" data-affiliate="true">
   
     <div class="deal-card__image">
       
@@ -655,7 +669,7 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="asus vy279hgr eye care monitor" data-summary="moniteur asus vy279hgr avec remise sur amazon fr." data-tags="monitor asus eye-care" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.339956" data-date="1777411691" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="asus vy279hgr eye care monitor" data-summary="moniteur asus vy279hgr avec remise sur amazon fr." data-tags="monitor asus eye-care" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.339956" data-date="1777411766" data-affiliate="true">
   
     <div class="deal-card__image">
       
