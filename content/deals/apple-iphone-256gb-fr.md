@@ -1,5 +1,5 @@
 +++
-title = "Apple iPhone 256GB"
+title = "Apple iPhone 256 Go"
 date = 2026-04-28T00:00:00Z
 list_price = 969.00
 sale_price = 889.00

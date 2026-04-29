@@ -1,5 +1,5 @@
 +++
-title = "THOMSON Non-Smart TV"
+title = "TV THOMSON non connectée"
 date = 2026-04-28T00:00:00Z
 list_price = 199.00
 sale_price = 129.91

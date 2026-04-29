@@ -1,5 +1,5 @@
 +++
-title = "Razer DeathAdder Essential"
+title = "Souris Razer DeathAdder Essential"
 date = 2026-04-28T00:00:00Z
 list_price = 39.99
 sale_price = 18.90

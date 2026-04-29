@@ -1,5 +1,5 @@
 +++
-title = "MSI G255F 24.5 Gaming Monitor"
+title = "Moniteur gaming MSI G255F 24,5 pouces"
 date = 2026-04-28T00:00:00Z
 list_price = 149.99
 sale_price = 84.99

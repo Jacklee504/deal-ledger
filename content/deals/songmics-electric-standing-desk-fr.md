@@ -1,5 +1,5 @@
 +++
-title = "SONGMICS Electric Standing Desk"
+title = "Bureau assis-debout électrique SONGMICS"
 date = 2026-04-28T00:00:00Z
 list_price = 149.99
 sale_price = 118.99

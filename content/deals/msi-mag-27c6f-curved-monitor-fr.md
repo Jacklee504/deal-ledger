@@ -1,5 +1,5 @@
 +++
-title = "MSI MAG 27C6F Curved Monitor"
+title = "Moniteur incurvé MSI MAG 27C6F"
 date = 2026-04-28T00:00:00Z
 list_price = 134.72
 sale_price = 119.99
