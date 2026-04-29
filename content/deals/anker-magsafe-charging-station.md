@@ -13,12 +13,12 @@ categories = ["electronics", "productivity"]
 summary = "Foldable MagSafe-compatible stand for multi-device charging."
 listing_url = "https://www.amazon.ie/dp/B0CFDPQXN4"
 listing_title = "Anker MagGo Power Bank, Qi2 Certified 15W Fast MagSafe Compatible Mobile Charger, 10,000mAh Battery, Smart Display & Foldable Stand, for iPhone 16/15/14/13, Includes USB-C Cable : Amazon.ie: Electronics"
-listing_summary = "Anker MagGo Power Bank, Qi2 Certified 15W Fast MagSafe Compatible Mobile Charger, 10,000mAh Battery, Smart Display & Foldable Stand, for iPhone 16/15/14/13, Includes USB-C Cable : Amazon.ie: Electronics"
+listing_summary = ""
 listing_sale_price = 74.9
 listing_list_price = 109.90
 listing_discount_pct = 0.3549
 listing_image = "https://m.media-amazon.com/images/I/61DzAk62YOL._AC_SL1500_.jpg"
-listing_synced_at = "2026-04-21T20:35:57.000886+00:00"
+listing_synced_at = "2026-04-29T14:06:39.386906+00:00"
 +++
 
 Compact foldable charging station designed for iPhone, AirPods, and Apple Watch.

@@ -15,9 +15,9 @@ listing_sale_price = 84.99
 listing_list_price = 174
 listing_discount_pct = 0.511552
 listing_title = "DH FitLife Walking Pad 1–6 km/h with 6% Incline | Quiet, Compact, Space-Saving Under Desk Treadmill with App & Remote Control | Extended Running Area for Home & Office : Amazon.ie: Sports & Outdoors"
-listing_summary = "DH FitLife Walking Pad 1–6 km/h with 6% Incline | Quiet, Compact, Space-Saving Under Desk Treadmill with App & Remote Control | Extended Running Area for Home & Office : Amazon.ie: Sports & Outdoors"
+listing_summary = ""
 listing_image = "https://m.media-amazon.com/images/I/71BcsQtH7GL._AC_SL1500_.jpg"
-listing_synced_at = "2026-04-22T17:38:45.887103+00:00"
+listing_synced_at = "2026-04-29T14:06:39.386906+00:00"
 +++
 
 Shown price is €174.00 with a current deal price of €84.99.
