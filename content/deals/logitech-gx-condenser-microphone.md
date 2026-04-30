@@ -15,9 +15,9 @@ listing_sale_price = 34.43
 listing_list_price = 70
 listing_discount_pct = 0.508143
 listing_title = "Logitech G Yeti Orb Condenser RGB Gaming Microphone with LIGHTSYNC, Mic for Streaming, Cardioid, USB Plug and Play for PC/Mac-Black : Amazon.ie: Electronics"
-listing_summary = ""
+listing_summary = "Logitech G Yeti Orb Condenser RGB Gaming Microphone with LIGHTSYNC, Mic for Streaming, Cardioid, USB Plug and Play for PC/Mac-Black : Amazon.ie: Electronics"
 listing_image = "https://m.media-amazon.com/images/I/61OK7uU29UL._AC_SL1500_.jpg"
-listing_synced_at = "2026-04-29T14:06:39.386906+00:00"
+listing_synced_at = "2026-04-30T20:33:05.510242+00:00"
 +++
 
 Shown price is €70.00 with a current deal price of €34.43.

@@ -11,10 +11,10 @@ categories = ["electronics", "audio"]
 summary = "Skullcandy Crusher wireless over-ear headphones at a steep discount on Amazon US."
 listing_url = "https://www.amazon.com/dp/B08FCGH2RL"
 listing_title = "Amazon.com: Skullcandy Crusher Evo Wireless Bluetooth Headphones with Multi-Sensory Bass, Noise Isolating Over-Ear Fit, Up to 40 Hours Battery, Microphone for iPhone Android - True Black : Electronics"
-listing_summary = "Buy Skullcandy Crusher Evo Wireless Bluetooth Headphones with Multi-Sensory Bass, Noise Isolating Over-Ear Fit, Up to 40 Hours Battery, Microphone for iPhone Android - True Black: Over-Ear Headphones - Amazon.com ✓ FREE "
+listing_summary = ""
 listing_sale_price = 85.53
 listing_image = "https://m.media-amazon.com/images/I/61TuQdBSgsL._AC_SL1500_.jpg"
-listing_synced_at = "2026-04-30T17:47:01.180707+00:00"
+listing_synced_at = "2026-04-30T20:33:05.510242+00:00"
 +++
 
 Skullcandy Crusher wireless headphones deal on Amazon US.

@@ -15,9 +15,9 @@ listing_sale_price = 25.64
 listing_list_price = 36.97
 listing_discount_pct = 0.189343
 listing_title = "Amazon.com : Simple Trending 7 Tier Desk File Organizer, Letter Tray Paper Organizer with Pen Holder and Metal Hanging Basket, Black : Office Products"
-listing_summary = "Amazon.com : Simple Trending 7 Tier Desk File Organizer, Letter Tray Paper Organizer with Pen Holder and Metal Hanging Basket, Black : Office Products"
+listing_summary = ""
 listing_image = "https://m.media-amazon.com/images/I/91AUT7AZwJL._AC_SL1500_.jpg"
-listing_synced_at = "2026-04-30T17:47:01.180707+00:00"
+listing_synced_at = "2026-04-30T20:33:05.510242+00:00"
 +++
 
 Shown price is $36.97 with a current deal price of $29.97.

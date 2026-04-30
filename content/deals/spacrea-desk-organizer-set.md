@@ -14,9 +14,9 @@ listing_sale_price = 22.74
 listing_list_price = 29.99
 listing_discount_pct = 0.220073
 listing_title = "Amazon.com: Spacrea Metal Desk Organizers and Accessories, Dual Monitor Stand Riser with Drawer and 2 Pen Holders, Book Racks, Desk Accessories & Workspace Desktop Organizers for Office Supplies (Black) : Electronics"
-listing_summary = "Amazon.com: Spacrea Metal Desk Organizers and Accessories, Dual Monitor Stand Riser with Drawer and 2 Pen Holders, Book Racks, Desk Accessories & Workspace Desktop Organizers for Office Supplies (Black) : Electronics"
+listing_summary = ""
 listing_image = "https://m.media-amazon.com/images/I/71M6MOVdupL._AC_SL1500_.jpg"
-listing_synced_at = "2026-04-30T17:47:01.180707+00:00"
+listing_synced_at = "2026-04-30T20:33:05.510242+00:00"
 aliases = ["/deals/spacrea-desk-organizer/"]
 +++
 

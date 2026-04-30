@@ -13,12 +13,12 @@ categories = ["electronics", "home"]
 summary = "Compact streaming stick for HD TV apps and voice control."
 listing_url = "https://www.amazon.ie/dp/B0CQN8PP9G"
 listing_title = "Amazon Fire TV Stick HD | Alexa Voice Remote, smart home controls, HD streaming : Amazon.ie: Electronics"
-listing_summary = ""
+listing_summary = "Amazon Fire TV Stick HD | Alexa Voice Remote, smart home controls, HD streaming : Amazon.ie: Electronics"
 listing_sale_price = 45.95
 listing_list_price = 48.33
 listing_discount_pct = 0.05
 listing_image = "https://m.media-amazon.com/images/I/51FkXD91IbL._AC_SL1000_.jpg"
-listing_synced_at = "2026-04-29T14:06:39.386906+00:00"
+listing_synced_at = "2026-04-30T20:33:05.510242+00:00"
 +++
 
 Easy way to add streaming apps and voice search to any compatible TV.

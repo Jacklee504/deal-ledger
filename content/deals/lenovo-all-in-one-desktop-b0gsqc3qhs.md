@@ -11,10 +11,10 @@ categories = ["electronics", "computers"]
 summary = "Lenovo all-in-one desktop setup with a deep price drop on Amazon US."
 listing_url = "https://www.amazon.com/dp/B0GSQC3QHS"
 listing_title = "Amazon.com: Lenovo 15\" Gaming Laptop Computer, AMD Ryzen 5 7535HS 6-Core, 24GB DDR5 RAM, 1TB PCIe SSD, FHD+ Display, WiFi 6, Bluetooth 5.3, Webcam, HDMI, Type-C, Luna Grey, Windows 11 Home : Electronics"
-listing_summary = "Amazon.com: Lenovo 15\" Gaming Laptop Computer, AMD Ryzen 5 7535HS 6-Core, 24GB DDR5 RAM, 1TB PCIe SSD, FHD+ Display, WiFi 6, Bluetooth 5.3, Webcam, HDMI, Type-C, Luna Grey, Windows 11 Home : Electronics"
+listing_summary = ""
 listing_sale_price = 899.97
 listing_image = "https://m.media-amazon.com/images/I/819V7Y4UfWL._AC_SL1500_.jpg"
-listing_synced_at = "2026-04-30T17:47:01.180707+00:00"
+listing_synced_at = "2026-04-30T20:33:05.510242+00:00"
 +++
 
 Lenovo all-in-one desktop deal on Amazon US.

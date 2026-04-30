@@ -14,9 +14,9 @@ listing_sale_price = 55.34
 listing_list_price = 82.85
 listing_discount_pct = 0.3320
 listing_title = "httpsmp 30m (2 Rolls 15m) Neon Rope Light, Flexible Led Lights Control with App/Remote, Multiple Modes, IP67 Outdoor Waterproof, Music Sync Light Strip for Bedroom : Amazon.ie: DIY & Tools"
-listing_summary = "httpsmp 30m (2 Rolls 15m) Neon Rope Light, Flexible Led Lights Control with App/Remote, Multiple Modes, IP67 Outdoor Waterproof, Music Sync Light Strip for Bedroom : Amazon.ie: DIY & Tools"
+listing_summary = ""
 listing_image = "https://m.media-amazon.com/images/I/715BOwyjIrL._AC_SL1345_.jpg"
-listing_synced_at = "2026-04-21T20:35:57.000886+00:00"
+listing_synced_at = "2026-04-30T20:33:05.510242+00:00"
 +++
 
 Flexible neon-style rope lighting for accent walls, patios, and event spaces.
