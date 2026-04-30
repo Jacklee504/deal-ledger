@@ -14,11 +14,7 @@ listing_title = "THOMSON 32 Inch (81 cm) HD Easy TV, LED TV (Non-Smart), Triple 
 listing_summary = ""
 listing_sale_price = 129.91
 listing_image = "https://m.media-amazon.com/images/I/919PuNH9X5L._AC_SL1500_.jpg"
-<<<<<<< HEAD
 listing_synced_at = "2026-04-30T20:33:05.510242+00:00"
-=======
-listing_synced_at = "2026-04-30T17:47:01.180707+00:00"
->>>>>>> 9500587e (Refresh synced listing metadata)
 +++
 
 Bon plan sur la TV THOMSON non connectée sur Amazon FR.
