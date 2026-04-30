@@ -11,7 +11,7 @@
       
     
     <meta name="description" content="The highest percentage discounts across current picks.">
-    <meta name="generator" content="Hugo 0.161.0">
+    <meta name="generator" content="Hugo 0.161.1">
     
     
     
@@ -80,7 +80,7 @@
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://dealledger.eu/#organization","@type":"Organization","logo":"https://dealledger.eu/images/brand/deal-ledger-logo.svg","name":"Deal Ledger","url":"https://dealledger.eu/"},{"@id":"https://dealledger.eu/#website","@type":"WebSite","name":"Deal Ledger","potentialAction":{"@type":"SearchAction","query-input":"required name=search_term_string","target":"https://dealledger.eu/deals/?q={search_term_string}"},"publisher":{"@id":"https://dealledger.eu/#organization"},"url":"https://dealledger.eu/"}]}</script>
 
-<link rel="stylesheet" href="/styles/site.css?v=1777471634">
+<link rel="stylesheet" href="/styles/site.css?v=1777582190">
 
   </head><body class="ma0 avenir bg-near-white production is-section is-section">
     
@@ -119,7 +119,7 @@
     <div class="flex-l items-center nav-actions">
       <div class="nav-market">
         <select id="market-select" class="nav-market__select" name="market-select" aria-label="Select market">
-          <option value="eu" >EU</option>
+          <option value="ie" >IE</option>
           <option value="us" selected>US</option>
           <option value="de" >DE</option>
           <option value="nl" >NL</option>
@@ -192,7 +192,7 @@
         if (path === '/de' || path.startsWith('/de/')) return 'de';
         if (path === '/nl' || path.startsWith('/nl/')) return 'nl';
         if (path === '/fr' || path.startsWith('/fr/')) return 'fr';
-        return 'eu';
+        return 'ie';
       })();
       const cookieMap = (document.cookie || '')
         .split(';')
@@ -210,18 +210,18 @@
       marketSelect.value = marketFromPath;
 
       if (
-        marketFromPath === 'eu' &&
-        (cookieMap.market === 'us' || cookieMap.market === 'eu' || cookieMap.market === 'de' || cookieMap.market === 'nl' || cookieMap.market === 'fr')
+        marketFromPath === 'ie' &&
+        (cookieMap.market === 'us' || cookieMap.market === 'ie' || cookieMap.market === 'eu' || cookieMap.market === 'de' || cookieMap.market === 'nl' || cookieMap.market === 'fr')
       ) {
-        marketSelect.value = cookieMap.market;
+        marketSelect.value = cookieMap.market === 'eu' ? 'ie' : cookieMap.market;
       }
 
       marketSelect.addEventListener('change', () => {
-        const allowedMarkets = new Set(['eu', 'us', 'de', 'nl', 'fr']);
-        const targetMarket = allowedMarkets.has(marketSelect.value) ? marketSelect.value : 'eu';
+        const allowedMarkets = new Set(['ie', 'us', 'de', 'nl', 'fr']);
+        const targetMarket = allowedMarkets.has(marketSelect.value) ? marketSelect.value : 'ie';
         const secure = window.location.protocol === 'https:' ? '; Secure' : '';
         document.cookie = `market=${targetMarket}; Path=/; Max-Age=31536000; SameSite=Lax${secure}`;
-        const targetPath = targetMarket === 'eu' ? '/' : `/${targetMarket}/`;
+        const targetPath = targetMarket === 'ie' ? '/' : `/${targetMarket}/`;
         window.location.assign(`${window.location.origin}${targetPath}`);
       });
     }
@@ -309,7 +309,7 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="kaigerr 15.6-inch gaming laptop" data-summary="15.6-inch laptop deal positioned for gaming and everyday performance use." data-tags="laptop gaming computing" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.705887" data-date="1776806062" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="kaigerr 15.6-inch gaming laptop" data-summary="15.6-inch laptop deal positioned for gaming and everyday performance use." data-tags="laptop gaming computing" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.705887" data-date="1777581892" data-affiliate="true">
   
     <div class="deal-card__image">
       
@@ -431,7 +431,251 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="insignia 50-inch 4k uhd fire tv" data-summary="50-inch 4k fire tv deal for streaming and home entertainment setups." data-tags="tv 4k fire-tv insignia" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.400013" data-date="1777327072" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="skullcandy crusher wireless over-ear headphones" data-summary="skullcandy crusher wireless over-ear headphones at a steep discount on amazon us." data-tags="skullcandy headphones wireless over-ear audio" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.523787" data-date="1777581215" data-affiliate="true">
+  
+    <div class="deal-card__image">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  <img
+    src="https://m.media-amazon.com/images/I/61TuQdBSgsL._AC_SL1500_.jpg"
+    alt="Skullcandy Crusher Wireless Over-Ear Headphones"
+    class=""
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
+  >
+
+
+    </div>
+  
+  <div class="deal-card__body">
+    
+      <div class="deal-card__stack">
+        <h3 class="deal-card__title">Skullcandy Crusher Wireless Over-Ear Headphones</h3>
+        <div class="deal-card__divider"></div>
+        <div class="deal-card__price-row deal-card__price-row--compact">
+          
+            <span class="deal-card__sale">$99.99</span>
+          
+          
+            <span class="deal-card__list">$209.99</span>
+          
+          
+            <span class="deal-card__badge">-52%</span>
+          
+        </div>
+        <div class="deal-card__divider"></div>
+        <details class="deal-card__details">
+          <summary class="deal-card__details-toggle">More details</summary>
+          <div class="deal-card__details-body">
+            
+              <p class="deal-card__details-summary">Skullcandy Crusher wireless over-ear headphones at a steep discount on Amazon US.</p>
+            
+            
+              <div class="deal-card__tags">
+                <span class="deal-card__tag">#skullcandy</span><span class="deal-card__tag">#headphones</span><span class="deal-card__tag">#wireless</span>
+              </div>
+            
+          </div>
+        </details>
+        
+          <a class="deal-card__cta" href="https://www.amazon.com/Skullcandy-Crusher-Wireless-Over-Ear-Headphone/dp/B08FCGH2RL?pf_rd_r=MA5Q3C1A9DCVHJZGK8YC&amp;pf_rd_p=6ef39f86-5b70-4692-ad10-fb9a3559d265&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger-20&amp;linkId=f91dd69cf307adea236425cee2a675f1&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">View on Amazon</a>
+        
+      </div>
+    
+  </div>
+</article>
+
+      
+        
+
+
+
+  
+  
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="logitech g502 lightspeed wireless gaming mouse" data-summary="logitech g502 lightspeed wireless gaming mouse with a major markdown on amazon us." data-tags="logitech gaming mouse wireless lightspeed" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.400040" data-date="1777581215" data-affiliate="true">
+  
+    <div class="deal-card__image">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  <img
+    src="https://m.media-amazon.com/images/I/61-jAartdjL._AC_SL1500_.jpg"
+    alt="Logitech G502 Lightspeed Wireless Gaming Mouse"
+    class=""
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
+  >
+
+
+    </div>
+  
+  <div class="deal-card__body">
+    
+      <div class="deal-card__stack">
+        <h3 class="deal-card__title">Logitech G502 Lightspeed Wireless Gaming Mouse</h3>
+        <div class="deal-card__divider"></div>
+        <div class="deal-card__price-row deal-card__price-row--compact">
+          
+            <span class="deal-card__sale">$59.99</span>
+          
+          
+            <span class="deal-card__list">$99.99</span>
+          
+          
+            <span class="deal-card__badge">-40%</span>
+          
+        </div>
+        <div class="deal-card__divider"></div>
+        <details class="deal-card__details">
+          <summary class="deal-card__details-toggle">More details</summary>
+          <div class="deal-card__details-body">
+            
+              <p class="deal-card__details-summary">Logitech G502 Lightspeed wireless gaming mouse with a major markdown on Amazon US.</p>
+            
+            
+              <div class="deal-card__tags">
+                <span class="deal-card__tag">#logitech</span><span class="deal-card__tag">#gaming</span><span class="deal-card__tag">#mouse</span>
+              </div>
+            
+          </div>
+        </details>
+        
+          <a class="deal-card__cta" href="https://www.amazon.com/Logitech-Lightspeed-Lightsync-Compatible-Lightweight/dp/B07NSSPV9S?pf_rd_r=MA5Q3C1A9DCVHJZGK8YC&amp;pf_rd_p=6ef39f86-5b70-4692-ad10-fb9a3559d265&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger-20&amp;linkId=e145ff67470ea857d85ffb44e5b00ab2&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">View on Amazon</a>
+        
+      </div>
+    
+  </div>
+</article>
+
+      
+        
+
+
+
+  
+  
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="insignia 50-inch 4k uhd fire tv" data-summary="50-inch 4k fire tv deal for streaming and home entertainment setups." data-tags="tv 4k fire-tv insignia" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.400013" data-date="1777581215" data-affiliate="true">
   
     <div class="deal-card__image">
       
@@ -553,7 +797,7 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="logitech mx vertical wireless mouse" data-summary="ergonomic vertical wireless mouse designed to reduce wrist strain." data-tags="home office productivity accessories" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.375031" data-date="1776806062" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="logitech mx vertical wireless mouse" data-summary="ergonomic vertical wireless mouse designed to reduce wrist strain." data-tags="home office productivity accessories" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.375031" data-date="1777581215" data-affiliate="true">
   
     <div class="deal-card__image">
       
@@ -675,7 +919,129 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="hyperx cloud iii gaming headset" data-summary="wired hyperx cloud iii headset with clear mic pickup and multi-platform support." data-tags="audio gaming headset" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.350435" data-date="1777411766" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="lenovo all-in-one desktop computer" data-summary="lenovo all-in-one desktop setup with a deep price drop on amazon us." data-tags="lenovo desktop all-in-one computer" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.356705" data-date="1777581215" data-affiliate="true">
+  
+    <div class="deal-card__image">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  <img
+    src="https://m.media-amazon.com/images/I/819V7Y4UfWL._AC_SL1500_.jpg"
+    alt="Lenovo All-in-One Desktop Computer"
+    class=""
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
+  >
+
+
+    </div>
+  
+  <div class="deal-card__body">
+    
+      <div class="deal-card__stack">
+        <h3 class="deal-card__title">Lenovo All-in-One Desktop Computer</h3>
+        <div class="deal-card__divider"></div>
+        <div class="deal-card__price-row deal-card__price-row--compact">
+          
+            <span class="deal-card__sale">$899.97</span>
+          
+          
+            <span class="deal-card__list">$1399.00</span>
+          
+          
+            <span class="deal-card__badge">-36%</span>
+          
+        </div>
+        <div class="deal-card__divider"></div>
+        <details class="deal-card__details">
+          <summary class="deal-card__details-toggle">More details</summary>
+          <div class="deal-card__details-body">
+            
+              <p class="deal-card__details-summary">Lenovo all-in-one desktop setup with a deep price drop on Amazon US.</p>
+            
+            
+              <div class="deal-card__tags">
+                <span class="deal-card__tag">#lenovo</span><span class="deal-card__tag">#desktop</span><span class="deal-card__tag">#all-in-one</span>
+              </div>
+            
+          </div>
+        </details>
+        
+          <a class="deal-card__cta" href="https://www.amazon.com/Lenovo-Computer-Display-Bluetooth-Windows/dp/B0GSQC3QHS?pf_rd_r=MA5Q3C1A9DCVHJZGK8YC&amp;pf_rd_p=6ef39f86-5b70-4692-ad10-fb9a3559d265&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger-20&amp;linkId=4cc4e32fc6fdc4420fb854c17c38a0e6&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">View on Amazon</a>
+        
+      </div>
+    
+  </div>
+</article>
+
+      
+        
+
+
+
+  
+  
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="hyperx cloud iii gaming headset" data-summary="wired hyperx cloud iii headset with clear mic pickup and multi-platform support." data-tags="audio gaming headset" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.350435" data-date="1777581215" data-affiliate="true">
   
     <div class="deal-card__image">
       
@@ -797,7 +1163,129 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="opnice desk organizers and accessories" data-summary="desk organizer set deal for cleaner office workspace setups." data-tags="desk organizer office accessories" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.333444" data-date="1777411766" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="razer barracuda wireless headset" data-summary="razer barracuda wireless headset deal for gaming and cross-platform audio on amazon us." data-tags="razer headset wireless gaming audio" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.350035" data-date="1777581215" data-affiliate="true">
+  
+    <div class="deal-card__image">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  <img
+    src="https://m.media-amazon.com/images/I/71IaG27SmkL._AC_SL1500_.jpg"
+    alt="Razer Barracuda Wireless Headset"
+    class=""
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
+  >
+
+
+    </div>
+  
+  <div class="deal-card__body">
+    
+      <div class="deal-card__stack">
+        <h3 class="deal-card__title">Razer Barracuda Wireless Headset</h3>
+        <div class="deal-card__divider"></div>
+        <div class="deal-card__price-row deal-card__price-row--compact">
+          
+            <span class="deal-card__sale">$64.99</span>
+          
+          
+            <span class="deal-card__list">$99.99</span>
+          
+          
+            <span class="deal-card__badge">-35%</span>
+          
+        </div>
+        <div class="deal-card__divider"></div>
+        <details class="deal-card__details">
+          <summary class="deal-card__details-toggle">More details</summary>
+          <div class="deal-card__details-body">
+            
+              <p class="deal-card__details-summary">Razer Barracuda wireless headset deal for gaming and cross-platform audio on Amazon US.</p>
+            
+            
+              <div class="deal-card__tags">
+                <span class="deal-card__tag">#razer</span><span class="deal-card__tag">#headset</span><span class="deal-card__tag">#wireless</span>
+              </div>
+            
+          </div>
+        </details>
+        
+          <a class="deal-card__cta" href="https://www.amazon.com/Razer-Barracuda-Wireless-Headset-Playstation/dp/B09XZZQK6Q?pf_rd_r=MA5Q3C1A9DCVHJZGK8YC&amp;pf_rd_p=6ef39f86-5b70-4692-ad10-fb9a3559d265&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger-20&amp;linkId=f3b66bba02aaff19e968e59a384f45a6&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">View on Amazon</a>
+        
+      </div>
+    
+  </div>
+</article>
+
+      
+        
+
+
+
+  
+  
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="opnice desk organizers and accessories" data-summary="desk organizer set deal for cleaner office workspace setups." data-tags="desk organizer office accessories" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.333444" data-date="1777581215" data-affiliate="true">
   
     <div class="deal-card__image">
       
@@ -919,7 +1407,7 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="gianotter desk organizer" data-summary="compact desktop organizer for office accessories and stationery." data-tags="desk setup home office organization" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.320128" data-date="1776806062" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="gianotter desk organizer" data-summary="compact desktop organizer for office accessories and stationery." data-tags="desk setup home office organization" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.320128" data-date="1777581215" data-affiliate="true">
   
     <div class="deal-card__image">
       
@@ -1041,7 +1529,7 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="gigabyte b650 gaming x ax v2 motherboard" data-summary="am5 b650 motherboard deal for new ryzen desktop builds." data-tags="pc components gaming pc build" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.318196" data-date="1777411766" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="gigabyte b650 gaming x ax v2 motherboard" data-summary="am5 b650 motherboard deal for new ryzen desktop builds." data-tags="pc components gaming pc build" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.318196" data-date="1777471633" data-affiliate="true">
   
     <div class="deal-card__image">
       
@@ -1163,7 +1651,7 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="soundcore life q30 noise-cancelling headphones" data-summary="wireless over-ear anc headphones with strong battery life and comfort-first design." data-tags="audio headphones travel" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.300038" data-date="1776806062" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="soundcore life q30 noise-cancelling headphones" data-summary="wireless over-ear anc headphones with strong battery life and comfort-first design." data-tags="audio headphones travel" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.300038" data-date="1777581215" data-affiliate="true">
   
     <div class="deal-card__image">
       
@@ -1285,7 +1773,7 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="ingnok 15.6-inch fhd portable monitor" data-summary="15.6-inch portable fhd monitor for travel, remote work, and dual-screen setups." data-tags="monitor productivity portable" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.270000" data-date="1777411691" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="ingnok 15.6-inch fhd portable monitor" data-summary="15.6-inch portable fhd monitor for travel, remote work, and dual-screen setups." data-tags="monitor productivity portable" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.270000" data-date="1777581215" data-affiliate="true">
   
     <div class="deal-card__image">
       
@@ -1407,7 +1895,7 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="samsung essential 27-inch monitor" data-summary="27-inch samsung monitor deal for desk setups and everyday productivity use." data-tags="monitor home office productivity" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.266684" data-date="1777411766" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="samsung essential 27-inch monitor" data-summary="27-inch samsung monitor deal for desk setups and everyday productivity use." data-tags="monitor home office productivity" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.266684" data-date="1777581215" data-affiliate="true">
   
     <div class="deal-card__image">
       
@@ -1529,7 +2017,7 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="ray-ban meta wayfarer smart glasses" data-summary="ray-ban meta wayfarer smart glasses with camera capture and open-ear audio." data-tags="wearables audio camera" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.250000" data-date="1777411766" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="ray-ban meta wayfarer smart glasses" data-summary="ray-ban meta wayfarer smart glasses with camera capture and open-ear audio." data-tags="wearables audio camera" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.250000" data-date="1777575277" data-affiliate="true">
   
     <div class="deal-card__image">
       
@@ -1651,7 +2139,7 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="spacrea desk organizer set" data-summary="desk accessories organizer set for cleaner workspace storage." data-tags="desk setup home office organization" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.220073" data-date="1777411691" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="spacrea desk organizer set" data-summary="desk accessories organizer set for cleaner workspace storage." data-tags="desk setup home office organization" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.220073" data-date="1777581215" data-affiliate="true">
   
     <div class="deal-card__image">
       
@@ -1773,7 +2261,7 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="sceptre 27-inch fhd monitor" data-summary="27-inch fhd monitor deal for work and gaming setups." data-tags="monitor display fhd sceptre" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.203302" data-date="1777327008" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="sceptre 27-inch fhd monitor" data-summary="27-inch fhd monitor deal for work and gaming setups." data-tags="monitor display fhd sceptre" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.203302" data-date="1777575277" data-affiliate="true">
   
     <div class="deal-card__image">
       
@@ -1895,7 +2383,7 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="levoit core mini air purifier" data-summary="compact levoit air purifier deal for desks, bedrooms, and offices." data-tags="home air-purifier office levoit" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.200440" data-date="1777327072" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="levoit core mini air purifier" data-summary="compact levoit air purifier deal for desks, bedrooms, and offices." data-tags="home air-purifier office levoit" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.200440" data-date="1777581215" data-affiliate="true">
   
     <div class="deal-card__image">
       
@@ -2017,7 +2505,7 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="simple trending vertical file organizer" data-summary="vertical file organizer deal to tidy desk documents and folders." data-tags="desk organizer office files" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.189343" data-date="1777327008" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="simple trending vertical file organizer" data-summary="vertical file organizer deal to tidy desk documents and folders." data-tags="desk organizer office files" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.189343" data-date="1777581215" data-affiliate="true">
   
     <div class="deal-card__image">
       
@@ -2136,7 +2624,7 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="jbl vibe beam wireless earbuds" data-summary="jbl wireless earbuds listing for audio deals tracking." data-tags="audio earbuds wireless jbl" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="%!f(int=000000)" data-date="1777327072" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="jbl vibe beam wireless earbuds" data-summary="jbl wireless earbuds listing for audio deals tracking." data-tags="audio earbuds wireless jbl" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="%!f(int=000000)" data-date="1777581215" data-affiliate="true">
   
     <div class="deal-card__image">
       

@@ -13,7 +13,7 @@
       
     
     <meta name="description" content="Desk organizer set deal for cleaner office workspace setups.">
-    <meta name="generator" content="Hugo 0.161.0">
+    <meta name="generator" content="Hugo 0.161.1">
     
     
     
@@ -79,7 +79,7 @@
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://dealledger.eu/#organization","@type":"Organization","logo":"https://dealledger.eu/images/brand/deal-ledger-logo.svg","name":"Deal Ledger","url":"https://dealledger.eu/"},{"@id":"https://dealledger.eu/#website","@type":"WebSite","name":"Deal Ledger","potentialAction":{"@type":"SearchAction","query-input":"required name=search_term_string","target":"https://dealledger.eu/deals/?q={search_term_string}"},"publisher":{"@id":"https://dealledger.eu/#organization"},"url":"https://dealledger.eu/"}]}</script>
 
-<link rel="stylesheet" href="/styles/site.css?v=1777471634">
+<link rel="stylesheet" href="/styles/site.css?v=1777582189">
 
   </head><body class="ma0 avenir bg-near-white production is-page is-page page-opnice-desk-organizers-accessories">
     
@@ -118,7 +118,7 @@
     <div class="flex-l items-center nav-actions">
       <div class="nav-market">
         <select id="market-select" class="nav-market__select" name="market-select" aria-label="Select market">
-          <option value="eu" >EU</option>
+          <option value="ie" >IE</option>
           <option value="us" selected>US</option>
           <option value="de" >DE</option>
           <option value="nl" >NL</option>
@@ -191,7 +191,7 @@
         if (path === '/de' || path.startsWith('/de/')) return 'de';
         if (path === '/nl' || path.startsWith('/nl/')) return 'nl';
         if (path === '/fr' || path.startsWith('/fr/')) return 'fr';
-        return 'eu';
+        return 'ie';
       })();
       const cookieMap = (document.cookie || '')
         .split(';')
@@ -209,18 +209,18 @@
       marketSelect.value = marketFromPath;
 
       if (
-        marketFromPath === 'eu' &&
-        (cookieMap.market === 'us' || cookieMap.market === 'eu' || cookieMap.market === 'de' || cookieMap.market === 'nl' || cookieMap.market === 'fr')
+        marketFromPath === 'ie' &&
+        (cookieMap.market === 'us' || cookieMap.market === 'ie' || cookieMap.market === 'eu' || cookieMap.market === 'de' || cookieMap.market === 'nl' || cookieMap.market === 'fr')
       ) {
-        marketSelect.value = cookieMap.market;
+        marketSelect.value = cookieMap.market === 'eu' ? 'ie' : cookieMap.market;
       }
 
       marketSelect.addEventListener('change', () => {
-        const allowedMarkets = new Set(['eu', 'us', 'de', 'nl', 'fr']);
-        const targetMarket = allowedMarkets.has(marketSelect.value) ? marketSelect.value : 'eu';
+        const allowedMarkets = new Set(['ie', 'us', 'de', 'nl', 'fr']);
+        const targetMarket = allowedMarkets.has(marketSelect.value) ? marketSelect.value : 'ie';
         const secure = window.location.protocol === 'https:' ? '; Secure' : '';
         document.cookie = `market=${targetMarket}; Path=/; Max-Age=31536000; SameSite=Lax${secure}`;
-        const targetPath = targetMarket === 'eu' ? '/' : `/${targetMarket}/`;
+        const targetPath = targetMarket === 'ie' ? '/' : `/${targetMarket}/`;
         window.location.assign(`${window.location.origin}${targetPath}`);
       });
     }
@@ -362,10 +362,6 @@
     
   
   
-    <div class="deal-single__content">
-      <p>Amazon.com : OPNICE Desk Organizer and Accessories, 2-Tier Computer Monitor Stand Riser with Drawer and 2 Pen Holders, Laptop Stand, Office Desk Accessories for Office Supplies, Black : Office Products</p>
-    </div>
-  
 
   
     <div class="deal-single__tags">
@@ -434,7 +430,7 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="insignia 50-inch 4k uhd fire tv" data-summary="50-inch 4k fire tv deal for streaming and home entertainment setups." data-tags="tv 4k fire-tv insignia" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.400013" data-date="1777327072" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="lenovo all-in-one desktop computer" data-summary="lenovo all-in-one desktop setup with a deep price drop on amazon us." data-tags="lenovo desktop all-in-one computer" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.356705" data-date="1777581215" data-affiliate="true">
   
     <div class="deal-card__image">
       
@@ -451,8 +447,8 @@
 
 
   <img
-    src="https://m.media-amazon.com/images/I/81jLRWNrTXL._AC_SL1500_.jpg"
-    alt="INSIGNIA 50-inch 4K UHD Fire TV"
+    src="https://m.media-amazon.com/images/I/819V7Y4UfWL._AC_SL1500_.jpg"
+    alt="Lenovo All-in-One Desktop Computer"
     class=""
     loading="lazy"
     decoding="async"
@@ -466,14 +462,136 @@
   <div class="deal-card__body">
     
       <div class="deal-card__stack">
-        <h3 class="deal-card__title">INSIGNIA 50-inch 4K UHD Fire TV</h3>
+        <h3 class="deal-card__title">Lenovo All-in-One Desktop Computer</h3>
         <div class="deal-card__divider"></div>
         <div class="deal-card__price-row deal-card__price-row--compact">
           
-            <span class="deal-card__sale">$179.99</span>
+            <span class="deal-card__sale">$899.97</span>
           
           
-            <span class="deal-card__list">$299.99</span>
+            <span class="deal-card__list">$1399.00</span>
+          
+          
+            <span class="deal-card__badge">-36%</span>
+          
+        </div>
+        <div class="deal-card__divider"></div>
+        <details class="deal-card__details">
+          <summary class="deal-card__details-toggle">More details</summary>
+          <div class="deal-card__details-body">
+            
+              <p class="deal-card__details-summary">Lenovo all-in-one desktop setup with a deep price drop on Amazon US.</p>
+            
+            
+              <div class="deal-card__tags">
+                <span class="deal-card__tag">#lenovo</span><span class="deal-card__tag">#desktop</span><span class="deal-card__tag">#all-in-one</span>
+              </div>
+            
+          </div>
+        </details>
+        
+          <a class="deal-card__cta" href="https://www.amazon.com/Lenovo-Computer-Display-Bluetooth-Windows/dp/B0GSQC3QHS?pf_rd_r=MA5Q3C1A9DCVHJZGK8YC&amp;pf_rd_p=6ef39f86-5b70-4692-ad10-fb9a3559d265&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger-20&amp;linkId=4cc4e32fc6fdc4420fb854c17c38a0e6&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">View on Amazon</a>
+        
+      </div>
+    
+  </div>
+</article>
+
+        
+          
+
+
+
+  
+  
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="logitech g502 lightspeed wireless gaming mouse" data-summary="logitech g502 lightspeed wireless gaming mouse with a major markdown on amazon us." data-tags="logitech gaming mouse wireless lightspeed" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.400040" data-date="1777581215" data-affiliate="true">
+  
+    <div class="deal-card__image">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  <img
+    src="https://m.media-amazon.com/images/I/61-jAartdjL._AC_SL1500_.jpg"
+    alt="Logitech G502 Lightspeed Wireless Gaming Mouse"
+    class=""
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
+  >
+
+
+    </div>
+  
+  <div class="deal-card__body">
+    
+      <div class="deal-card__stack">
+        <h3 class="deal-card__title">Logitech G502 Lightspeed Wireless Gaming Mouse</h3>
+        <div class="deal-card__divider"></div>
+        <div class="deal-card__price-row deal-card__price-row--compact">
+          
+            <span class="deal-card__sale">$59.99</span>
+          
+          
+            <span class="deal-card__list">$99.99</span>
           
           
             <span class="deal-card__badge">-40%</span>
@@ -484,134 +602,17 @@
           <summary class="deal-card__details-toggle">More details</summary>
           <div class="deal-card__details-body">
             
-              <p class="deal-card__details-summary">50-inch 4K Fire TV deal for streaming and home entertainment setups.</p>
+              <p class="deal-card__details-summary">Logitech G502 Lightspeed wireless gaming mouse with a major markdown on Amazon US.</p>
             
             
               <div class="deal-card__tags">
-                <span class="deal-card__tag">#tv</span><span class="deal-card__tag">#4k</span><span class="deal-card__tag">#fire-tv</span>
+                <span class="deal-card__tag">#logitech</span><span class="deal-card__tag">#gaming</span><span class="deal-card__tag">#mouse</span>
               </div>
             
           </div>
         </details>
         
-          <a class="deal-card__cta" href="https://www.amazon.com/INSIGNIA-50-inch-4K-UHD-Fire-TV/dp/B0F19KLHG3?crid=XFBBBJ4DIZFH&amp;dib=eyJ2IjoiMSJ9.V_Q7md-IoYAkDUXE5AbzGzTT8sKZQVw6r_yKfZspyZ_Q_m4tWcMrlmk_m0FdmX_J3XMTO8QD0IDS0Oii5VoDfMomJfF4fL31E_EIp-9myF7Sudj_cOztIPEfiliqLqAa9Z2e5GPtRiiAh_vmnrcNqdiWGcqGljzmcyWxOeAa_u_lF-2xcBIijueVoOJOnBRT9vOtxW3ArR3bG7dChsHRGhr44q17Sn3HKaJGSiJMYGo.zUgUfWy0BVhcJBRjYJD7Yvv7Qu-aK4kH0A-r3h1kqLU&amp;dib_tag=se&amp;keywords=tv&amp;qid=1776879087&amp;sprefix=tv%2Caps%2C473&amp;sr=8-4&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger-20&amp;linkId=387aa4c0233308394006e140de011bc7&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">View on Amazon</a>
-        
-      </div>
-    
-  </div>
-</article>
-
-        
-          
-
-
-
-  
-  
-    
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="jbl vibe beam wireless earbuds" data-summary="jbl wireless earbuds listing for audio deals tracking." data-tags="audio earbuds wireless jbl" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="%!f(int=000000)" data-date="1777327072" data-affiliate="true">
-  
-    <div class="deal-card__image">
-      
-
-
-
-
-
-
-
-
-
-
-
-
-  <img
-    src="https://m.media-amazon.com/images/I/41&#43;1Csr1pSL._AC_SL1000_.jpg"
-    alt="JBL Vibe Beam Wireless Earbuds"
-    class=""
-    loading="lazy"
-    decoding="async"
-    fetchpriority="auto"
-    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
-  >
-
-
-    </div>
-  
-  <div class="deal-card__body">
-    
-      <div class="deal-card__stack">
-        <h3 class="deal-card__title">JBL Vibe Beam Wireless Earbuds</h3>
-        <div class="deal-card__divider"></div>
-        <div class="deal-card__price-row deal-card__price-row--compact">
-          
-            <span class="deal-card__sale">$29.95</span>
-          
-          
-            <span class="deal-card__list">$29.95</span>
-          
-          
-        </div>
-        <div class="deal-card__divider"></div>
-        <details class="deal-card__details">
-          <summary class="deal-card__details-toggle">More details</summary>
-          <div class="deal-card__details-body">
-            
-              <p class="deal-card__details-summary">JBL wireless earbuds listing for audio deals tracking.</p>
-            
-            
-              <div class="deal-card__tags">
-                <span class="deal-card__tag">#audio</span><span class="deal-card__tag">#earbuds</span><span class="deal-card__tag">#wireless</span>
-              </div>
-            
-          </div>
-        </details>
-        
-          <a class="deal-card__cta" href="https://www.amazon.com/JBL-Vibe-Beam-Wireless-Headphones/dp/B0BQPNMXQV?crid=82OYZKQD2MHT&amp;dib=eyJ2IjoiMSJ9.b_HRxBY07QXLABPCUNIjrmhDC-jZSBNOrOzhENy1XPM8sxdffeuhxSWH1zK9Q19vZU4_qlu2JjniLoY3i0zHBvKVlRnPvQXQXDngeTN35QIq2FAGL1XXS4HbR4i-akt08UTfBRVFtn2nU5GgwovHDeCgl9WIwIy9lsYG2vft7Us0YIez_UPw9NiOh-NcpYOzj89gcbXU2-zoqc89W5cy39F8hBpXbv4Uad3lJp9mu_2Ke0VfG9msFa_E4C5H-zfjnNnEJrCA873ZUo3VLmtrOC39g4AFNpwmzgrd14UbXQs.G85PaUeYrp84-EBDZf0-KbbCWqbeP8PBD16yYfRMZnY&amp;dib_tag=se&amp;keywords=audio&amp;qid=1776879036&amp;sprefix=aud%2Caps%2C352&amp;sr=8-3&amp;linkCode=ll2&amp;tag=dealledger-20&amp;linkId=9b0f194d8e1534db20b51ad2891e654e&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">View on Amazon</a>
+          <a class="deal-card__cta" href="https://www.amazon.com/Logitech-Lightspeed-Lightsync-Compatible-Lightweight/dp/B07NSSPV9S?pf_rd_r=MA5Q3C1A9DCVHJZGK8YC&amp;pf_rd_p=6ef39f86-5b70-4692-ad10-fb9a3559d265&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger-20&amp;linkId=e145ff67470ea857d85ffb44e5b00ab2&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">View on Amazon</a>
         
       </div>
     
@@ -673,7 +674,7 @@
   
   
 
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="levoit core mini air purifier" data-summary="compact levoit air purifier deal for desks, bedrooms, and offices." data-tags="home air-purifier office levoit" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.200440" data-date="1777327072" data-affiliate="true">
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="razer barracuda wireless headset" data-summary="razer barracuda wireless headset deal for gaming and cross-platform audio on amazon us." data-tags="razer headset wireless gaming audio" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.350035" data-date="1777581215" data-affiliate="true">
   
     <div class="deal-card__image">
       
@@ -690,8 +691,8 @@
 
 
   <img
-    src="https://m.media-amazon.com/images/I/71wGv7Fh2AL._AC_SL1500_.jpg"
-    alt="LEVOIT Core Mini Air Purifier"
+    src="https://m.media-amazon.com/images/I/71IaG27SmkL._AC_SL1500_.jpg"
+    alt="Razer Barracuda Wireless Headset"
     class=""
     loading="lazy"
     decoding="async"
@@ -705,17 +706,17 @@
   <div class="deal-card__body">
     
       <div class="deal-card__stack">
-        <h3 class="deal-card__title">LEVOIT Core Mini Air Purifier</h3>
+        <h3 class="deal-card__title">Razer Barracuda Wireless Headset</h3>
         <div class="deal-card__divider"></div>
         <div class="deal-card__price-row deal-card__price-row--compact">
           
-            <span class="deal-card__sale">$39.97</span>
+            <span class="deal-card__sale">$64.99</span>
           
           
-            <span class="deal-card__list">$49.99</span>
+            <span class="deal-card__list">$99.99</span>
           
           
-            <span class="deal-card__badge">-20%</span>
+            <span class="deal-card__badge">-35%</span>
           
         </div>
         <div class="deal-card__divider"></div>
@@ -723,17 +724,17 @@
           <summary class="deal-card__details-toggle">More details</summary>
           <div class="deal-card__details-body">
             
-              <p class="deal-card__details-summary">Compact LEVOIT air purifier deal for desks, bedrooms, and offices.</p>
+              <p class="deal-card__details-summary">Razer Barracuda wireless headset deal for gaming and cross-platform audio on Amazon US.</p>
             
             
               <div class="deal-card__tags">
-                <span class="deal-card__tag">#home</span><span class="deal-card__tag">#air-purifier</span><span class="deal-card__tag">#office</span>
+                <span class="deal-card__tag">#razer</span><span class="deal-card__tag">#headset</span><span class="deal-card__tag">#wireless</span>
               </div>
             
           </div>
         </details>
         
-          <a class="deal-card__cta" href="https://www.amazon.com/LEVOIT-Purifiers-Freshener-Core-Mini/dp/B09GTRVJQM?crid=N9HYL4M63OOF&amp;dib=eyJ2IjoiMSJ9.wDVrOeRu9cm5047VCAFoHIZEe4qeljJhUmypmr2MnTE.qiQybxod8vacfDdgeVNGwllRnKwT0KBuKostExhUxrs&amp;dib_tag=se&amp;keywords=office&amp;qid=1776878587&amp;sprefix=office%2B%2Caps%2C430&amp;sr=8-20&amp;xpid=aZWeNbVGevO43&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger-20&amp;linkId=4e9df5f7bca1a54d5e873ce344ac69c9&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">View on Amazon</a>
+          <a class="deal-card__cta" href="https://www.amazon.com/Razer-Barracuda-Wireless-Headset-Playstation/dp/B09XZZQK6Q?pf_rd_r=MA5Q3C1A9DCVHJZGK8YC&amp;pf_rd_p=6ef39f86-5b70-4692-ad10-fb9a3559d265&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger-20&amp;linkId=f3b66bba02aaff19e968e59a384f45a6&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">View on Amazon</a>
         
       </div>
     
