@@ -455,6 +455,27 @@ def send_email(to_email: str, subject: str, text_body: str, html_body: str, unsu
         smtp.sendmail(sender, [to_email], msg.as_string())
 
 
+def is_valid_email(value: str) -> bool:
+    email = (value or "").strip()
+    if not email or len(email) > 254:
+        return False
+    if email.count("@") != 1:
+        return False
+    local, domain = email.split("@", 1)
+    if not local or not domain:
+        return False
+    if ".." in local or ".." in domain:
+        return False
+    if local.startswith(".") or local.endswith("."):
+        return False
+    if domain.startswith(".") or domain.endswith("."):
+        return False
+    if "." not in domain:
+        return False
+    pattern = re.compile(r"^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)+$")
+    return bool(pattern.match(email))
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Send production-style signup-option email preview.")
     parser.add_argument("--to", required=True, help="Recipient email")
@@ -469,6 +490,9 @@ def main() -> None:
         help="Directory to write rendered preview files when --dry-run is set.",
     )
     args = parser.parse_args()
+    recipient = args.to.strip()
+    if not is_valid_email(recipient):
+        raise SystemExit(f"Invalid recipient email: {recipient}")
 
     site_base = (os.getenv("SITE_BASE_URL") or "https://dealledger.eu").strip()
     deals = load_deals()
@@ -476,12 +500,12 @@ def main() -> None:
     if not selected:
         raise SystemExit("No deals available for sample.")
 
-    unsubscribe_url = build_unsubscribe_page_url(site_base, args.to.strip())
+    unsubscribe_url = build_unsubscribe_page_url(site_base, recipient)
     subject = build_subject(args.type, args.query.strip(), len(selected))
     text_body = build_text(args.type, args.query.strip(), selected, site_base, unsubscribe_url)
     html_body = build_html(args.type, args.query.strip(), selected, site_base, unsubscribe_url)
     if args.dry_run:
-        print(f"[dry-run] rendered {args.type} email for {args.to.strip()} ({len(selected)} card(s))")
+        print(f"[dry-run] rendered {args.type} email for {recipient} ({len(selected)} card(s))")
         print(f"[dry-run] subject: {subject}")
         for deal in selected:
             print(f"[dry-run] card: {deal.title}")
@@ -498,8 +522,8 @@ def main() -> None:
             print(f"[dry-run] wrote html preview: {html_path}")
         return
 
-    send_email(args.to.strip(), subject, text_body, html_body, unsubscribe_url=unsubscribe_url)
-    print(f"[sent] {args.type} email -> {args.to.strip()} ({len(selected)} card(s))")
+    send_email(recipient, subject, text_body, html_body, unsubscribe_url=unsubscribe_url)
+    print(f"[sent] {args.type} email -> {recipient} ({len(selected)} card(s))")
 
 
 if __name__ == "__main__":

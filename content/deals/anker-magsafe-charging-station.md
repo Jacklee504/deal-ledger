@@ -2,8 +2,8 @@
 title = "Anker MagSafe Charging Station"
 date = 2026-04-14T14:00:00Z
 list_price = 109.90
-sale_price = 70.90
-discount_pct = 0.3549
+sale_price = 89.90
+discount_pct = 0.1819836215
 expires_at = 2026-09-30T23:59:00Z
 time_left = "2d"
 featured = false
@@ -14,9 +14,9 @@ summary = "Foldable MagSafe-compatible stand for multi-device charging."
 listing_url = "https://www.amazon.ie/dp/B0CFDPQXN4"
 listing_title = "Anker MagGo Power Bank, Qi2 Certified 15W Fast MagSafe Compatible Mobile Charger, 10,000mAh Battery, Smart Display & Foldable Stand, for iPhone 16/15/14/13, Includes USB-C Cable : Amazon.ie: Electronics"
 listing_summary = "Anker MagGo Power Bank, Qi2 Certified 15W Fast MagSafe Compatible Mobile Charger, 10,000mAh Battery, Smart Display & Foldable Stand, for iPhone 16/15/14/13, Includes USB-C Cable : Amazon.ie: Electronics"
-listing_sale_price = 74.9
+listing_sale_price = 89.9
 listing_list_price = 109.90
-listing_discount_pct = 0.3549
+listing_discount_pct = 0.1819836215
 listing_image = "https://m.media-amazon.com/images/I/61DzAk62YOL._AC_SL1500_.jpg"
 listing_synced_at = "2026-04-30T20:33:05.510242+00:00"
 +++

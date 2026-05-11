@@ -1,9 +1,9 @@
 +++
 title = "Compact mechanical keyboard"
 date = 2026-03-25T12:00:00Z
-list_price = 249.99
-sale_price = 149.99
-discount_pct = 0.40
+list_price = 84.99
+sale_price = 51.99
+discount_pct = 0.3883986351
 expires_at = 2026-09-08T23:59:00Z
 time_left = "5d"
 featured = false
@@ -14,9 +14,9 @@ summary = "Full-size RGB keyboard with media controls."
 listing_url = "https://www.amazon.ie/dp/B01L6L451Q"
 listing_title = "Logitech G G213 Prodigy Gaming Keyboard, LIGHTSYNC RGB Backlit Keys, Spill-Resistant, Customizable Keys, Dedicated Multi-Media Keys, QWERTY UK Layout - Black : Amazon.ie: Electronics"
 listing_summary = "Logitech G G213 Prodigy Gaming Keyboard, LIGHTSYNC RGB Backlit Keys, Spill-Resistant, Customizable Keys, Dedicated Multi-Media Keys, QWERTY UK Layout - Black : Amazon.ie: Electronics"
-listing_sale_price = 43.8
+listing_sale_price = 51.99
 listing_list_price = 84.99
-listing_discount_pct = 0.39
+listing_discount_pct = 0.3883986351
 listing_synced_at = "2026-04-30T20:33:05.510242+00:00"
 listing_image = "https://m.media-amazon.com/images/I/61Nt8geXzWL._AC_SL1500_.jpg"
 aliases = ["/deals/mechanical-keyboard/"]
