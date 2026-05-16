@@ -240,8 +240,9 @@ def pick_deals(
         deals = [d for d in deals if d.created_at is not None and d.created_at >= cutoff]
 
     q = normalize(query)
+    ranked_deals = sorted(deals, key=lambda d: d.discount_pct, reverse=True)
     if sample_type == "weekly_digest":
-        return sorted(deals, key=lambda d: d.discount_pct, reverse=True)[:4]
+        return ranked_deals
 
     # category
     if sample_type == "category":
@@ -256,8 +257,8 @@ def pick_deals(
             if not terms or any(term in hay for term in terms):
                 matched.append(d)
         if matched:
-            return sorted(matched, key=lambda d: d.discount_pct, reverse=True)[:4]
-        return sorted(deals, key=lambda d: d.discount_pct, reverse=True)[:4]
+            return sorted(matched, key=lambda d: d.discount_pct, reverse=True)
+        return ranked_deals
 
     # keyword
     matched = []
@@ -266,8 +267,8 @@ def pick_deals(
         if q and q in hay:
             matched.append(d)
     if matched:
-        return sorted(matched, key=lambda d: d.discount_pct, reverse=True)[:4]
-    return sorted(deals, key=lambda d: d.discount_pct, reverse=True)[:4]
+        return sorted(matched, key=lambda d: d.discount_pct, reverse=True)
+    return ranked_deals
 
 
 def build_subject(sample_type: str, query: str, deal_count: int) -> str:
