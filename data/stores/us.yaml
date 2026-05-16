@@ -2,6 +2,11 @@ market: us
 label: US
 locale: en
 deals:
+  - /deals/acer-wireless-computer-mouse/
+  - /deals/amazon-echo-show-5-glacier-white/
+  - /deals/apple-airpods-pro-noise-cancellation-headphones/
+  - /deals/beats-solo-4-wireless-headphones/
+  - /deals/huanuo-dual-monitor-stand-adjustable/
   - /deals/lenovo-all-in-one-desktop-b0gsqc3qhs/
   - /deals/gianotter-desk-organizer/
   - /deals/gigabyte-b650-gaming-x-ax-v2-motherboard/
@@ -10,9 +15,11 @@ deals:
   - /deals/insignia-50-inch-4k-fire-tv/
   - /deals/jbl-vibe-beam-wireless-earbuds/
   - /deals/kaigerr-15-6-inch-gaming-laptop/
+  - /deals/lg-ultragear-32gx850a-oled-monitor/
   - /deals/levoit-core-mini-air-purifier/
   - /deals/logitech-g502-lightspeed-wireless-gaming-mouse-b07nsspv9s/
   - /deals/logitech-mx-vertical-wireless-mouse/
+  - /deals/multiple-display-hdmi-splitter-laptop-extender/
   - /deals/opnice-desk-organizers-accessories/
   - /deals/razer-barracuda-wireless-headset-b09xzzqk6q/
   - /deals/ray-ban-meta-wayfarer-smart-glasses/
@@ -22,3 +29,5 @@ deals:
   - /deals/simple-trending-vertical-file-organizer/
   - /deals/soundcore-life-q30-noise-cancelling-headphones/
   - /deals/spacrea-desk-organizer-set/
+  - /deals/uni-usb-c-to-hdmi-cable/
+  - /deals/wali-monitor-stand-riser/
