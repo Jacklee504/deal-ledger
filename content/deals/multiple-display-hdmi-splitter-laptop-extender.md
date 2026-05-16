@@ -14,9 +14,9 @@ listing_sale_price = 12.04
 listing_list_price = 14.99
 listing_discount_pct = 0.333556
 listing_title = "Amazon.com: Acer USB Hub 4 Ports, Multiple USB 3.0 Hub, USBA Splitter for Laptop with Type C Power Port, Extender for A Port Laptop, PC, Desktop and More (2ft) : Electronics"
-listing_summary = "Amazon.com: Acer USB Hub 4 Ports, Multiple USB 3.0 Hub, USBA Splitter for Laptop with Type C Power Port, Extender for A Port Laptop, PC, Desktop and More (2ft) : Electronics"
+listing_summary = ""
 listing_image = "https://m.media-amazon.com/images/I/61FFBZwEvtL._AC_SL1500_.jpg"
-listing_synced_at = "2026-05-16T16:01:11.479844+00:00"
+listing_synced_at = "2026-05-16T16:30:26.435381+00:00"
 +++
 
 Small USB hub for adding extra ports to laptop and desktop setups.

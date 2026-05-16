@@ -14,9 +14,9 @@ listing_sale_price = 13.99
 listing_list_price = 15.99
 listing_discount_pct = 0.125078
 listing_title = "Amazon.com: uni USB C to HDMI Cable for Home Office 6ft (4K@60Hz), USB Type C to HDMI Cable, Thunderbolt 4/3 Compatible with iPhone 15 Pro/Max, MacBook Pro/Air 2023, iPad Pro, Surface Book 2, Galaxy S24 : Electronics"
-listing_summary = "Amazon.com: uni USB C to HDMI Cable for Home Office 6ft (4K@60Hz), USB Type C to HDMI Cable, Thunderbolt 4/3 Compatible with iPhone 15 Pro/Max, MacBook Pro/Air 2023, iPad Pro, Surface Book 2, Galaxy S24 : Electronics"
+listing_summary = ""
 listing_image = "https://m.media-amazon.com/images/I/51tn8u+plcL._AC_SL1200_.jpg"
-listing_synced_at = "2026-05-16T16:01:11.479844+00:00"
+listing_synced_at = "2026-05-16T16:30:26.435381+00:00"
 +++
 
 Handy display cable for MacBook, Surface, and other USB-C devices.

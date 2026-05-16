@@ -14,9 +14,9 @@ listing_sale_price = 59.99
 listing_list_price = 69.99
 listing_discount_pct = 0.142878
 listing_title = "Amazon.com: HUANUO FlowLift™ Dual Monitor Stand, Fully Adjustable Gaming Monitor Desk Mount for 13–32″ Computer Screens, Full Motion VESA 75x75/100x100 with C-Clamp & Grommet Base, Each Arm Holds 4.4 to 19.8 lbs : Electronics"
-listing_summary = "Amazon.com: HUANUO FlowLift™ Dual Monitor Stand, Fully Adjustable Gaming Monitor Desk Mount for 13–32″ Computer Screens, Full Motion VESA 75x75/100x100 with C-Clamp & Grommet Base, Each Arm Holds 4.4 to 19.8 lbs : Electr"
+listing_summary = ""
 listing_image = "https://m.media-amazon.com/images/I/7182jSFV25L._AC_SL1500_.jpg"
-listing_synced_at = "2026-05-16T16:01:11.479844+00:00"
+listing_synced_at = "2026-05-16T16:30:26.435381+00:00"
 +++
 
 Dual monitor mount for raising screens and freeing desk space.

@@ -10,13 +10,13 @@ tags = ["audio", "apple", "earbuds"]
 categories = ["electronics"]
 summary = "Apple AirPods Pro 3 wireless earbuds with active noise cancellation and USB-C charging."
 listing_url = "https://www.amazon.com/dp/B0FQFB8FMG"
-listing_sale_price = 149.00
+listing_sale_price = 229
 listing_list_price = 229.00
 listing_discount_pct = 0.349345
 listing_title = "Amazon.com: Apple AirPods Pro 3 Wireless Earbuds, Active Noise Cancellation, Live Translation, Heart Rate Sensing, Hearing Aid Feature, Bluetooth Headphones, Spatial Audio, High-Fidelity Sound, USB-C Charging : Electronics"
 listing_summary = "Buy Apple AirPods Pro 3 Wireless Earbuds, Active Noise Cancellation, Live Translation, Heart Rate Sensing, Hearing Aid Feature, Bluetooth Headphones, Spatial Audio, High-Fidelity Sound, USB-C Charging: Earbud Headphones "
 listing_image = "https://m.media-amazon.com/images/I/61solmQSSlL._AC_SL1500_.jpg"
-listing_synced_at = "2026-05-16T16:01:11.479844+00:00"
+listing_synced_at = "2026-05-16T16:30:26.435381+00:00"
 +++
 
 Apple wireless earbuds for noise cancellation, spatial audio, and everyday listening.

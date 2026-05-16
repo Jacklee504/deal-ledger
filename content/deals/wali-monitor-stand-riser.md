@@ -14,9 +14,9 @@ listing_sale_price = 9.99
 listing_list_price = 14.99
 listing_discount_pct = 0.333556
 listing_title = "Amazon.com: WALI Computer Monitor Stand for Desk, Adjustable Laptop Riser, Desk Monitor Stand Underneath Storage for Office, Home, School Supplies (STT003), 1 Pack, Black : Electronics"
-listing_summary = "Amazon.com: WALI Computer Monitor Stand for Desk, Adjustable Laptop Riser, Desk Monitor Stand Underneath Storage for Office, Home, School Supplies (STT003), 1 Pack, Black : Electronics"
+listing_summary = ""
 listing_image = "https://m.media-amazon.com/images/I/51kULJHh4BL._AC_SL1500_.jpg"
-listing_synced_at = "2026-05-16T16:01:11.479844+00:00"
+listing_synced_at = "2026-05-16T16:30:26.435381+00:00"
 +++
 
 Simple monitor stand for lifting a screen and reclaiming desk storage space.

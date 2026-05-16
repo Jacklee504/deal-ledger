@@ -11,12 +11,12 @@ categories = ["electronics", "gamen"]
 summary = "Elgato Stream Deck MK.2-controller voor streaming en workflow-snelkoppelingen met korting."
 listing_url = "https://www.amazon.nl/dp/B09738CV2G"
 listing_title = "Elgato Stream Deck MK.2 – Studio controller, 15 macro keys, launches actions in apps and software like OBS, Twitch, YouTube and more, works with Mac and PC : Amazon.nl: Musical Instruments & DJ"
-listing_summary = ""
-listing_sale_price = 129
+listing_summary = "Elgato Stream Deck MK.2 – Studio controller, 15 macro keys, launches actions in apps and software like OBS, Twitch, YouTube and more, works with Mac and PC : Amazon.nl: Musical Instruments & DJ"
+listing_sale_price = 123
 listing_list_price = 169.99
 listing_discount_pct = 0.24
 listing_image = "https://m.media-amazon.com/images/I/61gtdFnK+UL._AC_SL1500_.jpg"
-listing_synced_at = "2026-05-11T20:51:59.803995+00:00"
+listing_synced_at = "2026-05-16T16:30:26.435381+00:00"
 +++
 
 Elgato Stream Deck deal on Amazon NL.
