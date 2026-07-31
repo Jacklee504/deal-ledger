@@ -32,6 +32,10 @@ SERPAPI_URL = "https://serpapi.com/search.json"
 BRIGHTDATA_BASE_URL = "https://api.brightdata.com/datasets/v3"
 REQUIRED_ENVS = ("SERPAPI_API_KEY", "BRIGHTDATA_API_TOKEN", "BRIGHTDATA_DATASET_ID")
 ASIN_PATTERN = re.compile(r"\b([A-Z0-9]{10})\b", re.IGNORECASE)
+# Bright Data's Amazon UK responses currently label pounds as "GPB". Preserve
+# the raw value in reports, but normalize this known provider typo before the
+# ISO-currency policy check.
+CURRENCY_ALIASES = {"GPB": "GBP"}
 
 
 class ProviderError(RuntimeError):
@@ -224,7 +228,8 @@ def verified_record(record: dict[str, Any], *, marketplace: str, currency: str,
                     minimum_sale_price: float = 20.0) -> tuple[dict[str, Any] | None, str | None]:
     url = str(record.get("url") or "")
     domain = str(record.get("domain") or "")
-    record_currency = str(record.get("currency") or "").upper()
+    source_currency = str(record.get("currency") or "").upper()
+    record_currency = CURRENCY_ALIASES.get(source_currency, source_currency)
     asin = extract_asin(record.get("asin"), url)
     title = str(record.get("title") or "").strip()
     final_price = parse_price(record.get("final_price"))
@@ -262,6 +267,7 @@ def verified_record(record: dict[str, Any], *, marketplace: str, currency: str,
         "reference_price": initial_price,
         "discount_pct": discount_pct,
         "currency": record_currency,
+        "source_currency": source_currency,
         "available": available,
         "buybox_seller": seller,
         "image_url": record.get("image_url") or record.get("image") or "",

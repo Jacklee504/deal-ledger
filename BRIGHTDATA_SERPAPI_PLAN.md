@@ -72,6 +72,10 @@ URL from `amazon.co.uk` returns `domain` equal to `https://www.amazon.co.uk/` an
 `currency` equal to `GBP`. The code will reject any other market/currency even if a
 provider returns it.
 
+Bright Data currently returns the known typo `GPB` for some Amazon UK records. The
+intake normalizes only that value to the ISO code `GBP`, retains the raw value in
+its report, and continues to reject every other unexpected currency.
+
 ## Proposed Repository Changes
 
 | Path | Change |
