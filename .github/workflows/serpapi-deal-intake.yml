@@ -1,0 +1,49 @@
+name: SerpApi and Bright Data deal-intake dry run
+
+on:
+  workflow_dispatch:
+    inputs:
+      max_queries:
+        description: "Amazon UK keyword searches to run (safe maximum is 1 for dry runs)"
+        required: true
+        default: "1"
+        type: string
+      max_products:
+        description: "Candidate product URLs to verify with Bright Data (safe maximum is 3)"
+        required: true
+        default: "3"
+        type: string
+
+jobs:
+  dry-run:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Discover and verify candidate deals without writing
+        env:
+          SERPAPI_API_KEY: ${{ secrets.SERPAPI_API_KEY }}
+          BRIGHTDATA_API_TOKEN: ${{ secrets.BRIGHTDATA_API_TOKEN }}
+          BRIGHTDATA_DATASET_ID: ${{ vars.BRIGHTDATA_DATASET_ID }}
+        run: |
+          python scripts/fetch_deals_serpapi.py \
+            --dry-run \
+            --max-queries "${{ inputs.max_queries }}" \
+            --max-products "${{ inputs.max_products }}" \
+            --report-out "${RUNNER_TEMP}/serpapi-brightdata-dry-run.json"
+
+      - name: Upload redacted dry-run report
+        uses: actions/upload-artifact@v4
+        with:
+          name: serpapi-brightdata-dry-run
+          path: ${{ runner.temp }}/serpapi-brightdata-dry-run.json
+          if-no-files-found: error

@@ -7,6 +7,27 @@ Static Hugo deals site with:
 
 ## Current workflow
 
+### Amazon UK discovery and verification dry run (manual only)
+
+`scripts/fetch_deals_serpapi.py` is a non-writing dry-run bridge between
+SerpApi and Bright Data:
+
+- SerpApi searches configured Amazon UK keywords for candidate ASINs/URLs.
+- Bright Data verifies the resulting clean product URLs and returns the current
+  product snapshot.
+- The run writes no drafts, affiliate links, commits, or emails. It uploads a
+  redacted report as a GitHub Actions artifact.
+
+Required GitHub Actions secrets and variable:
+
+- `SERPAPI_API_KEY` (secret)
+- `BRIGHTDATA_API_TOKEN` (secret)
+- `BRIGHTDATA_DATASET_ID` (repository variable)
+
+Run **SerpApi and Bright Data deal-intake dry run** from the Actions tab with the
+default limits of one keyword search and three product checks. Inspect the artifact
+before enabling any future draft-writing or scheduled mode.
+
 ### 1) Fetch candidate deals (not live)
 `scripts/fetch_deals.py` pulls seeded ASINs and writes candidates to:
 - `review-queue/deals/*.md`

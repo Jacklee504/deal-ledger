@@ -1,0 +1,23 @@
+{
+  "marketplace": "amazon.co.uk",
+  "currency": "GBP",
+  "keywords": [
+    "wireless noise cancelling headphones",
+    "mechanical keyboard",
+    "robot vacuum",
+    "air fryer",
+    "gaming monitor",
+    "portable monitor"
+  ],
+  "limits": {
+    "max_serpapi_queries_per_run": 6,
+    "max_brightdata_products_per_run": 15
+  },
+  "policy": {
+    "minimum_discount_pct": 20,
+    "minimum_sale_price": 20,
+    "trusted_seller_terms": [
+      "amazon"
+    ]
+  }
+}

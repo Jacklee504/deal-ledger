@@ -1,6 +1,7 @@
 public/
 review-queue/
 content/deals-review/generated/
+/Media/
 .env
 .env.*
 __pycache__/
