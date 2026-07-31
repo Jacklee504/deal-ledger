@@ -304,6 +304,8 @@ def main() -> int:
         raise ProviderError("No discovery keywords are configured")
 
     report: dict[str, Any] = {
+        "schema_version": "2026-07-31-brightdata-verification-v2",
+        "code_revision": os.getenv("GITHUB_SHA", "local-run"),
         "mode": "dry-run",
         "generated_at": utc_now(),
         "marketplace": marketplace,
