@@ -153,12 +153,13 @@ def discovery_candidate(result: dict[str, Any], *, keyword: str, marketplace: st
         return None, "missing current price"
     if sale_price < minimum_sale_price:
         return None, "below minimum sale price"
-    if reference_price is None or reference_price <= sale_price:
-        return None, "no valid displayed reference price"
-
-    discount = 1 - (sale_price / reference_price)
-    if discount < minimum_discount:
-        return None, "below minimum displayed discount"
+    # Amazon search results often omit a reference price even when the product
+    # page has one. Bright Data is the authoritative verification step, so do
+    # not spend the entire verification budget only on results with this
+    # optional search-result field.
+    discount = None
+    if reference_price is not None and reference_price > sale_price:
+        discount = 1 - (sale_price / reference_price)
 
     return {
         "asin": asin,
@@ -167,7 +168,7 @@ def discovery_candidate(result: dict[str, Any], *, keyword: str, marketplace: st
         "url": clean_amazon_url(asin, marketplace),
         "serpapi_sale_price": sale_price,
         "serpapi_reference_price": reference_price,
-        "serpapi_discount_pct": round(discount * 100, 2),
+        "serpapi_discount_pct": round(discount * 100, 2) if discount is not None else None,
     }, None
 
 
@@ -219,7 +220,8 @@ def brightdata_verify(token: str, dataset_id: str, urls: list[str], *, timeout_s
 
 
 def verified_record(record: dict[str, Any], *, marketplace: str, currency: str,
-                    trusted_seller_terms: list[str]) -> tuple[dict[str, Any] | None, str | None]:
+                    trusted_seller_terms: list[str], minimum_discount: float = 0.20,
+                    minimum_sale_price: float = 20.0) -> tuple[dict[str, Any] | None, str | None]:
     url = str(record.get("url") or "")
     domain = str(record.get("domain") or "")
     record_currency = str(record.get("currency") or "").upper()
@@ -240,12 +242,17 @@ def verified_record(record: dict[str, Any], *, marketplace: str, currency: str,
         return None, "not available"
     if final_price is None:
         return None, "missing final price"
+    if final_price < minimum_sale_price:
+        return None, "below minimum sale price"
     if not seller or not any(term.lower() in seller.lower() for term in trusted_seller_terms):
         return None, "buy-box seller is not trusted"
 
-    discount_pct = None
-    if initial_price and initial_price > final_price:
-        discount_pct = round((1 - (final_price / initial_price)) * 100, 2)
+    if initial_price is None or initial_price <= final_price:
+        return None, "no valid Bright Data reference price"
+    discount = 1 - (final_price / initial_price)
+    if discount < minimum_discount:
+        return None, "below minimum verified discount"
+    discount_pct = round(discount * 100, 2)
 
     return {
         "asin": asin,
@@ -344,6 +351,8 @@ def main() -> int:
             marketplace=marketplace,
             currency=currency,
             trusted_seller_terms=trusted_seller_terms,
+            minimum_discount=minimum_discount,
+            minimum_sale_price=minimum_sale_price,
         )
         if normalized:
             report["verification"]["accepted"].append(normalized)

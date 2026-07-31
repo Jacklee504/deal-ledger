@@ -121,10 +121,12 @@ true:
 
 - it is not an `amazon.co.uk` result;
 - it has no ASIN, no current price, or no title;
-- it has no displayed reduction/reference price;
-- its calculated/displayed reduction is below the configured threshold;
 - its ASIN has already been queued or rejected within the dedupe window;
 - it does not match an allowed category/keyword policy.
+
+Amazon search results often omit comparison-price information. That is not a
+discovery-stage rejection: the result may consume one Bright Data verification
+record, where the full product-page price and reference-price policy is applied.
 
 Initial throughput: at most 6 SerpApi searches and 15 Bright Data product checks per
 day. Limits belong in configuration, not source code.
@@ -140,7 +142,8 @@ Submit the clean URLs to Bright Data as one asynchronous batch. The client will:
 5. normalize the verified fields used by the queue and history.
 
 The job will fail closed if Bright Data returns the wrong marketplace, a non-GBP
-currency, missing availability, missing final price, or a malformed ASIN/URL.
+currency, missing availability, missing final price/reference price, an insufficient
+verified reduction, an untrusted buy-box seller, or a malformed ASIN/URL.
 
 ### 4. Local verification policy
 
