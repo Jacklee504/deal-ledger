@@ -1,89 +1,94 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Categories on Deal Ledger</title>
-    <link>https://dealledger.eu/categories/</link>
-    <description>Recent content in Categories on Deal Ledger</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sat, 16 May 2026 16:31:39 +0000</lastBuildDate>
-    <atom:link href="https://dealledger.eu/categories/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Electronics</title>
-      <link>https://dealledger.eu/categories/electronics/</link>
-      <pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
-      <guid>https://dealledger.eu/categories/electronics/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Audio</title>
-      <link>https://dealledger.eu/categories/audio/</link>
-      <pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/categories/audio/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Computers</title>
-      <link>https://dealledger.eu/categories/computers/</link>
-      <pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/categories/computers/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Gaming</title>
-      <link>https://dealledger.eu/categories/gaming/</link>
-      <pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/categories/gaming/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Home</title>
-      <link>https://dealledger.eu/categories/home/</link>
-      <pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/categories/home/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Mobile</title>
-      <link>https://dealledger.eu/categories/mobile/</link>
-      <pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/categories/mobile/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Monitors</title>
-      <link>https://dealledger.eu/categories/monitors/</link>
-      <pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/categories/monitors/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Office</title>
-      <link>https://dealledger.eu/categories/office/</link>
-      <pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/categories/office/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Productivity</title>
-      <link>https://dealledger.eu/categories/productivity/</link>
-      <pubDate>Mon, 27 Apr 2026 20:54:00 +0000</pubDate>
-      <guid>https://dealledger.eu/categories/productivity/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Gamen</title>
-      <link>https://dealledger.eu/categories/gamen/</link>
-      <pubDate>Mon, 27 Apr 2026 19:12:00 +0000</pubDate>
-      <guid>https://dealledger.eu/categories/gamen/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Home_office</title>
-      <link>https://dealledger.eu/categories/home_office/</link>
-      <pubDate>Mon, 27 Apr 2026 12:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/categories/home_office/</guid>
-      <description></description>
-    </item>
-  </channel>
+	<channel>
+		<title>Categories on Deal Ledger</title>
+		<link>https://dealledger.eu/categories/</link>
+		<description>Recent content in Categories on Deal Ledger</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Sat, 16 May 2026 16:31:39 +0000</lastBuildDate>
+		
+			<atom:link href="https://dealledger.eu/categories/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Electronics</title>
+				<link>https://dealledger.eu/categories/electronics/</link>
+				<pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
+				<guid>https://dealledger.eu/categories/electronics/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Audio</title>
+				<link>https://dealledger.eu/categories/audio/</link>
+				<pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/categories/audio/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Computers</title>
+				<link>https://dealledger.eu/categories/computers/</link>
+				<pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/categories/computers/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Gaming</title>
+				<link>https://dealledger.eu/categories/gaming/</link>
+				<pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/categories/gaming/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Home</title>
+				<link>https://dealledger.eu/categories/home/</link>
+				<pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/categories/home/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Mobile</title>
+				<link>https://dealledger.eu/categories/mobile/</link>
+				<pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/categories/mobile/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Monitors</title>
+				<link>https://dealledger.eu/categories/monitors/</link>
+				<pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/categories/monitors/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Office</title>
+				<link>https://dealledger.eu/categories/office/</link>
+				<pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/categories/office/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Productivity</title>
+				<link>https://dealledger.eu/categories/productivity/</link>
+				<pubDate>Mon, 27 Apr 2026 20:54:00 +0000</pubDate>
+				<guid>https://dealledger.eu/categories/productivity/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Gamen</title>
+				<link>https://dealledger.eu/categories/gamen/</link>
+				<pubDate>Mon, 27 Apr 2026 19:12:00 +0000</pubDate>
+				<guid>https://dealledger.eu/categories/gamen/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Home_office</title>
+				<link>https://dealledger.eu/categories/home_office/</link>
+				<pubDate>Mon, 27 Apr 2026 12:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/categories/home_office/</guid>
+				<description></description>
+			</item>
+	</channel>
 </rss>

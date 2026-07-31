@@ -1,82 +1,87 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Home Office on Deal Ledger</title>
-    <link>https://dealledger.eu/tags/home-office/</link>
-    <description>Recent content in Home Office on Deal Ledger</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sat, 16 May 2026 16:31:39 +0000</lastBuildDate>
-    <atom:link href="https://dealledger.eu/tags/home-office/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>HUANUO Dual Monitor Stand</title>
-      <link>https://dealledger.eu/deals/huanuo-dual-monitor-stand-adjustable/</link>
-      <pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
-      <guid>https://dealledger.eu/deals/huanuo-dual-monitor-stand-adjustable/</guid>
-      <description>Adjustable dual monitor arm for cleaner home office desk setups.</description>
-    </item>
-    <item>
-      <title>uni USB-C to HDMI Cable</title>
-      <link>https://dealledger.eu/deals/uni-usb-c-to-hdmi-cable/</link>
-      <pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
-      <guid>https://dealledger.eu/deals/uni-usb-c-to-hdmi-cable/</guid>
-      <description>USB-C to HDMI cable for connecting laptops and tablets to external displays.</description>
-    </item>
-    <item>
-      <title>WALI Monitor Stand Riser</title>
-      <link>https://dealledger.eu/deals/wali-monitor-stand-riser/</link>
-      <pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
-      <guid>https://dealledger.eu/deals/wali-monitor-stand-riser/</guid>
-      <description>Budget monitor riser with space underneath for desk supplies.</description>
-    </item>
-    <item>
-      <title>Bureau assis-debout électrique SONGMICS</title>
-      <link>https://dealledger.eu/deals/songmics-electric-standing-desk-fr/</link>
-      <pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/deals/songmics-electric-standing-desk-fr/</guid>
-      <description>Bureau assis-debout électrique SONGMICS avec réduction sur Amazon FR.</description>
-    </item>
-    <item>
-      <title>Bureau Rolanstar avec rangement</title>
-      <link>https://dealledger.eu/deals/rolanstar-desk-with-storage-fr/</link>
-      <pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/deals/rolanstar-desk-with-storage-fr/</guid>
-      <description>Bureau Rolanstar avec rangement à prix promo sur Amazon FR.</description>
-    </item>
-    <item>
-      <title>gianotter Desk Organizer</title>
-      <link>https://dealledger.eu/deals/gianotter-desk-organizer/</link>
-      <pubDate>Thu, 16 Apr 2026 20:36:00 +0000</pubDate>
-      <guid>https://dealledger.eu/deals/gianotter-desk-organizer/</guid>
-      <description>Compact desktop organizer for office accessories and stationery.</description>
-    </item>
-    <item>
-      <title>Spacrea Desk Organizer Set</title>
-      <link>https://dealledger.eu/deals/spacrea-desk-organizer-set/</link>
-      <pubDate>Thu, 16 Apr 2026 20:35:00 +0000</pubDate>
-      <guid>https://dealledger.eu/deals/spacrea-desk-organizer-set/</guid>
-      <description>Desk accessories organizer set for cleaner workspace storage.</description>
-    </item>
-    <item>
-      <title>Logitech MX Vertical Wireless Mouse</title>
-      <link>https://dealledger.eu/deals/logitech-mx-vertical-wireless-mouse/</link>
-      <pubDate>Thu, 16 Apr 2026 20:15:00 +0000</pubDate>
-      <guid>https://dealledger.eu/deals/logitech-mx-vertical-wireless-mouse/</guid>
-      <description>Ergonomic vertical wireless mouse designed to reduce wrist strain.</description>
-    </item>
-    <item>
-      <title>Samsung Essential 27-inch Monitor</title>
-      <link>https://dealledger.eu/deals/samsung-essential-27-inch-monitor/</link>
-      <pubDate>Thu, 16 Apr 2026 20:11:00 +0000</pubDate>
-      <guid>https://dealledger.eu/deals/samsung-essential-27-inch-monitor/</guid>
-      <description>27-inch Samsung monitor deal for desk setups and everyday productivity use.</description>
-    </item>
-    <item>
-      <title>Compact mechanical keyboard</title>
-      <link>https://dealledger.eu/deals/compact-mechanical-keyboard/</link>
-      <pubDate>Wed, 25 Mar 2026 12:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/deals/compact-mechanical-keyboard/</guid>
-      <description>Full-size RGB keyboard with media controls.</description>
-    </item>
-  </channel>
+	<channel>
+		<title>Home-Office on Deal Ledger</title>
+		<link>https://dealledger.eu/tags/home-office/</link>
+		<description>Recent content in Home-Office on Deal Ledger</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Sat, 16 May 2026 16:31:39 +0000</lastBuildDate>
+		
+			<atom:link href="https://dealledger.eu/tags/home-office/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>HUANUO Dual Monitor Stand</title>
+				<link>https://dealledger.eu/deals/huanuo-dual-monitor-stand-adjustable/</link>
+				<pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
+				<guid>https://dealledger.eu/deals/huanuo-dual-monitor-stand-adjustable/</guid>
+				<description>Adjustable dual monitor arm for cleaner home office desk setups.</description>
+			</item>
+			<item>
+				<title>uni USB-C to HDMI Cable</title>
+				<link>https://dealledger.eu/deals/uni-usb-c-to-hdmi-cable/</link>
+				<pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
+				<guid>https://dealledger.eu/deals/uni-usb-c-to-hdmi-cable/</guid>
+				<description>USB-C to HDMI cable for connecting laptops and tablets to external displays.</description>
+			</item>
+			<item>
+				<title>WALI Monitor Stand Riser</title>
+				<link>https://dealledger.eu/deals/wali-monitor-stand-riser/</link>
+				<pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
+				<guid>https://dealledger.eu/deals/wali-monitor-stand-riser/</guid>
+				<description>Budget monitor riser with space underneath for desk supplies.</description>
+			</item>
+			<item>
+				<title>Bureau assis-debout électrique SONGMICS</title>
+				<link>https://dealledger.eu/deals/songmics-electric-standing-desk-fr/</link>
+				<pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/deals/songmics-electric-standing-desk-fr/</guid>
+				<description>Bureau assis-debout électrique SONGMICS avec réduction sur Amazon FR.</description>
+			</item>
+			<item>
+				<title>Bureau Rolanstar avec rangement</title>
+				<link>https://dealledger.eu/deals/rolanstar-desk-with-storage-fr/</link>
+				<pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/deals/rolanstar-desk-with-storage-fr/</guid>
+				<description>Bureau Rolanstar avec rangement à prix promo sur Amazon FR.</description>
+			</item>
+			<item>
+				<title>gianotter Desk Organizer</title>
+				<link>https://dealledger.eu/deals/gianotter-desk-organizer/</link>
+				<pubDate>Thu, 16 Apr 2026 20:36:00 +0000</pubDate>
+				<guid>https://dealledger.eu/deals/gianotter-desk-organizer/</guid>
+				<description>Compact desktop organizer for office accessories and stationery.</description>
+			</item>
+			<item>
+				<title>Spacrea Desk Organizer Set</title>
+				<link>https://dealledger.eu/deals/spacrea-desk-organizer-set/</link>
+				<pubDate>Thu, 16 Apr 2026 20:35:00 +0000</pubDate>
+				<guid>https://dealledger.eu/deals/spacrea-desk-organizer-set/</guid>
+				<description>Desk accessories organizer set for cleaner workspace storage.</description>
+			</item>
+			<item>
+				<title>Logitech MX Vertical Wireless Mouse</title>
+				<link>https://dealledger.eu/deals/logitech-mx-vertical-wireless-mouse/</link>
+				<pubDate>Thu, 16 Apr 2026 20:15:00 +0000</pubDate>
+				<guid>https://dealledger.eu/deals/logitech-mx-vertical-wireless-mouse/</guid>
+				<description>Ergonomic vertical wireless mouse designed to reduce wrist strain.</description>
+			</item>
+			<item>
+				<title>Samsung Essential 27-inch Monitor</title>
+				<link>https://dealledger.eu/deals/samsung-essential-27-inch-monitor/</link>
+				<pubDate>Thu, 16 Apr 2026 20:11:00 +0000</pubDate>
+				<guid>https://dealledger.eu/deals/samsung-essential-27-inch-monitor/</guid>
+				<description>27-inch Samsung monitor deal for desk setups and everyday productivity use.</description>
+			</item>
+			<item>
+				<title>Compact mechanical keyboard</title>
+				<link>https://dealledger.eu/deals/compact-mechanical-keyboard/</link>
+				<pubDate>Wed, 25 Mar 2026 12:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/deals/compact-mechanical-keyboard/</guid>
+				<description>Full-size RGB keyboard with media controls.</description>
+			</item>
+	</channel>
 </rss>

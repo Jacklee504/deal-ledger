@@ -1,40 +1,45 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Accessories on Deal Ledger</title>
-    <link>https://dealledger.eu/tags/accessories/</link>
-    <description>Recent content in Accessories on Deal Ledger</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 11 May 2026 21:47:07 +0100</lastBuildDate>
-    <atom:link href="https://dealledger.eu/tags/accessories/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>OPNICE Desk Organizers and Accessories</title>
-      <link>https://dealledger.eu/deals/opnice-desk-organizers-accessories/</link>
-      <pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/deals/opnice-desk-organizers-accessories/</guid>
-      <description>Desk organizer set deal for cleaner office workspace setups.</description>
-    </item>
-    <item>
-      <title>Logitech MX Vertical Wireless Mouse</title>
-      <link>https://dealledger.eu/deals/logitech-mx-vertical-wireless-mouse/</link>
-      <pubDate>Thu, 16 Apr 2026 20:15:00 +0000</pubDate>
-      <guid>https://dealledger.eu/deals/logitech-mx-vertical-wireless-mouse/</guid>
-      <description>Ergonomic vertical wireless mouse designed to reduce wrist strain.</description>
-    </item>
-    <item>
-      <title>Anker MagSafe Charging Station</title>
-      <link>https://dealledger.eu/deals/anker-magsafe-charging-station/</link>
-      <pubDate>Tue, 14 Apr 2026 14:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/deals/anker-magsafe-charging-station/</guid>
-      <description>Foldable MagSafe-compatible stand for multi-device charging.</description>
-    </item>
-    <item>
-      <title>Compact mechanical keyboard</title>
-      <link>https://dealledger.eu/deals/compact-mechanical-keyboard/</link>
-      <pubDate>Wed, 25 Mar 2026 12:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/deals/compact-mechanical-keyboard/</guid>
-      <description>Full-size RGB keyboard with media controls.</description>
-    </item>
-  </channel>
+	<channel>
+		<title>Accessories on Deal Ledger</title>
+		<link>https://dealledger.eu/tags/accessories/</link>
+		<description>Recent content in Accessories on Deal Ledger</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Mon, 11 May 2026 21:47:07 +0100</lastBuildDate>
+		
+			<atom:link href="https://dealledger.eu/tags/accessories/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>OPNICE Desk Organizers and Accessories</title>
+				<link>https://dealledger.eu/deals/opnice-desk-organizers-accessories/</link>
+				<pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/deals/opnice-desk-organizers-accessories/</guid>
+				<description>Desk organizer set deal for cleaner office workspace setups.</description>
+			</item>
+			<item>
+				<title>Logitech MX Vertical Wireless Mouse</title>
+				<link>https://dealledger.eu/deals/logitech-mx-vertical-wireless-mouse/</link>
+				<pubDate>Thu, 16 Apr 2026 20:15:00 +0000</pubDate>
+				<guid>https://dealledger.eu/deals/logitech-mx-vertical-wireless-mouse/</guid>
+				<description>Ergonomic vertical wireless mouse designed to reduce wrist strain.</description>
+			</item>
+			<item>
+				<title>Anker MagSafe Charging Station</title>
+				<link>https://dealledger.eu/deals/anker-magsafe-charging-station/</link>
+				<pubDate>Tue, 14 Apr 2026 14:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/deals/anker-magsafe-charging-station/</guid>
+				<description>Foldable MagSafe-compatible stand for multi-device charging.</description>
+			</item>
+			<item>
+				<title>Compact mechanical keyboard</title>
+				<link>https://dealledger.eu/deals/compact-mechanical-keyboard/</link>
+				<pubDate>Wed, 25 Mar 2026 12:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/deals/compact-mechanical-keyboard/</guid>
+				<description>Full-size RGB keyboard with media controls.</description>
+			</item>
+	</channel>
 </rss>

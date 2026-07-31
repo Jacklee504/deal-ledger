@@ -1,40 +1,45 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Headphones on Deal Ledger</title>
-    <link>https://dealledger.eu/tags/headphones/</link>
-    <description>Recent content in Headphones on Deal Ledger</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sat, 16 May 2026 16:31:39 +0000</lastBuildDate>
-    <atom:link href="https://dealledger.eu/tags/headphones/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Beats Solo 4 Wireless Headphones</title>
-      <link>https://dealledger.eu/deals/beats-solo-4-wireless-headphones/</link>
-      <pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
-      <guid>https://dealledger.eu/deals/beats-solo-4-wireless-headphones/</guid>
-      <description>Beats Solo wireless on-ear headphones in matte finish.</description>
-    </item>
-    <item>
-      <title>Skullcandy Crusher Wireless Over-Ear Headphones</title>
-      <link>https://dealledger.eu/deals/skullcandy-crusher-wireless-headphones-b08fcgh2rl/</link>
-      <pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/deals/skullcandy-crusher-wireless-headphones-b08fcgh2rl/</guid>
-      <description>Skullcandy Crusher wireless over-ear headphones at a steep discount on Amazon US.</description>
-    </item>
-    <item>
-      <title>Soundcore Life Q30 Noise-Cancelling Headphones</title>
-      <link>https://dealledger.eu/deals/soundcore-life-q30-noise-cancelling-headphones/</link>
-      <pubDate>Thu, 16 Apr 2026 20:10:00 +0000</pubDate>
-      <guid>https://dealledger.eu/deals/soundcore-life-q30-noise-cancelling-headphones/</guid>
-      <description>Wireless over-ear ANC headphones with strong battery life and comfort-first design.</description>
-    </item>
-    <item>
-      <title>Noise-cancelling over-ears</title>
-      <link>https://dealledger.eu/deals/noise-cancelling-over-ears/</link>
-      <pubDate>Mon, 30 Mar 2026 12:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/deals/noise-cancelling-over-ears/</guid>
-      <description>Wireless Sony ANC headphones with long battery life.</description>
-    </item>
-  </channel>
+	<channel>
+		<title>Headphones on Deal Ledger</title>
+		<link>https://dealledger.eu/tags/headphones/</link>
+		<description>Recent content in Headphones on Deal Ledger</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Sat, 16 May 2026 16:31:39 +0000</lastBuildDate>
+		
+			<atom:link href="https://dealledger.eu/tags/headphones/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Beats Solo 4 Wireless Headphones</title>
+				<link>https://dealledger.eu/deals/beats-solo-4-wireless-headphones/</link>
+				<pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
+				<guid>https://dealledger.eu/deals/beats-solo-4-wireless-headphones/</guid>
+				<description>Beats Solo wireless on-ear headphones in matte finish.</description>
+			</item>
+			<item>
+				<title>Skullcandy Crusher Wireless Over-Ear Headphones</title>
+				<link>https://dealledger.eu/deals/skullcandy-crusher-wireless-headphones-b08fcgh2rl/</link>
+				<pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/deals/skullcandy-crusher-wireless-headphones-b08fcgh2rl/</guid>
+				<description>Skullcandy Crusher wireless over-ear headphones at a steep discount on Amazon US.</description>
+			</item>
+			<item>
+				<title>Soundcore Life Q30 Noise-Cancelling Headphones</title>
+				<link>https://dealledger.eu/deals/soundcore-life-q30-noise-cancelling-headphones/</link>
+				<pubDate>Thu, 16 Apr 2026 20:10:00 +0000</pubDate>
+				<guid>https://dealledger.eu/deals/soundcore-life-q30-noise-cancelling-headphones/</guid>
+				<description>Wireless over-ear ANC headphones with strong battery life and comfort-first design.</description>
+			</item>
+			<item>
+				<title>Noise-cancelling over-ears</title>
+				<link>https://dealledger.eu/deals/noise-cancelling-over-ears/</link>
+				<pubDate>Mon, 30 Mar 2026 12:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/deals/noise-cancelling-over-ears/</guid>
+				<description>Wireless Sony ANC headphones with long battery life.</description>
+			</item>
+	</channel>
 </rss>

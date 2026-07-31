@@ -1,47 +1,52 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Apple on Deal Ledger</title>
-    <link>https://dealledger.eu/tags/apple/</link>
-    <description>Recent content in Apple on Deal Ledger</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sat, 16 May 2026 16:31:39 +0000</lastBuildDate>
-    <atom:link href="https://dealledger.eu/tags/apple/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Apple AirPods Pro 3</title>
-      <link>https://dealledger.eu/deals/apple-airpods-pro-noise-cancellation-headphones/</link>
-      <pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
-      <guid>https://dealledger.eu/deals/apple-airpods-pro-noise-cancellation-headphones/</guid>
-      <description>Apple AirPods Pro 3 wireless earbuds with active noise cancellation and USB-C charging.</description>
-    </item>
-    <item>
-      <title>Apple AirPods 4</title>
-      <link>https://dealledger.eu/deals/apple-airpods-4-ie/</link>
-      <pubDate>Sat, 16 May 2026 14:50:52 +0000</pubDate>
-      <guid>https://dealledger.eu/deals/apple-airpods-4-ie/</guid>
-      <description>Apple wireless earbuds with effortless pairing and personalized spatial audio.</description>
-    </item>
-    <item>
-      <title>Apple iPhone 256 Go</title>
-      <link>https://dealledger.eu/deals/apple-iphone-256gb-fr/</link>
-      <pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/deals/apple-iphone-256gb-fr/</guid>
-      <description>iPhone 256 Go avec remise immédiate sur Amazon FR.</description>
-    </item>
-    <item>
-      <title>Écouteurs Apple AirPods Pro 2</title>
-      <link>https://dealledger.eu/deals/apple-airpods-pro-2-fr/</link>
-      <pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/deals/apple-airpods-pro-2-fr/</guid>
-      <description>AirPods Pro 2 avec réduction active du bruit à prix réduit sur Amazon FR.</description>
-    </item>
-    <item>
-      <title>Apple AirPods 4</title>
-      <link>https://dealledger.eu/deals/apple-airpods-4-de/</link>
-      <pubDate>Mon, 27 Apr 2026 21:05:00 +0000</pubDate>
-      <guid>https://dealledger.eu/deals/apple-airpods-4-de/</guid>
-      <description>Apple AirPods 4 mit Bluetooth und personalisiertem Audio zu stark reduziertem Preis.</description>
-    </item>
-  </channel>
+	<channel>
+		<title>Apple on Deal Ledger</title>
+		<link>https://dealledger.eu/tags/apple/</link>
+		<description>Recent content in Apple on Deal Ledger</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Sat, 16 May 2026 16:31:39 +0000</lastBuildDate>
+		
+			<atom:link href="https://dealledger.eu/tags/apple/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Apple AirPods Pro 3</title>
+				<link>https://dealledger.eu/deals/apple-airpods-pro-noise-cancellation-headphones/</link>
+				<pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
+				<guid>https://dealledger.eu/deals/apple-airpods-pro-noise-cancellation-headphones/</guid>
+				<description>Apple AirPods Pro 3 wireless earbuds with active noise cancellation and USB-C charging.</description>
+			</item>
+			<item>
+				<title>Apple AirPods 4</title>
+				<link>https://dealledger.eu/deals/apple-airpods-4-ie/</link>
+				<pubDate>Sat, 16 May 2026 14:50:52 +0000</pubDate>
+				<guid>https://dealledger.eu/deals/apple-airpods-4-ie/</guid>
+				<description>Apple wireless earbuds with effortless pairing and personalized spatial audio.</description>
+			</item>
+			<item>
+				<title>Apple iPhone 256 Go</title>
+				<link>https://dealledger.eu/deals/apple-iphone-256gb-fr/</link>
+				<pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/deals/apple-iphone-256gb-fr/</guid>
+				<description>iPhone 256 Go avec remise immédiate sur Amazon FR.</description>
+			</item>
+			<item>
+				<title>Écouteurs Apple AirPods Pro 2</title>
+				<link>https://dealledger.eu/deals/apple-airpods-pro-2-fr/</link>
+				<pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/deals/apple-airpods-pro-2-fr/</guid>
+				<description>AirPods Pro 2 avec réduction active du bruit à prix réduit sur Amazon FR.</description>
+			</item>
+			<item>
+				<title>Apple AirPods 4</title>
+				<link>https://dealledger.eu/deals/apple-airpods-4-de/</link>
+				<pubDate>Mon, 27 Apr 2026 21:05:00 +0000</pubDate>
+				<guid>https://dealledger.eu/deals/apple-airpods-4-de/</guid>
+				<description>Apple AirPods 4 mit Bluetooth und personalisiertem Audio zu stark reduziertem Preis.</description>
+			</item>
+	</channel>
 </rss>

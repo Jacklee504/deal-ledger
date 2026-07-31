@@ -1,992 +1,997 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Tags on Deal Ledger</title>
-    <link>https://dealledger.eu/tags/</link>
-    <description>Recent content in Tags on Deal Ledger</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sat, 16 May 2026 16:31:39 +0000</lastBuildDate>
-    <atom:link href="https://dealledger.eu/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Adapter</title>
-      <link>https://dealledger.eu/tags/adapter/</link>
-      <pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/adapter/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Amazon</title>
-      <link>https://dealledger.eu/tags/amazon/</link>
-      <pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/amazon/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Apple</title>
-      <link>https://dealledger.eu/tags/apple/</link>
-      <pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/apple/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Audio</title>
-      <link>https://dealledger.eu/tags/audio/</link>
-      <pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/audio/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Beats</title>
-      <link>https://dealledger.eu/tags/beats/</link>
-      <pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/beats/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Desk Setup</title>
-      <link>https://dealledger.eu/tags/desk-setup/</link>
-      <pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/desk-setup/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Display</title>
-      <link>https://dealledger.eu/tags/display/</link>
-      <pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/display/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Earbuds</title>
-      <link>https://dealledger.eu/tags/earbuds/</link>
-      <pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/earbuds/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Gaming</title>
-      <link>https://dealledger.eu/tags/gaming/</link>
-      <pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/gaming/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Hdmi</title>
-      <link>https://dealledger.eu/tags/hdmi/</link>
-      <pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/hdmi/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Headphones</title>
-      <link>https://dealledger.eu/tags/headphones/</link>
-      <pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/headphones/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Home Office</title>
-      <link>https://dealledger.eu/tags/home-office/</link>
-      <pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/home-office/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Monitor</title>
-      <link>https://dealledger.eu/tags/monitor/</link>
-      <pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/monitor/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Monitor Arm</title>
-      <link>https://dealledger.eu/tags/monitor-arm/</link>
-      <pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/monitor-arm/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Monitor Stand</title>
-      <link>https://dealledger.eu/tags/monitor-stand/</link>
-      <pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/monitor-stand/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Mouse</title>
-      <link>https://dealledger.eu/tags/mouse/</link>
-      <pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/mouse/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Oled</title>
-      <link>https://dealledger.eu/tags/oled/</link>
-      <pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/oled/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Smart Home</title>
-      <link>https://dealledger.eu/tags/smart-home/</link>
-      <pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/smart-home/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Tech Gadgets</title>
-      <link>https://dealledger.eu/tags/tech-gadgets/</link>
-      <pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/tech-gadgets/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Usb Hub</title>
-      <link>https://dealledger.eu/tags/usb-hub/</link>
-      <pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/usb-hub/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Usb-C</title>
-      <link>https://dealledger.eu/tags/usb-c/</link>
-      <pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/usb-c/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Wireless</title>
-      <link>https://dealledger.eu/tags/wireless/</link>
-      <pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/wireless/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Mouse Mat</title>
-      <link>https://dealledger.eu/tags/mouse-mat/</link>
-      <pubDate>Sat, 16 May 2026 14:55:52 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/mouse-mat/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Headset</title>
-      <link>https://dealledger.eu/tags/headset/</link>
-      <pubDate>Sat, 16 May 2026 14:53:52 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/headset/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Car Accessories</title>
-      <link>https://dealledger.eu/tags/car-accessories/</link>
-      <pubDate>Sat, 16 May 2026 14:52:52 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/car-accessories/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Charging</title>
-      <link>https://dealledger.eu/tags/charging/</link>
-      <pubDate>Sat, 16 May 2026 14:52:52 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/charging/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Usb</title>
-      <link>https://dealledger.eu/tags/usb/</link>
-      <pubDate>Sat, 16 May 2026 14:52:52 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/usb/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Magsafe</title>
-      <link>https://dealledger.eu/tags/magsafe/</link>
-      <pubDate>Sat, 16 May 2026 14:51:52 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/magsafe/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Power Bank</title>
-      <link>https://dealledger.eu/tags/power-bank/</link>
-      <pubDate>Sat, 16 May 2026 14:51:52 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/power-bank/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Cpu</title>
-      <link>https://dealledger.eu/tags/cpu/</link>
-      <pubDate>Sat, 16 May 2026 14:46:56 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/cpu/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Pc Components</title>
-      <link>https://dealledger.eu/tags/pc-components/</link>
-      <pubDate>Sat, 16 May 2026 14:46:56 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/pc-components/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>All-in-One</title>
-      <link>https://dealledger.eu/tags/all-in-one/</link>
-      <pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/all-in-one/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Computer</title>
-      <link>https://dealledger.eu/tags/computer/</link>
-      <pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/computer/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Desktop</title>
-      <link>https://dealledger.eu/tags/desktop/</link>
-      <pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/desktop/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Lenovo</title>
-      <link>https://dealledger.eu/tags/lenovo/</link>
-      <pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/lenovo/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Lightspeed</title>
-      <link>https://dealledger.eu/tags/lightspeed/</link>
-      <pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/lightspeed/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Logitech</title>
-      <link>https://dealledger.eu/tags/logitech/</link>
-      <pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/logitech/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Over-Ear</title>
-      <link>https://dealledger.eu/tags/over-ear/</link>
-      <pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/over-ear/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Razer</title>
-      <link>https://dealledger.eu/tags/razer/</link>
-      <pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/razer/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Skullcandy</title>
-      <link>https://dealledger.eu/tags/skullcandy/</link>
-      <pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/skullcandy/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>24.5-Inch</title>
-      <link>https://dealledger.eu/tags/24.5-inch/</link>
-      <pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/24.5-inch/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>256gb</title>
-      <link>https://dealledger.eu/tags/256gb/</link>
-      <pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/256gb/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Airpods</title>
-      <link>https://dealledger.eu/tags/airpods/</link>
-      <pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/airpods/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Anc</title>
-      <link>https://dealledger.eu/tags/anc/</link>
-      <pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/anc/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Asus</title>
-      <link>https://dealledger.eu/tags/asus/</link>
-      <pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/asus/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Bluetooth</title>
-      <link>https://dealledger.eu/tags/bluetooth/</link>
-      <pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/bluetooth/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Bureau</title>
-      <link>https://dealledger.eu/tags/bureau/</link>
-      <pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/bureau/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Casque</title>
-      <link>https://dealledger.eu/tags/casque/</link>
-      <pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/casque/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Chaise</title>
-      <link>https://dealledger.eu/tags/chaise/</link>
-      <pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/chaise/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Curved</title>
-      <link>https://dealledger.eu/tags/curved/</link>
-      <pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/curved/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Deathadder</title>
-      <link>https://dealledger.eu/tags/deathadder/</link>
-      <pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/deathadder/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Desk</title>
-      <link>https://dealledger.eu/tags/desk/</link>
-      <pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/desk/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Eye-Care</title>
-      <link>https://dealledger.eu/tags/eye-care/</link>
-      <pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/eye-care/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Home-Entertainment</title>
-      <link>https://dealledger.eu/tags/home-entertainment/</link>
-      <pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/home-entertainment/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Iphone</title>
-      <link>https://dealledger.eu/tags/iphone/</link>
-      <pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/iphone/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Jbl</title>
-      <link>https://dealledger.eu/tags/jbl/</link>
-      <pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/jbl/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Msi</title>
-      <link>https://dealledger.eu/tags/msi/</link>
-      <pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/msi/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Rolanstar</title>
-      <link>https://dealledger.eu/tags/rolanstar/</link>
-      <pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/rolanstar/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Sans-Fil</title>
-      <link>https://dealledger.eu/tags/sans-fil/</link>
-      <pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/sans-fil/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Smartphone</title>
-      <link>https://dealledger.eu/tags/smartphone/</link>
-      <pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/smartphone/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Songmics</title>
-      <link>https://dealledger.eu/tags/songmics/</link>
-      <pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/songmics/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Standing-Desk</title>
-      <link>https://dealledger.eu/tags/standing-desk/</link>
-      <pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/standing-desk/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Storage</title>
-      <link>https://dealledger.eu/tags/storage/</link>
-      <pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/storage/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Thomson</title>
-      <link>https://dealledger.eu/tags/thomson/</link>
-      <pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/thomson/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Tv</title>
-      <link>https://dealledger.eu/tags/tv/</link>
-      <pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/tv/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Büro</title>
-      <link>https://dealledger.eu/tags/b%C3%BCro/</link>
-      <pubDate>Mon, 27 Apr 2026 21:11:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/b%C3%BCro/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Ergonomie</title>
-      <link>https://dealledger.eu/tags/ergonomie/</link>
-      <pubDate>Mon, 27 Apr 2026 21:11:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/ergonomie/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Homeoffice</title>
-      <link>https://dealledger.eu/tags/homeoffice/</link>
-      <pubDate>Mon, 27 Apr 2026 21:11:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/homeoffice/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Stuhl</title>
-      <link>https://dealledger.eu/tags/stuhl/</link>
-      <pubDate>Mon, 27 Apr 2026 21:11:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/stuhl/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>L-Form</title>
-      <link>https://dealledger.eu/tags/l-form/</link>
-      <pubDate>Mon, 27 Apr 2026 21:09:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/l-form/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Möbel</title>
-      <link>https://dealledger.eu/tags/m%C3%B6bel/</link>
-      <pubDate>Mon, 27 Apr 2026 21:09:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/m%C3%B6bel/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Schreibtisch</title>
-      <link>https://dealledger.eu/tags/schreibtisch/</link>
-      <pubDate>Mon, 27 Apr 2026 21:09:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/schreibtisch/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Kopfhörer</title>
-      <link>https://dealledger.eu/tags/kopfh%C3%B6rer/</link>
-      <pubDate>Mon, 27 Apr 2026 21:07:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/kopfh%C3%B6rer/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Noise-Cancelling</title>
-      <link>https://dealledger.eu/tags/noise-cancelling/</link>
-      <pubDate>Mon, 27 Apr 2026 21:07:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/noise-cancelling/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Sony</title>
-      <link>https://dealledger.eu/tags/sony/</link>
-      <pubDate>Mon, 27 Apr 2026 21:07:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/sony/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Kabellos</title>
-      <link>https://dealledger.eu/tags/kabellos/</link>
-      <pubDate>Mon, 27 Apr 2026 21:06:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/kabellos/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Soundcore</title>
-      <link>https://dealledger.eu/tags/soundcore/</link>
-      <pubDate>Mon, 27 Apr 2026 21:06:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/soundcore/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Laptop</title>
-      <link>https://dealledger.eu/tags/laptop/</link>
-      <pubDate>Mon, 27 Apr 2026 20:54:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/laptop/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Zubehör</title>
-      <link>https://dealledger.eu/tags/zubeh%C3%B6r/</link>
-      <pubDate>Mon, 27 Apr 2026 20:54:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/zubeh%C3%B6r/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Leder</title>
-      <link>https://dealledger.eu/tags/leder/</link>
-      <pubDate>Mon, 27 Apr 2026 20:53:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/leder/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Auto</title>
-      <link>https://dealledger.eu/tags/auto/</link>
-      <pubDate>Mon, 27 Apr 2026 20:51:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/auto/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Ladegerät</title>
-      <link>https://dealledger.eu/tags/ladeger%C3%A4t/</link>
-      <pubDate>Mon, 27 Apr 2026 20:51:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/ladeger%C3%A4t/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Technik</title>
-      <link>https://dealledger.eu/tags/technik/</link>
-      <pubDate>Mon, 27 Apr 2026 20:51:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/technik/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Akku</title>
-      <link>https://dealledger.eu/tags/akku/</link>
-      <pubDate>Mon, 27 Apr 2026 20:50:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/akku/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Mobil</title>
-      <link>https://dealledger.eu/tags/mobil/</link>
-      <pubDate>Mon, 27 Apr 2026 20:50:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/mobil/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Powerbank</title>
-      <link>https://dealledger.eu/tags/powerbank/</link>
-      <pubDate>Mon, 27 Apr 2026 20:50:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/powerbank/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Bekabeld</title>
-      <link>https://dealledger.eu/tags/bekabeld/</link>
-      <pubDate>Mon, 27 Apr 2026 19:12:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/bekabeld/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Gamen</title>
-      <link>https://dealledger.eu/tags/gamen/</link>
-      <pubDate>Mon, 27 Apr 2026 19:12:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/gamen/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Geluid</title>
-      <link>https://dealledger.eu/tags/geluid/</link>
-      <pubDate>Mon, 27 Apr 2026 19:12:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/geluid/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Draadloos</title>
-      <link>https://dealledger.eu/tags/draadloos/</link>
-      <pubDate>Mon, 27 Apr 2026 19:07:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/draadloos/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Koptelefoon</title>
-      <link>https://dealledger.eu/tags/koptelefoon/</link>
-      <pubDate>Mon, 27 Apr 2026 19:07:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/koptelefoon/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Ruisonderdrukking</title>
-      <link>https://dealledger.eu/tags/ruisonderdrukking/</link>
-      <pubDate>Mon, 27 Apr 2026 19:07:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/ruisonderdrukking/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Kantoor</title>
-      <link>https://dealledger.eu/tags/kantoor/</link>
-      <pubDate>Mon, 27 Apr 2026 19:06:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/kantoor/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Meubels</title>
-      <link>https://dealledger.eu/tags/meubels/</link>
-      <pubDate>Mon, 27 Apr 2026 19:06:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/meubels/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Vasagle</title>
-      <link>https://dealledger.eu/tags/vasagle/</link>
-      <pubDate>Mon, 27 Apr 2026 19:06:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/vasagle/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Zit-Sta-Bureau</title>
-      <link>https://dealledger.eu/tags/zit-sta-bureau/</link>
-      <pubDate>Mon, 27 Apr 2026 19:05:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/zit-sta-bureau/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Content-Creatie</title>
-      <link>https://dealledger.eu/tags/content-creatie/</link>
-      <pubDate>Mon, 27 Apr 2026 12:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/content-creatie/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Corsair</title>
-      <link>https://dealledger.eu/tags/corsair/</link>
-      <pubDate>Mon, 27 Apr 2026 12:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/corsair/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Elgato</title>
-      <link>https://dealledger.eu/tags/elgato/</link>
-      <pubDate>Mon, 27 Apr 2026 12:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/elgato/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Gezondheid</title>
-      <link>https://dealledger.eu/tags/gezondheid/</link>
-      <pubDate>Mon, 27 Apr 2026 12:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/gezondheid/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Mechanisch</title>
-      <link>https://dealledger.eu/tags/mechanisch/</link>
-      <pubDate>Mon, 27 Apr 2026 12:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/mechanisch/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Muis</title>
-      <link>https://dealledger.eu/tags/muis/</link>
-      <pubDate>Mon, 27 Apr 2026 12:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/muis/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Persoonlijke-Verzorging</title>
-      <link>https://dealledger.eu/tags/persoonlijke-verzorging/</link>
-      <pubDate>Mon, 27 Apr 2026 12:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/persoonlijke-verzorging/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Philips</title>
-      <link>https://dealledger.eu/tags/philips/</link>
-      <pubDate>Mon, 27 Apr 2026 12:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/philips/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Productiviteit</title>
-      <link>https://dealledger.eu/tags/productiviteit/</link>
-      <pubDate>Mon, 27 Apr 2026 12:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/productiviteit/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Streamen</title>
-      <link>https://dealledger.eu/tags/streamen/</link>
-      <pubDate>Mon, 27 Apr 2026 12:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/streamen/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Tandenborstel</title>
-      <link>https://dealledger.eu/tags/tandenborstel/</link>
-      <pubDate>Mon, 27 Apr 2026 12:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/tandenborstel/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Toetsenbord</title>
-      <link>https://dealledger.eu/tags/toetsenbord/</link>
-      <pubDate>Mon, 27 Apr 2026 12:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/toetsenbord/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Yunzii</title>
-      <link>https://dealledger.eu/tags/yunzii/</link>
-      <pubDate>Mon, 27 Apr 2026 12:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/yunzii/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>4k</title>
-      <link>https://dealledger.eu/tags/4k/</link>
-      <pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/4k/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Accessories</title>
-      <link>https://dealledger.eu/tags/accessories/</link>
-      <pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/accessories/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Air-Purifier</title>
-      <link>https://dealledger.eu/tags/air-purifier/</link>
-      <pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/air-purifier/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Aoc</title>
-      <link>https://dealledger.eu/tags/aoc/</link>
-      <pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/aoc/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Fhd</title>
-      <link>https://dealledger.eu/tags/fhd/</link>
-      <pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/fhd/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Files</title>
-      <link>https://dealledger.eu/tags/files/</link>
-      <pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/files/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Fire-Tv</title>
-      <link>https://dealledger.eu/tags/fire-tv/</link>
-      <pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/fire-tv/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Furniture</title>
-      <link>https://dealledger.eu/tags/furniture/</link>
-      <pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/furniture/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Home</title>
-      <link>https://dealledger.eu/tags/home/</link>
-      <pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/home/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Insignia</title>
-      <link>https://dealledger.eu/tags/insignia/</link>
-      <pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/insignia/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Levoit</title>
-      <link>https://dealledger.eu/tags/levoit/</link>
-      <pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/levoit/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Microphone</title>
-      <link>https://dealledger.eu/tags/microphone/</link>
-      <pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/microphone/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Office</title>
-      <link>https://dealledger.eu/tags/office/</link>
-      <pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/office/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Organizer</title>
-      <link>https://dealledger.eu/tags/organizer/</link>
-      <pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/organizer/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Sceptre</title>
-      <link>https://dealledger.eu/tags/sceptre/</link>
-      <pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/sceptre/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Streaming</title>
-      <link>https://dealledger.eu/tags/streaming/</link>
-      <pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/streaming/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Turntable</title>
-      <link>https://dealledger.eu/tags/turntable/</link>
-      <pubDate>Tue, 21 Apr 2026 20:34:28 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/turntable/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Vinyl</title>
-      <link>https://dealledger.eu/tags/vinyl/</link>
-      <pubDate>Tue, 21 Apr 2026 20:34:28 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/vinyl/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Computing</title>
-      <link>https://dealledger.eu/tags/computing/</link>
-      <pubDate>Thu, 16 Apr 2026 20:38:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/computing/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Portable</title>
-      <link>https://dealledger.eu/tags/portable/</link>
-      <pubDate>Thu, 16 Apr 2026 20:37:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/portable/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Productivity</title>
-      <link>https://dealledger.eu/tags/productivity/</link>
-      <pubDate>Thu, 16 Apr 2026 20:37:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/productivity/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Organization</title>
-      <link>https://dealledger.eu/tags/organization/</link>
-      <pubDate>Thu, 16 Apr 2026 20:36:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/organization/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Pc Build</title>
-      <link>https://dealledger.eu/tags/pc-build/</link>
-      <pubDate>Thu, 16 Apr 2026 20:14:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/pc-build/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Camera</title>
-      <link>https://dealledger.eu/tags/camera/</link>
-      <pubDate>Thu, 16 Apr 2026 20:13:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/camera/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Wearables</title>
-      <link>https://dealledger.eu/tags/wearables/</link>
-      <pubDate>Thu, 16 Apr 2026 20:13:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/wearables/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Travel</title>
-      <link>https://dealledger.eu/tags/travel/</link>
-      <pubDate>Thu, 16 Apr 2026 20:10:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/travel/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Power</title>
-      <link>https://dealledger.eu/tags/power/</link>
-      <pubDate>Tue, 14 Apr 2026 15:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/power/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Mobile</title>
-      <link>https://dealledger.eu/tags/mobile/</link>
-      <pubDate>Tue, 14 Apr 2026 14:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/mobile/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Collectibles</title>
-      <link>https://dealledger.eu/tags/collectibles/</link>
-      <pubDate>Tue, 14 Apr 2026 13:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/collectibles/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Gifts</title>
-      <link>https://dealledger.eu/tags/gifts/</link>
-      <pubDate>Tue, 14 Apr 2026 13:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/gifts/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Toys</title>
-      <link>https://dealledger.eu/tags/toys/</link>
-      <pubDate>Tue, 14 Apr 2026 13:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/tags/toys/</guid>
-      <description></description>
-    </item>
-  </channel>
+	<channel>
+		<title>Tags on Deal Ledger</title>
+		<link>https://dealledger.eu/tags/</link>
+		<description>Recent content in Tags on Deal Ledger</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Sat, 16 May 2026 16:31:39 +0000</lastBuildDate>
+		
+			<atom:link href="https://dealledger.eu/tags/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Adapter</title>
+				<link>https://dealledger.eu/tags/adapter/</link>
+				<pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/adapter/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Amazon</title>
+				<link>https://dealledger.eu/tags/amazon/</link>
+				<pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/amazon/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Apple</title>
+				<link>https://dealledger.eu/tags/apple/</link>
+				<pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/apple/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Audio</title>
+				<link>https://dealledger.eu/tags/audio/</link>
+				<pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/audio/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Beats</title>
+				<link>https://dealledger.eu/tags/beats/</link>
+				<pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/beats/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Desk Setup</title>
+				<link>https://dealledger.eu/tags/desk-setup/</link>
+				<pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/desk-setup/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Display</title>
+				<link>https://dealledger.eu/tags/display/</link>
+				<pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/display/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Earbuds</title>
+				<link>https://dealledger.eu/tags/earbuds/</link>
+				<pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/earbuds/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Gaming</title>
+				<link>https://dealledger.eu/tags/gaming/</link>
+				<pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/gaming/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Hdmi</title>
+				<link>https://dealledger.eu/tags/hdmi/</link>
+				<pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/hdmi/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Headphones</title>
+				<link>https://dealledger.eu/tags/headphones/</link>
+				<pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/headphones/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Home-Office</title>
+				<link>https://dealledger.eu/tags/home-office/</link>
+				<pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/home-office/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Monitor</title>
+				<link>https://dealledger.eu/tags/monitor/</link>
+				<pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/monitor/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Monitor Arm</title>
+				<link>https://dealledger.eu/tags/monitor-arm/</link>
+				<pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/monitor-arm/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Monitor Stand</title>
+				<link>https://dealledger.eu/tags/monitor-stand/</link>
+				<pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/monitor-stand/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Mouse</title>
+				<link>https://dealledger.eu/tags/mouse/</link>
+				<pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/mouse/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Oled</title>
+				<link>https://dealledger.eu/tags/oled/</link>
+				<pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/oled/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Smart Home</title>
+				<link>https://dealledger.eu/tags/smart-home/</link>
+				<pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/smart-home/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Tech Gadgets</title>
+				<link>https://dealledger.eu/tags/tech-gadgets/</link>
+				<pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/tech-gadgets/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Usb Hub</title>
+				<link>https://dealledger.eu/tags/usb-hub/</link>
+				<pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/usb-hub/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Usb-C</title>
+				<link>https://dealledger.eu/tags/usb-c/</link>
+				<pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/usb-c/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Wireless</title>
+				<link>https://dealledger.eu/tags/wireless/</link>
+				<pubDate>Sat, 16 May 2026 16:03:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/wireless/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Mouse Mat</title>
+				<link>https://dealledger.eu/tags/mouse-mat/</link>
+				<pubDate>Sat, 16 May 2026 14:55:52 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/mouse-mat/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Headset</title>
+				<link>https://dealledger.eu/tags/headset/</link>
+				<pubDate>Sat, 16 May 2026 14:53:52 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/headset/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Car Accessories</title>
+				<link>https://dealledger.eu/tags/car-accessories/</link>
+				<pubDate>Sat, 16 May 2026 14:52:52 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/car-accessories/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Charging</title>
+				<link>https://dealledger.eu/tags/charging/</link>
+				<pubDate>Sat, 16 May 2026 14:52:52 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/charging/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Usb</title>
+				<link>https://dealledger.eu/tags/usb/</link>
+				<pubDate>Sat, 16 May 2026 14:52:52 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/usb/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Magsafe</title>
+				<link>https://dealledger.eu/tags/magsafe/</link>
+				<pubDate>Sat, 16 May 2026 14:51:52 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/magsafe/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Power Bank</title>
+				<link>https://dealledger.eu/tags/power-bank/</link>
+				<pubDate>Sat, 16 May 2026 14:51:52 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/power-bank/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Cpu</title>
+				<link>https://dealledger.eu/tags/cpu/</link>
+				<pubDate>Sat, 16 May 2026 14:46:56 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/cpu/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Pc Components</title>
+				<link>https://dealledger.eu/tags/pc-components/</link>
+				<pubDate>Sat, 16 May 2026 14:46:56 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/pc-components/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>All-in-One</title>
+				<link>https://dealledger.eu/tags/all-in-one/</link>
+				<pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/all-in-one/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Computer</title>
+				<link>https://dealledger.eu/tags/computer/</link>
+				<pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/computer/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Desktop</title>
+				<link>https://dealledger.eu/tags/desktop/</link>
+				<pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/desktop/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Lenovo</title>
+				<link>https://dealledger.eu/tags/lenovo/</link>
+				<pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/lenovo/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Lightspeed</title>
+				<link>https://dealledger.eu/tags/lightspeed/</link>
+				<pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/lightspeed/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Logitech</title>
+				<link>https://dealledger.eu/tags/logitech/</link>
+				<pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/logitech/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Over-Ear</title>
+				<link>https://dealledger.eu/tags/over-ear/</link>
+				<pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/over-ear/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Razer</title>
+				<link>https://dealledger.eu/tags/razer/</link>
+				<pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/razer/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Skullcandy</title>
+				<link>https://dealledger.eu/tags/skullcandy/</link>
+				<pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/skullcandy/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>24.5-Inch</title>
+				<link>https://dealledger.eu/tags/24.5-inch/</link>
+				<pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/24.5-inch/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>256gb</title>
+				<link>https://dealledger.eu/tags/256gb/</link>
+				<pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/256gb/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Airpods</title>
+				<link>https://dealledger.eu/tags/airpods/</link>
+				<pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/airpods/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Anc</title>
+				<link>https://dealledger.eu/tags/anc/</link>
+				<pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/anc/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Asus</title>
+				<link>https://dealledger.eu/tags/asus/</link>
+				<pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/asus/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Bluetooth</title>
+				<link>https://dealledger.eu/tags/bluetooth/</link>
+				<pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/bluetooth/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Bureau</title>
+				<link>https://dealledger.eu/tags/bureau/</link>
+				<pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/bureau/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Casque</title>
+				<link>https://dealledger.eu/tags/casque/</link>
+				<pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/casque/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Chaise</title>
+				<link>https://dealledger.eu/tags/chaise/</link>
+				<pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/chaise/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Curved</title>
+				<link>https://dealledger.eu/tags/curved/</link>
+				<pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/curved/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Deathadder</title>
+				<link>https://dealledger.eu/tags/deathadder/</link>
+				<pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/deathadder/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Desk</title>
+				<link>https://dealledger.eu/tags/desk/</link>
+				<pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/desk/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Eye-Care</title>
+				<link>https://dealledger.eu/tags/eye-care/</link>
+				<pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/eye-care/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Home-Entertainment</title>
+				<link>https://dealledger.eu/tags/home-entertainment/</link>
+				<pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/home-entertainment/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Iphone</title>
+				<link>https://dealledger.eu/tags/iphone/</link>
+				<pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/iphone/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Jbl</title>
+				<link>https://dealledger.eu/tags/jbl/</link>
+				<pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/jbl/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Msi</title>
+				<link>https://dealledger.eu/tags/msi/</link>
+				<pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/msi/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Rolanstar</title>
+				<link>https://dealledger.eu/tags/rolanstar/</link>
+				<pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/rolanstar/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Sans-Fil</title>
+				<link>https://dealledger.eu/tags/sans-fil/</link>
+				<pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/sans-fil/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Smartphone</title>
+				<link>https://dealledger.eu/tags/smartphone/</link>
+				<pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/smartphone/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Songmics</title>
+				<link>https://dealledger.eu/tags/songmics/</link>
+				<pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/songmics/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Standing-Desk</title>
+				<link>https://dealledger.eu/tags/standing-desk/</link>
+				<pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/standing-desk/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Storage</title>
+				<link>https://dealledger.eu/tags/storage/</link>
+				<pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/storage/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Thomson</title>
+				<link>https://dealledger.eu/tags/thomson/</link>
+				<pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/thomson/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Tv</title>
+				<link>https://dealledger.eu/tags/tv/</link>
+				<pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/tv/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Büro</title>
+				<link>https://dealledger.eu/tags/b%C3%BCro/</link>
+				<pubDate>Mon, 27 Apr 2026 21:11:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/b%C3%BCro/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Ergonomie</title>
+				<link>https://dealledger.eu/tags/ergonomie/</link>
+				<pubDate>Mon, 27 Apr 2026 21:11:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/ergonomie/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Homeoffice</title>
+				<link>https://dealledger.eu/tags/homeoffice/</link>
+				<pubDate>Mon, 27 Apr 2026 21:11:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/homeoffice/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Stuhl</title>
+				<link>https://dealledger.eu/tags/stuhl/</link>
+				<pubDate>Mon, 27 Apr 2026 21:11:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/stuhl/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>L-Form</title>
+				<link>https://dealledger.eu/tags/l-form/</link>
+				<pubDate>Mon, 27 Apr 2026 21:09:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/l-form/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Möbel</title>
+				<link>https://dealledger.eu/tags/m%C3%B6bel/</link>
+				<pubDate>Mon, 27 Apr 2026 21:09:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/m%C3%B6bel/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Schreibtisch</title>
+				<link>https://dealledger.eu/tags/schreibtisch/</link>
+				<pubDate>Mon, 27 Apr 2026 21:09:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/schreibtisch/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Kopfhörer</title>
+				<link>https://dealledger.eu/tags/kopfh%C3%B6rer/</link>
+				<pubDate>Mon, 27 Apr 2026 21:07:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/kopfh%C3%B6rer/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Noise-Cancelling</title>
+				<link>https://dealledger.eu/tags/noise-cancelling/</link>
+				<pubDate>Mon, 27 Apr 2026 21:07:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/noise-cancelling/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Sony</title>
+				<link>https://dealledger.eu/tags/sony/</link>
+				<pubDate>Mon, 27 Apr 2026 21:07:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/sony/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Kabellos</title>
+				<link>https://dealledger.eu/tags/kabellos/</link>
+				<pubDate>Mon, 27 Apr 2026 21:06:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/kabellos/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Soundcore</title>
+				<link>https://dealledger.eu/tags/soundcore/</link>
+				<pubDate>Mon, 27 Apr 2026 21:06:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/soundcore/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Laptop</title>
+				<link>https://dealledger.eu/tags/laptop/</link>
+				<pubDate>Mon, 27 Apr 2026 20:54:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/laptop/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Zubehör</title>
+				<link>https://dealledger.eu/tags/zubeh%C3%B6r/</link>
+				<pubDate>Mon, 27 Apr 2026 20:54:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/zubeh%C3%B6r/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Leder</title>
+				<link>https://dealledger.eu/tags/leder/</link>
+				<pubDate>Mon, 27 Apr 2026 20:53:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/leder/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Auto</title>
+				<link>https://dealledger.eu/tags/auto/</link>
+				<pubDate>Mon, 27 Apr 2026 20:51:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/auto/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Ladegerät</title>
+				<link>https://dealledger.eu/tags/ladeger%C3%A4t/</link>
+				<pubDate>Mon, 27 Apr 2026 20:51:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/ladeger%C3%A4t/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Technik</title>
+				<link>https://dealledger.eu/tags/technik/</link>
+				<pubDate>Mon, 27 Apr 2026 20:51:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/technik/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Akku</title>
+				<link>https://dealledger.eu/tags/akku/</link>
+				<pubDate>Mon, 27 Apr 2026 20:50:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/akku/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Mobil</title>
+				<link>https://dealledger.eu/tags/mobil/</link>
+				<pubDate>Mon, 27 Apr 2026 20:50:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/mobil/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Powerbank</title>
+				<link>https://dealledger.eu/tags/powerbank/</link>
+				<pubDate>Mon, 27 Apr 2026 20:50:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/powerbank/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Bekabeld</title>
+				<link>https://dealledger.eu/tags/bekabeld/</link>
+				<pubDate>Mon, 27 Apr 2026 19:12:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/bekabeld/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Gamen</title>
+				<link>https://dealledger.eu/tags/gamen/</link>
+				<pubDate>Mon, 27 Apr 2026 19:12:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/gamen/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Geluid</title>
+				<link>https://dealledger.eu/tags/geluid/</link>
+				<pubDate>Mon, 27 Apr 2026 19:12:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/geluid/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Draadloos</title>
+				<link>https://dealledger.eu/tags/draadloos/</link>
+				<pubDate>Mon, 27 Apr 2026 19:07:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/draadloos/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Koptelefoon</title>
+				<link>https://dealledger.eu/tags/koptelefoon/</link>
+				<pubDate>Mon, 27 Apr 2026 19:07:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/koptelefoon/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Ruisonderdrukking</title>
+				<link>https://dealledger.eu/tags/ruisonderdrukking/</link>
+				<pubDate>Mon, 27 Apr 2026 19:07:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/ruisonderdrukking/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Kantoor</title>
+				<link>https://dealledger.eu/tags/kantoor/</link>
+				<pubDate>Mon, 27 Apr 2026 19:06:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/kantoor/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Meubels</title>
+				<link>https://dealledger.eu/tags/meubels/</link>
+				<pubDate>Mon, 27 Apr 2026 19:06:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/meubels/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Vasagle</title>
+				<link>https://dealledger.eu/tags/vasagle/</link>
+				<pubDate>Mon, 27 Apr 2026 19:06:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/vasagle/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Zit-Sta-Bureau</title>
+				<link>https://dealledger.eu/tags/zit-sta-bureau/</link>
+				<pubDate>Mon, 27 Apr 2026 19:05:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/zit-sta-bureau/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Content-Creatie</title>
+				<link>https://dealledger.eu/tags/content-creatie/</link>
+				<pubDate>Mon, 27 Apr 2026 12:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/content-creatie/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Corsair</title>
+				<link>https://dealledger.eu/tags/corsair/</link>
+				<pubDate>Mon, 27 Apr 2026 12:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/corsair/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Elgato</title>
+				<link>https://dealledger.eu/tags/elgato/</link>
+				<pubDate>Mon, 27 Apr 2026 12:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/elgato/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Gezondheid</title>
+				<link>https://dealledger.eu/tags/gezondheid/</link>
+				<pubDate>Mon, 27 Apr 2026 12:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/gezondheid/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Mechanisch</title>
+				<link>https://dealledger.eu/tags/mechanisch/</link>
+				<pubDate>Mon, 27 Apr 2026 12:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/mechanisch/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Muis</title>
+				<link>https://dealledger.eu/tags/muis/</link>
+				<pubDate>Mon, 27 Apr 2026 12:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/muis/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Persoonlijke-Verzorging</title>
+				<link>https://dealledger.eu/tags/persoonlijke-verzorging/</link>
+				<pubDate>Mon, 27 Apr 2026 12:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/persoonlijke-verzorging/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Philips</title>
+				<link>https://dealledger.eu/tags/philips/</link>
+				<pubDate>Mon, 27 Apr 2026 12:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/philips/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Productiviteit</title>
+				<link>https://dealledger.eu/tags/productiviteit/</link>
+				<pubDate>Mon, 27 Apr 2026 12:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/productiviteit/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Streamen</title>
+				<link>https://dealledger.eu/tags/streamen/</link>
+				<pubDate>Mon, 27 Apr 2026 12:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/streamen/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Tandenborstel</title>
+				<link>https://dealledger.eu/tags/tandenborstel/</link>
+				<pubDate>Mon, 27 Apr 2026 12:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/tandenborstel/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Toetsenbord</title>
+				<link>https://dealledger.eu/tags/toetsenbord/</link>
+				<pubDate>Mon, 27 Apr 2026 12:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/toetsenbord/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Yunzii</title>
+				<link>https://dealledger.eu/tags/yunzii/</link>
+				<pubDate>Mon, 27 Apr 2026 12:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/yunzii/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>4k</title>
+				<link>https://dealledger.eu/tags/4k/</link>
+				<pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/4k/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Accessories</title>
+				<link>https://dealledger.eu/tags/accessories/</link>
+				<pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/accessories/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Air-Purifier</title>
+				<link>https://dealledger.eu/tags/air-purifier/</link>
+				<pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/air-purifier/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Aoc</title>
+				<link>https://dealledger.eu/tags/aoc/</link>
+				<pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/aoc/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Fhd</title>
+				<link>https://dealledger.eu/tags/fhd/</link>
+				<pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/fhd/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Files</title>
+				<link>https://dealledger.eu/tags/files/</link>
+				<pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/files/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Fire-Tv</title>
+				<link>https://dealledger.eu/tags/fire-tv/</link>
+				<pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/fire-tv/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Furniture</title>
+				<link>https://dealledger.eu/tags/furniture/</link>
+				<pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/furniture/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Home</title>
+				<link>https://dealledger.eu/tags/home/</link>
+				<pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/home/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Insignia</title>
+				<link>https://dealledger.eu/tags/insignia/</link>
+				<pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/insignia/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Levoit</title>
+				<link>https://dealledger.eu/tags/levoit/</link>
+				<pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/levoit/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Microphone</title>
+				<link>https://dealledger.eu/tags/microphone/</link>
+				<pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/microphone/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Office</title>
+				<link>https://dealledger.eu/tags/office/</link>
+				<pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/office/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Organizer</title>
+				<link>https://dealledger.eu/tags/organizer/</link>
+				<pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/organizer/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Sceptre</title>
+				<link>https://dealledger.eu/tags/sceptre/</link>
+				<pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/sceptre/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Streaming</title>
+				<link>https://dealledger.eu/tags/streaming/</link>
+				<pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/streaming/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Turntable</title>
+				<link>https://dealledger.eu/tags/turntable/</link>
+				<pubDate>Tue, 21 Apr 2026 20:34:28 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/turntable/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Vinyl</title>
+				<link>https://dealledger.eu/tags/vinyl/</link>
+				<pubDate>Tue, 21 Apr 2026 20:34:28 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/vinyl/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Computing</title>
+				<link>https://dealledger.eu/tags/computing/</link>
+				<pubDate>Thu, 16 Apr 2026 20:38:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/computing/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Portable</title>
+				<link>https://dealledger.eu/tags/portable/</link>
+				<pubDate>Thu, 16 Apr 2026 20:37:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/portable/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Productivity</title>
+				<link>https://dealledger.eu/tags/productivity/</link>
+				<pubDate>Thu, 16 Apr 2026 20:37:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/productivity/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Organization</title>
+				<link>https://dealledger.eu/tags/organization/</link>
+				<pubDate>Thu, 16 Apr 2026 20:36:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/organization/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Pc Build</title>
+				<link>https://dealledger.eu/tags/pc-build/</link>
+				<pubDate>Thu, 16 Apr 2026 20:14:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/pc-build/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Camera</title>
+				<link>https://dealledger.eu/tags/camera/</link>
+				<pubDate>Thu, 16 Apr 2026 20:13:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/camera/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Wearables</title>
+				<link>https://dealledger.eu/tags/wearables/</link>
+				<pubDate>Thu, 16 Apr 2026 20:13:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/wearables/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Travel</title>
+				<link>https://dealledger.eu/tags/travel/</link>
+				<pubDate>Thu, 16 Apr 2026 20:10:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/travel/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Power</title>
+				<link>https://dealledger.eu/tags/power/</link>
+				<pubDate>Tue, 14 Apr 2026 15:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/power/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Mobile</title>
+				<link>https://dealledger.eu/tags/mobile/</link>
+				<pubDate>Tue, 14 Apr 2026 14:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/mobile/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Collectibles</title>
+				<link>https://dealledger.eu/tags/collectibles/</link>
+				<pubDate>Tue, 14 Apr 2026 13:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/collectibles/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Gifts</title>
+				<link>https://dealledger.eu/tags/gifts/</link>
+				<pubDate>Tue, 14 Apr 2026 13:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/gifts/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Toys</title>
+				<link>https://dealledger.eu/tags/toys/</link>
+				<pubDate>Tue, 14 Apr 2026 13:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/tags/toys/</guid>
+				<description></description>
+			</item>
+	</channel>
 </rss>

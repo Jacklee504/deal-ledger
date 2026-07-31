@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Portable on Deal Ledger</title>
-    <link>https://dealledger.eu/tags/portable/</link>
-    <description>Recent content in Portable on Deal Ledger</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sat, 16 May 2026 16:31:39 +0000</lastBuildDate>
-    <atom:link href="https://dealledger.eu/tags/portable/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Ingnok 15.6-inch FHD Portable Monitor</title>
-      <link>https://dealledger.eu/deals/ingnok-15-6-inch-fhd-portable-monitor/</link>
-      <pubDate>Thu, 16 Apr 2026 20:37:00 +0000</pubDate>
-      <guid>https://dealledger.eu/deals/ingnok-15-6-inch-fhd-portable-monitor/</guid>
-      <description>15.6-inch portable FHD monitor for travel, remote work, and dual-screen setups.</description>
-    </item>
-  </channel>
+	<channel>
+		<title>Portable on Deal Ledger</title>
+		<link>https://dealledger.eu/tags/portable/</link>
+		<description>Recent content in Portable on Deal Ledger</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Sat, 16 May 2026 16:31:39 +0000</lastBuildDate>
+		
+			<atom:link href="https://dealledger.eu/tags/portable/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Ingnok 15.6-inch FHD Portable Monitor</title>
+				<link>https://dealledger.eu/deals/ingnok-15-6-inch-fhd-portable-monitor/</link>
+				<pubDate>Thu, 16 Apr 2026 20:37:00 +0000</pubDate>
+				<guid>https://dealledger.eu/deals/ingnok-15-6-inch-fhd-portable-monitor/</guid>
+				<description>15.6-inch portable FHD monitor for travel, remote work, and dual-screen setups.</description>
+			</item>
+	</channel>
 </rss>

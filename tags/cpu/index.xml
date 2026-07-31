@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Cpu on Deal Ledger</title>
-    <link>https://dealledger.eu/tags/cpu/</link>
-    <description>Recent content in Cpu on Deal Ledger</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sat, 16 May 2026 17:26:29 +0100</lastBuildDate>
-    <atom:link href="https://dealledger.eu/tags/cpu/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>AMD Ryzen 7 9800X3D</title>
-      <link>https://dealledger.eu/deals/amd-ryzen-7-9800x3d-amazon-ie/</link>
-      <pubDate>Sat, 16 May 2026 14:46:56 +0000</pubDate>
-      <guid>https://dealledger.eu/deals/amd-ryzen-7-9800x3d-amazon-ie/</guid>
-      <description>Top-tier AM5 gaming CPU with 3D V-Cache for high-FPS desktop builds.</description>
-    </item>
-  </channel>
+	<channel>
+		<title>Cpu on Deal Ledger</title>
+		<link>https://dealledger.eu/tags/cpu/</link>
+		<description>Recent content in Cpu on Deal Ledger</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Sat, 16 May 2026 17:26:29 +0100</lastBuildDate>
+		
+			<atom:link href="https://dealledger.eu/tags/cpu/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>AMD Ryzen 7 9800X3D</title>
+				<link>https://dealledger.eu/deals/amd-ryzen-7-9800x3d-amazon-ie/</link>
+				<pubDate>Sat, 16 May 2026 14:46:56 +0000</pubDate>
+				<guid>https://dealledger.eu/deals/amd-ryzen-7-9800x3d-amazon-ie/</guid>
+				<description>Top-tier AM5 gaming CPU with 3D V-Cache for high-FPS desktop builds.</description>
+			</item>
+	</channel>
 </rss>

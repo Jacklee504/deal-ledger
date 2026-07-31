@@ -1,33 +1,38 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Jbl on Deal Ledger</title>
-    <link>https://dealledger.eu/tags/jbl/</link>
-    <description>Recent content in Jbl on Deal Ledger</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sat, 16 May 2026 16:31:39 +0000</lastBuildDate>
-    <atom:link href="https://dealledger.eu/tags/jbl/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Casque JBL sans fil</title>
-      <link>https://dealledger.eu/deals/jbl-wireless-headphones-fr/</link>
-      <pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/deals/jbl-wireless-headphones-fr/</guid>
-      <description>Casque JBL sans fil avec forte réduction sur Amazon FR.</description>
-    </item>
-    <item>
-      <title>JBL Draadloze Koptelefoon met Ruisonderdrukking</title>
-      <link>https://dealledger.eu/deals/jbl-wireless-noise-cancelling-headphones-nl/</link>
-      <pubDate>Mon, 27 Apr 2026 19:07:00 +0000</pubDate>
-      <guid>https://dealledger.eu/deals/jbl-wireless-noise-cancelling-headphones-nl/</guid>
-      <description>Draadloze JBL-koptelefoon met actieve ruisonderdrukking en flinke korting op Amazon NL.</description>
-    </item>
-    <item>
-      <title>JBL Vibe Beam Wireless Earbuds</title>
-      <link>https://dealledger.eu/deals/jbl-vibe-beam-wireless-earbuds/</link>
-      <pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/deals/jbl-vibe-beam-wireless-earbuds/</guid>
-      <description>JBL wireless earbuds listing for audio deals tracking.</description>
-    </item>
-  </channel>
+	<channel>
+		<title>Jbl on Deal Ledger</title>
+		<link>https://dealledger.eu/tags/jbl/</link>
+		<description>Recent content in Jbl on Deal Ledger</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Sat, 16 May 2026 16:31:39 +0000</lastBuildDate>
+		
+			<atom:link href="https://dealledger.eu/tags/jbl/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Casque JBL sans fil</title>
+				<link>https://dealledger.eu/deals/jbl-wireless-headphones-fr/</link>
+				<pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/deals/jbl-wireless-headphones-fr/</guid>
+				<description>Casque JBL sans fil avec forte réduction sur Amazon FR.</description>
+			</item>
+			<item>
+				<title>JBL Draadloze Koptelefoon met Ruisonderdrukking</title>
+				<link>https://dealledger.eu/deals/jbl-wireless-noise-cancelling-headphones-nl/</link>
+				<pubDate>Mon, 27 Apr 2026 19:07:00 +0000</pubDate>
+				<guid>https://dealledger.eu/deals/jbl-wireless-noise-cancelling-headphones-nl/</guid>
+				<description>Draadloze JBL-koptelefoon met actieve ruisonderdrukking en flinke korting op Amazon NL.</description>
+			</item>
+			<item>
+				<title>JBL Vibe Beam Wireless Earbuds</title>
+				<link>https://dealledger.eu/deals/jbl-vibe-beam-wireless-earbuds/</link>
+				<pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/deals/jbl-vibe-beam-wireless-earbuds/</guid>
+				<description>JBL wireless earbuds listing for audio deals tracking.</description>
+			</item>
+	</channel>
 </rss>

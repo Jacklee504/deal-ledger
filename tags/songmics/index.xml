@@ -1,33 +1,38 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Songmics on Deal Ledger</title>
-    <link>https://dealledger.eu/tags/songmics/</link>
-    <description>Recent content in Songmics on Deal Ledger</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sat, 16 May 2026 16:31:39 +0000</lastBuildDate>
-    <atom:link href="https://dealledger.eu/tags/songmics/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Bureau assis-debout électrique SONGMICS</title>
-      <link>https://dealledger.eu/deals/songmics-electric-standing-desk-fr/</link>
-      <pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/deals/songmics-electric-standing-desk-fr/</guid>
-      <description>Bureau assis-debout électrique SONGMICS avec réduction sur Amazon FR.</description>
-    </item>
-    <item>
-      <title>Chaise gaming SONGMICS</title>
-      <link>https://dealledger.eu/deals/songmics-gaming-chair-fr/</link>
-      <pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://dealledger.eu/deals/songmics-gaming-chair-fr/</guid>
-      <description>Chaise gaming SONGMICS réglable avec remise sur Amazon FR.</description>
-    </item>
-    <item>
-      <title>SONGMICS Verstelbaar Zit-sta Bureau</title>
-      <link>https://dealledger.eu/deals/songmics-adjustable-standing-desk-nl/</link>
-      <pubDate>Mon, 27 Apr 2026 19:05:00 +0000</pubDate>
-      <guid>https://dealledger.eu/deals/songmics-adjustable-standing-desk-nl/</guid>
-      <description>Verstelbaar bureau op Amazon NL. Geprijsd op 139,99 EUR, met voucher effectief rond 93 EUR.</description>
-    </item>
-  </channel>
+	<channel>
+		<title>Songmics on Deal Ledger</title>
+		<link>https://dealledger.eu/tags/songmics/</link>
+		<description>Recent content in Songmics on Deal Ledger</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Sat, 16 May 2026 16:31:39 +0000</lastBuildDate>
+		
+			<atom:link href="https://dealledger.eu/tags/songmics/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Bureau assis-debout électrique SONGMICS</title>
+				<link>https://dealledger.eu/deals/songmics-electric-standing-desk-fr/</link>
+				<pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/deals/songmics-electric-standing-desk-fr/</guid>
+				<description>Bureau assis-debout électrique SONGMICS avec réduction sur Amazon FR.</description>
+			</item>
+			<item>
+				<title>Chaise gaming SONGMICS</title>
+				<link>https://dealledger.eu/deals/songmics-gaming-chair-fr/</link>
+				<pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://dealledger.eu/deals/songmics-gaming-chair-fr/</guid>
+				<description>Chaise gaming SONGMICS réglable avec remise sur Amazon FR.</description>
+			</item>
+			<item>
+				<title>SONGMICS Verstelbaar Zit-sta Bureau</title>
+				<link>https://dealledger.eu/deals/songmics-adjustable-standing-desk-nl/</link>
+				<pubDate>Mon, 27 Apr 2026 19:05:00 +0000</pubDate>
+				<guid>https://dealledger.eu/deals/songmics-adjustable-standing-desk-nl/</guid>
+				<description>Verstelbaar bureau op Amazon NL. Geprijsd op 139,99 EUR, met voucher effectief rond 93 EUR.</description>
+			</item>
+	</channel>
 </rss>
