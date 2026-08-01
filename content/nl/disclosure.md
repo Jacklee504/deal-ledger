@@ -1,5 +1,6 @@
 +++
 title = "Openbaarmaking"
+draft = true
 +++
 
 Deal Ledger kan affiliatelinks bevatten. Als je via die links koopt, kunnen we een commissie ontvangen zonder extra kosten voor jou.

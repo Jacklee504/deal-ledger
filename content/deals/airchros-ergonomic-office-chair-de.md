@@ -1,5 +1,6 @@
 +++
 title = "Airchros Ergonomischer Bürostuhl"
+draft = true
 date = 2026-04-27T21:10:00Z
 list_price = 79.99
 sale_price = 55.51
@@ -18,4 +19,3 @@ listing_synced_at = "2026-04-30T20:33:05.510242+00:00"
 +++
 
 Airchros Bürostuhl-Angebot auf Amazon DE.
-

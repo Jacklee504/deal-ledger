@@ -1,5 +1,6 @@
 +++
 title = "INIU Powerbank 10000 mAh"
+draft = true
 date = 2026-04-27T20:50:00Z
 list_price = 33.99
 sale_price = 26.99

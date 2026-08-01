@@ -2,10 +2,12 @@
 {{ $trimmed := strings.Trim $path "/" }}
 {{ $segments := split $trimmed "/" }}
 {{ $scratch := newScratch }}
-{{ $scratch.Set "marketKey" "ie" }}
+{{ $activeMarkets := site.Params.active_markets | default (slice "us") }}
+{{ $defaultMarket := site.Params.default_market | default "us" }}
+{{ $scratch.Set "marketKey" $defaultMarket }}
 {{ if gt (len $segments) 0 }}
   {{ $first := index $segments 0 }}
-  {{ if isset hugo.Data.stores $first }}
+  {{ if and (in $activeMarkets $first) (isset hugo.Data.stores $first) }}
     {{ $scratch.Set "marketKey" $first }}
   {{ else if eq $first "deals" }}
     {{ $dealPath := $path }}
@@ -14,17 +16,19 @@
     {{ end }}
     {{ range sort hugo.Data.stores "market" }}
       {{ $candidate := .market }}
-      {{ with .deals }}
-        {{ range . }}
-          {{ $storePath := lower (printf "%v" .) | strings.TrimSpace }}
-          {{ if not (hasPrefix $storePath "/") }}
-            {{ $storePath = printf "/%s" $storePath }}
-          {{ end }}
-          {{ if not (hasSuffix $storePath "/") }}
-            {{ $storePath = printf "%s/" $storePath }}
-          {{ end }}
-          {{ if eq $storePath $dealPath }}
-            {{ $scratch.Set "marketKey" $candidate }}
+      {{ if in $activeMarkets $candidate }}
+        {{ with .deals }}
+          {{ range . }}
+            {{ $storePath := lower (printf "%v" .) | strings.TrimSpace }}
+            {{ if not (hasPrefix $storePath "/") }}
+              {{ $storePath = printf "/%s" $storePath }}
+            {{ end }}
+            {{ if not (hasSuffix $storePath "/") }}
+              {{ $storePath = printf "%s/" $storePath }}
+            {{ end }}
+            {{ if eq $storePath $dealPath }}
+              {{ $scratch.Set "marketKey" $candidate }}
+            {{ end }}
           {{ end }}
         {{ end }}
       {{ end }}

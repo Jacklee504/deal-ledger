@@ -9,7 +9,7 @@ provider result automatically.
 ## Implemented flow
 
 ```text
-SerpApi keyword search
+Bright Data Products Search (documented dataset `gd_lwdb4vjm1ehb499uxs`)
   -> clean amazon.com ASIN URLs
   -> Bright Data Amazon scraper (with configured delivery ZIP)
   -> local policy and duplicate checks
@@ -24,8 +24,8 @@ SerpApi keyword search
 
 | Stage | Source of truth | Guardrail |
 | --- | --- | --- |
-| Discovery | SerpApi Amazon US search | `amazon.com` product URLs and 10-character ASINs only |
-| Verification | Bright Data Amazon scraper | USD, availability, image, seller, minimum price and reduction |
+| Discovery | Bright Data Amazon Products Search | `amazon.com` product URLs and 10-character ASINs only |
+| Verification | Separate Bright Data Amazon PDP dataset | USD, availability, image, seller and minimum price |
 | Drafting | `scripts/fetch_deals_serpapi.py` | Explicit local write mode; exclusive creation only |
 | Review | Hugo draft page + Amazon product page | Human checks seller, availability, and public eligibility |
 | Promotion | `scripts/promote_deals.py` | One ASIN, SiteStripe/Associates URL, public price/reference price, explicit confirmation |
@@ -36,7 +36,7 @@ SerpApi keyword search
 - Marketplace: `amazon.com` only
 - Currency: USD only
 - Delivery context: ZIP in `scripts/deal_discovery_config.json`
-- Initial threshold: 20% off and $20 minimum sale price
+- Search candidates with a displayed 20% reduction are preferred; records with no displayed comparison price can proceed to browser review. $20 is the minimum sale price.
 - Seller policy: any disclosed Amazon Marketplace buy-box seller; human review
   decides whether it is suitable
 - Publishing: local, one deal at a time
@@ -44,7 +44,8 @@ SerpApi keyword search
 ## Important limitations
 
 - `initial_price` is a currently displayed provider comparison price, not price
-  history or a “lowest ever” claim.
+  history or a “lowest ever” claim. Missing or inconsistent PDP comparison
+  prices do not block a pending draft; the draft records that browser reference-price verification is required.
 - Bright Data may surface Prime, coupon, member, or ZIP-specific pricing. Every
   draft is marked `price_access = "unknown"`; it cannot be promoted until a
   reviewer confirms a price available to all shoppers.
@@ -60,12 +61,12 @@ SerpApi keyword search
 set -a; source .env; set +a
 python scripts/fetch_deals_serpapi.py --dry-run \\
   --max-queries 1 --max-products 3 \\
-  --report-out Media/serpapi-brightdata-dry-run.json
+  --report-out Media/brightdata-search-pdp-dry-run.json
 
 # Intentionally create local review drafts after inspecting a dry run.
 python scripts/fetch_deals_serpapi.py --write-review-drafts \\
   --max-queries 2 --max-products 6 \\
-  --report-out Media/serpapi-brightdata-review-drafts.json
+  --report-out Media/brightdata-search-pdp-review-drafts.json
 python scripts/sync_review_preview.py
 hugo server -D
 
@@ -82,9 +83,10 @@ python scripts/promote_deals.py --asin B0XXXXXXXX \\
 ## GitHub Actions
 
 The `serpapi-deal-intake.yml` workflow is a manually triggered dry run. It
-uses repository secrets for the two API keys and a repository variable for the
-dataset ID, then uploads a redacted report artifact. It cannot write drafts or
-publish content.
+uses a Bright Data API token secret and the existing PDP dataset variable. The
+Products Search dataset ID is already configured; no Global Products account,
+new credential, or new repository variable is needed. It uploads a redacted
+report and cannot write drafts or publish content.
 
 Deployment only builds the static site and validates newly added live deals;
 it does not call PA-API, run an Amazon HTML scraper, or refresh prices.

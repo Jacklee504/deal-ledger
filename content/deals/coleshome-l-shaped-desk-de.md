@@ -1,5 +1,6 @@
 +++
 title = "Coleshome L-förmiger Schreibtisch"
+draft = true
 date = 2026-04-27T21:09:00Z
 list_price = 40.33
 sale_price = 34.28
@@ -18,4 +19,3 @@ listing_synced_at = "2026-04-30T17:47:01.180707+00:00"
 +++
 
 Coleshome Schreibtisch-Angebot auf Amazon DE.
-

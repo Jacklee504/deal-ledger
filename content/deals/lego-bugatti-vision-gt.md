@@ -1,5 +1,6 @@
 +++
 title = "LEGO Bugatti Vision GT"
+draft = true
 date = 2026-04-14T13:00:00Z
 list_price = 27.99
 sale_price = 19.19

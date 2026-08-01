@@ -1,5 +1,6 @@
 +++
 title = "UGREEN Nexode Magnetic Wireless Power Bank"
+draft = true
 date = 2026-05-16T14:51:52Z
 list_price = 39.99
 sale_price = 29.99

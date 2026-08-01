@@ -1,5 +1,6 @@
 +++
 title = "naspaluro Ergonomischer Bürostuhl"
+draft = true
 date = 2026-04-27T21:11:00Z
 list_price = 63.99
 sale_price = 56.99

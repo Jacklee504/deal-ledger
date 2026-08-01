@@ -1,5 +1,6 @@
 +++
 title = "VASAGLE Computerbureau Industriële Stijl"
+draft = true
 date = 2026-04-27T19:06:00Z
 list_price = 74.99
 sale_price = 32.77

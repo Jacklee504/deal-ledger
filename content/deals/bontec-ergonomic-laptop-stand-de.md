@@ -1,5 +1,6 @@
 +++
 title = "BONTEC Ergonomischer Laptopständer"
+draft = true
 date = 2026-04-27T20:54:00Z
 list_price = 16.99
 sale_price = 13.58

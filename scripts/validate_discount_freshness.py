@@ -2,6 +2,7 @@
 
 Usage:
   python scripts/validate_discount_freshness.py
+  python scripts/validate_discount_freshness.py --market us
   python scripts/validate_discount_freshness.py --apply
   python scripts/validate_discount_freshness.py --json-out review-queue/deal-validity-report.json
 
@@ -28,6 +29,7 @@ from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
 DEALS_DIR = ROOT / "content" / "deals"
+US_STORE_PATH = ROOT / "data" / "stores" / "us.yaml"
 
 USER_AGENT = (
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
@@ -284,12 +286,43 @@ def fmt(value: Optional[float]) -> str:
     return f"{value:.2f}"
 
 
+def paths_for_market(market: str) -> list[Path]:
+    """Return live deal files for the selected market without YAML dependencies."""
+    if market == "all":
+        return sorted(path for path in DEALS_DIR.glob("*.md") if path.name != "_index.md")
+    if market != "us":
+        raise ValueError(f"Unsupported market: {market}")
+
+    try:
+        store_text = US_STORE_PATH.read_text(encoding="utf-8")
+    except OSError as exc:
+        raise ValueError(f"Could not read US store list: {exc}") from exc
+    permalinks = re.findall(r"^\s*-\s*/deals/([^/]+)/\s*$", store_text, re.MULTILINE)
+    if not permalinks:
+        raise ValueError("US store list contains no deal paths")
+
+    paths: list[Path] = []
+    missing: list[str] = []
+    for permalink in permalinks:
+        path = DEALS_DIR / f"{permalink}.md"
+        if path.exists():
+            paths.append(path)
+        else:
+            missing.append(permalink)
+    if missing:
+        raise ValueError(
+            "US store list references missing deal file(s): " + ", ".join(missing)
+        )
+    return paths
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--apply", action="store_true", help="Write updated listing price fields when stale.")
     parser.add_argument("--tolerance", type=float, default=0.01, help="Price delta tolerance before flagging stale.")
     parser.add_argument("--timeout", type=int, default=20, help="HTTP timeout in seconds.")
     parser.add_argument("--limit", type=int, default=0, help="Max number of deals to check (0 = all).")
+    parser.add_argument("--market", choices=("all", "us"), default="all", help="Limit checks to a market listing.")
     parser.add_argument("--include-ok", action="store_true", help="Print [ok] rows too.")
     parser.add_argument("--json-out", default="", help="Optional report output path.")
     parser.add_argument("--fail-on-stale", action="store_true", help="Exit non-zero if any stale prices are found.")
@@ -304,10 +337,12 @@ def main() -> None:
     blocked = 0
     unknown = 0
     report: list[dict[str, Any]] = []
+    try:
+        deal_paths = paths_for_market(args.market)
+    except ValueError as exc:
+        raise SystemExit(f"[validate_discount_freshness] {exc}") from exc
 
-    for path in sorted(DEALS_DIR.glob("*.md")):
-        if path.name == "_index.md":
-            continue
+    for path in deal_paths:
         if args.limit and checked >= args.limit:
             break
 
@@ -436,6 +471,7 @@ def main() -> None:
             out = ROOT / out
         out.parent.mkdir(parents=True, exist_ok=True)
         payload = {
+            "market": args.market,
             "summary": {
                 "checked": checked,
                 "stale": stale,
@@ -448,7 +484,11 @@ def main() -> None:
             "results": report,
         }
         out.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-        print(f"[validate_discount_freshness] wrote report to {out.relative_to(ROOT)}")
+        try:
+            display_out = out.relative_to(ROOT)
+        except ValueError:
+            display_out = out
+        print(f"[validate_discount_freshness] wrote report to {display_out}")
 
     should_fail = (args.fail_on_stale and stale > 0) or (
         args.fail_on_unreachable and unreachable > 0

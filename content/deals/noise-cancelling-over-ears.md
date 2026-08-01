@@ -1,5 +1,6 @@
 +++
 title = "Noise-cancelling over-ears"
+draft = true
 date = 2026-03-30T12:00:00Z
 list_price = 129
 sale_price = 79.82

@@ -8,8 +8,8 @@ Static Hugo deals site with:
 ## Amazon US deal workflow
 
 This project deliberately does not scrape Amazon product pages directly or
-publish discovered prices automatically. SerpApi discovers products, Bright
-Data verifies a small batch of product pages, and the static Hugo review page
+publish discovered prices automatically. Bright Data Products Search discovers
+products and a separate Bright Data PDP dataset verifies a small batch of product pages; the static Hugo review page
 lets you inspect the result before any live content is created.
 
 ### One-time setup
@@ -17,23 +17,24 @@ lets you inspect the result before any live content is created.
 1. Put the credentials in local `.env` (it is ignored by Git):
 
    ```bash
-   SERPAPI_API_KEY=...
    BRIGHTDATA_API_TOKEN=...
    BRIGHTDATA_DATASET_ID=...
    ```
 
 2. Configure Amazon US discovery in
    [`scripts/deal_discovery_config.json`](scripts/deal_discovery_config.json):
-   - `keywords` are the product searches.
+   - `keywords` are sent to Bright Data Products Search. Its documented default
+     dataset ID is configured already; no Global Products account or extra
+     credential is needed. `discovery.dataset_id` is only an optional override.
    - `verification.zipcode` is the US delivery ZIP used for the Bright Data
      snapshot; set it to the ZIP whose availability you want to represent.
    - `minimum_discount_pct` and `minimum_sale_price` are the first-pass filter.
    - An empty `trusted_seller_terms` allows any marketplace buy-box seller;
      seller identity remains visible in the review draft.
 
-3. Add the same three values to GitHub Actions if you want remote dry-run
+3. Add the same two values to GitHub Actions if you want remote dry-run
    reports:
-   - `SERPAPI_API_KEY` and `BRIGHTDATA_API_TOKEN` as repository secrets
+   - `BRIGHTDATA_API_TOKEN` as a repository secret
    - `BRIGHTDATA_DATASET_ID` as a repository variable
 
 ### Daily operating flow
@@ -45,10 +46,10 @@ lets you inspect the result before any live content is created.
 set -a; source .env; set +a
 python scripts/fetch_deals_serpapi.py --dry-run \\
     --max-queries 1 --max-products 3 \\
-    --report-out Media/serpapi-brightdata-dry-run.json
+    --report-out Media/brightdata-search-pdp-dry-run.json
 ```
 
-   Or run **SerpApi and Bright Data US deal-intake dry run** from the Actions
+   Or run **Bright Data Search and PDP US deal-intake dry run** from the Actions
    tab and download its report artifact.
 
 2. If the report looks sensible, intentionally create local review drafts:
@@ -57,7 +58,7 @@ python scripts/fetch_deals_serpapi.py --dry-run \\
 set -a; source .env; set +a
 python scripts/fetch_deals_serpapi.py --write-review-drafts \\
   --max-queries 2 --max-products 6 \\
-  --report-out Media/serpapi-brightdata-review-drafts.json
+  --report-out Media/brightdata-search-pdp-review-drafts.json
 python scripts/sync_review_preview.py
 ```
 
@@ -120,7 +121,7 @@ python scripts/reject_deals.py --asin B0XXXXXXXX --reason 'Prime-only price'
 
 ### GitHub Actions
 
-- **SerpApi and Bright Data US deal-intake dry run** is manual only and uploads
+- **Bright Data Search and PDP US deal-intake dry run** is manual only and uploads
   a report. It does not write content or publish deals.
 - Deployment no longer runs PA-API, direct Amazon page fetches, or automatic
   price refreshes. It verifies metadata on newly added live deal files before

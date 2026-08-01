@@ -1,5 +1,6 @@
 +++
 title = "Upgraded Bluetooth Turntable Hi-Fi"
+draft = true
 date = 2026-04-21T20:33:39Z
 list_price = 187.76
 sale_price = 144.76

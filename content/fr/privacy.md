@@ -1,5 +1,6 @@
 +++
 title = "Confidentialité"
+draft = true
 +++
 
 Deal Ledger peut collecter des informations limitées lorsque vous visitez le site ou nous contactez, y compris les e-mails que vous envoyez et des données de base d'analyse ou serveur.

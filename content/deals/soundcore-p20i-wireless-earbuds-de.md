@@ -1,5 +1,6 @@
 +++
 title = "soundcore P20i Bluetooth In-Ear-Kopfhörer"
+draft = true
 date = 2026-04-27T21:06:00Z
 list_price = 24.99
 sale_price = 19.99
@@ -17,4 +18,3 @@ listing_synced_at = "2026-04-30T20:33:05.510242+00:00"
 +++
 
 soundcore P20i Angebot auf Amazon DE.
-

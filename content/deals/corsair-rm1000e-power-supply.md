@@ -1,5 +1,6 @@
 +++
 title = "Corsair RM1000e Power Supply"
+draft = true
 date = 2026-04-14T15:00:00Z
 list_price = 190.00
 sale_price = 136.78

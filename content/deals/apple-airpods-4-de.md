@@ -1,5 +1,6 @@
 +++
 title = "Apple AirPods 4"
+draft = true
 date = 2026-04-27T21:05:00Z
 list_price = 149.00
 sale_price = 113.49
@@ -18,4 +19,3 @@ listing_synced_at = "2026-04-30T20:33:05.510242+00:00"
 +++
 
 Apple AirPods 4 Angebot auf Amazon DE.
-

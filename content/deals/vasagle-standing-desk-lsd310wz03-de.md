@@ -1,5 +1,6 @@
 +++
 title = "VASAGLE Höhenverstellbarer Schreibtisch"
+draft = true
 date = 2026-04-27T21:08:00Z
 list_price = 71.99
 sale_price = 58.99
@@ -18,4 +19,3 @@ listing_synced_at = "2026-04-30T20:33:05.510242+00:00"
 +++
 
 VASAGLE Schreibtisch-Angebot auf Amazon DE.
-

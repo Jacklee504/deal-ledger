@@ -1,5 +1,6 @@
 +++
 title = "INIU Car Charger Cigarette Lighter Adapter"
+draft = true
 date = 2026-05-16T14:52:52Z
 list_price = 12.98
 sale_price = 6.75

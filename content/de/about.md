@@ -1,5 +1,6 @@
 +++
 title = "Über uns"
+draft = true
 +++
 
 Deal Ledger ist eine kuratierte Angebotsseite mit praktischen Produktempfehlungen und klarer Preiseinordnung.

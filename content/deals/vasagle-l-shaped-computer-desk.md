@@ -1,5 +1,6 @@
 +++
 title = "VASAGLE L-Shaped Computer Desk"
+draft = true
 date = 2026-04-22T00:00:00Z
 list_price = 134.99
 sale_price = 80.99

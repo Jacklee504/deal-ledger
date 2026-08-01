@@ -10,11 +10,13 @@ tags = ["razer", "headset", "wireless", "gaming", "audio"]
 categories = ["electronics", "gaming"]
 summary = "Razer Barracuda wireless headset deal for gaming and cross-platform audio on Amazon US."
 listing_url = "https://www.amazon.com/dp/B09XZZQK6Q"
-listing_title = "Amazon.com: Razer Barracuda X Wireless Gaming & Mobile Headset (PC, PlayStation, Switch 2, Android, iOS): 2.4GHz Wireless + Bluetooth - Lightweight - 40mm Drivers - Detachable Mic - 50 Hr Battery - Black : Video Games"
-listing_summary = ""
-listing_sale_price = 55.59
+listing_title = "Razer Barracuda Wireless Headset"
+listing_summary = "Razer Barracuda wireless headset deal for gaming and cross-platform audio on Amazon US."
+listing_sale_price = 64.99
 listing_image = "https://m.media-amazon.com/images/I/71IaG27SmkL._AC_SL1500_.jpg"
-listing_synced_at = "2026-04-30T20:33:05.510242+00:00"
+listing_synced_at = "2026-08-01T22:16:51Z"
+listing_list_price = 99.99
+listing_discount_pct = 0.350035
 +++
 
 Razer Barracuda wireless headset deal on Amazon US.

@@ -1,5 +1,6 @@
 +++
 title = "BONTEC Monitorständer höhenverstellbar"
+draft = true
 date = 2026-04-27T20:52:00Z
 list_price = 34.99
 sale_price = 28.47

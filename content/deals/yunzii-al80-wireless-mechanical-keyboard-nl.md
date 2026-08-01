@@ -1,5 +1,6 @@
 +++
 title = "YUNZII AL80 Draadloos Mechanisch Toetsenbord"
+draft = true
 date = 2026-04-27T12:00:00Z
 list_price = 119.99
 sale_price = 74.38

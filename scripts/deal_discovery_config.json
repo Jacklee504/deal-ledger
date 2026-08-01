@@ -1,6 +1,10 @@
 {
   "marketplace": "amazon.com",
   "currency": "USD",
+  "discovery": {
+    "dataset_id": "gd_lwdb4vjm1ehb499uxs",
+    "pages_to_search": 1
+  },
   "verification": {
     "zipcode": "94107"
   },
@@ -20,7 +24,7 @@
     "office chair"
   ],
   "limits": {
-    "max_serpapi_queries_per_run": 6,
+    "max_brightdata_search_queries_per_run": 6,
     "max_brightdata_products_per_run": 15
   },
   "policy": {

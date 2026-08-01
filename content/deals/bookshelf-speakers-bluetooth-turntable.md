@@ -1,5 +1,6 @@
 +++
 title = "Bookshelf Speakers Bluetooth Turntable"
+draft = true
 date = 2026-04-21T20:34:28Z
 list_price = 269.65
 sale_price = 215.65

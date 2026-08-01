@@ -1,14 +1,14 @@
 """Run a manually initiated Amazon US deal-intake.
 
-SerpApi discovers Amazon US product candidates. Bright Data then verifies the
-candidate product URLs. By default, ``--dry-run`` writes only a redacted report.
+Bright Data Amazon Search discovers Amazon US product candidates. A separate
+Bright Data Amazon product-page dataset then verifies candidate URLs. By
+default, ``--dry-run`` writes only a redacted report.
 The separate, conspicuous ``--write-review-drafts`` mode creates local review-
 queue drafts from accepted Bright Data records only. It never creates affiliate
 links, commits, or sends emails.
 
 Usage:
-  SERPAPI_API_KEY=... BRIGHTDATA_API_TOKEN=... \\
-  BRIGHTDATA_DATASET_ID=... \\
+  BRIGHTDATA_API_TOKEN=... BRIGHTDATA_DATASET_ID=... \\
   python scripts/fetch_deals_serpapi.py --dry-run --max-queries 1 \\
     --max-products 3 --report-out /tmp/deal-intake-report.json
 
@@ -42,9 +42,10 @@ DEFAULT_CONFIG_PATH = ROOT / "scripts" / "deal_discovery_config.json"
 DEFAULT_QUEUE_DIR = ROOT / "review-queue" / "deals"
 REJECTED_QUEUE_DIR = ROOT / "review-queue" / "rejected"
 LIVE_DEALS_DIR = ROOT / "content" / "deals"
-SERPAPI_URL = "https://serpapi.com/search.json"
 BRIGHTDATA_BASE_URL = "https://api.brightdata.com/datasets/v3"
-REQUIRED_ENVS = ("SERPAPI_API_KEY", "BRIGHTDATA_API_TOKEN", "BRIGHTDATA_DATASET_ID")
+BRIGHTDATA_TOKEN_ENV = "BRIGHTDATA_API_TOKEN"
+DEFAULT_BRIGHTDATA_SEARCH_DATASET_ID = "gd_lwdb4vjm1ehb499uxs"
+BRIGHTDATA_PDP_DATASET_ENV = "BRIGHTDATA_DATASET_ID"
 ASIN_PATTERN = re.compile(r"\b([A-Z0-9]{10})\b", re.IGNORECASE)
 AMAZON_ASIN_URL_PATTERN = re.compile(
     r"/(?:dp|gp/product|gp/aw/d)/([A-Z0-9]{10})(?:[/?]|$)",
@@ -82,8 +83,19 @@ def load_json(path: Path) -> dict[str, Any]:
     return value
 
 
+def brightdata_search_dataset_id(config: dict[str, Any]) -> str:
+    discovery = config.get("discovery")
+    if not isinstance(discovery, dict):
+        raise ProviderError("Configuration 'discovery' must be an object")
+    dataset_id = str(discovery.get("dataset_id") or DEFAULT_BRIGHTDATA_SEARCH_DATASET_ID).strip()
+    if not re.fullmatch(r"gd_[a-z0-9]+", dataset_id):
+        raise ProviderError("Configuration discovery.dataset_id must be a Bright Data dataset ID")
+    return dataset_id
+
+
 def require_env() -> dict[str, str]:
-    values = {name: os.getenv(name, "").strip() for name in REQUIRED_ENVS}
+    required = (BRIGHTDATA_TOKEN_ENV, BRIGHTDATA_PDP_DATASET_ENV)
+    values = {name: os.getenv(name, "").strip() for name in required}
     missing = [name for name, value in values.items() if not value]
     if missing:
         raise ProviderError("Missing required environment variable(s): " + ", ".join(missing))
@@ -164,44 +176,43 @@ def is_marketplace_url(url: str, marketplace: str) -> bool:
     return host == expected or host == f"www.{expected}"
 
 
-def serpapi_products(api_key: str, keyword: str, marketplace: str) -> list[dict[str, Any]]:
-    params = {
-        "engine": "amazon",
-        "amazon_domain": marketplace,
-        "k": keyword,
-        "api_key": api_key,
-    }
-    response = request_json(f"{SERPAPI_URL}?{urlencode(params)}")
-    if not isinstance(response, dict):
-        raise ProviderError("SerpApi returned an unexpected response type")
-    if response.get("error"):
-        raise ProviderError(f"SerpApi error: {response['error']}")
-    for key in ("organic_results", "search_results", "products"):
-        products = response.get(key)
-        if isinstance(products, list):
-            return [item for item in products if isinstance(item, dict)]
-    return []
+def record_value(record: dict[str, Any], *keys: str) -> Any:
+    """Find a provider field across the usual Bright Data record variants."""
+    for key in keys:
+        value = record.get(key)
+        if isinstance(value, dict):
+            for nested_key in ("value", "amount", "price", "current", "url", "href"):
+                if nested_key in value:
+                    value = value[nested_key]
+                    break
+        if value not in (None, ""):
+            return value
+    return None
+
+
+def amazon_search_url(keyword: str, marketplace: str) -> str:
+    return f"https://www.{marketplace}/s?{urlencode({'k': keyword})}"
 
 
 def discovery_candidate(result: dict[str, Any], *, keyword: str, marketplace: str,
                         minimum_discount: float, minimum_sale_price: float) -> tuple[dict[str, Any] | None, str | None]:
-    source_url = str(result.get("link") or result.get("url") or result.get("product_url") or "")
-    asin = (
-        extract_asin(result.get("asin"), result.get("product_id"))
-        or asin_from_amazon_url(source_url)
-    )
-    title = str(result.get("title") or "").strip()
-    sale_price = parse_price(result.get("extracted_price"))
-    if sale_price is None:
-        sale_price = parse_price(result.get("price"))
-    reference_price = parse_price(result.get("extracted_original_price"))
-    if reference_price is None:
-        reference_price = parse_price(result.get("original_price"))
+    source_url = str(record_value(result, "url", "product_url", "product_link", "link", "product_page_url") or "")
+    url_asin = asin_from_amazon_url(source_url)
+    title = str(record_value(result, "title", "product_title", "name", "product_name") or "").strip()
+    sale_price = parse_price(record_value(result, "final_price", "current_price", "sale_price", "price", "extracted_price"))
+    reference_price = parse_price(record_value(result, "initial_price", "reference_price", "list_price", "original_price", "extracted_original_price"))
+    source_currency = str(record_value(result, "currency", "price_currency") or "").upper()
 
-    if not asin:
-        return None, "missing ASIN"
-    if source_url and not is_marketplace_url(source_url, marketplace):
+    if not source_url or not is_marketplace_url(source_url, marketplace):
         return None, "not an Amazon US product URL"
+    # The returned product URL, not a standalone provider identifier, is the
+    # authoritative identity. This prevents a search/listing URL paired with
+    # an unrelated ASIN field from being promoted to a canonical PDP URL.
+    if not url_asin:
+        return None, "Amazon URL is not a product URL"
+    asin = url_asin
+    if source_currency and CURRENCY_ALIASES.get(source_currency, source_currency) != SUPPORTED_CURRENCY:
+        return None, f"Bright Data Search currency is {source_currency}, not {SUPPORTED_CURRENCY}"
     if not title:
         return None, "missing title"
     if sale_price is None:
@@ -217,15 +228,18 @@ def discovery_candidate(result: dict[str, Any], *, keyword: str, marketplace: st
     discount = None
     if reference_price is not None and reference_price > sale_price:
         discount = 1 - (sale_price / reference_price)
+        if discount < minimum_discount:
+            return None, "below minimum Bright Data Search discount"
 
     return {
         "asin": asin,
         "keyword": keyword,
         "title": title,
         "url": clean_amazon_url(asin, marketplace),
-        "serpapi_sale_price": sale_price,
-        "serpapi_reference_price": reference_price,
-        "serpapi_discount_pct": round(discount * 100, 2) if discount is not None else None,
+        "brightdata_search_sale_price": sale_price,
+        "brightdata_search_reference_price": reference_price,
+        "brightdata_search_discount_pct": round(discount * 100, 2) if discount is not None else None,
+        "brightdata_search_discount_eligible": discount is not None,
     }, None
 
 
@@ -242,8 +256,9 @@ def unique_by_asin(items: Iterable[dict[str, Any]]) -> list[dict[str, Any]]:
 
 
 def select_candidates(items: Iterable[dict[str, Any]], maximum: int) -> list[dict[str, Any]]:
-    """Pick unique candidates fairly across configured keyword searches."""
+    """Pick unique candidates fairly, favouring search records with a deal signal."""
     by_keyword: dict[str, list[dict[str, Any]]] = {}
+    fallback_by_keyword: dict[str, list[dict[str, Any]]] = {}
     seen_asins: set[str] = set()
     for item in items:
         asin = str(item.get("asin") or "")
@@ -251,26 +266,29 @@ def select_candidates(items: Iterable[dict[str, Any]], maximum: int) -> list[dic
         if not asin or not keyword or asin in seen_asins:
             continue
         seen_asins.add(asin)
-        by_keyword.setdefault(keyword, []).append(item)
+        bucket = by_keyword if item.get("brightdata_search_discount_eligible") else fallback_by_keyword
+        bucket.setdefault(keyword, []).append(item)
 
     selected: list[dict[str, Any]] = []
-    index = 0
-    while len(selected) < maximum:
-        added = False
-        for candidates in by_keyword.values():
-            if index < len(candidates):
-                selected.append(candidates[index])
-                added = True
-                if len(selected) == maximum:
-                    break
-        if not added:
-            break
-        index += 1
+    for groups in (by_keyword, fallback_by_keyword):
+        index = 0
+        while len(selected) < maximum:
+            added = False
+            for candidates in groups.values():
+                if index < len(candidates):
+                    selected.append(candidates[index])
+                    added = True
+                    if len(selected) == maximum:
+                        break
+            if not added:
+                break
+            index += 1
     return selected
 
 
-def brightdata_verify(token: str, dataset_id: str, inputs: list[dict[str, str]], *, timeout_seconds: int = 150) -> list[dict[str, Any]]:
-    """Verify configured product inputs with the Bright Data Amazon scraper."""
+def brightdata_collect(token: str, dataset_id: str, inputs: list[dict[str, Any]], *,
+                       collection_name: str, timeout_seconds: int = 150) -> list[dict[str, Any]]:
+    """Collect one Bright Data dataset snapshot without assuming its record shape."""
     if not inputs:
         return []
     headers = {"Authorization": f"Bearer {token}"}
@@ -282,7 +300,7 @@ def brightdata_verify(token: str, dataset_id: str, inputs: list[dict[str, str]],
         payload=inputs,
     )
     if not isinstance(trigger, dict) or not trigger.get("snapshot_id"):
-        raise ProviderError("Bright Data trigger response did not include snapshot_id")
+        raise ProviderError(f"Bright Data {collection_name} trigger did not include snapshot_id")
     snapshot_id = str(trigger["snapshot_id"])
     deadline = time.monotonic() + timeout_seconds
     progress_url = f"{BRIGHTDATA_BASE_URL}/progress/{snapshot_id}"
@@ -297,27 +315,65 @@ def brightdata_verify(token: str, dataset_id: str, inputs: list[dict[str, str]],
                 return [item for item in snapshot if isinstance(item, dict)]
             if isinstance(snapshot, dict) and isinstance(snapshot.get("data"), list):
                 return [item for item in snapshot["data"] if isinstance(item, dict)]
-            raise ProviderError("Bright Data snapshot did not contain a record list")
+            raise ProviderError(f"Bright Data {collection_name} snapshot did not contain a record list")
         if status == "failed":
-            raise ProviderError("Bright Data collection failed")
+            raise ProviderError(f"Bright Data {collection_name} collection failed")
         time.sleep(5)
 
-    raise ProviderError(f"Bright Data collection {snapshot_id} timed out")
+    raise ProviderError(f"Bright Data {collection_name} collection {snapshot_id} timed out")
+
+
+def brightdata_search_inputs(keywords: Iterable[str], marketplace: str,
+                             discovery: dict[str, Any]) -> list[dict[str, Any]]:
+    """Build documented Bright Data Products Search inputs for Amazon US."""
+    pages = discovery.get("pages_to_search", 1)
+    if isinstance(pages, bool) or not isinstance(pages, int) or pages < 1:
+        raise ProviderError("Configuration discovery.pages_to_search must be a positive integer")
+    return [
+        {"keyword": keyword, "url": f"https://www.{marketplace}", "pages_to_search": pages}
+        for keyword in keywords
+    ]
+
+
+def brightdata_search(token: str, dataset_id: str, inputs: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Discover product records through Bright Data's Amazon Products Search dataset."""
+    return brightdata_collect(token, dataset_id, inputs, collection_name="Amazon Search")
+
+
+def search_record_keyword(record: dict[str, Any], selected_keywords: list[str]) -> str | None:
+    """Associate a Search record with its submitted keyword when the dataset exposes it."""
+    provider_keyword = str(record_value(record, "keyword", "search_keyword", "search_term", "query") or "").strip()
+    if provider_keyword:
+        for keyword in selected_keywords:
+            if provider_keyword.casefold() == keyword.casefold():
+                return keyword
+    return selected_keywords[0] if len(selected_keywords) == 1 else None
+
+
+def brightdata_verify(token: str, dataset_id: str, inputs: list[dict[str, str]], *, timeout_seconds: int = 150) -> list[dict[str, Any]]:
+    """Verify configured product inputs with the separate Bright Data PDP dataset."""
+    return brightdata_collect(
+        token,
+        dataset_id,
+        inputs,
+        collection_name="Amazon PDP",
+        timeout_seconds=timeout_seconds,
+    )
 
 
 def verified_record(record: dict[str, Any], *, marketplace: str, currency: str,
                     trusted_seller_terms: list[str], minimum_discount: float = 0.20,
                     minimum_sale_price: float = 20.0) -> tuple[dict[str, Any] | None, str | None]:
-    url = str(record.get("url") or "")
-    domain = str(record.get("domain") or "")
-    source_currency = str(record.get("currency") or "").upper()
+    url = str(record_value(record, "url", "product_url", "product_page_url") or "")
+    domain = str(record_value(record, "domain", "domain_name") or "")
+    source_currency = str(record_value(record, "currency", "price_currency") or "").upper()
     record_currency = CURRENCY_ALIASES.get(source_currency, source_currency)
-    record_asin = extract_asin(record.get("asin"))
+    record_asin = extract_asin(record_value(record, "asin", "product_asin", "product_id"))
     url_asin = asin_from_amazon_url(url)
-    title = str(record.get("title") or "").strip()
-    final_price = parse_price(record.get("final_price"))
-    initial_price = parse_price(record.get("initial_price"))
-    seller = str(record.get("buybox_seller") or record.get("seller_name") or "").strip()
+    title = str(record_value(record, "title", "product_title", "name") or "").strip()
+    final_price = parse_price(record_value(record, "final_price", "current_price", "sale_price", "price"))
+    initial_price = parse_price(record_value(record, "initial_price", "reference_price", "list_price", "original_price"))
+    seller = str(record_value(record, "buybox_seller", "seller_name", "seller") or "").strip()
     available = record.get("is_available") is True
 
     # Bright Data can label a variant page with its parent ASIN. The product
@@ -344,15 +400,11 @@ def verified_record(record: dict[str, Any], *, marketplace: str, currency: str,
     if trusted_seller_terms and not any(term.lower() in seller.lower() for term in trusted_seller_terms):
         return None, "buy-box seller is not trusted"
 
-    if initial_price is None or initial_price <= final_price:
-        return None, "no valid Bright Data reference price"
-    discount = 1 - (final_price / initial_price)
-    if discount < minimum_discount:
-        return None, "below minimum verified discount"
-    image_url = str(record.get("image_url") or record.get("image") or "").strip()
+    image_url = str(record_value(record, "image_url", "image", "main_image", "image_link") or "").strip()
     if not image_url:
         return None, "missing product image"
-    discount_pct = round(discount * 100, 2)
+    reference_price = initial_price if initial_price is not None and initial_price > final_price else None
+    discount_pct = round((1 - (final_price / reference_price)) * 100, 2) if reference_price is not None else None
 
     return {
         "asin": asin,
@@ -362,7 +414,11 @@ def verified_record(record: dict[str, Any], *, marketplace: str, currency: str,
         "title": title,
         "url": clean_amazon_url(asin, marketplace),
         "price": final_price,
-        "reference_price": initial_price,
+        # A missing or inconsistent comparison price is not proof that this is
+        # ineligible. Preserve it for the reviewer, but never fabricate a
+        # reference price or a discount from it.
+        "provider_reference_price": initial_price,
+        "reference_price": reference_price,
         "discount_pct": discount_pct,
         "currency": record_currency,
         "source_currency": source_currency,
@@ -394,18 +450,21 @@ def render_review_draft(verified: dict[str, Any], discovery: dict[str, Any] | No
     asin = str(verified["asin"])
     title = str(verified["title"])
     price = float(verified["price"])
-    reference_price = float(verified["reference_price"])
-    discount = float(verified["discount_pct"]) / 100
+    reference_price = parse_price(verified.get("reference_price"))
+    discount_pct = parse_price(verified.get("discount_pct"))
+    has_verified_reference = reference_price is not None and reference_price > price and discount_pct is not None
     verified_at = str(verified["verified_at"])
     discovery = discovery or {}
     keyword = str(discovery.get("keyword") or "")
     tags = ["amazon", MARKETPLACE_TAG]
     if keyword:
         tags.append(keyword)
-    summary = (
-        f"Verified {MARKETPLACE_LABEL} deal: {price:.2f} {verified['currency']} "
-        f"(was {reference_price:.2f} {verified['currency']})."
-    )
+    summary = f"Verified {MARKETPLACE_LABEL} candidate: {price:.2f} {verified['currency']}."
+    if has_verified_reference:
+        summary = (
+            f"Verified {MARKETPLACE_LABEL} deal: {price:.2f} {verified['currency']} "
+            f"(was {reference_price:.2f} {verified['currency']})."
+        )
 
     front_matter = [
         "+++",
@@ -415,12 +474,10 @@ def render_review_draft(verified: dict[str, Any], discovery: dict[str, Any] | No
         'review_status = "pending"',
         f"asin = {toml_string(asin)}",
         "affiliate_ready = false",
-        'intake_source = "serpapi+brightdata"',
+        'intake_source = "brightdata-search+brightdata-pdp"',
         f"marketplace = {toml_string(SUPPORTED_MARKETPLACE)}",
         f"currency = {toml_string(verified['currency'])}",
         f"sale_price = {price:.2f}",
-        f"list_price = {reference_price:.2f}",
-        f"discount_pct = {discount:.6f}",
         f"product_url = {toml_string(verified['url'])}",
         f"image = {toml_string(verified.get('image_url') or '')}",
         # These are the provider-backed fields consumed by the live Hugo
@@ -432,35 +489,53 @@ def render_review_draft(verified: dict[str, Any], discovery: dict[str, Any] | No
         f"listing_summary = {toml_string(summary)}",
         f"listing_image = {toml_string(verified.get('image_url') or '')}",
         f"listing_sale_price = {price:.2f}",
-        f"listing_list_price = {reference_price:.2f}",
-        f"listing_discount_pct = {discount:.6f}",
         f"listing_synced_at = {toml_string(verified_at)}",
         # Bright Data can surface Prime/coupon/member prices. The provider
         # cannot prove public eligibility, so the reviewer must confirm it at
         # promotion time. Unknown prices never become live automatically.
         'price_access = "unknown"',
         "price_review_required = true",
-        'reference_price_basis = "brightdata_initial_price"',
+        f"reference_price_status = {toml_string('provider-reported' if has_verified_reference else 'unavailable-requires-browser-verification')}",
         f"tags = {json.dumps(tags, ensure_ascii=True)}",
         'categories = ["deals"]',
         f"summary = {toml_string(summary)}",
-        'verification_provider = "brightdata"',
+        'verification_provider = "brightdata-pdp"',
         f"verification_url = {toml_string(verified['url'])}",
         f"verified_at = {toml_string(verified_at)}",
         f"verified_provider_asin = {toml_string(verified.get('provider_asin') or '')}",
         f"verified_url_asin = {toml_string(verified.get('url_asin') or verified['asin'])}",
         f"verified_currency_source = {toml_string(verified.get('source_currency') or '')}",
         f"verified_buybox_seller = {toml_string(verified.get('buybox_seller') or '')}",
-        f"serpapi_keyword = {toml_string(keyword)}",
-        f"serpapi_candidate_url = {toml_string(discovery.get('url') or '')}",
-        f"serpapi_sale_price = {toml_string(discovery.get('serpapi_sale_price') or '')}",
-        f"serpapi_reference_price = {toml_string(discovery.get('serpapi_reference_price') or '')}",
-        f"serpapi_discount_pct = {toml_string(discovery.get('serpapi_discount_pct') or '')}",
         "+++",
         "",
         f"Verified by Bright Data at {verified_at}. Review the current Amazon US price, availability, and seller before promoting.",
         "",
     ]
+    if has_verified_reference:
+        discount = float(discount_pct) / 100
+        reference_fields = [
+            f"list_price = {reference_price:.2f}",
+            f"discount_pct = {discount:.6f}",
+        ]
+        product_url_index = front_matter.index(f"product_url = {toml_string(verified['url'])}")
+        front_matter[product_url_index:product_url_index] = reference_fields
+        listing_price_index = front_matter.index(f"listing_synced_at = {toml_string(verified_at)}")
+        front_matter[listing_price_index:listing_price_index] = [
+            f"listing_list_price = {reference_price:.2f}",
+            f"listing_discount_pct = {discount:.6f}",
+            'reference_price_basis = "brightdata_initial_price"',
+        ]
+    provider_reference_price = parse_price(verified.get("provider_reference_price"))
+    if provider_reference_price is not None:
+        front_matter.insert(-3, f"brightdata_pdp_reference_price = {provider_reference_price:.2f}")
+    discovery_fields = [
+        f"brightdata_search_keyword = {toml_string(keyword)}",
+        f"brightdata_search_candidate_url = {toml_string(discovery.get('url') or '')}",
+        f"brightdata_search_sale_price = {toml_string(discovery.get('brightdata_search_sale_price') or '')}",
+        f"brightdata_search_reference_price = {toml_string(discovery.get('brightdata_search_reference_price') or '')}",
+        f"brightdata_search_discount_pct = {toml_string(discovery.get('brightdata_search_discount_pct') or '')}",
+    ]
+    front_matter[-3:-3] = discovery_fields
     return "\n".join(front_matter)
 
 
@@ -521,13 +596,13 @@ def write_review_draft(verified: dict[str, Any], discovery: dict[str, Any] | Non
         with destination.open("x", encoding="utf-8") as draft:
             draft.write(draft_text)
     except FileExistsError:
-        print(f"[fetch_deals_serpapi] skip {asin}: queued draft already exists")
+        print(f"[brightdata_deal_intake] skip {asin}: queued draft already exists")
         return False
     try:
         display_destination = destination.relative_to(ROOT)
     except ValueError:
         display_destination = destination
-    print(f"[fetch_deals_serpapi] queued review draft: {display_destination}")
+    print(f"[brightdata_deal_intake] queued review draft: {display_destination}")
     return True
 
 
@@ -558,19 +633,19 @@ def main() -> int:
     if args.max_queries < 1 or args.max_products < 1 or args.query_offset < 0:
         raise ProviderError("--max-queries and --max-products must be positive; --query-offset cannot be negative")
 
-    environment = require_env()
     config = load_json(args.config)
     marketplace = str(config.get("marketplace") or "").lower()
     currency = str(config.get("currency") or "").upper()
     keywords = [str(value).strip() for value in config.get("keywords", []) if str(value).strip()]
     limits = config.get("limits") if isinstance(config.get("limits"), dict) else {}
     policy = config.get("policy") if isinstance(config.get("policy"), dict) else {}
-    max_queries = min(args.max_queries, int(limits.get("max_serpapi_queries_per_run", args.max_queries)))
+    max_queries = min(args.max_queries, int(limits.get("max_brightdata_search_queries_per_run", args.max_queries)))
     max_products = min(args.max_products, int(limits.get("max_brightdata_products_per_run", args.max_products)))
     minimum_discount = float(policy.get("minimum_discount_pct", 20)) / 100
     minimum_sale_price = float(policy.get("minimum_sale_price", 20))
     trusted_seller_terms = [str(value) for value in policy.get("trusted_seller_terms", ["amazon"])]
     verification = config.get("verification") if isinstance(config.get("verification"), dict) else {}
+    discovery = config.get("discovery") if isinstance(config.get("discovery"), dict) else {}
     if marketplace != SUPPORTED_MARKETPLACE or currency != SUPPORTED_CURRENCY:
         raise ProviderError("Initial intake is restricted to amazon.com and USD")
     if not keywords:
@@ -578,15 +653,23 @@ def main() -> int:
     selected_keywords = keywords[args.query_offset : args.query_offset + max_queries]
     if not selected_keywords:
         raise ProviderError("--query-offset is beyond the configured keyword list")
+    search_dataset_id = brightdata_search_dataset_id(config)
+    search_inputs = brightdata_search_inputs(selected_keywords, marketplace, discovery)
+    environment = require_env()
 
     mode = "dry-run" if args.dry_run else "write-review-drafts"
     report: dict[str, Any] = {
-        "schema_version": "2026-07-31-brightdata-verification-v2",
+        "schema_version": "2026-08-01-brightdata-search-pdp-v3",
         "code_revision": os.getenv("GITHUB_SHA", "local-run"),
         "mode": mode,
         "generated_at": utc_now(),
         "marketplace": marketplace,
         "currency": currency,
+        "providers": {
+            "discovery": "brightdata-amazon-products-search",
+            "discovery_dataset_id": search_dataset_id,
+            "verification": "brightdata-amazon-pdp",
+        },
         "limits": {
             "max_queries": max_queries,
             "max_products": max_products,
@@ -600,8 +683,25 @@ def main() -> int:
     }
 
     candidates: list[dict[str, Any]] = []
+    search_records = brightdata_search(
+        environment[BRIGHTDATA_TOKEN_ENV],
+        search_dataset_id,
+        search_inputs,
+    )
+    records_by_keyword: dict[str, list[dict[str, Any]]] = {keyword: [] for keyword in selected_keywords}
+    for product in search_records:
+        keyword = search_record_keyword(product, selected_keywords)
+        if keyword is None:
+            report["discovery"]["rejected"].append({
+                "keyword": "",
+                "asin": extract_asin(record_value(product, "asin", "product_asin", "product_id")),
+                "title": str(record_value(product, "title", "product_title", "name") or "")[:180],
+                "reason": "Bright Data Search record did not identify a submitted keyword",
+            })
+            continue
+        records_by_keyword[keyword].append(product)
     for keyword in selected_keywords:
-        products = serpapi_products(environment["SERPAPI_API_KEY"], keyword, marketplace)
+        products = records_by_keyword[keyword]
         report["discovery"]["queries"].append({"keyword": keyword, "results_received": len(products)})
         for product in products:
             candidate, reason = discovery_candidate(
@@ -617,10 +717,10 @@ def main() -> int:
                 report["discovery"]["rejected"].append({
                     "keyword": keyword,
                     "asin": (
-                        extract_asin(product.get("asin"))
-                        or asin_from_amazon_url(product.get("link") or product.get("url"))
+                        extract_asin(record_value(product, "asin", "product_asin", "product_id"))
+                        or asin_from_amazon_url(record_value(product, "url", "product_url", "link"))
                     ),
-                    "title": str(product.get("title") or "")[:180],
+                    "title": str(record_value(product, "title", "product_title", "name") or "")[:180],
                     "reason": reason,
                 })
 
@@ -641,8 +741,8 @@ def main() -> int:
     report["verification"]["inputs"] = verification_inputs
 
     verified = brightdata_verify(
-        environment["BRIGHTDATA_API_TOKEN"],
-        environment["BRIGHTDATA_DATASET_ID"],
+        environment[BRIGHTDATA_TOKEN_ENV],
+        environment[BRIGHTDATA_PDP_DATASET_ENV],
         verification_inputs,
     )
     for record in verified:
@@ -665,8 +765,8 @@ def main() -> int:
                 })
         else:
             report["verification"]["rejected"].append({
-                "asin": extract_asin(record.get("asin")) or asin_from_amazon_url(record.get("url")),
-                "title": str(record.get("title") or "")[:180],
+                "asin": extract_asin(record_value(record, "asin", "product_asin", "product_id")) or asin_from_amazon_url(record_value(record, "url", "product_url")),
+                "title": str(record_value(record, "title", "product_title", "name") or "")[:180],
                 "reason": reason,
             })
 
@@ -689,7 +789,7 @@ def main() -> int:
     args.report_out.parent.mkdir(parents=True, exist_ok=True)
     args.report_out.write_text(json.dumps(report, indent=2) + "\n")
     print(
-        f"[fetch_deals_serpapi] {mode} complete: "
+        f"[brightdata_deal_intake] {mode} complete: "
         f"{len(selected)} candidate(s) submitted, "
         f"{len(report['verification']['accepted'])} verified, "
         f"{len(report['drafts']['created'])} draft(s) created; report: {args.report_out}"
@@ -701,5 +801,5 @@ if __name__ == "__main__":
     try:
         sys.exit(main())
     except ProviderError as exc:
-        print(f"[fetch_deals_serpapi] {exc}", file=sys.stderr)
+        print(f"[brightdata_deal_intake] {exc}", file=sys.stderr)
         sys.exit(1)

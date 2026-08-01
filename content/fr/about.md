@@ -1,5 +1,6 @@
 +++
 title = "À propos"
+draft = true
 +++
 
 Deal Ledger est un site d'offres sélectionnées, centré sur des produits utiles avec un contexte prix clair.

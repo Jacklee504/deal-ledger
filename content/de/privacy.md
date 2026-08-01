@@ -1,5 +1,6 @@
 +++
 title = "Datenschutz"
+draft = true
 +++
 
 Deal Ledger kann beim Besuch der Website oder bei Kontaktaufnahme begrenzt Informationen erfassen, darunter von dir gesendete E-Mails sowie grundlegende Analyse- oder Serverdaten.

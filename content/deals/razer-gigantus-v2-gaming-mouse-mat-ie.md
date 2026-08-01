@@ -1,5 +1,6 @@
 +++
 title = "Razer Gigantus V2 Gaming Mouse Mat"
+draft = true
 date = 2026-05-16T14:55:52Z
 list_price = 19.99
 sale_price = 14.87

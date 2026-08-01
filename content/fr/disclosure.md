@@ -1,5 +1,6 @@
 +++
 title = "Divulgation"
+draft = true
 +++
 
 Deal Ledger peut inclure des liens d'affiliation. Si vous achetez via ces liens, nous pouvons percevoir une commission sans coût supplémentaire pour vous.

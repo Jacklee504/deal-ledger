@@ -1,5 +1,6 @@
 +++
 title = "Apple AirPods 4"
+draft = true
 date = 2026-05-16T14:50:52Z
 list_price = 149.00
 sale_price = 117.04

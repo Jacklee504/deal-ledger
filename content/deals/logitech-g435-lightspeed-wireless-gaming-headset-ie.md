@@ -1,5 +1,6 @@
 +++
 title = "Logitech G435 LIGHTSPEED Wireless Gaming Headset"
+draft = true
 date = 2026-05-16T14:53:52Z
 list_price = 84.99
 sale_price = 49.99

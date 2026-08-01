@@ -1,5 +1,6 @@
 +++
 title = "JBL Draadloze Koptelefoon met Ruisonderdrukking"
+draft = true
 date = 2026-04-27T19:07:00Z
 list_price = 179.99
 sale_price = 71.00

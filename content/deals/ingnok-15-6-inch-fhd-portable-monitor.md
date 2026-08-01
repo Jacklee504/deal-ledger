@@ -12,11 +12,11 @@ summary = "15.6-inch portable FHD monitor for travel, remote work, and dual-scre
 listing_url = "https://www.amazon.com/dp/B0CP7XRW9S"
 listing_sale_price = 65.97
 listing_list_price = 89.99
-listing_discount_pct = 0.27
-listing_title = "Amazon.com: Ingnok Portable Monitor, Ultra Slim 15.6 Inch FHD IPS Laptop Screen Extender with Adjustable Stand, USB C Compatible, Ideal for Travel and Office : Electronics"
-listing_summary = ""
+listing_discount_pct = 0.266919
+listing_title = "Ingnok 15.6-inch FHD Portable Monitor"
+listing_summary = "15.6-inch portable FHD monitor for travel, remote work, and dual-screen setups."
 listing_image = "https://m.media-amazon.com/images/I/71mqjfuT4HL._AC_SL1500_.jpg"
-listing_synced_at = "2026-05-16T16:30:26.435381+00:00"
+listing_synced_at = "2026-08-01T22:16:51Z"
 aliases = ["/deals/ingnok-15-6-portable-monitor/"]
 +++
 

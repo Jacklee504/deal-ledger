@@ -1,4 +1,4 @@
-name: SerpApi and Bright Data US deal-intake dry run
+name: Bright Data Search and PDP US deal-intake dry run
 
 on:
   workflow_dispatch:
@@ -31,7 +31,6 @@ jobs:
 
       - name: Discover and verify candidate deals without writing
         env:
-          SERPAPI_API_KEY: ${{ secrets.SERPAPI_API_KEY }}
           BRIGHTDATA_API_TOKEN: ${{ secrets.BRIGHTDATA_API_TOKEN }}
           BRIGHTDATA_DATASET_ID: ${{ vars.BRIGHTDATA_DATASET_ID }}
         run: |
@@ -39,11 +38,11 @@ jobs:
             --dry-run \
             --max-queries "${{ inputs.max_queries }}" \
             --max-products "${{ inputs.max_products }}" \
-            --report-out "${RUNNER_TEMP}/serpapi-brightdata-dry-run.json"
+            --report-out "${RUNNER_TEMP}/brightdata-search-pdp-dry-run.json"
 
       - name: Upload redacted dry-run report
         uses: actions/upload-artifact@v4
         with:
-          name: serpapi-brightdata-dry-run
-          path: ${{ runner.temp }}/serpapi-brightdata-dry-run.json
+          name: brightdata-search-pdp-dry-run
+          path: ${{ runner.temp }}/brightdata-search-pdp-dry-run.json
           if-no-files-found: error

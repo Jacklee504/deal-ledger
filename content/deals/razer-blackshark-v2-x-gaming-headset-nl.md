@@ -1,5 +1,6 @@
 +++
 title = "Razer BlackShark V2 X Gaming Headset (Bekabeld)"
+draft = true
 date = 2026-04-27T19:12:00Z
 list_price = 79.99
 sale_price = 33.79

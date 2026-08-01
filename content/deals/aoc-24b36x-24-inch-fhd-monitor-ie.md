@@ -1,5 +1,6 @@
 +++
 title = "AOC 24B36X 24-Inch Full HD Monitor"
+draft = true
 date = 2026-05-16T14:54:52Z
 list_price = 129.99
 sale_price = 82.84

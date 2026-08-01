@@ -1,5 +1,6 @@
 +++
 title = "Anker MagSafe Charging Station"
+draft = true
 date = 2026-04-14T14:00:00Z
 list_price = 109.90
 sale_price = 89.90

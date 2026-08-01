@@ -10,13 +10,13 @@ tags = ["monitor", "gaming", "oled"]
 categories = ["electronics"]
 summary = "Premium UltraGear OLED gaming monitor with dual-mode performance."
 listing_url = "https://www.amazon.com/dp/B0FLQLPNNH"
-listing_sale_price = 629.83
+listing_sale_price = 731.93
 listing_list_price = 1299.99
 listing_discount_pct = 0.436973
-listing_title = "Amazon.com: LG 32GX850A-B 32\" UltraGear 4K UHD (3840 x 2160) Glossy OLED Gaming Monitor, Dual-Mode 165Hz/330Hz, 0.03ms, G-SYNC, FreeSync Premium Pro, TrueBlack 400, HDMI, DP, Tilt/Height/Swivel/Pivot Stand, Black : Electronics"
-listing_summary = ""
+listing_title = "LG UltraGear 32GX850A-B OLED Gaming Monitor"
+listing_summary = "Premium UltraGear OLED gaming monitor with dual-mode performance."
 listing_image = "https://m.media-amazon.com/images/I/81K-qSExfqL._AC_SL1500_.jpg"
-listing_synced_at = "2026-05-16T16:30:26.435381+00:00"
+listing_synced_at = "2026-08-01T22:16:51Z"
 +++
 
 High-end OLED display for fast gaming rigs and premium desk setups.

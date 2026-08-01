@@ -10,13 +10,13 @@ tags = ["home office", "productivity", "accessories"]
 categories = ["electronics"]
 summary = "Ergonomic vertical wireless mouse designed to reduce wrist strain."
 listing_url = "https://www.amazon.com/dp/B07FNJB8TT"
-listing_title = "Amazon.com: Logitech MX Vertical Wireless Mouse – Ergonomic Design Reduces Muscle Strain, Move Content Between 3 Windows and Apple Computers, Rechargeable, Graphite : Electronics"
-listing_summary = ""
+listing_title = "Logitech MX Vertical Wireless Mouse"
+listing_summary = "Ergonomic vertical wireless mouse designed to reduce wrist strain."
 listing_image = "https://m.media-amazon.com/images/I/61iiZ-gDYEL._AC_SL1500_.jpg"
-listing_sale_price = 64.14
+listing_sale_price = 74.99
 listing_list_price = 119.99
 listing_discount_pct = 0.375031
-listing_synced_at = "2026-04-30T20:33:05.510242+00:00"
+listing_synced_at = "2026-08-01T22:16:51Z"
 aliases = ["/deals/logitech-mx-vertical-mouse/"]
 +++
 

@@ -1,5 +1,6 @@
 +++
 title = "Aothia Schreibtischunterlage aus Leder"
+draft = true
 date = 2026-04-27T20:53:00Z
 list_price = 15.99
 sale_price = 12.79

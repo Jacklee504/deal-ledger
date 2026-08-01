@@ -1,5 +1,6 @@
 +++
 title = "Hinweis"
+draft = true
 +++
 
 Deal Ledger kann Affiliate-Links enthalten. Wenn du über diese Links kaufst, erhalten wir möglicherweise eine Provision, ohne zusätzliche Kosten für dich.

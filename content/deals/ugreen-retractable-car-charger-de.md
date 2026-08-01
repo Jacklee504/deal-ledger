@@ -1,5 +1,6 @@
 +++
 title = "UGREEN Auto-Ladegerät mit ausziehbarem Kabel"
+draft = true
 date = 2026-04-27T20:51:00Z
 list_price = 44.99
 sale_price = 29.96

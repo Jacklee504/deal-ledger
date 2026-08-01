@@ -1,5 +1,6 @@
 +++
 title = "Privacybeleid"
+draft = true
 +++
 
 Deal Ledger kan beperkte informatie verzamelen wanneer je de site bezoekt of contact met ons opneemt, waaronder e-mails die je verstuurt en basisanalyse- of servergegevens.

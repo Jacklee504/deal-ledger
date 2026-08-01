@@ -1,5 +1,6 @@
 +++
 title = "Logitech G Condenser Microphone"
+draft = true
 date = 2026-04-22T00:00:00Z
 list_price = 70
 sale_price = 50

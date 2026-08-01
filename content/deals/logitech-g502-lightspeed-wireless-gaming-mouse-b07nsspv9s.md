@@ -10,11 +10,13 @@ tags = ["logitech", "gaming", "mouse", "wireless", "lightspeed"]
 categories = ["electronics", "gaming"]
 summary = "Logitech G502 Lightspeed wireless gaming mouse with a major markdown on Amazon US."
 listing_url = "https://www.amazon.com/dp/B07NSSPV9S"
-listing_title = "Amazon.com: Logitech G703 Lightspeed Wireless Gaming Mouse W/Hero 25K Sensor, PowerPlay Compatible, Lightsync RGB, Lightweight 95G+10G Optional, 100-25, 600 DPI, Rubber Side Grips - Black : Electronics"
-listing_summary = "Buy Logitech G703 Lightspeed Wireless Gaming Mouse W/Hero 25K Sensor, PowerPlay Compatible, Lightsync RGB, Lightweight 95G+10G Optional, 100-25, 600 DPI, Rubber Side Grips - Black: Mice - Amazon.com ✓ FREE DELIVERY possi"
+listing_title = "Logitech G502 Lightspeed Wireless Gaming Mouse"
+listing_summary = "Logitech G502 Lightspeed wireless gaming mouse with a major markdown on Amazon US."
 listing_sale_price = 59.99
 listing_image = "https://m.media-amazon.com/images/I/61-jAartdjL._AC_SL1500_.jpg"
-listing_synced_at = "2026-05-16T16:30:26.435381+00:00"
+listing_synced_at = "2026-08-01T22:16:51Z"
+listing_list_price = 99.99
+listing_discount_pct = 0.40004
 +++
 
 Logitech G502 Lightspeed wireless gaming mouse deal on Amazon US.

@@ -1,5 +1,6 @@
 +++
 title = "Corsair HS80 RGB Draadloze Headset"
+draft = true
 date = 2026-04-27T12:00:00Z
 list_price = 149.99
 sale_price = 129.00

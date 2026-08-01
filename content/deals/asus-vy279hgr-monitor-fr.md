@@ -1,5 +1,6 @@
 +++
 title = "Moniteur ASUS VY279HGR Eye Care"
+draft = true
 date = 2026-04-28T00:00:00Z
 list_price = 149.99
 sale_price = 99.00

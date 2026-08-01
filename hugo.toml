@@ -10,6 +10,9 @@ enableRobotsTXT = true
   currency_symbol = "$"
   currency_code = "USD"
   formspree_endpoint = "https://formspree.io/f/mgopnyjd"
+  # Keep the public site focused on markets with an active deal pipeline.
+  active_markets = ["us"]
+  default_market = "us"
 
 [taxonomies]
   category = "categories"

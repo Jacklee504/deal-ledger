@@ -1,5 +1,6 @@
 +++
 title = "Elgato Stream Deck MK.2-Controller"
+draft = true
 date = 2026-04-27T12:00:00Z
 list_price = 169.99
 sale_price = 129.00

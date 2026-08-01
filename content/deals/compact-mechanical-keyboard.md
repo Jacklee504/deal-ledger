@@ -1,5 +1,6 @@
 +++
 title = "Compact mechanical keyboard"
+draft = true
 date = 2026-03-25T12:00:00Z
 list_price = 84.99
 sale_price = 51.99

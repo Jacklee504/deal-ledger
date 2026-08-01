@@ -1,5 +1,6 @@
 +++
 title = "Sony WH-CH720N Bluetooth-Kopfhörer"
+draft = true
 date = 2026-04-27T21:07:00Z
 list_price = 79.99
 sale_price = 64.99
@@ -18,4 +19,3 @@ listing_synced_at = "2026-04-30T20:33:05.510242+00:00"
 +++
 
 Sony WH-CH720N Angebot auf Amazon DE.
-

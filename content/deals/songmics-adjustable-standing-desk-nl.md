@@ -1,5 +1,6 @@
 +++
 title = "SONGMICS Verstelbaar Zit-sta Bureau"
+draft = true
 date = 2026-04-27T19:05:00Z
 list_price = 235.99
 sale_price = 93.00

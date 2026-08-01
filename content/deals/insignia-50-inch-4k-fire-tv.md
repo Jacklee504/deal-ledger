@@ -14,10 +14,10 @@ listing_url = "https://www.amazon.com/dp/B0F19KLHG3"
 listing_sale_price = 179.99
 listing_list_price = 299.99
 listing_discount_pct = 0.400013
-listing_title = "INSIGNIA Fire TV 50\" Class F50 Series 4K UHD smart TV | Amazon"
-listing_summary = ""
+listing_title = "INSIGNIA 50-inch 4K UHD Fire TV"
+listing_summary = "50-inch 4K Fire TV deal for streaming and home entertainment setups."
 listing_image = "https://m.media-amazon.com/images/I/81jLRWNrTXL._AC_SL1500_.jpg"
-listing_synced_at = "2026-04-30T20:33:05.510242+00:00"
+listing_synced_at = "2026-08-01T22:16:51Z"
 +++
 
 Shown price is $299.99 with a current deal price of $179.99.
