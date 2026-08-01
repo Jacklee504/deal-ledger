@@ -10,13 +10,13 @@
 		
 		
 		
-			<lastBuildDate>Sat, 01 Aug 2026 21:59:36 +0100</lastBuildDate>
+			<lastBuildDate>Sat, 01 Aug 2026 23:24:00 +0100</lastBuildDate>
 		
 			<atom:link href="https://dealledger.eu/categories/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>Deals</title>
 				<link>https://dealledger.eu/categories/deals/</link>
-				<pubDate>Sat, 01 Aug 2026 20:26:29 +0000</pubDate>
+				<pubDate>Sat, 01 Aug 2026 21:55:30 +0000</pubDate>
 				<guid>https://dealledger.eu/categories/deals/</guid>
 				<description></description>
 			</item>
@@ -51,50 +51,15 @@
 			<item>
 				<title>Home</title>
 				<link>https://dealledger.eu/categories/home/</link>
-				<pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
+				<pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
 				<guid>https://dealledger.eu/categories/home/</guid>
-				<description></description>
-			</item>
-			<item>
-				<title>Mobile</title>
-				<link>https://dealledger.eu/categories/mobile/</link>
-				<pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
-				<guid>https://dealledger.eu/categories/mobile/</guid>
-				<description></description>
-			</item>
-			<item>
-				<title>Monitors</title>
-				<link>https://dealledger.eu/categories/monitors/</link>
-				<pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
-				<guid>https://dealledger.eu/categories/monitors/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Office</title>
 				<link>https://dealledger.eu/categories/office/</link>
-				<pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
+				<pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
 				<guid>https://dealledger.eu/categories/office/</guid>
-				<description></description>
-			</item>
-			<item>
-				<title>Productivity</title>
-				<link>https://dealledger.eu/categories/productivity/</link>
-				<pubDate>Mon, 27 Apr 2026 20:54:00 +0000</pubDate>
-				<guid>https://dealledger.eu/categories/productivity/</guid>
-				<description></description>
-			</item>
-			<item>
-				<title>Gamen</title>
-				<link>https://dealledger.eu/categories/gamen/</link>
-				<pubDate>Mon, 27 Apr 2026 19:12:00 +0000</pubDate>
-				<guid>https://dealledger.eu/categories/gamen/</guid>
-				<description></description>
-			</item>
-			<item>
-				<title>Home_office</title>
-				<link>https://dealledger.eu/categories/home_office/</link>
-				<pubDate>Mon, 27 Apr 2026 12:00:00 +0000</pubDate>
-				<guid>https://dealledger.eu/categories/home_office/</guid>
 				<description></description>
 			</item>
 	</channel>

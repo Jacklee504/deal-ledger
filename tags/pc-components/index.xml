@@ -10,29 +10,15 @@
 		
 		
 		
-			<lastBuildDate>Sat, 16 May 2026 17:26:29 +0100</lastBuildDate>
+			<lastBuildDate>Wed, 29 Apr 2026 14:07:13 +0000</lastBuildDate>
 		
 			<atom:link href="https://dealledger.eu/tags/pc-components/index.xml" rel="self" type="application/rss+xml" />
-			<item>
-				<title>AMD Ryzen 7 9800X3D</title>
-				<link>https://dealledger.eu/deals/amd-ryzen-7-9800x3d-amazon-ie/</link>
-				<pubDate>Sat, 16 May 2026 14:46:56 +0000</pubDate>
-				<guid>https://dealledger.eu/deals/amd-ryzen-7-9800x3d-amazon-ie/</guid>
-				<description>Top-tier AM5 gaming CPU with 3D V-Cache for high-FPS desktop builds.</description>
-			</item>
 			<item>
 				<title>GIGABYTE B650 Gaming X AX V2 Motherboard</title>
 				<link>https://dealledger.eu/deals/gigabyte-b650-gaming-x-ax-v2-motherboard/</link>
 				<pubDate>Thu, 16 Apr 2026 20:14:00 +0000</pubDate>
 				<guid>https://dealledger.eu/deals/gigabyte-b650-gaming-x-ax-v2-motherboard/</guid>
 				<description>AM5 B650 motherboard deal for new Ryzen desktop builds.</description>
-			</item>
-			<item>
-				<title>Corsair RM1000e Power Supply</title>
-				<link>https://dealledger.eu/deals/corsair-rm1000e-power-supply/</link>
-				<pubDate>Tue, 14 Apr 2026 15:00:00 +0000</pubDate>
-				<guid>https://dealledger.eu/deals/corsair-rm1000e-power-supply/</guid>
-				<description>1000W fully modular ATX power supply for high-performance PC builds.</description>
 			</item>
 	</channel>
 </rss>

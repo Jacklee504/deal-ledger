@@ -82,7 +82,7 @@
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://dealledger.eu/#organization","@type":"Organization","logo":"https://dealledger.eu/images/brand/deal-ledger-logo.svg","name":"Deal Ledger","url":"https://dealledger.eu/"},{"@id":"https://dealledger.eu/#website","@type":"WebSite","name":"Deal Ledger","potentialAction":{"@type":"SearchAction","query-input":"required name=search_term_string","target":"https://dealledger.eu/deals/?q={search_term_string}"},"publisher":{"@id":"https://dealledger.eu/#organization"},"url":"https://dealledger.eu/"}]}</script>
 
-<link rel="stylesheet" href="/styles/site.css?v=1785617992">
+<link rel="stylesheet" href="/styles/site.css?v=1785623058">
 
   </head><body class="ma0 avenir bg-near-white production is-taxonomy">
     
@@ -112,20 +112,13 @@
   
   
   
+  
   <div class="flex-l center items-center justify-between nav-shell">
-    <a href="/" class="nav-brand no-underline" aria-label="Deal Ledger">
+    <a href="/us/" class="nav-brand no-underline" aria-label="Deal Ledger">
       <img class="nav-brand__logo" src="/images/brand/deal-ledger-logo.svg" alt="Deal Ledger" width="220" height="56" loading="eager" decoding="async">
     </a>
     <div class="flex-l items-center nav-actions">
-      <div class="nav-market">
-        <select id="market-select" class="nav-market__select" name="market-select" aria-label="Select market">
-          <option value="ie" selected>IE</option>
-          <option value="us" >US</option>
-          <option value="de" >DE</option>
-          <option value="nl" >NL</option>
-          <option value="fr" >FR</option>
-        </select>
-      </div>
+      
       <div class="nav-menu" data-nav-menu>
         <button class="nav-menu__toggle" type="button" aria-label="Toggle navigation" aria-haspopup="true" aria-expanded="false" aria-controls="site-nav-links">
           <span class="nav-menu__icon" aria-hidden="true">
@@ -137,10 +130,10 @@
         </button>
         <ul class="pl0 nav-links" id="site-nav-links">
           <li class="list dib nav-links__item">
-            <a class="nav-links__anchor no-underline" href="/deals/">Deals</a>
+            <a class="nav-links__anchor no-underline" href="/us/deals/">Deals</a>
           </li>
           <li class="list dib nav-links__item">
-            <a class="nav-links__anchor no-underline" href="/alerts/">Email Alerts</a>
+            <a class="nav-links__anchor no-underline" href="/us/alerts/">Email Alerts</a>
           </li>
         </ul>
       </div>
@@ -186,13 +179,14 @@
 
     const marketSelect = document.getElementById('market-select');
     if (marketSelect) {
+      const activeMarkets = ["us"];
+      const defaultMarket = "us";
       const marketFromPath = (() => {
         const path = window.location.pathname || '/';
-        if (path === '/us' || path.startsWith('/us/')) return 'us';
-        if (path === '/de' || path.startsWith('/de/')) return 'de';
-        if (path === '/nl' || path.startsWith('/nl/')) return 'nl';
-        if (path === '/fr' || path.startsWith('/fr/')) return 'fr';
-        return 'ie';
+        return activeMarkets.find((market) => {
+          if (market === 'ie') return path === '/';
+          return path === `/${market}` || path.startsWith(`/${market}/`);
+        }) || defaultMarket;
       })();
       const cookieMap = (document.cookie || '')
         .split(';')
@@ -209,16 +203,12 @@
 
       marketSelect.value = marketFromPath;
 
-      if (
-        marketFromPath === 'ie' &&
-        (cookieMap.market === 'us' || cookieMap.market === 'ie' || cookieMap.market === 'eu' || cookieMap.market === 'de' || cookieMap.market === 'nl' || cookieMap.market === 'fr')
-      ) {
-        marketSelect.value = cookieMap.market === 'eu' ? 'ie' : cookieMap.market;
+      if (marketFromPath === 'ie' && activeMarkets.includes(cookieMap.market)) {
+        marketSelect.value = cookieMap.market;
       }
 
       marketSelect.addEventListener('change', () => {
-        const allowedMarkets = new Set(['ie', 'us', 'de', 'nl', 'fr']);
-        const targetMarket = allowedMarkets.has(marketSelect.value) ? marketSelect.value : 'ie';
+        const targetMarket = activeMarkets.includes(marketSelect.value) ? marketSelect.value : defaultMarket;
         const secure = window.location.protocol === 'https:' ? '; Secure' : '';
         document.cookie = `market=${targetMarket}; Path=/; Max-Age=31536000; SameSite=Lax${secure}`;
         const targetPath = targetMarket === 'ie' ? '/' : `/${targetMarket}/`;
@@ -247,7 +237,7 @@
     
       <p>Results tagged with <strong>Tags</strong>, including related deal pages and editorial guides.</p>
     
-    <p class="list-shell__count">148 results</p>
+    <p class="list-shell__count">68 results</p>
   </div>
   
   
@@ -269,15 +259,8 @@
       
         
           <article class="guide-card">
-            <h3><a href="/tags/electric-toothbrush/">Electric Toothbrush</a></h3>
-            <p>Electric Toothbrush</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/bluetooth-speaker/">Bluetooth Speaker</a></h3>
-            <p>Bluetooth Speaker</p>
+            <h3><a href="/tags/office-chair/">Office Chair</a></h3>
+            <p>Office Chair</p>
           </article>
         
       
@@ -292,6 +275,34 @@
           <article class="guide-card">
             <h3><a href="/tags/smartwatch/">Smartwatch</a></h3>
             <p>Smartwatch</p>
+          </article>
+        
+      
+        
+          <article class="guide-card">
+            <h3><a href="/tags/air-fryer/">Air Fryer</a></h3>
+            <p>Air Fryer</p>
+          </article>
+        
+      
+        
+          <article class="guide-card">
+            <h3><a href="/tags/gaming-monitor/">Gaming Monitor</a></h3>
+            <p>Gaming Monitor</p>
+          </article>
+        
+      
+        
+          <article class="guide-card">
+            <h3><a href="/tags/electric-toothbrush/">Electric Toothbrush</a></h3>
+            <p>Electric Toothbrush</p>
+          </article>
+        
+      
+        
+          <article class="guide-card">
+            <h3><a href="/tags/bluetooth-speaker/">Bluetooth Speaker</a></h3>
+            <p>Bluetooth Speaker</p>
           </article>
         
       
@@ -388,8 +399,8 @@
       
         
           <article class="guide-card">
-            <h3><a href="/tags/home-office/">Home-Office</a></h3>
-            <p>Home-Office</p>
+            <h3><a href="/tags/home-office/">Home Office</a></h3>
+            <p>Home Office</p>
           </article>
         
       
@@ -465,69 +476,6 @@
       
         
           <article class="guide-card">
-            <h3><a href="/tags/mouse-mat/">Mouse Mat</a></h3>
-            <p>Mouse Mat</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/headset/">Headset</a></h3>
-            <p>Headset</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/car-accessories/">Car Accessories</a></h3>
-            <p>Car Accessories</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/charging/">Charging</a></h3>
-            <p>Charging</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/usb/">Usb</a></h3>
-            <p>Usb</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/magsafe/">Magsafe</a></h3>
-            <p>Magsafe</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/power-bank/">Power Bank</a></h3>
-            <p>Power Bank</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/cpu/">Cpu</a></h3>
-            <p>Cpu</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/pc-components/">Pc Components</a></h3>
-            <p>Pc Components</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
             <h3><a href="/tags/all-in-one/">All-in-One</a></h3>
             <p>All-in-One</p>
           </article>
@@ -544,6 +492,13 @@
           <article class="guide-card">
             <h3><a href="/tags/desktop/">Desktop</a></h3>
             <p>Desktop</p>
+          </article>
+        
+      
+        
+          <article class="guide-card">
+            <h3><a href="/tags/headset/">Headset</a></h3>
+            <p>Headset</p>
           </article>
         
       
@@ -591,489 +546,6 @@
       
         
           <article class="guide-card">
-            <h3><a href="/tags/24.5-inch/">24.5-Inch</a></h3>
-            <p>24.5-Inch</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/256gb/">256gb</a></h3>
-            <p>256gb</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/airpods/">Airpods</a></h3>
-            <p>Airpods</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/anc/">Anc</a></h3>
-            <p>Anc</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/asus/">Asus</a></h3>
-            <p>Asus</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/bluetooth/">Bluetooth</a></h3>
-            <p>Bluetooth</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/bureau/">Bureau</a></h3>
-            <p>Bureau</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/casque/">Casque</a></h3>
-            <p>Casque</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/chaise/">Chaise</a></h3>
-            <p>Chaise</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/curved/">Curved</a></h3>
-            <p>Curved</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/deathadder/">Deathadder</a></h3>
-            <p>Deathadder</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/desk/">Desk</a></h3>
-            <p>Desk</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/eye-care/">Eye-Care</a></h3>
-            <p>Eye-Care</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/home-entertainment/">Home-Entertainment</a></h3>
-            <p>Home-Entertainment</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/iphone/">Iphone</a></h3>
-            <p>Iphone</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/jbl/">Jbl</a></h3>
-            <p>Jbl</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/msi/">Msi</a></h3>
-            <p>Msi</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/rolanstar/">Rolanstar</a></h3>
-            <p>Rolanstar</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/sans-fil/">Sans-Fil</a></h3>
-            <p>Sans-Fil</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/smartphone/">Smartphone</a></h3>
-            <p>Smartphone</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/songmics/">Songmics</a></h3>
-            <p>Songmics</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/standing-desk/">Standing-Desk</a></h3>
-            <p>Standing-Desk</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/storage/">Storage</a></h3>
-            <p>Storage</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/thomson/">Thomson</a></h3>
-            <p>Thomson</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/tv/">Tv</a></h3>
-            <p>Tv</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/b%C3%BCro/">Büro</a></h3>
-            <p>Büro</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/ergonomie/">Ergonomie</a></h3>
-            <p>Ergonomie</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/homeoffice/">Homeoffice</a></h3>
-            <p>Homeoffice</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/stuhl/">Stuhl</a></h3>
-            <p>Stuhl</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/l-form/">L-Form</a></h3>
-            <p>L-Form</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/m%C3%B6bel/">Möbel</a></h3>
-            <p>Möbel</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/schreibtisch/">Schreibtisch</a></h3>
-            <p>Schreibtisch</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/kopfh%C3%B6rer/">Kopfhörer</a></h3>
-            <p>Kopfhörer</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/noise-cancelling/">Noise-Cancelling</a></h3>
-            <p>Noise-Cancelling</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/sony/">Sony</a></h3>
-            <p>Sony</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/kabellos/">Kabellos</a></h3>
-            <p>Kabellos</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/soundcore/">Soundcore</a></h3>
-            <p>Soundcore</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/laptop/">Laptop</a></h3>
-            <p>Laptop</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/zubeh%C3%B6r/">Zubehör</a></h3>
-            <p>Zubehör</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/leder/">Leder</a></h3>
-            <p>Leder</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/auto/">Auto</a></h3>
-            <p>Auto</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/ladeger%C3%A4t/">Ladegerät</a></h3>
-            <p>Ladegerät</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/technik/">Technik</a></h3>
-            <p>Technik</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/akku/">Akku</a></h3>
-            <p>Akku</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/mobil/">Mobil</a></h3>
-            <p>Mobil</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/powerbank/">Powerbank</a></h3>
-            <p>Powerbank</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/bekabeld/">Bekabeld</a></h3>
-            <p>Bekabeld</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/gamen/">Gamen</a></h3>
-            <p>Gamen</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/geluid/">Geluid</a></h3>
-            <p>Geluid</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/draadloos/">Draadloos</a></h3>
-            <p>Draadloos</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/koptelefoon/">Koptelefoon</a></h3>
-            <p>Koptelefoon</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/ruisonderdrukking/">Ruisonderdrukking</a></h3>
-            <p>Ruisonderdrukking</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/kantoor/">Kantoor</a></h3>
-            <p>Kantoor</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/meubels/">Meubels</a></h3>
-            <p>Meubels</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/vasagle/">Vasagle</a></h3>
-            <p>Vasagle</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/zit-sta-bureau/">Zit-Sta-Bureau</a></h3>
-            <p>Zit-Sta-Bureau</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/content-creatie/">Content-Creatie</a></h3>
-            <p>Content-Creatie</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/corsair/">Corsair</a></h3>
-            <p>Corsair</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/elgato/">Elgato</a></h3>
-            <p>Elgato</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/gezondheid/">Gezondheid</a></h3>
-            <p>Gezondheid</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/mechanisch/">Mechanisch</a></h3>
-            <p>Mechanisch</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/muis/">Muis</a></h3>
-            <p>Muis</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/persoonlijke-verzorging/">Persoonlijke-Verzorging</a></h3>
-            <p>Persoonlijke-Verzorging</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/philips/">Philips</a></h3>
-            <p>Philips</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/productiviteit/">Productiviteit</a></h3>
-            <p>Productiviteit</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/streamen/">Streamen</a></h3>
-            <p>Streamen</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/tandenborstel/">Tandenborstel</a></h3>
-            <p>Tandenborstel</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/toetsenbord/">Toetsenbord</a></h3>
-            <p>Toetsenbord</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/yunzii/">Yunzii</a></h3>
-            <p>Yunzii</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
             <h3><a href="/tags/4k/">4k</a></h3>
             <p>4k</p>
           </article>
@@ -1095,8 +567,8 @@
       
         
           <article class="guide-card">
-            <h3><a href="/tags/aoc/">Aoc</a></h3>
-            <p>Aoc</p>
+            <h3><a href="/tags/desk/">Desk</a></h3>
+            <p>Desk</p>
           </article>
         
       
@@ -1123,13 +595,6 @@
       
         
           <article class="guide-card">
-            <h3><a href="/tags/furniture/">Furniture</a></h3>
-            <p>Furniture</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
             <h3><a href="/tags/home/">Home</a></h3>
             <p>Home</p>
           </article>
@@ -1144,15 +609,15 @@
       
         
           <article class="guide-card">
-            <h3><a href="/tags/levoit/">Levoit</a></h3>
-            <p>Levoit</p>
+            <h3><a href="/tags/jbl/">Jbl</a></h3>
+            <p>Jbl</p>
           </article>
         
       
         
           <article class="guide-card">
-            <h3><a href="/tags/microphone/">Microphone</a></h3>
-            <p>Microphone</p>
+            <h3><a href="/tags/levoit/">Levoit</a></h3>
+            <p>Levoit</p>
           </article>
         
       
@@ -1179,22 +644,8 @@
       
         
           <article class="guide-card">
-            <h3><a href="/tags/streaming/">Streaming</a></h3>
-            <p>Streaming</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/turntable/">Turntable</a></h3>
-            <p>Turntable</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/vinyl/">Vinyl</a></h3>
-            <p>Vinyl</p>
+            <h3><a href="/tags/tv/">Tv</a></h3>
+            <p>Tv</p>
           </article>
         
       
@@ -1202,6 +653,13 @@
           <article class="guide-card">
             <h3><a href="/tags/computing/">Computing</a></h3>
             <p>Computing</p>
+          </article>
+        
+      
+        
+          <article class="guide-card">
+            <h3><a href="/tags/laptop/">Laptop</a></h3>
+            <p>Laptop</p>
           </article>
         
       
@@ -1235,6 +693,13 @@
       
         
           <article class="guide-card">
+            <h3><a href="/tags/pc-components/">Pc Components</a></h3>
+            <p>Pc Components</p>
+          </article>
+        
+      
+        
+          <article class="guide-card">
             <h3><a href="/tags/camera/">Camera</a></h3>
             <p>Camera</p>
           </article>
@@ -1254,41 +719,6 @@
           </article>
         
       
-        
-          <article class="guide-card">
-            <h3><a href="/tags/power/">Power</a></h3>
-            <p>Power</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/mobile/">Mobile</a></h3>
-            <p>Mobile</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/collectibles/">Collectibles</a></h3>
-            <p>Collectibles</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/gifts/">Gifts</a></h3>
-            <p>Gifts</p>
-          </article>
-        
-      
-        
-          <article class="guide-card">
-            <h3><a href="/tags/toys/">Toys</a></h3>
-            <p>Toys</p>
-          </article>
-        
-      
     </div>
   
 </section>
@@ -1304,16 +734,20 @@
   
   
   
+    
+    
+    
+  
   <div class="site-footer__inner">
     <div class="site-footer__brand">
-      <a class="site-footer__title" href="/" aria-label="Deal Ledger">
+      <a class="site-footer__title" href="/us/" aria-label="Deal Ledger">
         <img class="site-footer__logo" src="/images/brand/deal-ledger-logo.svg" alt="Deal Ledger" width="186" height="48" loading="lazy" decoding="async">
       </a>
     </div>
     <nav class="site-footer__nav" aria-label="Footer">
-      <a href="/about/">About</a>
-      <a href="/privacy/">Privacy</a>
-      <a href="/disclosure/">Disclosure</a>
+      <a href="/us/about/">About</a>
+      <a href="/us/privacy/">Privacy</a>
+      <a href="/us/disclosure/">Disclosure</a>
     </nav>
   </div>
   <div class="site-footer__meta site-footer__meta--sub">

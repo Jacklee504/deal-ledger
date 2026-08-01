@@ -80,7 +80,7 @@
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://dealledger.eu/#organization","@type":"Organization","logo":"https://dealledger.eu/images/brand/deal-ledger-logo.svg","name":"Deal Ledger","url":"https://dealledger.eu/"},{"@id":"https://dealledger.eu/#website","@type":"WebSite","name":"Deal Ledger","potentialAction":{"@type":"SearchAction","query-input":"required name=search_term_string","target":"https://dealledger.eu/deals/?q={search_term_string}"},"publisher":{"@id":"https://dealledger.eu/#organization"},"url":"https://dealledger.eu/"}]}</script>
 
-<link rel="stylesheet" href="/styles/site.css?v=1785617992">
+<link rel="stylesheet" href="/styles/site.css?v=1785623058">
 
   </head><body class="ma0 avenir bg-near-white production is-section is-section">
     
@@ -112,20 +112,13 @@
   
   
   
+  
   <div class="flex-l center items-center justify-between nav-shell">
     <a href="/us/" class="nav-brand no-underline" aria-label="Deal Ledger">
       <img class="nav-brand__logo" src="/images/brand/deal-ledger-logo.svg" alt="Deal Ledger" width="220" height="56" loading="eager" decoding="async">
     </a>
     <div class="flex-l items-center nav-actions">
-      <div class="nav-market">
-        <select id="market-select" class="nav-market__select" name="market-select" aria-label="Select market">
-          <option value="ie" >IE</option>
-          <option value="us" selected>US</option>
-          <option value="de" >DE</option>
-          <option value="nl" >NL</option>
-          <option value="fr" >FR</option>
-        </select>
-      </div>
+      
       <div class="nav-menu" data-nav-menu>
         <button class="nav-menu__toggle" type="button" aria-label="Toggle navigation" aria-haspopup="true" aria-expanded="false" aria-controls="site-nav-links">
           <span class="nav-menu__icon" aria-hidden="true">
@@ -186,13 +179,14 @@
 
     const marketSelect = document.getElementById('market-select');
     if (marketSelect) {
+      const activeMarkets = ["us"];
+      const defaultMarket = "us";
       const marketFromPath = (() => {
         const path = window.location.pathname || '/';
-        if (path === '/us' || path.startsWith('/us/')) return 'us';
-        if (path === '/de' || path.startsWith('/de/')) return 'de';
-        if (path === '/nl' || path.startsWith('/nl/')) return 'nl';
-        if (path === '/fr' || path.startsWith('/fr/')) return 'fr';
-        return 'ie';
+        return activeMarkets.find((market) => {
+          if (market === 'ie') return path === '/';
+          return path === `/${market}` || path.startsWith(`/${market}/`);
+        }) || defaultMarket;
       })();
       const cookieMap = (document.cookie || '')
         .split(';')
@@ -209,16 +203,12 @@
 
       marketSelect.value = marketFromPath;
 
-      if (
-        marketFromPath === 'ie' &&
-        (cookieMap.market === 'us' || cookieMap.market === 'ie' || cookieMap.market === 'eu' || cookieMap.market === 'de' || cookieMap.market === 'nl' || cookieMap.market === 'fr')
-      ) {
-        marketSelect.value = cookieMap.market === 'eu' ? 'ie' : cookieMap.market;
+      if (marketFromPath === 'ie' && activeMarkets.includes(cookieMap.market)) {
+        marketSelect.value = cookieMap.market;
       }
 
       marketSelect.addEventListener('change', () => {
-        const allowedMarkets = new Set(['ie', 'us', 'de', 'nl', 'fr']);
-        const targetMarket = allowedMarkets.has(marketSelect.value) ? marketSelect.value : 'ie';
+        const targetMarket = activeMarkets.includes(marketSelect.value) ? marketSelect.value : defaultMarket;
         const secure = window.location.protocol === 'https:' ? '; Secure' : '';
         document.cookie = `market=${targetMarket}; Path=/; Max-Age=31536000; SameSite=Lax${secure}`;
         const targetPath = targetMarket === 'ie' ? '/' : `/${targetMarket}/`;
@@ -254,6 +244,2006 @@
   
   
     <div class="deal-grid">
+      
+        
+
+
+
+  
+  
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="cioman big and tall office chair" data-summary="high-back office chair with inflatable lumbar support, rubber wheels, and a 500 lb capacity." data-tags="amazon amazon-us office chair" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.375019" data-date="1785623040" data-affiliate="true">
+  
+    <div class="deal-card__image">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  <img
+    src="https://m.media-amazon.com/images/I/71cslRBrAbL._AC_SL1500_.jpg"
+    alt="CIOMAN Big and Tall Office Chair"
+    class=""
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
+  >
+
+
+    </div>
+  
+  <div class="deal-card__body">
+    
+      <div class="deal-card__stack">
+        <h3 class="deal-card__title">CIOMAN Big and Tall Office Chair</h3>
+        <div class="deal-card__divider"></div>
+        <div class="deal-card__price-row deal-card__price-row--compact">
+          
+            <span class="deal-card__sale">$124.99</span>
+          
+          
+            <span class="deal-card__list">$199.99</span>
+          
+          
+            <span class="deal-card__badge">-38%</span>
+          
+        </div>
+        <div class="deal-card__divider"></div>
+        <details class="deal-card__details">
+          <summary class="deal-card__details-toggle">More details</summary>
+          <div class="deal-card__details-body">
+            
+              <p class="deal-card__details-summary">High-back office chair with inflatable lumbar support, rubber wheels, and a 500 lb capacity.</p>
+            
+            
+              <div class="deal-card__tags">
+                <span class="deal-card__tag">#amazon</span><span class="deal-card__tag">#amazon-us</span><span class="deal-card__tag">#office chair</span>
+              </div>
+            
+          </div>
+        </details>
+        
+          <a class="deal-card__cta" href="https://www.amazon.com/dp/B0H34K2NZG?tag=dealledger-20" rel="noopener noreferrer" target="_blank">View on Amazon</a>
+        
+      </div>
+    
+  </div>
+</article>
+
+      
+        
+
+
+
+  
+  
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="apple watch series 11 gps 42mm" data-summary="gps smartwatch with a 42mm rose gold aluminum case and light blush sport band." data-tags="amazon amazon-us smartwatch" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.248145" data-date="1785623040" data-affiliate="true">
+  
+    <div class="deal-card__image">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  <img
+    src="https://m.media-amazon.com/images/I/6110Jv9wqeL._AC_SL1500_.jpg"
+    alt="Apple Watch Series 11 GPS 42mm"
+    class=""
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
+  >
+
+
+    </div>
+  
+  <div class="deal-card__body">
+    
+      <div class="deal-card__stack">
+        <h3 class="deal-card__title">Apple Watch Series 11 GPS 42mm</h3>
+        <div class="deal-card__divider"></div>
+        <div class="deal-card__price-row deal-card__price-row--compact">
+          
+            <span class="deal-card__sale">$299.99</span>
+          
+          
+            <span class="deal-card__list">$399.00</span>
+          
+          
+            <span class="deal-card__badge">-25%</span>
+          
+        </div>
+        <div class="deal-card__divider"></div>
+        <details class="deal-card__details">
+          <summary class="deal-card__details-toggle">More details</summary>
+          <div class="deal-card__details-body">
+            
+              <p class="deal-card__details-summary">GPS smartwatch with a 42mm rose gold aluminum case and Light Blush Sport Band.</p>
+            
+            
+              <div class="deal-card__tags">
+                <span class="deal-card__tag">#amazon</span><span class="deal-card__tag">#amazon-us</span><span class="deal-card__tag">#smartwatch</span>
+              </div>
+            
+          </div>
+        </details>
+        
+          <a class="deal-card__cta" href="https://www.amazon.com/dp/B0FQF9ZX7P?tag=dealledger-20" rel="noopener noreferrer" target="_blank">View on Amazon</a>
+        
+      </div>
+    
+  </div>
+</article>
+
+      
+        
+
+
+
+  
+  
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="robot vacuum and mop combo" data-summary="robot vacuum and mop with 5,000pa suction, self-charging, and app or alexa control." data-tags="amazon amazon-us robot vacuum mop" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.767460" data-date="1785623040" data-affiliate="true">
+  
+    <div class="deal-card__image">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  <img
+    src="https://m.media-amazon.com/images/I/71n7kVvTyfL._AC_SL1500_.jpg"
+    alt="Robot Vacuum and Mop Combo"
+    class=""
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
+  >
+
+
+    </div>
+  
+  <div class="deal-card__body">
+    
+      <div class="deal-card__stack">
+        <h3 class="deal-card__title">Robot Vacuum and Mop Combo</h3>
+        <div class="deal-card__divider"></div>
+        <div class="deal-card__price-row deal-card__price-row--compact">
+          
+            <span class="deal-card__sale">$99.99</span>
+          
+          
+            <span class="deal-card__list">$429.99</span>
+          
+          
+            <span class="deal-card__badge">-77%</span>
+          
+        </div>
+        <div class="deal-card__divider"></div>
+        <details class="deal-card__details">
+          <summary class="deal-card__details-toggle">More details</summary>
+          <div class="deal-card__details-body">
+            
+              <p class="deal-card__details-summary">Robot vacuum and mop with 5,000Pa suction, self-charging, and app or Alexa control.</p>
+            
+            
+              <div class="deal-card__tags">
+                <span class="deal-card__tag">#amazon</span><span class="deal-card__tag">#amazon-us</span><span class="deal-card__tag">#robot vacuum mop</span>
+              </div>
+            
+          </div>
+        </details>
+        
+          <a class="deal-card__cta" href="https://www.amazon.com/dp/B0H2TZNH4Z?tag=dealledger-20" rel="noopener noreferrer" target="_blank">View on Amazon</a>
+        
+      </div>
+    
+  </div>
+</article>
+
+      
+        
+
+
+
+  
+  
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="chefman 4-quart compact air fryer" data-summary="compact 4-quart air fryer with a viewing window, touch controls, and four presets." data-tags="amazon amazon-us air fryer" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.401240" data-date="1785623040" data-affiliate="true">
+  
+    <div class="deal-card__image">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  <img
+    src="https://m.media-amazon.com/images/I/71Mu4&#43;sWUfL._AC_SL1500_.jpg"
+    alt="Chefman 4-Quart Compact Air Fryer"
+    class=""
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
+  >
+
+
+    </div>
+  
+  <div class="deal-card__body">
+    
+      <div class="deal-card__stack">
+        <h3 class="deal-card__title">Chefman 4-Quart Compact Air Fryer</h3>
+        <div class="deal-card__divider"></div>
+        <div class="deal-card__price-row deal-card__price-row--compact">
+          
+            <span class="deal-card__sale">$59.87</span>
+          
+          
+            <span class="deal-card__list">$99.99</span>
+          
+          
+            <span class="deal-card__badge">-40%</span>
+          
+        </div>
+        <div class="deal-card__divider"></div>
+        <details class="deal-card__details">
+          <summary class="deal-card__details-toggle">More details</summary>
+          <div class="deal-card__details-body">
+            
+              <p class="deal-card__details-summary">Compact 4-quart air fryer with a viewing window, touch controls, and four presets.</p>
+            
+            
+              <div class="deal-card__tags">
+                <span class="deal-card__tag">#amazon</span><span class="deal-card__tag">#amazon-us</span><span class="deal-card__tag">#air fryer</span>
+              </div>
+            
+          </div>
+        </details>
+        
+          <a class="deal-card__cta" href="https://www.amazon.com/dp/B0D5FRXYMJ?tag=dealledger-20" rel="noopener noreferrer" target="_blank">View on Amazon</a>
+        
+      </div>
+    
+  </div>
+</article>
+
+      
+        
+
+
+
+  
+  
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="sansui 32-inch curved 240hz gaming monitor" data-summary="32-inch curved fhd monitor with up to 240hz refresh rate, hdmi, and displayport." data-tags="amazon amazon-us gaming monitor" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.307743" data-date="1785623040" data-affiliate="true">
+  
+    <div class="deal-card__image">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  <img
+    src="https://m.media-amazon.com/images/I/718V0fsJdKL._AC_SL1500_.jpg"
+    alt="SANSUI 32-Inch Curved 240Hz Gaming Monitor"
+    class=""
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
+  >
+
+
+    </div>
+  
+  <div class="deal-card__body">
+    
+      <div class="deal-card__stack">
+        <h3 class="deal-card__title">SANSUI 32-Inch Curved 240Hz Gaming Monitor</h3>
+        <div class="deal-card__divider"></div>
+        <div class="deal-card__price-row deal-card__price-row--compact">
+          
+            <span class="deal-card__sale">$179.98</span>
+          
+          
+            <span class="deal-card__list">$259.99</span>
+          
+          
+            <span class="deal-card__badge">-31%</span>
+          
+        </div>
+        <div class="deal-card__divider"></div>
+        <details class="deal-card__details">
+          <summary class="deal-card__details-toggle">More details</summary>
+          <div class="deal-card__details-body">
+            
+              <p class="deal-card__details-summary">32-inch curved FHD monitor with up to 240Hz refresh rate, HDMI, and DisplayPort.</p>
+            
+            
+              <div class="deal-card__tags">
+                <span class="deal-card__tag">#amazon</span><span class="deal-card__tag">#amazon-us</span><span class="deal-card__tag">#gaming monitor</span>
+              </div>
+            
+          </div>
+        </details>
+        
+          <a class="deal-card__cta" href="https://www.amazon.com/dp/B0DD7GPXFH?tag=dealledger-20" rel="noopener noreferrer" target="_blank">View on Amazon</a>
+        
+      </div>
+    
+  </div>
+</article>
+
+      
+        
+
+
+
+  
+  
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="lg ultragear 32gx850a-b oled gaming monitor" data-summary="premium ultragear oled gaming monitor with dual-mode performance." data-tags="monitor gaming oled" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.436973" data-date="1785623040" data-affiliate="true">
+  
+    <div class="deal-card__image">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  <img
+    src="https://m.media-amazon.com/images/I/81K-qSExfqL._AC_SL1500_.jpg"
+    alt="LG UltraGear 32GX850A-B OLED Gaming Monitor"
+    class=""
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
+  >
+
+
+    </div>
+  
+  <div class="deal-card__body">
+    
+      <div class="deal-card__stack">
+        <h3 class="deal-card__title">LG UltraGear 32GX850A-B OLED Gaming Monitor</h3>
+        <div class="deal-card__divider"></div>
+        <div class="deal-card__price-row deal-card__price-row--compact">
+          
+            <span class="deal-card__sale">$731.93</span>
+          
+          
+            <span class="deal-card__list">$1299.99</span>
+          
+          
+            <span class="deal-card__badge">-44%</span>
+          
+        </div>
+        <div class="deal-card__divider"></div>
+        <details class="deal-card__details">
+          <summary class="deal-card__details-toggle">More details</summary>
+          <div class="deal-card__details-body">
+            
+              <p class="deal-card__details-summary">Premium UltraGear OLED gaming monitor with dual-mode performance.</p>
+            
+            
+              <div class="deal-card__tags">
+                <span class="deal-card__tag">#monitor</span><span class="deal-card__tag">#gaming</span><span class="deal-card__tag">#oled</span>
+              </div>
+            
+          </div>
+        </details>
+        
+          <a class="deal-card__cta" href="https://www.amazon.com/LG-32GX850A-B-UltraGear-Dual-Mode-TrueBlack/dp/B0FLQLPNNH?pd_rd_w=IJRxy&amp;content-id=amzn1.sym.97964889-8311-47f9-b48c-985276362641&amp;pf_rd_p=97964889-8311-47f9-b48c-985276362641&amp;pf_rd_r=NWVEDPT0KW4EQCBY3ED4&amp;pd_rd_wg=LRKvo&amp;pd_rd_r=93cdd452-354e-4d8b-b725-4570083102d0&amp;pd_rd_i=B0FLQLPNNH&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger-20&amp;linkId=f1ba5a27e3c25d6cf8ad401b59504497&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">View on Amazon</a>
+        
+      </div>
+    
+  </div>
+</article>
+
+      
+        
+
+
+
+  
+  
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="lenovo all-in-one desktop computer" data-summary="lenovo all-in-one desktop setup with a deep price drop on amazon us." data-tags="lenovo desktop all-in-one computer" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.356705" data-date="1785623040" data-affiliate="true">
+  
+    <div class="deal-card__image">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  <img
+    src="https://m.media-amazon.com/images/I/819V7Y4UfWL._AC_SL1500_.jpg"
+    alt="Lenovo All-in-One Desktop Computer"
+    class=""
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
+  >
+
+
+    </div>
+  
+  <div class="deal-card__body">
+    
+      <div class="deal-card__stack">
+        <h3 class="deal-card__title">Lenovo All-in-One Desktop Computer</h3>
+        <div class="deal-card__divider"></div>
+        <div class="deal-card__price-row deal-card__price-row--compact">
+          
+            <span class="deal-card__sale">$899.97</span>
+          
+          
+            <span class="deal-card__list">$1399.00</span>
+          
+          
+            <span class="deal-card__badge">-36%</span>
+          
+        </div>
+        <div class="deal-card__divider"></div>
+        <details class="deal-card__details">
+          <summary class="deal-card__details-toggle">More details</summary>
+          <div class="deal-card__details-body">
+            
+              <p class="deal-card__details-summary">Lenovo all-in-one desktop setup with a deep price drop on Amazon US.</p>
+            
+            
+              <div class="deal-card__tags">
+                <span class="deal-card__tag">#lenovo</span><span class="deal-card__tag">#desktop</span><span class="deal-card__tag">#all-in-one</span>
+              </div>
+            
+          </div>
+        </details>
+        
+          <a class="deal-card__cta" href="https://www.amazon.com/Lenovo-Computer-Display-Bluetooth-Windows/dp/B0GSQC3QHS?pf_rd_r=MA5Q3C1A9DCVHJZGK8YC&amp;pf_rd_p=6ef39f86-5b70-4692-ad10-fb9a3559d265&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger-20&amp;linkId=4cc4e32fc6fdc4420fb854c17c38a0e6&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">View on Amazon</a>
+        
+      </div>
+    
+  </div>
+</article>
+
+      
+        
+
+
+
+  
+  
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="logitech g502 lightspeed wireless gaming mouse" data-summary="logitech g502 lightspeed wireless gaming mouse with a major markdown on amazon us." data-tags="logitech gaming mouse wireless lightspeed" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.400040" data-date="1785623040" data-affiliate="true">
+  
+    <div class="deal-card__image">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  <img
+    src="https://m.media-amazon.com/images/I/61-jAartdjL._AC_SL1500_.jpg"
+    alt="Logitech G502 Lightspeed Wireless Gaming Mouse"
+    class=""
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
+  >
+
+
+    </div>
+  
+  <div class="deal-card__body">
+    
+      <div class="deal-card__stack">
+        <h3 class="deal-card__title">Logitech G502 Lightspeed Wireless Gaming Mouse</h3>
+        <div class="deal-card__divider"></div>
+        <div class="deal-card__price-row deal-card__price-row--compact">
+          
+            <span class="deal-card__sale">$59.99</span>
+          
+          
+            <span class="deal-card__list">$99.99</span>
+          
+          
+            <span class="deal-card__badge">-40%</span>
+          
+        </div>
+        <div class="deal-card__divider"></div>
+        <details class="deal-card__details">
+          <summary class="deal-card__details-toggle">More details</summary>
+          <div class="deal-card__details-body">
+            
+              <p class="deal-card__details-summary">Logitech G502 Lightspeed wireless gaming mouse with a major markdown on Amazon US.</p>
+            
+            
+              <div class="deal-card__tags">
+                <span class="deal-card__tag">#logitech</span><span class="deal-card__tag">#gaming</span><span class="deal-card__tag">#mouse</span>
+              </div>
+            
+          </div>
+        </details>
+        
+          <a class="deal-card__cta" href="https://www.amazon.com/Logitech-Lightspeed-Lightsync-Compatible-Lightweight/dp/B07NSSPV9S?pf_rd_r=MA5Q3C1A9DCVHJZGK8YC&amp;pf_rd_p=6ef39f86-5b70-4692-ad10-fb9a3559d265&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger-20&amp;linkId=e145ff67470ea857d85ffb44e5b00ab2&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">View on Amazon</a>
+        
+      </div>
+    
+  </div>
+</article>
+
+      
+        
+
+
+
+  
+  
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="razer barracuda wireless headset" data-summary="razer barracuda wireless headset deal for gaming and cross-platform audio on amazon us." data-tags="razer headset wireless gaming audio" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.350035" data-date="1785623040" data-affiliate="true">
+  
+    <div class="deal-card__image">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  <img
+    src="https://m.media-amazon.com/images/I/71IaG27SmkL._AC_SL1500_.jpg"
+    alt="Razer Barracuda Wireless Headset"
+    class=""
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
+  >
+
+
+    </div>
+  
+  <div class="deal-card__body">
+    
+      <div class="deal-card__stack">
+        <h3 class="deal-card__title">Razer Barracuda Wireless Headset</h3>
+        <div class="deal-card__divider"></div>
+        <div class="deal-card__price-row deal-card__price-row--compact">
+          
+            <span class="deal-card__sale">$64.99</span>
+          
+          
+            <span class="deal-card__list">$99.99</span>
+          
+          
+            <span class="deal-card__badge">-35%</span>
+          
+        </div>
+        <div class="deal-card__divider"></div>
+        <details class="deal-card__details">
+          <summary class="deal-card__details-toggle">More details</summary>
+          <div class="deal-card__details-body">
+            
+              <p class="deal-card__details-summary">Razer Barracuda wireless headset deal for gaming and cross-platform audio on Amazon US.</p>
+            
+            
+              <div class="deal-card__tags">
+                <span class="deal-card__tag">#razer</span><span class="deal-card__tag">#headset</span><span class="deal-card__tag">#wireless</span>
+              </div>
+            
+          </div>
+        </details>
+        
+          <a class="deal-card__cta" href="https://www.amazon.com/Razer-Barracuda-Wireless-Headset-Playstation/dp/B09XZZQK6Q?pf_rd_r=MA5Q3C1A9DCVHJZGK8YC&amp;pf_rd_p=6ef39f86-5b70-4692-ad10-fb9a3559d265&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger-20&amp;linkId=f3b66bba02aaff19e968e59a384f45a6&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">View on Amazon</a>
+        
+      </div>
+    
+  </div>
+</article>
+
+      
+        
+
+
+
+  
+  
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="skullcandy crusher wireless over-ear headphones" data-summary="skullcandy crusher wireless over-ear headphones at a steep discount on amazon us." data-tags="skullcandy headphones wireless over-ear audio" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.523787" data-date="1785623040" data-affiliate="true">
+  
+    <div class="deal-card__image">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  <img
+    src="https://m.media-amazon.com/images/I/61TuQdBSgsL._AC_SL1500_.jpg"
+    alt="Skullcandy Crusher Wireless Over-Ear Headphones"
+    class=""
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
+  >
+
+
+    </div>
+  
+  <div class="deal-card__body">
+    
+      <div class="deal-card__stack">
+        <h3 class="deal-card__title">Skullcandy Crusher Wireless Over-Ear Headphones</h3>
+        <div class="deal-card__divider"></div>
+        <div class="deal-card__price-row deal-card__price-row--compact">
+          
+            <span class="deal-card__sale">$99.99</span>
+          
+          
+            <span class="deal-card__list">$209.99</span>
+          
+          
+            <span class="deal-card__badge">-52%</span>
+          
+        </div>
+        <div class="deal-card__divider"></div>
+        <details class="deal-card__details">
+          <summary class="deal-card__details-toggle">More details</summary>
+          <div class="deal-card__details-body">
+            
+              <p class="deal-card__details-summary">Skullcandy Crusher wireless over-ear headphones at a steep discount on Amazon US.</p>
+            
+            
+              <div class="deal-card__tags">
+                <span class="deal-card__tag">#skullcandy</span><span class="deal-card__tag">#headphones</span><span class="deal-card__tag">#wireless</span>
+              </div>
+            
+          </div>
+        </details>
+        
+          <a class="deal-card__cta" href="https://www.amazon.com/Skullcandy-Crusher-Wireless-Over-Ear-Headphone/dp/B08FCGH2RL?pf_rd_r=MA5Q3C1A9DCVHJZGK8YC&amp;pf_rd_p=6ef39f86-5b70-4692-ad10-fb9a3559d265&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger-20&amp;linkId=f91dd69cf307adea236425cee2a675f1&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">View on Amazon</a>
+        
+      </div>
+    
+  </div>
+</article>
+
+      
+        
+
+
+
+  
+  
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="insignia 50-inch 4k uhd fire tv" data-summary="50-inch 4k fire tv deal for streaming and home entertainment setups." data-tags="tv 4k fire-tv insignia" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.400013" data-date="1785623040" data-affiliate="true">
+  
+    <div class="deal-card__image">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  <img
+    src="https://m.media-amazon.com/images/I/81jLRWNrTXL._AC_SL1500_.jpg"
+    alt="INSIGNIA 50-inch 4K UHD Fire TV"
+    class=""
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
+  >
+
+
+    </div>
+  
+  <div class="deal-card__body">
+    
+      <div class="deal-card__stack">
+        <h3 class="deal-card__title">INSIGNIA 50-inch 4K UHD Fire TV</h3>
+        <div class="deal-card__divider"></div>
+        <div class="deal-card__price-row deal-card__price-row--compact">
+          
+            <span class="deal-card__sale">$179.99</span>
+          
+          
+            <span class="deal-card__list">$299.99</span>
+          
+          
+            <span class="deal-card__badge">-40%</span>
+          
+        </div>
+        <div class="deal-card__divider"></div>
+        <details class="deal-card__details">
+          <summary class="deal-card__details-toggle">More details</summary>
+          <div class="deal-card__details-body">
+            
+              <p class="deal-card__details-summary">50-inch 4K Fire TV deal for streaming and home entertainment setups.</p>
+            
+            
+              <div class="deal-card__tags">
+                <span class="deal-card__tag">#tv</span><span class="deal-card__tag">#4k</span><span class="deal-card__tag">#fire-tv</span>
+              </div>
+            
+          </div>
+        </details>
+        
+          <a class="deal-card__cta" href="https://www.amazon.com/INSIGNIA-50-inch-4K-UHD-Fire-TV/dp/B0F19KLHG3?crid=XFBBBJ4DIZFH&amp;dib=eyJ2IjoiMSJ9.V_Q7md-IoYAkDUXE5AbzGzTT8sKZQVw6r_yKfZspyZ_Q_m4tWcMrlmk_m0FdmX_J3XMTO8QD0IDS0Oii5VoDfMomJfF4fL31E_EIp-9myF7Sudj_cOztIPEfiliqLqAa9Z2e5GPtRiiAh_vmnrcNqdiWGcqGljzmcyWxOeAa_u_lF-2xcBIijueVoOJOnBRT9vOtxW3ArR3bG7dChsHRGhr44q17Sn3HKaJGSiJMYGo.zUgUfWy0BVhcJBRjYJD7Yvv7Qu-aK4kH0A-r3h1kqLU&amp;dib_tag=se&amp;keywords=tv&amp;qid=1776879087&amp;sprefix=tv%2Caps%2C473&amp;sr=8-4&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger-20&amp;linkId=387aa4c0233308394006e140de011bc7&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">View on Amazon</a>
+        
+      </div>
+    
+  </div>
+</article>
+
+      
+        
+
+
+
+  
+  
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="sceptre 27-inch fhd monitor" data-summary="27-inch fhd monitor deal for work and gaming setups." data-tags="monitor display fhd sceptre" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.203302" data-date="1785623040" data-affiliate="true">
+  
+    <div class="deal-card__image">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  <img
+    src="https://m.media-amazon.com/images/I/71jdr9u9YhL._AC_SL1500_.jpg"
+    alt="Sceptre 27-inch FHD Monitor"
+    class=""
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
+  >
+
+
+    </div>
+  
+  <div class="deal-card__body">
+    
+      <div class="deal-card__stack">
+        <h3 class="deal-card__title">Sceptre 27-inch FHD Monitor</h3>
+        <div class="deal-card__divider"></div>
+        <div class="deal-card__price-row deal-card__price-row--compact">
+          
+            <span class="deal-card__sale">$97.97</span>
+          
+          
+            <span class="deal-card__list">$122.97</span>
+          
+          
+            <span class="deal-card__badge">-20%</span>
+          
+        </div>
+        <div class="deal-card__divider"></div>
+        <details class="deal-card__details">
+          <summary class="deal-card__details-toggle">More details</summary>
+          <div class="deal-card__details-body">
+            
+              <p class="deal-card__details-summary">27-inch FHD monitor deal for work and gaming setups.</p>
+            
+            
+              <div class="deal-card__tags">
+                <span class="deal-card__tag">#monitor</span><span class="deal-card__tag">#display</span><span class="deal-card__tag">#fhd</span>
+              </div>
+            
+          </div>
+        </details>
+        
+          <a class="deal-card__cta" href="https://www.amazon.com/Sceptre-DisplayPort-FreeSync-Frameless-E275W-FW100T/dp/B0CHHSFMRL?crid=1QJB8GY0XXNN3&amp;dib=eyJ2IjoiMSJ9.xbPWrjXwaW82FlSQGaGScHz3fh_lDnY98wZbw8ACHurD5fZ6JCh8OmCfQx_qFSatseFHnrCuIqcz7zbpodzQXvJiOMenow3o2PmsfznHArFAaJOJKPT-zlO-eeoPhTks8uH2gQkWEgK8svYLPuVHtt6Sl5qKVdCA8j-J1hOFIT52_ra-PnKuaniErig0tTCnhc8FE_tyv4DwYiJpsBSxNnTtPpH5diNWbYQA3PvGxVY.sA1olxn-JQ49S3tegR6Im9XPazol4C4iyBbCQHzUok8&amp;dib_tag=se&amp;keywords=monitor&amp;qid=1776879137&amp;sprefix=monito%2Caps%2C646&amp;sr=8-20&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger-20&amp;linkId=cf43fb8a96260fdfd4280be2e6890d4f&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">View on Amazon</a>
+        
+      </div>
+    
+  </div>
+</article>
+
+      
+        
+
+
+
+  
+  
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="hyperx cloud iii gaming headset" data-summary="wired hyperx cloud iii headset with clear mic pickup and multi-platform support." data-tags="audio gaming headset" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.350435" data-date="1785623040" data-affiliate="true">
+  
+    <div class="deal-card__image">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  <img
+    src="https://m.media-amazon.com/images/I/71AMEEP3HLL._AC_SL1500_.jpg"
+    alt="HyperX Cloud III Gaming Headset"
+    class=""
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
+  >
+
+
+    </div>
+  
+  <div class="deal-card__body">
+    
+      <div class="deal-card__stack">
+        <h3 class="deal-card__title">HyperX Cloud III Gaming Headset</h3>
+        <div class="deal-card__divider"></div>
+        <div class="deal-card__price-row deal-card__price-row--compact">
+          
+            <span class="deal-card__sale">$64.95</span>
+          
+          
+            <span class="deal-card__list">$99.99</span>
+          
+          
+            <span class="deal-card__badge">-35%</span>
+          
+        </div>
+        <div class="deal-card__divider"></div>
+        <details class="deal-card__details">
+          <summary class="deal-card__details-toggle">More details</summary>
+          <div class="deal-card__details-body">
+            
+              <p class="deal-card__details-summary">Wired HyperX Cloud III headset with clear mic pickup and multi-platform support.</p>
+            
+            
+              <div class="deal-card__tags">
+                <span class="deal-card__tag">#audio</span><span class="deal-card__tag">#gaming</span><span class="deal-card__tag">#headset</span>
+              </div>
+            
+          </div>
+        </details>
+        
+          <a class="deal-card__cta" href="https://www.amazon.com/HyperX-Cloud-III-Ultra-Clear-USB/dp/B0C3BSZ56D?crid=2Q8EJTFV8HC0Q&amp;dib=eyJ2IjoiMSJ9.x6ATgVmhVooGMj8GeDMCR4oM1UWRcsJ1l1t5jGS_cp0Nt-OP_qzYSjYJ_nvBF4eoWGVRBvPd5ZNFIUPU1RUVLG-BhWjNv1RGW9XY3isJIibFj5fNtJyd3YeJykMeVaFHGqFBgsxnNNESfINbvSLLffzgVshfal15p3ca-6ISnuwhbB08tT6nszUt8pPWKzYQGNLkuBVeE2iOjux4sKP6y2cnAITHpjt_2xJ2weHp0VzbJXKDbe1aucsPB2XV-1A8-eUrGm7OF29zOuCTcpSBgYNCFrAcBjqSba07Uk2V-b4.-inLWWb7csngyd3_YI2rF07R4IfghsOd669q6XrpV2s&amp;dib_tag=se&amp;keywords=gaming&amp;qid=1776373119&amp;refinements=p_36%3A3500-57000&amp;rnid=386442011&amp;s=pc&amp;sprefix=gami%2Ccomputers%2C269&amp;sr=1-11&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger-20&amp;linkId=6cfd60ae062a90425a4bc185254fb6ee&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">View on Amazon</a>
+        
+      </div>
+    
+  </div>
+</article>
+
+      
+        
+
+
+
+  
+  
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="ingnok 15.6-inch fhd portable monitor" data-summary="15.6-inch portable fhd monitor for travel, remote work, and dual-screen setups." data-tags="monitor productivity portable" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.270000" data-date="1785623040" data-affiliate="true">
+  
+    <div class="deal-card__image">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  <img
+    src="https://m.media-amazon.com/images/I/71mqjfuT4HL._AC_SL1500_.jpg"
+    alt="Ingnok 15.6-inch FHD Portable Monitor"
+    class=""
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
+  >
+
+
+    </div>
+  
+  <div class="deal-card__body">
+    
+      <div class="deal-card__stack">
+        <h3 class="deal-card__title">Ingnok 15.6-inch FHD Portable Monitor</h3>
+        <div class="deal-card__divider"></div>
+        <div class="deal-card__price-row deal-card__price-row--compact">
+          
+            <span class="deal-card__sale">$65.97</span>
+          
+          
+            <span class="deal-card__list">$89.99</span>
+          
+          
+            <span class="deal-card__badge">-27%</span>
+          
+        </div>
+        <div class="deal-card__divider"></div>
+        <details class="deal-card__details">
+          <summary class="deal-card__details-toggle">More details</summary>
+          <div class="deal-card__details-body">
+            
+              <p class="deal-card__details-summary">15.6-inch portable FHD monitor for travel, remote work, and dual-screen setups.</p>
+            
+            
+              <div class="deal-card__tags">
+                <span class="deal-card__tag">#monitor</span><span class="deal-card__tag">#productivity</span><span class="deal-card__tag">#portable</span>
+              </div>
+            
+          </div>
+        </details>
+        
+          <a class="deal-card__cta" href="https://www.amazon.com/Ingnok-15-6-FHD-Portable-Monitor/dp/B0CP7XRW9S?crid=14U0OR7993L99&amp;dib=eyJ2IjoiMSJ9.yXe4NvRl-KXRk8b10nKGX-W3JfFT195FyXP9w1iw9Cwxu-hQeZE2qmWDOxVBB34tJs9v_TLHTUZkVjK_Lnihn4_7Y1Px0zzCRG-q_C_5XqzbZGrgSuCCo2tKarZPxb07NgaDF8tGGavzWckjl0FnLasd-2Iat1s6F7nK2b7WGu2SmpwMiqu8I2ohkWVlREZCug6y1u5pw3TyqNt1UvBkWh9krQ4ijimD_G2QKRCkneAKqfvcClTlK4WhmEid7qX1omooUSpAy1uuMkGhHXkOwKbPOahceghPS8EAAsqtWSM.Drp4daCs2Cw3OAE93-ZSy7hQWZ3x5awBV5n-vVfAdu8&amp;dib_tag=se&amp;keywords=office&amp;qid=1776373058&amp;refinements=p_36%3A3200-39000&amp;rnid=386442011&amp;s=pc&amp;sprefix=office%2Belectronics%2Ccomputers%2C229&amp;sr=1-6&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger-20&amp;linkId=68a5aebb9ed0949894290d01a88def5d&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">View on Amazon</a>
+        
+      </div>
+    
+  </div>
+</article>
+
+      
+        
+
+
+
+  
+  
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="logitech mx vertical wireless mouse" data-summary="ergonomic vertical wireless mouse designed to reduce wrist strain." data-tags="home office productivity accessories" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.375031" data-date="1785623040" data-affiliate="true">
+  
+    <div class="deal-card__image">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  <img
+    src="https://m.media-amazon.com/images/I/61iiZ-gDYEL._AC_SL1500_.jpg"
+    alt="Logitech MX Vertical Wireless Mouse"
+    class=""
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
+  >
+
+
+    </div>
+  
+  <div class="deal-card__body">
+    
+      <div class="deal-card__stack">
+        <h3 class="deal-card__title">Logitech MX Vertical Wireless Mouse</h3>
+        <div class="deal-card__divider"></div>
+        <div class="deal-card__price-row deal-card__price-row--compact">
+          
+            <span class="deal-card__sale">$74.99</span>
+          
+          
+            <span class="deal-card__list">$119.99</span>
+          
+          
+            <span class="deal-card__badge">-38%</span>
+          
+        </div>
+        <div class="deal-card__divider"></div>
+        <details class="deal-card__details">
+          <summary class="deal-card__details-toggle">More details</summary>
+          <div class="deal-card__details-body">
+            
+              <p class="deal-card__details-summary">Ergonomic vertical wireless mouse designed to reduce wrist strain.</p>
+            
+            
+              <div class="deal-card__tags">
+                <span class="deal-card__tag">#home office</span><span class="deal-card__tag">#productivity</span><span class="deal-card__tag">#accessories</span>
+              </div>
+            
+          </div>
+        </details>
+        
+          <a class="deal-card__cta" href="https://www.amazon.com/Logitech-Vertical-Wireless-Mouse-Rechargeable/dp/B07FNJB8TT?pd_rd_w=qN5fP&amp;content-id=amzn1.sym.757f05c8-ff4b-48f1-be9b-bb1c45d57281&amp;pf_rd_p=757f05c8-ff4b-48f1-be9b-bb1c45d57281&amp;pf_rd_r=Q5Z2H7T6ZFTR3N4TPVVK&amp;pd_rd_wg=V4yHk&amp;pd_rd_r=c72d789c-f34e-4c44-8622-9ce8d51a6fc0&amp;pd_rd_i=B07FNJB8TT&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger-20&amp;linkId=8f120df13bda0549dca812dd2db9da36&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">View on Amazon</a>
+        
+      </div>
+    
+  </div>
+</article>
+
+      
+        
+
+
+
+  
+  
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<article class="deal-card deal-card--list" data-filter-card="true" data-title="samsung essential 27-inch monitor" data-summary="27-inch samsung monitor deal for desk setups and everyday productivity use." data-tags="monitor home office productivity" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.266684" data-date="1785623040" data-affiliate="true">
+  
+    <div class="deal-card__image">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  <img
+    src="https://m.media-amazon.com/images/I/61hW&#43;rfpcML._AC_SL1500_.jpg"
+    alt="Samsung Essential 27-inch Monitor"
+    class=""
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
+  >
+
+
+    </div>
+  
+  <div class="deal-card__body">
+    
+      <div class="deal-card__stack">
+        <h3 class="deal-card__title">Samsung Essential 27-inch Monitor</h3>
+        <div class="deal-card__divider"></div>
+        <div class="deal-card__price-row deal-card__price-row--compact">
+          
+            <span class="deal-card__sale">$109.99</span>
+          
+          
+            <span class="deal-card__list">$149.99</span>
+          
+          
+            <span class="deal-card__badge">-27%</span>
+          
+        </div>
+        <div class="deal-card__divider"></div>
+        <details class="deal-card__details">
+          <summary class="deal-card__details-toggle">More details</summary>
+          <div class="deal-card__details-body">
+            
+              <p class="deal-card__details-summary">27-inch Samsung monitor deal for desk setups and everyday productivity use.</p>
+            
+            
+              <div class="deal-card__tags">
+                <span class="deal-card__tag">#monitor</span><span class="deal-card__tag">#home office</span><span class="deal-card__tag">#productivity</span>
+              </div>
+            
+          </div>
+        </details>
+        
+          <a class="deal-card__cta" href="https://www.amazon.com/SAMSUNG-Essential-Ergonomic-Advanced-LS27D304GANXZA/dp/B0DK44759Y?pd_rd_w=9xFN4&amp;content-id=amzn1.sym.97964889-8311-47f9-b48c-985276362641&amp;pf_rd_p=97964889-8311-47f9-b48c-985276362641&amp;pf_rd_r=JRQSCCGJJAT4A9H4AXB8&amp;pd_rd_wg=dfblI&amp;pd_rd_r=ae6a26d1-83c5-4ebb-9636-3df405dab634&amp;pd_rd_i=B0DK44759Y&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger-20&amp;linkId=e0e4b4efbb2ff18f81c6acd370977e66&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">View on Amazon</a>
+        
+      </div>
+    
+  </div>
+</article>
+
       
         
 
@@ -748,2010 +2738,6 @@
         </details>
         
           <a class="deal-card__cta" href="https://www.amazon.com/dp/B0FQF5BZ8Z?th=1&amp;linkCode=ll2&amp;tag=dealledger-20&amp;linkId=a810f8c7759bdf7ad43524e1987e6c6d&amp;language=en_US&amp;gaOptInStatus=true&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">View on Amazon</a>
-        
-      </div>
-    
-  </div>
-</article>
-
-      
-        
-
-
-
-  
-  
-    
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-  
-  
-
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="garmin vívoactive 5 gps smartwatch" data-summary="42mm gps smartwatch with health tracking, sports apps, sleep coaching, and body battery insights." data-tags="amazon amazon-us smartwatch" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.350012" data-date="1785610564" data-affiliate="true">
-  
-    <div class="deal-card__image">
-      
-
-
-
-
-
-
-
-
-
-
-
-
-  <img
-    src="https://m.media-amazon.com/images/I/610Jl4dUB7L._AC_SL1500_.jpg"
-    alt="Garmin vívoactive 5 GPS Smartwatch"
-    class=""
-    loading="lazy"
-    decoding="async"
-    fetchpriority="auto"
-    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
-  >
-
-
-    </div>
-  
-  <div class="deal-card__body">
-    
-      <div class="deal-card__stack">
-        <h3 class="deal-card__title">Garmin vívoactive 5 GPS Smartwatch</h3>
-        <div class="deal-card__divider"></div>
-        <div class="deal-card__price-row deal-card__price-row--compact">
-          
-            <span class="deal-card__sale">$194.99</span>
-          
-          
-            <span class="deal-card__list">$299.99</span>
-          
-          
-            <span class="deal-card__badge">-35%</span>
-          
-        </div>
-        <div class="deal-card__divider"></div>
-        <details class="deal-card__details">
-          <summary class="deal-card__details-toggle">More details</summary>
-          <div class="deal-card__details-body">
-            
-              <p class="deal-card__details-summary">42mm GPS smartwatch with health tracking, sports apps, sleep coaching, and Body Battery insights.</p>
-            
-            
-              <div class="deal-card__tags">
-                <span class="deal-card__tag">#amazon</span><span class="deal-card__tag">#amazon-us</span><span class="deal-card__tag">#smartwatch</span>
-              </div>
-            
-          </div>
-        </details>
-        
-          <a class="deal-card__cta" href="https://www.amazon.com/dp/B0CG6NBJ61?th=1&amp;linkCode=ll2&amp;tag=dealledger-20&amp;linkId=89504e504cdccaca8f114dce14bfd1fa&amp;language=en_US&amp;gaOptInStatus=true&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">View on Amazon</a>
-        
-      </div>
-    
-  </div>
-</article>
-
-      
-        
-
-
-
-  
-  
-    
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-  
-  
-
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="roborock q10 s5&#43; robot vacuum &amp; mop" data-summary="robot vacuum and mop with 10,000pa suction, self-emptying, obstacle avoidance, and sonic mopping." data-tags="amazon amazon-us robot vacuum mop" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.490918" data-date="1785610564" data-affiliate="true">
-  
-    <div class="deal-card__image">
-      
-
-
-
-
-
-
-
-
-
-
-
-
-  <img
-    src="https://m.media-amazon.com/images/I/61KBMtvTenL._AC_SL1500_.jpg"
-    alt="Roborock Q10 S5&#43; Robot Vacuum &amp; Mop"
-    class=""
-    loading="lazy"
-    decoding="async"
-    fetchpriority="auto"
-    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
-  >
-
-
-    </div>
-  
-  <div class="deal-card__body">
-    
-      <div class="deal-card__stack">
-        <h3 class="deal-card__title">Roborock Q10 S5&#43; Robot Vacuum &amp; Mop</h3>
-        <div class="deal-card__divider"></div>
-        <div class="deal-card__price-row deal-card__price-row--compact">
-          
-            <span class="deal-card__sale">$279.99</span>
-          
-          
-            <span class="deal-card__list">$549.99</span>
-          
-          
-            <span class="deal-card__badge">-49%</span>
-          
-        </div>
-        <div class="deal-card__divider"></div>
-        <details class="deal-card__details">
-          <summary class="deal-card__details-toggle">More details</summary>
-          <div class="deal-card__details-body">
-            
-              <p class="deal-card__details-summary">Robot vacuum and mop with 10,000Pa suction, self-emptying, obstacle avoidance, and sonic mopping.</p>
-            
-            
-              <div class="deal-card__tags">
-                <span class="deal-card__tag">#amazon</span><span class="deal-card__tag">#amazon-us</span><span class="deal-card__tag">#robot vacuum mop</span>
-              </div>
-            
-          </div>
-        </details>
-        
-          <a class="deal-card__cta" href="https://www.amazon.com/dp/B0DWXBCQVP?th=1&amp;linkCode=ll2&amp;tag=dealledger-20&amp;linkId=b7f3530c816907ffd423ffe275077f7d&amp;language=en_US&amp;gaOptInStatus=true&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">View on Amazon</a>
-        
-      </div>
-    
-  </div>
-</article>
-
-      
-        
-
-
-
-  
-  
-    
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-  
-  
-
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="roborock qrevo s5v robot vacuum &amp; mop" data-summary="robot vacuum and mop with flexiarm edge cleaning, self-emptying, and auto mop washing and drying." data-tags="amazon amazon-us robot vacuum mop" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.444460" data-date="1785610564" data-affiliate="true">
-  
-    <div class="deal-card__image">
-      
-
-
-
-
-
-
-
-
-
-
-
-
-  <img
-    src="https://m.media-amazon.com/images/I/51Br5OrimUL._AC_SL1500_.jpg"
-    alt="Roborock Qrevo S5V Robot Vacuum &amp; Mop"
-    class=""
-    loading="lazy"
-    decoding="async"
-    fetchpriority="auto"
-    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
-  >
-
-
-    </div>
-  
-  <div class="deal-card__body">
-    
-      <div class="deal-card__stack">
-        <h3 class="deal-card__title">Roborock Qrevo S5V Robot Vacuum &amp; Mop</h3>
-        <div class="deal-card__divider"></div>
-        <div class="deal-card__price-row deal-card__price-row--compact">
-          
-            <span class="deal-card__sale">$499.98</span>
-          
-          
-            <span class="deal-card__list">$899.99</span>
-          
-          
-            <span class="deal-card__badge">-44%</span>
-          
-        </div>
-        <div class="deal-card__divider"></div>
-        <details class="deal-card__details">
-          <summary class="deal-card__details-toggle">More details</summary>
-          <div class="deal-card__details-body">
-            
-              <p class="deal-card__details-summary">Robot vacuum and mop with FlexiArm edge cleaning, self-emptying, and auto mop washing and drying.</p>
-            
-            
-              <div class="deal-card__tags">
-                <span class="deal-card__tag">#amazon</span><span class="deal-card__tag">#amazon-us</span><span class="deal-card__tag">#robot vacuum mop</span>
-              </div>
-            
-          </div>
-        </details>
-        
-          <a class="deal-card__cta" href="https://www.amazon.com/dp/B0DSP8J476?th=1&amp;linkCode=ll2&amp;tag=dealledger-20&amp;linkId=7027418f3ea456b97c81b6f70fc557f4&amp;language=en_US&amp;gaOptInStatus=true&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">View on Amazon</a>
-        
-      </div>
-    
-  </div>
-</article>
-
-      
-        
-
-
-
-  
-  
-    
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-  
-  
-
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="soundcore 2 portable bluetooth speaker" data-summary="portable bluetooth speaker with stereo sound, ipx7 water resistance, and up to 24-hour playtime." data-tags="amazon amazon-us bluetooth speaker" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.333630" data-date="1785610564" data-affiliate="true">
-  
-    <div class="deal-card__image">
-      
-
-
-
-
-
-
-
-
-
-
-
-
-  <img
-    src="https://m.media-amazon.com/images/I/71jjggEx2XL._AC_SL1500_.jpg"
-    alt="Soundcore 2 Portable Bluetooth Speaker"
-    class=""
-    loading="lazy"
-    decoding="async"
-    fetchpriority="auto"
-    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
-  >
-
-
-    </div>
-  
-  <div class="deal-card__body">
-    
-      <div class="deal-card__stack">
-        <h3 class="deal-card__title">Soundcore 2 Portable Bluetooth Speaker</h3>
-        <div class="deal-card__divider"></div>
-        <div class="deal-card__price-row deal-card__price-row--compact">
-          
-            <span class="deal-card__sale">$29.98</span>
-          
-          
-            <span class="deal-card__list">$44.99</span>
-          
-          
-            <span class="deal-card__badge">-33%</span>
-          
-        </div>
-        <div class="deal-card__divider"></div>
-        <details class="deal-card__details">
-          <summary class="deal-card__details-toggle">More details</summary>
-          <div class="deal-card__details-body">
-            
-              <p class="deal-card__details-summary">Portable Bluetooth speaker with stereo sound, IPX7 water resistance, and up to 24-hour playtime.</p>
-            
-            
-              <div class="deal-card__tags">
-                <span class="deal-card__tag">#amazon</span><span class="deal-card__tag">#amazon-us</span><span class="deal-card__tag">#bluetooth speaker</span>
-              </div>
-            
-          </div>
-        </details>
-        
-          <a class="deal-card__cta" href="https://www.amazon.com/dp/B01MTB55WH?th=1&amp;linkCode=ll2&amp;tag=dealledger-20&amp;linkId=3bdcb21368df7a3184377e2c5875fc89&amp;language=en_US&amp;gaOptInStatus=true&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">View on Amazon</a>
-        
-      </div>
-    
-  </div>
-</article>
-
-      
-        
-
-
-
-  
-  
-    
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-  
-  
-
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="shark av2501s ai ultra robot vacuum" data-summary="robot vacuum with matrix clean, lidar mapping, and a 30-day self-empty base." data-tags="amazon amazon-us robot vacuum" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.490918" data-date="1785610564" data-affiliate="true">
-  
-    <div class="deal-card__image">
-      
-
-
-
-
-
-
-
-
-
-
-
-
-  <img
-    src="https://m.media-amazon.com/images/I/71CpXAMzcvL._AC_SL1500_.jpg"
-    alt="Shark AV2501S AI Ultra Robot Vacuum"
-    class=""
-    loading="lazy"
-    decoding="async"
-    fetchpriority="auto"
-    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
-  >
-
-
-    </div>
-  
-  <div class="deal-card__body">
-    
-      <div class="deal-card__stack">
-        <h3 class="deal-card__title">Shark AV2501S AI Ultra Robot Vacuum</h3>
-        <div class="deal-card__divider"></div>
-        <div class="deal-card__price-row deal-card__price-row--compact">
-          
-            <span class="deal-card__sale">$279.99</span>
-          
-          
-            <span class="deal-card__list">$549.99</span>
-          
-          
-            <span class="deal-card__badge">-49%</span>
-          
-        </div>
-        <div class="deal-card__divider"></div>
-        <details class="deal-card__details">
-          <summary class="deal-card__details-toggle">More details</summary>
-          <div class="deal-card__details-body">
-            
-              <p class="deal-card__details-summary">Robot vacuum with Matrix Clean, LiDAR mapping, and a 30-day self-empty base.</p>
-            
-            
-              <div class="deal-card__tags">
-                <span class="deal-card__tag">#amazon</span><span class="deal-card__tag">#amazon-us</span><span class="deal-card__tag">#robot vacuum</span>
-              </div>
-            
-          </div>
-        </details>
-        
-          <a class="deal-card__cta" href="https://amzn.to/4h97wab" rel="noopener noreferrer" target="_blank">View on Amazon</a>
-        
-      </div>
-    
-  </div>
-</article>
-
-      
-        
-
-
-
-  
-  
-    
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-  
-  
-
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="redragon k668 rgb mechanical gaming keyboard" data-summary="108-key hot-swappable wired keyboard with dedicated hotkeys and sound dampening." data-tags="amazon amazon-us mechanical keyboard" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.200040" data-date="1785610564" data-affiliate="true">
-  
-    <div class="deal-card__image">
-      
-
-
-
-
-
-
-
-
-
-
-
-
-  <img
-    src="https://m.media-amazon.com/images/I/618A&#43;B25MKL._AC_SL1500_.jpg"
-    alt="Redragon K668 RGB Mechanical Gaming Keyboard"
-    class=""
-    loading="lazy"
-    decoding="async"
-    fetchpriority="auto"
-    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
-  >
-
-
-    </div>
-  
-  <div class="deal-card__body">
-    
-      <div class="deal-card__stack">
-        <h3 class="deal-card__title">Redragon K668 RGB Mechanical Gaming Keyboard</h3>
-        <div class="deal-card__divider"></div>
-        <div class="deal-card__price-row deal-card__price-row--compact">
-          
-            <span class="deal-card__sale">$39.99</span>
-          
-          
-            <span class="deal-card__list">$49.99</span>
-          
-          
-            <span class="deal-card__badge">-20%</span>
-          
-        </div>
-        <div class="deal-card__divider"></div>
-        <details class="deal-card__details">
-          <summary class="deal-card__details-toggle">More details</summary>
-          <div class="deal-card__details-body">
-            
-              <p class="deal-card__details-summary">108-key hot-swappable wired keyboard with dedicated hotkeys and sound dampening.</p>
-            
-            
-              <div class="deal-card__tags">
-                <span class="deal-card__tag">#amazon</span><span class="deal-card__tag">#amazon-us</span><span class="deal-card__tag">#mechanical keyboard</span>
-              </div>
-            
-          </div>
-        </details>
-        
-          <a class="deal-card__cta" href="https://amzn.to/4xlajSt" rel="noopener noreferrer" target="_blank">View on Amazon</a>
-        
-      </div>
-    
-  </div>
-</article>
-
-      
-        
-
-
-
-  
-  
-    
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-  
-  
-
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="soundcore q20i hybrid anc headphones" data-summary="white over-ear bluetooth headphones with hybrid noise cancelling, transparency mode, and up to 40-hour anc playtime." data-tags="amazon amazon-us wireless noise cancelling headphones" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.428776" data-date="1785610564" data-affiliate="true">
-  
-    <div class="deal-card__image">
-      
-
-
-
-
-
-
-
-
-
-
-
-
-  <img
-    src="https://m.media-amazon.com/images/I/51QSktkLy1L._AC_SL1500_.jpg"
-    alt="Soundcore Q20i Hybrid ANC Headphones"
-    class=""
-    loading="lazy"
-    decoding="async"
-    fetchpriority="auto"
-    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
-  >
-
-
-    </div>
-  
-  <div class="deal-card__body">
-    
-      <div class="deal-card__stack">
-        <h3 class="deal-card__title">Soundcore Q20i Hybrid ANC Headphones</h3>
-        <div class="deal-card__divider"></div>
-        <div class="deal-card__price-row deal-card__price-row--compact">
-          
-            <span class="deal-card__sale">$39.98</span>
-          
-          
-            <span class="deal-card__list">$69.99</span>
-          
-          
-            <span class="deal-card__badge">-43%</span>
-          
-        </div>
-        <div class="deal-card__divider"></div>
-        <details class="deal-card__details">
-          <summary class="deal-card__details-toggle">More details</summary>
-          <div class="deal-card__details-body">
-            
-              <p class="deal-card__details-summary">White over-ear Bluetooth headphones with hybrid noise cancelling, transparency mode, and up to 40-hour ANC playtime.</p>
-            
-            
-              <div class="deal-card__tags">
-                <span class="deal-card__tag">#amazon</span><span class="deal-card__tag">#amazon-us</span><span class="deal-card__tag">#wireless noise cancelling headphones</span>
-              </div>
-            
-          </div>
-        </details>
-        
-          <a class="deal-card__cta" href="https://amzn.to/4vZMAGc" rel="noopener noreferrer" target="_blank">View on Amazon</a>
-        
-      </div>
-    
-  </div>
-</article>
-
-      
-        
-
-
-
-  
-  
-    
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-  
-  
-
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="acer usb hub 4-port splitter" data-summary="compact four-port usb hub for laptops, desktops, and everyday accessories." data-tags="usb hub adapter tech gadgets" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.333556" data-date="1778949099" data-affiliate="true">
-  
-    <div class="deal-card__image">
-      
-
-
-
-
-
-
-
-
-
-
-
-
-  <img
-    src="https://m.media-amazon.com/images/I/61FFBZwEvtL._AC_SL1500_.jpg"
-    alt="Acer USB Hub 4-Port Splitter"
-    class=""
-    loading="lazy"
-    decoding="async"
-    fetchpriority="auto"
-    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
-  >
-
-
-    </div>
-  
-  <div class="deal-card__body">
-    
-      <div class="deal-card__stack">
-        <h3 class="deal-card__title">Acer USB Hub 4-Port Splitter</h3>
-        <div class="deal-card__divider"></div>
-        <div class="deal-card__price-row deal-card__price-row--compact">
-          
-            <span class="deal-card__sale">$9.99</span>
-          
-          
-            <span class="deal-card__list">$14.99</span>
-          
-          
-            <span class="deal-card__badge">-33%</span>
-          
-        </div>
-        <div class="deal-card__divider"></div>
-        <details class="deal-card__details">
-          <summary class="deal-card__details-toggle">More details</summary>
-          <div class="deal-card__details-body">
-            
-              <p class="deal-card__details-summary">Compact four-port USB hub for laptops, desktops, and everyday accessories.</p>
-            
-            
-              <div class="deal-card__tags">
-                <span class="deal-card__tag">#usb hub</span><span class="deal-card__tag">#adapter</span><span class="deal-card__tag">#tech gadgets</span>
-              </div>
-            
-          </div>
-        </details>
-        
-          <a class="deal-card__cta" href="https://www.amazon.com/Multiple-Splitter-Laptop-Extender-Windows/dp/B0CN3F9Y1Z?crid=3I974HJXB5N5U&amp;dib=eyJ2IjoiMSJ9.4Gr9_5O9T5v6fN7i3FJ_IL-qnhPIdquklSzpdmZAJcDeJMYgOXWRpOrI5sE943uw3Cx0prnNNrz3VAEcbcsBjeF27G_tYAzmSR_S9hKISAoIdBwr91D8utzdx90AzwBmpQ3ne9ILG0usondwqnClu2QvPQAyqyDG1jKf4I_hZDGXSgrHLzB3IR6TOUSrZ1Smn9AZbzAXad-CYO3lA6gb4yM_o3w8sMGAR1N8qOJzGEj9yJaM9X4XiYP6KJNnlAdJa5DylKkM0J3QVscGwlSjtwferqpvYza39zEf4E5DNUQ.ghrLVIo7fUPPO5a5Vfe2f_O5F_Z1dLZ496VAmLSa-r4&amp;dib_tag=se&amp;keywords=tech%2Bgadgets&amp;qid=1778946150&amp;s=pc&amp;sprefix=tech%2Ccomputers%2C268&amp;sr=1-9&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger-20&amp;linkId=64a7cd12c89152798a9dd4eeec4283a7&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">View on Amazon</a>
-        
-      </div>
-    
-  </div>
-</article>
-
-      
-        
-
-
-
-  
-  
-    
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    
-      
-    
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-  
-  
-
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="apple airpods pro 3" data-summary="apple airpods pro 3 wireless earbuds with active noise cancellation and usb-c charging." data-tags="audio apple earbuds" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.349345" data-date="1778949099" data-affiliate="true">
-  
-    <div class="deal-card__image">
-      
-
-
-
-
-
-
-
-
-
-
-
-
-  <img
-    src="https://m.media-amazon.com/images/I/61solmQSSlL._AC_SL1500_.jpg"
-    alt="Apple AirPods Pro 3"
-    class=""
-    loading="lazy"
-    decoding="async"
-    fetchpriority="auto"
-    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
-  >
-
-
-    </div>
-  
-  <div class="deal-card__body">
-    
-      <div class="deal-card__stack">
-        <h3 class="deal-card__title">Apple AirPods Pro 3</h3>
-        <div class="deal-card__divider"></div>
-        <div class="deal-card__price-row deal-card__price-row--compact">
-          
-            <span class="deal-card__sale">$149.00</span>
-          
-          
-            <span class="deal-card__list">$229.00</span>
-          
-          
-            <span class="deal-card__badge">-35%</span>
-          
-        </div>
-        <div class="deal-card__divider"></div>
-        <details class="deal-card__details">
-          <summary class="deal-card__details-toggle">More details</summary>
-          <div class="deal-card__details-body">
-            
-              <p class="deal-card__details-summary">Apple AirPods Pro 3 wireless earbuds with active noise cancellation and USB-C charging.</p>
-            
-            
-              <div class="deal-card__tags">
-                <span class="deal-card__tag">#audio</span><span class="deal-card__tag">#apple</span><span class="deal-card__tag">#earbuds</span>
-              </div>
-            
-          </div>
-        </details>
-        
-          <a class="deal-card__cta" href="https://www.amazon.com/Apple-Cancellation-Translation-Headphones-High-Fidelity/dp/B0FQFB8FMG?crid=1IO7P8BE7SMG&amp;dib=eyJ2IjoiMSJ9.ZsIsRh5gSkzpkhHq3Cwk_IiyF5AUc93Rf0NR_QJEYmQzpHpAs28cNkGuNG6-o8aVfCt8WO0XcsGX1ed8bvG2c7InsPfvqt71JUGWucsmMw-SOJwF6rOUOQGTkumfCqExvPIOPWC263qfLIITS5ww6yiZ-MUsbQQKJlWU4xXdH7VVqaq4ivZvdDZq1-sfkhgxzKQxGZ4zeL8-MZ69qr29LS8huIew-j0TZcMhZBG4-cU.nZQt9mwAAyOmPT2mVJrAnsE2_v9M9ArOXoNwXNGNdNw&amp;dib_tag=se&amp;keywords=electronics&amp;qid=1778944339&amp;sprefix=electroni%2Caps%2C292&amp;sr=8-16&amp;linkCode=ll2&amp;tag=dealledger-20&amp;linkId=ca107e14aae5f285c0e9b4f9434babd6&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">View on Amazon</a>
-        
-      </div>
-    
-  </div>
-</article>
-
-      
-        
-
-
-
-  
-  
-    
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-  
-  
-
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="huanuo dual monitor stand" data-summary="adjustable dual monitor arm for cleaner home office desk setups." data-tags="monitor arm home office desk setup" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.142878" data-date="1778949099" data-affiliate="true">
-  
-    <div class="deal-card__image">
-      
-
-
-
-
-
-
-
-
-
-
-
-
-  <img
-    src="https://m.media-amazon.com/images/I/7182jSFV25L._AC_SL1500_.jpg"
-    alt="HUANUO Dual Monitor Stand"
-    class=""
-    loading="lazy"
-    decoding="async"
-    fetchpriority="auto"
-    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
-  >
-
-
-    </div>
-  
-  <div class="deal-card__body">
-    
-      <div class="deal-card__stack">
-        <h3 class="deal-card__title">HUANUO Dual Monitor Stand</h3>
-        <div class="deal-card__divider"></div>
-        <div class="deal-card__price-row deal-card__price-row--compact">
-          
-            <span class="deal-card__sale">$59.99</span>
-          
-          
-            <span class="deal-card__list">$69.99</span>
-          
-          
-            <span class="deal-card__badge">-14%</span>
-          
-        </div>
-        <div class="deal-card__divider"></div>
-        <details class="deal-card__details">
-          <summary class="deal-card__details-toggle">More details</summary>
-          <div class="deal-card__details-body">
-            
-              <p class="deal-card__details-summary">Adjustable dual monitor arm for cleaner home office desk setups.</p>
-            
-            
-              <div class="deal-card__tags">
-                <span class="deal-card__tag">#monitor arm</span><span class="deal-card__tag">#home office</span><span class="deal-card__tag">#desk setup</span>
-              </div>
-            
-          </div>
-        </details>
-        
-          <a class="deal-card__cta" href="https://www.amazon.com/HUANUO-Dual-Monitor-Stand-Adjustable/dp/B07T5SY43L?crid=12LL5DR7IU7T4&amp;dib=eyJ2IjoiMSJ9.WwrqUBf0f3Z3LcZcPA1IjdV-XH94ggQZppKLs7NDjLMJlGmxxKJnZateR7JqF_-sxCo-VFQFTEcA9ZLeouXqYVwy5fXrzXMUOIMGRKZkJqLCO4yjG5rAKR0EKul01MOY32OMFqb2pIQLg91QDTpf2Zkp-kS6aRpe0nTPr_16GL4gfMpCTtqFVbD4TxVVSag5XcfYA_YZuqSGvxbARJdreNYW7hYE5P4XzSPpdaAW7WmF1HESdqGHHEcIyN29Dzhs1dsuemhKyMra79tUC_7UXtdWIKZN1E7JFps9jJmSWvM.mlDVbSuAnvpcM-u4G1d84TWSqDA4UCqg9iIla4t5Vbo&amp;dib_tag=se&amp;keywords=home%2Boffice&amp;qid=1778945324&amp;s=pc&amp;sprefix=home%2Boffiv%2Ccomputers%2C254&amp;sr=1-5&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger-20&amp;linkId=c51b5afc0f4da7c12f5a3c2ed2d33503&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">View on Amazon</a>
-        
-      </div>
-    
-  </div>
-</article>
-
-      
-        
-
-
-
-  
-  
-    
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-  
-  
-
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="lg ultragear 32gx850a-b oled gaming monitor" data-summary="premium ultragear oled gaming monitor with dual-mode performance." data-tags="monitor gaming oled" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.436973" data-date="1778949099" data-affiliate="true">
-  
-    <div class="deal-card__image">
-      
-
-
-
-
-
-
-
-
-
-
-
-
-  <img
-    src="https://m.media-amazon.com/images/I/81K-qSExfqL._AC_SL1500_.jpg"
-    alt="LG UltraGear 32GX850A-B OLED Gaming Monitor"
-    class=""
-    loading="lazy"
-    decoding="async"
-    fetchpriority="auto"
-    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
-  >
-
-
-    </div>
-  
-  <div class="deal-card__body">
-    
-      <div class="deal-card__stack">
-        <h3 class="deal-card__title">LG UltraGear 32GX850A-B OLED Gaming Monitor</h3>
-        <div class="deal-card__divider"></div>
-        <div class="deal-card__price-row deal-card__price-row--compact">
-          
-            <span class="deal-card__sale">$731.93</span>
-          
-          
-            <span class="deal-card__list">$1299.99</span>
-          
-          
-            <span class="deal-card__badge">-44%</span>
-          
-        </div>
-        <div class="deal-card__divider"></div>
-        <details class="deal-card__details">
-          <summary class="deal-card__details-toggle">More details</summary>
-          <div class="deal-card__details-body">
-            
-              <p class="deal-card__details-summary">Premium UltraGear OLED gaming monitor with dual-mode performance.</p>
-            
-            
-              <div class="deal-card__tags">
-                <span class="deal-card__tag">#monitor</span><span class="deal-card__tag">#gaming</span><span class="deal-card__tag">#oled</span>
-              </div>
-            
-          </div>
-        </details>
-        
-          <a class="deal-card__cta" href="https://www.amazon.com/LG-32GX850A-B-UltraGear-Dual-Mode-TrueBlack/dp/B0FLQLPNNH?pd_rd_w=IJRxy&amp;content-id=amzn1.sym.97964889-8311-47f9-b48c-985276362641&amp;pf_rd_p=97964889-8311-47f9-b48c-985276362641&amp;pf_rd_r=NWVEDPT0KW4EQCBY3ED4&amp;pd_rd_wg=LRKvo&amp;pd_rd_r=93cdd452-354e-4d8b-b725-4570083102d0&amp;pd_rd_i=B0FLQLPNNH&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger-20&amp;linkId=f1ba5a27e3c25d6cf8ad401b59504497&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">View on Amazon</a>
-        
-      </div>
-    
-  </div>
-</article>
-
-      
-        
-
-
-
-  
-  
-    
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-  
-  
-
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="uni usb-c to hdmi cable" data-summary="usb-c to hdmi cable for connecting laptops and tablets to external displays." data-tags="usb-c hdmi home office" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.125078" data-date="1778949099" data-affiliate="true">
-  
-    <div class="deal-card__image">
-      
-
-
-
-
-
-
-
-
-
-
-
-
-  <img
-    src="https://m.media-amazon.com/images/I/51tn8u&#43;plcL._AC_SL1200_.jpg"
-    alt="uni USB-C to HDMI Cable"
-    class=""
-    loading="lazy"
-    decoding="async"
-    fetchpriority="auto"
-    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
-  >
-
-
-    </div>
-  
-  <div class="deal-card__body">
-    
-      <div class="deal-card__stack">
-        <h3 class="deal-card__title">uni USB-C to HDMI Cable</h3>
-        <div class="deal-card__divider"></div>
-        <div class="deal-card__price-row deal-card__price-row--compact">
-          
-            <span class="deal-card__sale">$13.99</span>
-          
-          
-            <span class="deal-card__list">$15.99</span>
-          
-          
-            <span class="deal-card__badge">-13%</span>
-          
-        </div>
-        <div class="deal-card__divider"></div>
-        <details class="deal-card__details">
-          <summary class="deal-card__details-toggle">More details</summary>
-          <div class="deal-card__details-body">
-            
-              <p class="deal-card__details-summary">USB-C to HDMI cable for connecting laptops and tablets to external displays.</p>
-            
-            
-              <div class="deal-card__tags">
-                <span class="deal-card__tag">#usb-c</span><span class="deal-card__tag">#hdmi</span><span class="deal-card__tag">#home office</span>
-              </div>
-            
-          </div>
-        </details>
-        
-          <a class="deal-card__cta" href="https://www.amazon.com/uni-Thunderbolt-Compatible-MacBook-Surface/dp/B075V5JK36?crid=12LL5DR7IU7T4&amp;dib=eyJ2IjoiMSJ9.Glou6fZ22N-3nobq-cVpOA_ovWgT2HAU3aj7ibo-w3sjXPGR4weJHHy3thsCiNeCGrRp73gtJAK8EDBiEmvraPgCE83xQFvfdUbl1i0PgJL0jUg-UWx1yP8yyaEZ1yCXQDEEfhgARr9krm94Eh_ZPys65cyqWWrkSbTp5jplK0hVrqT8hab2QnceHJd_WF2XeEuSB4A8KP8vjKj41j54MJoCDcVehUQrlk6vQco-yui2vPhlw-4PXMqGHwE-eV_T.D7cK01e8seUAVTJpNOZoNyFyJAF4wlMu11eLY_5Pl6g&amp;dib_tag=se&amp;keywords=home%2Boffice&amp;qid=1778945939&amp;s=pc&amp;sprefix=home%2Boffiv%2Ccomputers%2C254&amp;xpid=12QcBNZ7P_AGx&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger-20&amp;linkId=d226c8faad1a5a68dac4cdd95da4b7cd&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">View on Amazon</a>
-        
-      </div>
-    
-  </div>
-</article>
-
-      
-        
-
-
-
-  
-  
-    
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-  
-  
-
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="wali monitor stand riser" data-summary="budget monitor riser with space underneath for desk supplies." data-tags="monitor stand home office desk setup" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.333556" data-date="1778949099" data-affiliate="true">
-  
-    <div class="deal-card__image">
-      
-
-
-
-
-
-
-
-
-
-
-
-
-  <img
-    src="https://m.media-amazon.com/images/I/51kULJHh4BL._AC_SL1500_.jpg"
-    alt="WALI Monitor Stand Riser"
-    class=""
-    loading="lazy"
-    decoding="async"
-    fetchpriority="auto"
-    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
-  >
-
-
-    </div>
-  
-  <div class="deal-card__body">
-    
-      <div class="deal-card__stack">
-        <h3 class="deal-card__title">WALI Monitor Stand Riser</h3>
-        <div class="deal-card__divider"></div>
-        <div class="deal-card__price-row deal-card__price-row--compact">
-          
-            <span class="deal-card__sale">$9.99</span>
-          
-          
-            <span class="deal-card__list">$14.99</span>
-          
-          
-            <span class="deal-card__badge">-33%</span>
-          
-        </div>
-        <div class="deal-card__divider"></div>
-        <details class="deal-card__details">
-          <summary class="deal-card__details-toggle">More details</summary>
-          <div class="deal-card__details-body">
-            
-              <p class="deal-card__details-summary">Budget monitor riser with space underneath for desk supplies.</p>
-            
-            
-              <div class="deal-card__tags">
-                <span class="deal-card__tag">#monitor stand</span><span class="deal-card__tag">#home office</span><span class="deal-card__tag">#desk setup</span>
-              </div>
-            
-          </div>
-        </details>
-        
-          <a class="deal-card__cta" href="https://www.amazon.com/WALI-Monitor-Adjustable-Underneath-Supplies/dp/B094QTGHNZ?crid=12LL5DR7IU7T4&amp;dib=eyJ2IjoiMSJ9.WwrqUBf0f3Z3LcZcPA1IjdV-XH94ggQZppKLs7NDjLMJlGmxxKJnZateR7JqF_-sxCo-VFQFTEcA9ZLeouXqYVwy5fXrzXMUOIMGRKZkJqLCO4yjG5rAKR0EKul01MOY32OMFqb2pIQLg91QDTpf2Zkp-kS6aRpe0nTPr_16GL4gfMpCTtqFVbD4TxVVSag5XcfYA_YZuqSGvxbARJdreNYW7hYE5P4XzSPpdaAW7WmF1HESdqGHHEcIyN29Dzhs1dsuemhKyMra79tUC_7UXtdWIKZN1E7JFps9jJmSWvM.mlDVbSuAnvpcM-u4G1d84TWSqDA4UCqg9iIla4t5Vbo&amp;dib_tag=se&amp;keywords=home%2Boffice&amp;qid=1778945324&amp;s=pc&amp;sprefix=home%2Boffiv%2Ccomputers%2C254&amp;sr=1-7&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger-20&amp;linkId=19168cb577cbf1d908c2116f41705319&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">View on Amazon</a>
-        
-      </div>
-    
-  </div>
-</article>
-
-      
-        
-
-
-
-  
-  
-    
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-  
-  
-
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="logitech g502 lightspeed wireless gaming mouse" data-summary="logitech g502 lightspeed wireless gaming mouse with a major markdown on amazon us." data-tags="logitech gaming mouse wireless lightspeed" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.400040" data-date="1778949099" data-affiliate="true">
-  
-    <div class="deal-card__image">
-      
-
-
-
-
-
-
-
-
-
-
-
-
-  <img
-    src="https://m.media-amazon.com/images/I/61-jAartdjL._AC_SL1500_.jpg"
-    alt="Logitech G502 Lightspeed Wireless Gaming Mouse"
-    class=""
-    loading="lazy"
-    decoding="async"
-    fetchpriority="auto"
-    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
-  >
-
-
-    </div>
-  
-  <div class="deal-card__body">
-    
-      <div class="deal-card__stack">
-        <h3 class="deal-card__title">Logitech G502 Lightspeed Wireless Gaming Mouse</h3>
-        <div class="deal-card__divider"></div>
-        <div class="deal-card__price-row deal-card__price-row--compact">
-          
-            <span class="deal-card__sale">$59.99</span>
-          
-          
-            <span class="deal-card__list">$99.99</span>
-          
-          
-            <span class="deal-card__badge">-40%</span>
-          
-        </div>
-        <div class="deal-card__divider"></div>
-        <details class="deal-card__details">
-          <summary class="deal-card__details-toggle">More details</summary>
-          <div class="deal-card__details-body">
-            
-              <p class="deal-card__details-summary">Logitech G502 Lightspeed wireless gaming mouse with a major markdown on Amazon US.</p>
-            
-            
-              <div class="deal-card__tags">
-                <span class="deal-card__tag">#logitech</span><span class="deal-card__tag">#gaming</span><span class="deal-card__tag">#mouse</span>
-              </div>
-            
-          </div>
-        </details>
-        
-          <a class="deal-card__cta" href="https://www.amazon.com/Logitech-Lightspeed-Lightsync-Compatible-Lightweight/dp/B07NSSPV9S?pf_rd_r=MA5Q3C1A9DCVHJZGK8YC&amp;pf_rd_p=6ef39f86-5b70-4692-ad10-fb9a3559d265&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger-20&amp;linkId=e145ff67470ea857d85ffb44e5b00ab2&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">View on Amazon</a>
-        
-      </div>
-    
-  </div>
-</article>
-
-      
-        
-
-
-
-  
-  
-    
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-  
-  
-
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="ingnok 15.6-inch fhd portable monitor" data-summary="15.6-inch portable fhd monitor for travel, remote work, and dual-screen setups." data-tags="monitor productivity portable" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.270000" data-date="1778949099" data-affiliate="true">
-  
-    <div class="deal-card__image">
-      
-
-
-
-
-
-
-
-
-
-
-
-
-  <img
-    src="https://m.media-amazon.com/images/I/71mqjfuT4HL._AC_SL1500_.jpg"
-    alt="Ingnok 15.6-inch FHD Portable Monitor"
-    class=""
-    loading="lazy"
-    decoding="async"
-    fetchpriority="auto"
-    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
-  >
-
-
-    </div>
-  
-  <div class="deal-card__body">
-    
-      <div class="deal-card__stack">
-        <h3 class="deal-card__title">Ingnok 15.6-inch FHD Portable Monitor</h3>
-        <div class="deal-card__divider"></div>
-        <div class="deal-card__price-row deal-card__price-row--compact">
-          
-            <span class="deal-card__sale">$65.97</span>
-          
-          
-            <span class="deal-card__list">$89.99</span>
-          
-          
-            <span class="deal-card__badge">-27%</span>
-          
-        </div>
-        <div class="deal-card__divider"></div>
-        <details class="deal-card__details">
-          <summary class="deal-card__details-toggle">More details</summary>
-          <div class="deal-card__details-body">
-            
-              <p class="deal-card__details-summary">15.6-inch portable FHD monitor for travel, remote work, and dual-screen setups.</p>
-            
-            
-              <div class="deal-card__tags">
-                <span class="deal-card__tag">#monitor</span><span class="deal-card__tag">#productivity</span><span class="deal-card__tag">#portable</span>
-              </div>
-            
-          </div>
-        </details>
-        
-          <a class="deal-card__cta" href="https://www.amazon.com/Ingnok-15-6-FHD-Portable-Monitor/dp/B0CP7XRW9S?crid=14U0OR7993L99&amp;dib=eyJ2IjoiMSJ9.yXe4NvRl-KXRk8b10nKGX-W3JfFT195FyXP9w1iw9Cwxu-hQeZE2qmWDOxVBB34tJs9v_TLHTUZkVjK_Lnihn4_7Y1Px0zzCRG-q_C_5XqzbZGrgSuCCo2tKarZPxb07NgaDF8tGGavzWckjl0FnLasd-2Iat1s6F7nK2b7WGu2SmpwMiqu8I2ohkWVlREZCug6y1u5pw3TyqNt1UvBkWh9krQ4ijimD_G2QKRCkneAKqfvcClTlK4WhmEid7qX1omooUSpAy1uuMkGhHXkOwKbPOahceghPS8EAAsqtWSM.Drp4daCs2Cw3OAE93-ZSy7hQWZ3x5awBV5n-vVfAdu8&amp;dib_tag=se&amp;keywords=office&amp;qid=1776373058&amp;refinements=p_36%3A3200-39000&amp;rnid=386442011&amp;s=pc&amp;sprefix=office%2Belectronics%2Ccomputers%2C229&amp;sr=1-6&amp;th=1&amp;linkCode=ll2&amp;tag=dealledger-20&amp;linkId=68a5aebb9ed0949894290d01a88def5d&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">View on Amazon</a>
-        
-      </div>
-    
-  </div>
-</article>
-
-      
-        
-
-
-
-  
-  
-    
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-  
-  
-
-<article class="deal-card deal-card--list" data-filter-card="true" data-title="ray-ban meta wayfarer smart glasses" data-summary="ray-ban meta wayfarer smart glasses with camera capture and open-ear audio." data-tags="wearables audio camera" data-top-savings="false" data-latest="false" data-expiring-soon="false" data-discount="0.250000" data-date="1778949099" data-affiliate="true">
-  
-    <div class="deal-card__image">
-      
-
-
-
-
-
-
-
-
-
-
-
-
-  <img
-    src="https://m.media-amazon.com/images/I/51GYi1kNaBL._SL1500_.jpg"
-    alt="Ray-Ban Meta Wayfarer Smart Glasses"
-    class=""
-    loading="lazy"
-    decoding="async"
-    fetchpriority="auto"
-    sizes="(max-width: 60rem) 50vw, (max-width: 90rem) 33vw, 280px"
-  >
-
-
-    </div>
-  
-  <div class="deal-card__body">
-    
-      <div class="deal-card__stack">
-        <h3 class="deal-card__title">Ray-Ban Meta Wayfarer Smart Glasses</h3>
-        <div class="deal-card__divider"></div>
-        <div class="deal-card__price-row deal-card__price-row--compact">
-          
-            <span class="deal-card__sale">$246.75</span>
-          
-          
-            <span class="deal-card__list">$329.00</span>
-          
-          
-            <span class="deal-card__badge">-25%</span>
-          
-        </div>
-        <div class="deal-card__divider"></div>
-        <details class="deal-card__details">
-          <summary class="deal-card__details-toggle">More details</summary>
-          <div class="deal-card__details-body">
-            
-              <p class="deal-card__details-summary">Ray-Ban Meta Wayfarer smart glasses with camera capture and open-ear audio.</p>
-            
-            
-              <div class="deal-card__tags">
-                <span class="deal-card__tag">#wearables</span><span class="deal-card__tag">#audio</span><span class="deal-card__tag">#camera</span>
-              </div>
-            
-          </div>
-        </details>
-        
-          <a class="deal-card__cta" href="https://www.amazon.com/Ray-Ban-Glasses-Wayfarer-Capture-high-def-photos/dp/B0CGXYVQ1P?&amp;linkCode=ll2&amp;tag=dealledger-20&amp;linkId=a6353d2a4fff23255069390e81e0de66&amp;language=en_US&amp;ref_=as_li_ss_tl" rel="noopener noreferrer" target="_blank">View on Amazon</a>
         
       </div>
     

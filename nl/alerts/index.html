@@ -80,7 +80,7 @@
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://dealledger.eu/#organization","@type":"Organization","logo":"https://dealledger.eu/images/brand/deal-ledger-logo.svg","name":"Deal Ledger","url":"https://dealledger.eu/"},{"@id":"https://dealledger.eu/#website","@type":"WebSite","name":"Deal Ledger","potentialAction":{"@type":"SearchAction","query-input":"required name=search_term_string","target":"https://dealledger.eu/deals/?q={search_term_string}"},"publisher":{"@id":"https://dealledger.eu/#organization"},"url":"https://dealledger.eu/"}]}</script>
 
-<link rel="stylesheet" href="/styles/site.css?v=1785617992">
+<link rel="stylesheet" href="/styles/site.css?v=1785623058">
 
   </head><body class="ma0 avenir bg-near-white production is-section is-section">
     
@@ -112,22 +112,15 @@
   
   
   
+  
   <div class="flex-l center items-center justify-between nav-shell">
-    <a href="/nl/" class="nav-brand no-underline" aria-label="Deal Ledger">
+    <a href="/us/" class="nav-brand no-underline" aria-label="Deal Ledger">
       <img class="nav-brand__logo" src="/images/brand/deal-ledger-logo.svg" alt="Deal Ledger" width="220" height="56" loading="eager" decoding="async">
     </a>
     <div class="flex-l items-center nav-actions">
-      <div class="nav-market">
-        <select id="market-select" class="nav-market__select" name="market-select" aria-label="Markt kiezen">
-          <option value="ie" >IE</option>
-          <option value="us" >US</option>
-          <option value="de" >DE</option>
-          <option value="nl" selected>NL</option>
-          <option value="fr" >FR</option>
-        </select>
-      </div>
+      
       <div class="nav-menu" data-nav-menu>
-        <button class="nav-menu__toggle" type="button" aria-label="Navigatie wisselen" aria-haspopup="true" aria-expanded="false" aria-controls="site-nav-links">
+        <button class="nav-menu__toggle" type="button" aria-label="Toggle navigation" aria-haspopup="true" aria-expanded="false" aria-controls="site-nav-links">
           <span class="nav-menu__icon" aria-hidden="true">
             <span></span>
             <span></span>
@@ -137,10 +130,10 @@
         </button>
         <ul class="pl0 nav-links" id="site-nav-links">
           <li class="list dib nav-links__item">
-            <a class="nav-links__anchor no-underline" href="/nl/deals/">Aanbiedingen</a>
+            <a class="nav-links__anchor no-underline" href="/us/deals/">Deals</a>
           </li>
           <li class="list dib nav-links__item">
-            <a class="nav-links__anchor no-underline" href="/nl/alerts/">E-mailalerts</a>
+            <a class="nav-links__anchor no-underline" href="/us/alerts/">Email Alerts</a>
           </li>
         </ul>
       </div>
@@ -186,13 +179,14 @@
 
     const marketSelect = document.getElementById('market-select');
     if (marketSelect) {
+      const activeMarkets = ["us"];
+      const defaultMarket = "us";
       const marketFromPath = (() => {
         const path = window.location.pathname || '/';
-        if (path === '/us' || path.startsWith('/us/')) return 'us';
-        if (path === '/de' || path.startsWith('/de/')) return 'de';
-        if (path === '/nl' || path.startsWith('/nl/')) return 'nl';
-        if (path === '/fr' || path.startsWith('/fr/')) return 'fr';
-        return 'ie';
+        return activeMarkets.find((market) => {
+          if (market === 'ie') return path === '/';
+          return path === `/${market}` || path.startsWith(`/${market}/`);
+        }) || defaultMarket;
       })();
       const cookieMap = (document.cookie || '')
         .split(';')
@@ -209,16 +203,12 @@
 
       marketSelect.value = marketFromPath;
 
-      if (
-        marketFromPath === 'ie' &&
-        (cookieMap.market === 'us' || cookieMap.market === 'ie' || cookieMap.market === 'eu' || cookieMap.market === 'de' || cookieMap.market === 'nl' || cookieMap.market === 'fr')
-      ) {
-        marketSelect.value = cookieMap.market === 'eu' ? 'ie' : cookieMap.market;
+      if (marketFromPath === 'ie' && activeMarkets.includes(cookieMap.market)) {
+        marketSelect.value = cookieMap.market;
       }
 
       marketSelect.addEventListener('change', () => {
-        const allowedMarkets = new Set(['ie', 'us', 'de', 'nl', 'fr']);
-        const targetMarket = allowedMarkets.has(marketSelect.value) ? marketSelect.value : 'ie';
+        const targetMarket = activeMarkets.includes(marketSelect.value) ? marketSelect.value : defaultMarket;
         const secure = window.location.protocol === 'https:' ? '; Secure' : '';
         document.cookie = `market=${targetMarket}; Path=/; Max-Age=31536000; SameSite=Lax${secure}`;
         const targetPath = targetMarket === 'ie' ? '/' : `/${targetMarket}/`;
@@ -287,34 +277,34 @@
 
 
 <section class="alerts-shell">
-  <p class="page-copy alerts-shell__intro">Vertel ons hoe vaak je updates wilt en vul daarna het juiste gedeelte in.</p>
+  <p class="page-copy alerts-shell__intro">Tell us how often you want updates, then fill the matching section below.</p>
 
   <form class="alert-form" id="alert-request-form" name="alert-request" action="https://formspree.io/f/mgopnyjd" method="POST" data-formspree-endpoint="https://formspree.io/f/mgopnyjd">
-    <input type="hidden" name="_subject" value="Nieuwe Deal Ledger alertaanvraag">
-    <p hidden><label>Laat dit leeg als je een mens bent: <input name="_gotcha"></label></p>
+    <input type="hidden" name="_subject" value="New Deal Ledger alert request">
+    <p hidden><label>Leave this empty if you&amp;#39;re human: <input name="_gotcha"></label></p>
 
     <section class="alert-form__section alert-form__split">
-      <h2 class="alert-form__heading alert-form__heading--span">Waar moeten we updates naartoe sturen?</h2>
+      <h2 class="alert-form__heading alert-form__heading--span">Where should we send updates?</h2>
       <div class="alert-form__field">
-        <label class="alert-form__label" for="alert-name">Naam</label>
-        <input id="alert-name" name="name" type="text" placeholder="Je naam" autocomplete="name">
+        <label class="alert-form__label" for="alert-name">Name</label>
+        <input id="alert-name" name="name" type="text" placeholder="Your name" autocomplete="name">
       </div>
 
       <div class="alert-form__field">
-        <label class="alert-form__label" for="alert-email">E-mailadres</label>
-        <input id="alert-email" name="email" type="email" placeholder="jij@voorbeeld.nl" autocomplete="email" required>
+        <label class="alert-form__label" for="alert-email">Email address</label>
+        <input id="alert-email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
       </div>
 
       <div class="alert-form__field alert-form__field--country">
         <div class="alert-form__label-row">
-          <label class="alert-form__label" for="country-search">Land</label>
+          <label class="alert-form__label" for="country-search">Country</label>
           <button
             type="button"
             class="alert-info-button"
             id="country-info-trigger"
             aria-controls="country-info-popup"
             aria-expanded="false"
-            aria-label="Info over landbeschikbaarheid"
+            aria-label="Country availability info"
             style="width:1rem;height:1rem;min-width:1rem;min-height:1rem;padding:0;line-height:1;"
           ><span class="alert-info-button__glyph" aria-hidden="true">i</span></button>
         </div>
@@ -328,7 +318,7 @@
             autocapitalize="off"
             autocorrect="off"
             spellcheck="false"
-            placeholder="Begin met het typen van je land"
+            placeholder="Start typing your country"
             aria-autocomplete="list"
             aria-controls="country-options"
             aria-expanded="false"
@@ -338,60 +328,60 @@
           <ul class="country-combobox__list" id="country-options" role="listbox" hidden></ul>
         </div>
         <div class="alert-inline-popup" id="country-info-popup" role="dialog" aria-modal="false" hidden>
-          <p>Sommige landen zijn nog niet volledig ingericht voor alle alerttypes. Je kunt nu al indienen; we rollen ondersteuning actief verder uit.</p>
-          <button type="button" class="alert-inline-popup__close" id="country-info-close">Begrepen</button>
+          <p>Some countries are not fully set up yet for all alert types. You can still submit now, and we are actively rolling support out as quickly as possible.</p>
+          <button type="button" class="alert-inline-popup__close" id="country-info-close">Got it</button>
         </div>
       </div>
 
       <div class="alert-form__field">
-        <label class="alert-form__label" for="cadence">Hoe vaak</label>
+        <label class="alert-form__label" for="cadence">How often</label>
         <select id="cadence" class="alert-form__native-select" name="cadence" required>
-          <option>Bij nieuwe picks</option>
-          <option>Wekelijkse samenvatting</option>
-          <option>Directe exact-item alerts</option>
+          <option>As new picks are added</option>
+          <option>Weekly digest</option>
+          <option>Instant exact-item alerts</option>
         </select>
       </div>
     </section>
 
     <section class="alert-form__section" id="regular-alert-fields">
-      <h2 class="alert-form__heading">Wat moeten we volgen?</h2>
+      <h2 class="alert-form__heading">What should we watch?</h2>
       <div class="alert-form__field">
-        <p class="alert-form__label">Snelle categorieën</p>
+        <p class="alert-form__label">Quick categories</p>
         <div class="alert-options">
-          <label><span class="alert-option__row"><input type="checkbox" name="categories" value="audio"> Audio</span><small>Koptelefoons, speakers en dagelijkse audioproducten.</small></label>
-          <label><span class="alert-option__row"><input type="checkbox" name="categories" value="home_office"> Home office</span><small>Monitoren, muizen, toetsenborden en bureau-upgrades.</small></label>
-          <label><span class="alert-option__row"><input type="checkbox" name="categories" value="gaming"> Gaming</span><small>PC- en consoleaccessoires en componenten.</small></label>
-          <label><span class="alert-option__row"><input type="checkbox" name="categories" value="tv"> TV &amp; streaming</span><small>Streamingsticks, soundbars en tv-extra&amp;#39;s.</small></label>
+          <label><span class="alert-option__row"><input type="checkbox" name="categories" value="audio"> Audio</span><small>Headphones, speakers, and everyday listening gear.</small></label>
+          <label><span class="alert-option__row"><input type="checkbox" name="categories" value="home_office"> Home office</span><small>Monitors, mice, keyboards, and desk setup upgrades.</small></label>
+          <label><span class="alert-option__row"><input type="checkbox" name="categories" value="gaming"> Gaming</span><small>PC and console accessories and components.</small></label>
+          <label><span class="alert-option__row"><input type="checkbox" name="categories" value="tv"> TV &amp; streaming</span><small>Streaming sticks, soundbars, and TV extras.</small></label>
         </div>
       </div>
 
       <div class="alert-form__field">
-        <label class="alert-form__label" for="keywords">Zoekwoorden of termen</label>
-        <input id="keywords" name="keywords" type="text" placeholder="Voorbeelden: over-ear koptelefoon, ultrawide monitor">
-        <p class="alert-field__hint">Gebruik komma&amp;#39;s voor producten, features of use-cases die je wilt volgen.</p>
+        <label class="alert-form__label" for="keywords">Keywords or terms</label>
+        <input id="keywords" name="keywords" type="text" placeholder="Examples: over-ear headphones, ultrawide monitor">
+        <p class="alert-field__hint">Use commas to describe products, features, or use cases you want to track.</p>
       </div>
       <input type="hidden" name="inferred_categories" id="inferred-categories" value="">
       <input type="hidden" name="effective_categories" id="effective-categories" value="">
     </section>
 
     <section class="alert-form__section" id="exact-alert-fields" hidden>
-      <h2 class="alert-form__heading">Exact item volgen</h2>
+      <h2 class="alert-form__heading">Exact item to track</h2>
       <div class="alert-form__field">
-        <label class="alert-form__label" for="exact-items">Exacte itemnaam of URL</label>
-        <textarea class="alert-form__notes" id="exact-items" name="exact_items" rows="3" placeholder="Voeg een exacte itemnaam, modelnummer, ASIN of product-URL toe"></textarea>
-        <p class="alert-field__hint">Je krijgt direct een e-mail als er een passende korting verschijnt.</p>
+        <label class="alert-form__label" for="exact-items">Exact item name or URL</label>
+        <textarea class="alert-form__notes" id="exact-items" name="exact_items" rows="3" placeholder="Add an exact item name, model number, ASIN, or product URL"></textarea>
+        <p class="alert-field__hint">You will get an instant email when a matching discount appears.</p>
       </div>
     </section>
 
     <section class="alert-form__section" id="shared-notes-fields">
-      <h2 class="alert-form__heading">Optionele notities</h2>
+      <h2 class="alert-form__heading">Optional notes</h2>
       <div class="alert-form__field">
-        <label class="alert-form__label" for="notes">Notities voor je alerts</label>
-        <textarea class="alert-form__notes" id="notes" name="notes" rows="3" placeholder="Voorbeelden: onder €200, minimaal 20% korting, compact reissetup"></textarea>
+        <label class="alert-form__label" for="notes">Notes for your alerts</label>
+        <textarea class="alert-form__notes" id="notes" name="notes" rows="3" placeholder="Examples: under €200, at least 20% off, compact travel setup"></textarea>
       </div>
     </section>
 
-    <button type="submit" id="alert-submit-button">Alertaanvraag versturen</button>
+    <button type="submit" id="alert-submit-button">Send alert request</button>
   </form>
   <p class="alert-toast" id="alert-toast" role="status" aria-live="polite"></p>
 </section>
@@ -422,22 +412,22 @@
     const coarsePointerMedia = window.matchMedia('(hover: none) and (pointer: coarse)');
     const defaultCountry = '';
     const minCountryQueryChars = 2;
-    const locale = "nl";
-    const cadenceInstantValue = "Directe exact-item alerts";
-    const defaultKeywordsPlaceholder = "Voorbeelden: over-ear koptelefoon, ultrawide monitor";
-    const mobileKeywordsPlaceholder = "Bijv: monitor, koptelefoon";
-    const submitDefaultText = "Alertaanvraag versturen";
-    const submitExactText = "Exact-item aanvraag versturen";
-    const notConfiguredToast = "Formulier is nog niet geconfigureerd. Voeg je Formspree-endpoint toe in hugo.toml.";
-    const countryRequiredToast = "Kies je land uit de lijst.";
-    const exactRequiredToast = "Voeg minimaal één exact item toe om te volgen.";
-    const categoryOrKeywordsToast = "Kies een categorie of voeg zoekwoorden toe.";
-    const savedToast = "Je alertaanvraag is opgeslagen.";
-    const failedToast = "Opslaan lukt nu niet. Probeer het opnieuw.";
-    const emailMissingValidity = "Vul je e-mailadres in.";
-    const emailInvalidValidity = "Vul een geldig e-mailadres in.";
-    const countryValidityRequired = "Kies je land.";
-    const countryValidityList = "Kies een land uit de lijst.";
+    const locale = "en";
+    const cadenceInstantValue = "Instant exact-item alerts";
+    const defaultKeywordsPlaceholder = "Examples: over-ear headphones, ultrawide monitor";
+    const mobileKeywordsPlaceholder = "Eg: monitor, headphone";
+    const submitDefaultText = "Send alert request";
+    const submitExactText = "Send exact-item request";
+    const notConfiguredToast = "Form is not configured yet. Add your Formspree endpoint in hugo.toml.";
+    const countryRequiredToast = "Please choose your country from the list.";
+    const exactRequiredToast = "Add at least one exact item to track.";
+    const categoryOrKeywordsToast = "Choose a category or add keywords.";
+    const savedToast = "Your alert request was saved.";
+    const failedToast = "Could not save right now. Please try again.";
+    const emailMissingValidity = "Please enter your email address.";
+    const emailInvalidValidity = "Please enter a valid email address.";
+    const countryValidityRequired = "Please choose your country.";
+    const countryValidityList = "Please choose a country from the list.";
 
     const closeCountryPopup = () => {
       if (!countryInfoPopup || !countryInfoTrigger) return;
@@ -981,14 +971,14 @@
   
   <div class="site-footer__inner">
     <div class="site-footer__brand">
-      <a class="site-footer__title" href="/nl/" aria-label="Deal Ledger">
+      <a class="site-footer__title" href="/us/" aria-label="Deal Ledger">
         <img class="site-footer__logo" src="/images/brand/deal-ledger-logo.svg" alt="Deal Ledger" width="186" height="48" loading="lazy" decoding="async">
       </a>
     </div>
     <nav class="site-footer__nav" aria-label="Footer">
-      <a href="/nl/about/">Over</a>
-      <a href="/nl/privacy/">Privacybeleid</a>
-      <a href="/nl/disclosure/">Info</a>
+      <a href="/us/about/">About</a>
+      <a href="/us/privacy/">Privacy</a>
+      <a href="/us/disclosure/">Disclosure</a>
     </nav>
   </div>
   <div class="site-footer__meta site-footer__meta--sub">

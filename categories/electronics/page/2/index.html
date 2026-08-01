@@ -82,7 +82,7 @@
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://dealledger.eu/#organization","@type":"Organization","logo":"https://dealledger.eu/images/brand/deal-ledger-logo.svg","name":"Deal Ledger","url":"https://dealledger.eu/"},{"@id":"https://dealledger.eu/#website","@type":"WebSite","name":"Deal Ledger","potentialAction":{"@type":"SearchAction","query-input":"required name=search_term_string","target":"https://dealledger.eu/deals/?q={search_term_string}"},"publisher":{"@id":"https://dealledger.eu/#organization"},"url":"https://dealledger.eu/"}]}</script>
 
-<link rel="stylesheet" href="/styles/site.css?v=1785617989">
+<link rel="stylesheet" href="/styles/site.css?v=1785623057">
 
   </head><body class="ma0 avenir bg-near-white production is-term">
     
@@ -112,20 +112,13 @@
   
   
   
+  
   <div class="flex-l center items-center justify-between nav-shell">
-    <a href="/" class="nav-brand no-underline" aria-label="Deal Ledger">
+    <a href="/us/" class="nav-brand no-underline" aria-label="Deal Ledger">
       <img class="nav-brand__logo" src="/images/brand/deal-ledger-logo.svg" alt="Deal Ledger" width="220" height="56" loading="eager" decoding="async">
     </a>
     <div class="flex-l items-center nav-actions">
-      <div class="nav-market">
-        <select id="market-select" class="nav-market__select" name="market-select" aria-label="Select market">
-          <option value="ie" selected>IE</option>
-          <option value="us" >US</option>
-          <option value="de" >DE</option>
-          <option value="nl" >NL</option>
-          <option value="fr" >FR</option>
-        </select>
-      </div>
+      
       <div class="nav-menu" data-nav-menu>
         <button class="nav-menu__toggle" type="button" aria-label="Toggle navigation" aria-haspopup="true" aria-expanded="false" aria-controls="site-nav-links">
           <span class="nav-menu__icon" aria-hidden="true">
@@ -137,10 +130,10 @@
         </button>
         <ul class="pl0 nav-links" id="site-nav-links">
           <li class="list dib nav-links__item">
-            <a class="nav-links__anchor no-underline" href="/deals/">Deals</a>
+            <a class="nav-links__anchor no-underline" href="/us/deals/">Deals</a>
           </li>
           <li class="list dib nav-links__item">
-            <a class="nav-links__anchor no-underline" href="/alerts/">Email Alerts</a>
+            <a class="nav-links__anchor no-underline" href="/us/alerts/">Email Alerts</a>
           </li>
         </ul>
       </div>
@@ -186,13 +179,14 @@
 
     const marketSelect = document.getElementById('market-select');
     if (marketSelect) {
+      const activeMarkets = ["us"];
+      const defaultMarket = "us";
       const marketFromPath = (() => {
         const path = window.location.pathname || '/';
-        if (path === '/us' || path.startsWith('/us/')) return 'us';
-        if (path === '/de' || path.startsWith('/de/')) return 'de';
-        if (path === '/nl' || path.startsWith('/nl/')) return 'nl';
-        if (path === '/fr' || path.startsWith('/fr/')) return 'fr';
-        return 'ie';
+        return activeMarkets.find((market) => {
+          if (market === 'ie') return path === '/';
+          return path === `/${market}` || path.startsWith(`/${market}/`);
+        }) || defaultMarket;
       })();
       const cookieMap = (document.cookie || '')
         .split(';')
@@ -209,16 +203,12 @@
 
       marketSelect.value = marketFromPath;
 
-      if (
-        marketFromPath === 'ie' &&
-        (cookieMap.market === 'us' || cookieMap.market === 'ie' || cookieMap.market === 'eu' || cookieMap.market === 'de' || cookieMap.market === 'nl' || cookieMap.market === 'fr')
-      ) {
-        marketSelect.value = cookieMap.market === 'eu' ? 'ie' : cookieMap.market;
+      if (marketFromPath === 'ie' && activeMarkets.includes(cookieMap.market)) {
+        marketSelect.value = cookieMap.market;
       }
 
       marketSelect.addEventListener('change', () => {
-        const allowedMarkets = new Set(['ie', 'us', 'de', 'nl', 'fr']);
-        const targetMarket = allowedMarkets.has(marketSelect.value) ? marketSelect.value : 'ie';
+        const targetMarket = activeMarkets.includes(marketSelect.value) ? marketSelect.value : defaultMarket;
         const secure = window.location.protocol === 'https:' ? '; Secure' : '';
         document.cookie = `market=${targetMarket}; Path=/; Max-Age=31536000; SameSite=Lax${secure}`;
         const targetPath = targetMarket === 'ie' ? '/' : `/${targetMarket}/`;
@@ -244,132 +234,6 @@
   <article class="pa3 pa4-ns nested-copy-line-height">
     <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy nested-links mid-gray"></section>
     <section class="flex-ns mt5 flex-wrap justify-around">
-      
-        <div class="w-100 w-30-l mb4 relative bg-white">
-          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
-  <div class="mb3 pa4 gray overflow-hidden bg-white">
-    <span class="f6 db">Deals</span>
-    <h1 class="f3 near-black">
-      <a href="/deals/aoc-24b36x-24-inch-fhd-monitor-ie/" class="link black dim">
-        AOC 24B36X 24-Inch Full HD Monitor
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      24-inch Full HD AOC monitor with Adaptive Sync for work and casual gaming.
-    </div>
-    <a href="/deals/aoc-24b36x-24-inch-fhd-monitor-ie/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-</div>
-
-        </div>
-      
-        <div class="w-100 w-30-l mb4 relative bg-white">
-          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
-  <div class="mb3 pa4 gray overflow-hidden bg-white">
-    <span class="f6 db">Deals</span>
-    <h1 class="f3 near-black">
-      <a href="/deals/logitech-g435-lightspeed-wireless-gaming-headset-ie/" class="link black dim">
-        Logitech G435 LIGHTSPEED Wireless Gaming Headset
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Wireless gaming headset with LIGHTSPEED and Bluetooth connectivity.
-    </div>
-    <a href="/deals/logitech-g435-lightspeed-wireless-gaming-headset-ie/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-</div>
-
-        </div>
-      
-        <div class="w-100 w-30-l mb4 relative bg-white">
-          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
-  <div class="mb3 pa4 gray overflow-hidden bg-white">
-    <span class="f6 db">Deals</span>
-    <h1 class="f3 near-black">
-      <a href="/deals/iniu-car-charger-cigarette-lighter-adapter-ie/" class="link black dim">
-        INIU Car Charger Cigarette Lighter Adapter
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Low-cost car charger adapter for powering devices from a cigarette lighter socket.
-    </div>
-    <a href="/deals/iniu-car-charger-cigarette-lighter-adapter-ie/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-</div>
-
-        </div>
-      
-        <div class="w-100 w-30-l mb4 relative bg-white">
-          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
-  <div class="mb3 pa4 gray overflow-hidden bg-white">
-    <span class="f6 db">Deals</span>
-    <h1 class="f3 near-black">
-      <a href="/deals/ugreen-magnetic-wireless-magsafe-charger-ie/" class="link black dim">
-        UGREEN Nexode Magnetic Wireless Power Bank
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      10000mAh MagSafe-compatible wireless power bank with USB-C fast charging.
-    </div>
-    <a href="/deals/ugreen-magnetic-wireless-magsafe-charger-ie/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-</div>
-
-        </div>
-      
-        <div class="w-100 w-30-l mb4 relative bg-white">
-          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
-  <div class="mb3 pa4 gray overflow-hidden bg-white">
-    <span class="f6 db">Deals</span>
-    <h1 class="f3 near-black">
-      <a href="/deals/apple-airpods-4-ie/" class="link black dim">
-        Apple AirPods 4
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Apple wireless earbuds with effortless pairing and personalized spatial audio.
-    </div>
-    <a href="/deals/apple-airpods-4-ie/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-</div>
-
-        </div>
-      
-        <div class="w-100 w-30-l mb4 relative bg-white">
-          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
-  <div class="mb3 pa4 gray overflow-hidden bg-white">
-    <span class="f6 db">Deals</span>
-    <h1 class="f3 near-black">
-      <a href="/deals/amd-ryzen-7-9800x3d-amazon-ie/" class="link black dim">
-        AMD Ryzen 7 9800X3D
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Top-tier AM5 gaming CPU with 3D V-Cache for high-FPS desktop builds.
-    </div>
-    <a href="/deals/amd-ryzen-7-9800x3d-amazon-ie/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-</div>
-
-        </div>
-      
-        <div class="w-100 w-30-l mb4 relative bg-white">
-          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
-  <div class="mb3 pa4 gray overflow-hidden bg-white">
-    <span class="f6 db">Deals</span>
-    <h1 class="f3 near-black">
-      <a href="/deals/lenovo-all-in-one-desktop-b0gsqc3qhs/" class="link black dim">
-        Lenovo All-in-One Desktop Computer
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Lenovo all-in-one desktop setup with a deep price drop on Amazon US.
-    </div>
-    <a href="/deals/lenovo-all-in-one-desktop-b0gsqc3qhs/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-</div>
-
-        </div>
       
         <div class="w-100 w-30-l mb4 relative bg-white">
           <div class="w-100 mb4 nested-copy-line-height relative bg-white">
@@ -425,6 +289,132 @@
 
         </div>
       
+        <div class="w-100 w-30-l mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Deals</span>
+    <h1 class="f3 near-black">
+      <a href="/deals/insignia-50-inch-4k-fire-tv/" class="link black dim">
+        INSIGNIA 50-inch 4K UHD Fire TV
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      50-inch 4K Fire TV deal for streaming and home entertainment setups.
+    </div>
+    <a href="/deals/insignia-50-inch-4k-fire-tv/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Deals</span>
+    <h1 class="f3 near-black">
+      <a href="/deals/jbl-vibe-beam-wireless-earbuds/" class="link black dim">
+        JBL Vibe Beam Wireless Earbuds
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      JBL wireless earbuds listing for audio deals tracking.
+    </div>
+    <a href="/deals/jbl-vibe-beam-wireless-earbuds/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Deals</span>
+    <h1 class="f3 near-black">
+      <a href="/deals/sceptre-27-inch-fhd-monitor/" class="link black dim">
+        Sceptre 27-inch FHD Monitor
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      27-inch FHD monitor deal for work and gaming setups.
+    </div>
+    <a href="/deals/sceptre-27-inch-fhd-monitor/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Deals</span>
+    <h1 class="f3 near-black">
+      <a href="/deals/hyperx-cloud-iii-gaming-headset/" class="link black dim">
+        HyperX Cloud III Gaming Headset
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Wired HyperX Cloud III headset with clear mic pickup and multi-platform support.
+    </div>
+    <a href="/deals/hyperx-cloud-iii-gaming-headset/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Deals</span>
+    <h1 class="f3 near-black">
+      <a href="/deals/kaigerr-15-6-inch-gaming-laptop/" class="link black dim">
+        KAIGERR 15.6-inch Gaming Laptop
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      15.6-inch laptop deal positioned for gaming and everyday performance use.
+    </div>
+    <a href="/deals/kaigerr-15-6-inch-gaming-laptop/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Deals</span>
+    <h1 class="f3 near-black">
+      <a href="/deals/ingnok-15-6-inch-fhd-portable-monitor/" class="link black dim">
+        Ingnok 15.6-inch FHD Portable Monitor
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      15.6-inch portable FHD monitor for travel, remote work, and dual-screen setups.
+    </div>
+    <a href="/deals/ingnok-15-6-inch-fhd-portable-monitor/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Deals</span>
+    <h1 class="f3 near-black">
+      <a href="/deals/gianotter-desk-organizer/" class="link black dim">
+        gianotter Desk Organizer
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Compact desktop organizer for office accessories and stationery.
+    </div>
+    <a href="/deals/gianotter-desk-organizer/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
     </section>
     
 		<ul class="pagination pagination-default">
@@ -443,17 +433,11 @@
 			<li class="page-item">
 				<a href="/categories/electronics/page/3/" aria-label="Page 3" class="page-link" role="button">3</a>
 			</li>
-			<li class="page-item">
-				<a href="/categories/electronics/page/4/" aria-label="Page 4" class="page-link" role="button">4</a>
-			</li>
-			<li class="page-item">
-				<a href="/categories/electronics/page/5/" aria-label="Page 5" class="page-link" role="button">5</a>
-			</li>
 		<li class="page-item">
 			<a href="/categories/electronics/page/3/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
 		</li>
 			<li class="page-item">
-				<a href="/categories/electronics/page/7/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+				<a href="/categories/electronics/page/3/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
 			</li>
 		</ul></article>
 
@@ -468,16 +452,20 @@
   
   
   
+    
+    
+    
+  
   <div class="site-footer__inner">
     <div class="site-footer__brand">
-      <a class="site-footer__title" href="/" aria-label="Deal Ledger">
+      <a class="site-footer__title" href="/us/" aria-label="Deal Ledger">
         <img class="site-footer__logo" src="/images/brand/deal-ledger-logo.svg" alt="Deal Ledger" width="186" height="48" loading="lazy" decoding="async">
       </a>
     </div>
     <nav class="site-footer__nav" aria-label="Footer">
-      <a href="/about/">About</a>
-      <a href="/privacy/">Privacy</a>
-      <a href="/disclosure/">Disclosure</a>
+      <a href="/us/about/">About</a>
+      <a href="/us/privacy/">Privacy</a>
+      <a href="/us/disclosure/">Disclosure</a>
     </nav>
   </div>
   <div class="site-footer__meta site-footer__meta--sub">
