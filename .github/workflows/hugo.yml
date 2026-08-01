@@ -9,12 +9,6 @@ on:
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-      AMZ_PAAPI_ACCESS_KEY: ${{ secrets.AMZ_PAAPI_ACCESS_KEY }}
-      AMZ_PAAPI_SECRET_KEY: ${{ secrets.AMZ_PAAPI_SECRET_KEY }}
-      AMZ_PARTNER_TAG: ${{ secrets.AMZ_PARTNER_TAG }}
-      AMZ_MARKETPLACE: ${{ secrets.AMZ_MARKETPLACE }}
     permissions:
       contents: write
 
@@ -31,26 +25,12 @@ jobs:
             exit 1
           fi
 
-      - name: Setup Python
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      - name: Install fetch deps
-        run: pip install -r scripts/requirements.txt
-
-      - name: Fetch deals (PA-API)
-        if: ${{ env.AMZ_PAAPI_ACCESS_KEY != '' && env.AMZ_PAAPI_SECRET_KEY != '' && env.AMZ_PARTNER_TAG != '' && env.AMZ_MARKETPLACE != '' }}
-        run: python scripts/fetch_deals.py
-
-      - name: Sync listing details (from URLs)
-        run: python scripts/sync_listing_from_urls.py
-
-      - name: Skip PA-API fetch (keys missing)
-        if: ${{ env.AMZ_PAAPI_ACCESS_KEY == '' || env.AMZ_PAAPI_SECRET_KEY == '' || env.AMZ_PARTNER_TAG == '' || env.AMZ_MARKETPLACE == '' }}
-        run: echo "AMZ_* secrets missing. Skipping PA-API refresh; URL metadata sync still runs."
-
-      - name: Enforce sync metadata for newly added deals
+      - name: Enforce metadata for newly promoted deals
         if: ${{ github.event_name == 'push' }}
         run: |
           set -euo pipefail
@@ -58,7 +38,7 @@ jobs:
           AFTER="${{ github.sha }}"
 
           if [ -z "$BEFORE" ] || [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then
-            echo "No valid base SHA found for this push; skipping new-deal sync guard."
+            echo "No valid base SHA found for this push; skipping new-deal metadata guard."
             exit 0
           fi
 
@@ -69,30 +49,7 @@ jobs:
             exit 0
           fi
 
-          missing=0
-          for file in "${NEW_DEALS[@]}"; do
-            if ! grep -Eq '^listing_title[[:space:]]*=[[:space:]]*".+"' "$file"; then
-              echo "Missing required synced field listing_title in $file"
-              missing=1
-            fi
-            if ! grep -Eq '^listing_image[[:space:]]*=[[:space:]]*".+"' "$file"; then
-              echo "Missing required synced field listing_image in $file"
-              missing=1
-            fi
-            if ! grep -Eq '^listing_url[[:space:]]*=[[:space:]]*".+"' "$file"; then
-              echo "Missing required synced field listing_url in $file"
-              missing=1
-            fi
-            if ! grep -Eq '^listing_synced_at[[:space:]]*=[[:space:]]*".+"' "$file"; then
-              echo "Missing required synced field listing_synced_at in $file"
-              missing=1
-            fi
-          done
-
-          if [ "$missing" -ne 0 ]; then
-            echo "Newly added deal files must be synced (python scripts/sync_listing_from_urls.py) before deploy."
-            exit 1
-          fi
+          python scripts/validate_live_deal_metadata.py "${NEW_DEALS[@]}"
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3

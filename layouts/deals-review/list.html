@@ -2,10 +2,10 @@
 <section class="list-shell">
   <div class="list-shell__intro">
     <h1>Deals Approval Queue</h1>
-    <p>These draft candidates are generated outside Hugo content and stay off the live site until you promote them.</p>
+    <p>These provider-verified drafts stay off the live site until you manually confirm a public price and promote them.</p>
     <p class="list-shell__count">Load local preview data with <code>python scripts/sync_review_preview.py</code>.</p>
     <p class="list-shell__count">{{ len (where (where .Site.RegularPages "Section" "deals-review") "Draft" true) }} pending candidate{{ if ne (len (where (where .Site.RegularPages "Section" "deals-review") "Draft" true)) 1 }}s{{ end }}</p>
-    <p class="list-shell__count">Approve with <code>python scripts/promote_deals.py --asin &lt;ASIN&gt;</code> or <code>--all</code>.</p>
+    <p class="list-shell__count">For each candidate, check the Amazon US page, make a SiteStripe link, then run <code>python scripts/promote_deals.py --help</code>. Prime/member/coupon-only prices must be rejected with <code>python scripts/reject_deals.py --help</code>.</p>
   </div>
 
   {{ $pending := sort (where (where .Site.RegularPages "Section" "deals-review") "Draft" true) "Params.discount_pct" "desc" }}

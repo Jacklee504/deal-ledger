@@ -1,2 +1,2 @@
-python-amazon-paapi>=5.0.0,<6
-
+# The active SerpApi + Bright Data intake uses Python's standard library only.
+# The legacy PA-API helper is intentionally not part of the supported workflow.

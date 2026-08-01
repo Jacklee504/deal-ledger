@@ -1,44 +1,34 @@
-name: Sync listing metadata on deal changes
+name: Validate promoted deal metadata
 
 on:
-  push:
-    branches:
-      - main
+  pull_request:
     paths:
       - 'content/deals/*.md'
-      - 'scripts/sync_listing_from_urls.py'
+      - 'scripts/validate_live_deal_metadata.py'
   workflow_dispatch:
 
 jobs:
-  sync-listing-metadata:
+  validate-deal-metadata:
     runs-on: ubuntu-latest
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     permissions:
-      contents: write
+      contents: read
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
-
-      - name: Sync listing fields from retailer URLs
-        run: python scripts/sync_listing_from_urls.py
-
-      - name: Commit and push synced fields
+          python-version: '3.11'
+      - name: Validate new deals in this pull request
+        if: ${{ github.event_name == 'pull_request' }}
         run: |
-          if git diff --quiet -- content/deals; then
-            echo "No listing metadata changes to commit."
+          mapfile -t NEW_DEALS < <(git diff --name-status "${{ github.event.pull_request.base.sha }}" "${{ github.sha }}" -- 'content/deals/*.md' | awk '$1=="A"{print $2}')
+          if [ "${#NEW_DEALS[@]}" -eq 0 ]; then
+            echo "No newly added deal files detected."
             exit 0
           fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add content/deals
-          git commit -m "chore: sync listing metadata for deals"
-          git push
+          python scripts/validate_live_deal_metadata.py "${NEW_DEALS[@]}"
+      - name: Explain manual invocation
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        run: echo "New live deal files are validated on pull requests and pushes."

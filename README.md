@@ -1,93 +1,130 @@
 # Deal Ledger (Hugo)
 
 Static Hugo deals site with:
-- automated Amazon PA-API intake
-- manual approval workflow before publish
+- provider-backed Amazon US deal discovery
+- manual review and publishing safeguards
 - GitHub Actions deploy to GitHub Pages
 
-## Current workflow
+## Amazon US deal workflow
 
-### Amazon UK discovery and verification dry run (manual only)
+This project deliberately does not scrape Amazon product pages directly or
+publish discovered prices automatically. SerpApi discovers products, Bright
+Data verifies a small batch of product pages, and the static Hugo review page
+lets you inspect the result before any live content is created.
 
-`scripts/fetch_deals_serpapi.py` is a non-writing dry-run bridge between
-SerpApi and Bright Data:
+### One-time setup
 
-- SerpApi searches configured Amazon UK keywords for candidate ASINs/URLs.
-- Bright Data verifies the resulting clean product URLs and returns the current
-  product snapshot.
-- The run writes no drafts, affiliate links, commits, or emails. It uploads a
-  redacted report as a GitHub Actions artifact.
+1. Put the credentials in local `.env` (it is ignored by Git):
 
-Required GitHub Actions secrets and variable:
-
-- `SERPAPI_API_KEY` (secret)
-- `BRIGHTDATA_API_TOKEN` (secret)
-- `BRIGHTDATA_DATASET_ID` (repository variable)
-
-Run **SerpApi and Bright Data deal-intake dry run** from the Actions tab with the
-default limits of one keyword search and three product checks. Inspect the artifact
-before enabling any future draft-writing or scheduled mode.
-
-### 1) Fetch candidate deals (not live)
-`scripts/fetch_deals.py` pulls seeded ASINs and writes candidates to:
-- `review-queue/deals/*.md`
-
-These files are outside Hugo `content/`, so they cannot be published by mistake.
-
-### 2) Optional local review page
-To preview candidates in-browser:
-1. Mirror queue into draft preview pages:
    ```bash
-   python scripts/sync_review_preview.py
+   SERPAPI_API_KEY=...
+   BRIGHTDATA_API_TOKEN=...
+   BRIGHTDATA_DATASET_ID=...
    ```
-2. Run Hugo with drafts:
-   ```bash
-   hugo server -D
-   ```
-3. Open `/deals-review/`
 
-### 3) Approve and publish
-Promote approved candidates into live deals:
+2. Configure Amazon US discovery in
+   [`scripts/deal_discovery_config.json`](scripts/deal_discovery_config.json):
+   - `keywords` are the product searches.
+   - `verification.zipcode` is the US delivery ZIP used for the Bright Data
+     snapshot; set it to the ZIP whose availability you want to represent.
+   - `minimum_discount_pct` and `minimum_sale_price` are the first-pass filter.
+   - An empty `trusted_seller_terms` allows any marketplace buy-box seller;
+     seller identity remains visible in the review draft.
+
+3. Add the same three values to GitHub Actions if you want remote dry-run
+   reports:
+   - `SERPAPI_API_KEY` and `BRIGHTDATA_API_TOKEN` as repository secrets
+   - `BRIGHTDATA_DATASET_ID` as a repository variable
+
+### Daily operating flow
+
+1. Start with a small, non-writing verification run. It consumes provider
+   credits but cannot create a draft, affiliate link, commit, or email:
+
 ```bash
-python scripts/promote_deals.py --asin B0XXXXXXX
-# or
-python scripts/promote_deals.py --all
+set -a; source .env; set +a
+python scripts/fetch_deals_serpapi.py --dry-run \\
+    --max-queries 1 --max-products 3 \\
+    --report-out Media/serpapi-brightdata-dry-run.json
 ```
 
-Promotion moves files into `content/deals/` and sets:
-- `draft = false`
-- `review_status = "approved"`
+   Or run **SerpApi and Bright Data US deal-intake dry run** from the Actions
+   tab and download its report artifact.
 
-### 4) Sync live listing fields
-Update listing-backed metadata for existing live deals:
+2. If the report looks sensible, intentionally create local review drafts:
+
 ```bash
-python scripts/sync_listing_from_urls.py
+set -a; source .env; set +a
+python scripts/fetch_deals_serpapi.py --write-review-drafts \\
+  --max-queries 2 --max-products 6 \\
+  --report-out Media/serpapi-brightdata-review-drafts.json
+python scripts/sync_review_preview.py
 ```
 
-This upserts `listing_*` fields (title, summary, image, URL, prices, discount, sync time) by reading each deal's retailer URL.
+   To continue with later configured categories instead of repeating the first
+   keyword, add `--query-offset 2` (or another zero-based offset).
 
-Rule: every newly added file in `content/deals/*.md` must include synced `listing_*` metadata (`listing_title`, `listing_image`, `listing_url`, `listing_synced_at`). The deploy workflow enforces this on push and fails if missing.
+   Drafts live only in `review-queue/deals/`; generated preview pages are
+   drafts and cannot deploy. Intake will never overwrite a pending draft and
+   will skip ASINs already pending, rejected, or live.
 
-### 5) Validate discount freshness
-Check whether stored `listing_*` prices/discounts still match live listing pages:
+3. Run the local static review page:
+
 ```bash
-python scripts/validate_discount_freshness.py
+hugo server -D
 ```
 
-Auto-apply stale listing price/discount updates:
+   Open [`http://localhost:1313/deals-review/`](http://localhost:1313/deals-review/).
+   Check the product page yourself, including the current price, buy-box seller,
+   availability, and whether the price applies to everyone.
+
+4. For a genuine public deal, create a US Amazon Associates SiteStripe link
+   yourself and promote the exact ASIN. You must supply the current public
+   price—not a Prime/member/coupon-only price—and a public reference price:
+
 ```bash
-python scripts/validate_discount_freshness.py --apply
+python scripts/promote_deals.py --asin B0XXXXXXXX \\
+  --affiliate-url 'https://www.amazon.com/dp/B0XXXXXXXX?tag=yourtag-20' \\
+  --public-price 59.99 --public-reference-price 99.99 \\
+  --confirm-public-price
 ```
 
-Write JSON report (includes stale/unreachable/unknown status per deal):
+   A valid `https://amzn.to/...` SiteStripe short link is also accepted. The
+   promotion command writes a complete `content/deals/<ASIN>.md`, supplies the
+   required provider-backed `listing_*` metadata, and runs the repository's
+   metadata sync check. It refuses an untagged Amazon URL, an unchecked price,
+   an invalid price reduction, an existing live ASIN, or a non-pending draft.
+
+5. Reject unsuitable candidates rather than letting them reappear:
+
 ```bash
-python scripts/validate_discount_freshness.py --json-out review-queue/deal-validity-report.json
+python scripts/reject_deals.py --asin B0XXXXXXXX --reason 'Prime-only price'
 ```
 
-Fail CI if stale prices or unreachable links are found:
-```bash
-python scripts/validate_discount_freshness.py --fail-on-stale --fail-on-unreachable
-```
+   This archives the draft under `review-queue/rejected/`, records the reason,
+   and suppresses that ASIN on future intake runs. Run
+   `python scripts/sync_review_preview.py` after either promotion or rejection
+   to refresh the static page.
+
+### What each price means
+
+- Bright Data's `initial_price` is a current comparison/reference price, not
+  product price history. It is useful as an initial deal filter, not proof that
+  a product is historically cheap.
+- Bright Data can surface a Prime, coupon, or ZIP-specific offer. Every draft
+  is therefore marked `price_access = "unknown"` and cannot be promoted until
+  you confirm a public price.
+- A published price is a manually confirmed snapshot. It can change after
+  publishing, so review active deals periodically before promoting them in
+  alerts or calling them time-sensitive.
+
+### GitHub Actions
+
+- **SerpApi and Bright Data US deal-intake dry run** is manual only and uploads
+  a report. It does not write content or publish deals.
+- Deployment no longer runs PA-API, direct Amazon page fetches, or automatic
+  price refreshes. It verifies metadata on newly added live deal files before
+  building the static site.
 
 ### 5b) Review tag relevance (title/category/url based)
 Suggest tags that match each item based on product signals (without using description text):
@@ -152,45 +189,6 @@ Automation:
 - It parses new Discord submissions, sends exact-item alert emails, and persists `.state` updates on the `state` branch (not `main`).
 - `.github/workflows/sample-exact-item-email.yml` is a manual test workflow to send a branded sample email to any recipient.
 - `.github/workflows/sample-signup-option-email.yml` is a manual test workflow for category, keyword, and weekly-digest sample emails.
-
-## Setup
-
-### Required repo secrets
-Set in `Settings -> Secrets and variables -> Actions`:
-- `AMZ_PAAPI_ACCESS_KEY`
-- `AMZ_PAAPI_SECRET_KEY`
-- `AMZ_PARTNER_TAG`
-- `AMZ_MARKETPLACE` (example: `www.amazon.co.uk`)
-- `DISCORD_BOT_TOKEN`
-- `DISCORD_CHANNEL_ID`
-- `SMTP_HOST`
-- `SMTP_PORT`
-- `SMTP_USERNAME`
-- `SMTP_PASSWORD`
-- `SMTP_FROM`
-
-### Seed ASINs
-Edit:
-- `scripts/seeds.json`
-- `scripts/quality_policy.json`
-
-Replace `EDIT_ME_*` entries with real ASINs.
-
-Quality policy controls automated intake filters:
-- allow reputable brands only (`allowed_brands`)
-- block low-trust brand terms (`blocked_brand_terms`)
-- require fulfilled-by-Amazon or trusted seller terms
-
-## Local run
-```bash
-cd /Users/jacklee/Other/Me/Projects/mysite
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r scripts/requirements.txt
-AMZ_PAAPI_ACCESS_KEY=xxx AMZ_PAAPI_SECRET_KEY=yyy AMZ_PARTNER_TAG=zzz AMZ_MARKETPLACE=www.amazon.co.uk python scripts/fetch_deals.py
-python scripts/sync_review_preview.py
-hugo server -D
-```
 
 ## Search and alerts behavior
 - Deals search uses local fuzzy matching (Fuse.js), synonym expansion, and fallback recommendations.

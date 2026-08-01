@@ -1,293 +1,160 @@
-"""Sync listing fields by reading each deal's retailer URL.
+"""Normalize provider-backed listing metadata for live deal files.
 
 Usage:
   python scripts/sync_listing_from_urls.py
-  python scripts/sync_listing_from_urls.py content/deals/new-item.md
+  python scripts/sync_listing_from_urls.py content/deals/B012345678.md
 
-Behavior:
-  - Scans content/deals/*.md (excluding _index.md), or only files passed as args
-  - Reads product_url/affiliate_url/listing_url from front matter
-  - Fetches page HTML and extracts visible metadata where possible
-  - Upserts listing_* fields used by templates
-
-Notes:
-  - Works best with product URLs (not broad search-result URLs).
-  - If a page blocks scraping, existing fields are kept unchanged.
+This is intentionally *not* an Amazon HTML scraper. Direct browser-style
+fetches are fragile and outside the review-first provider pipeline. SerpApi +
+Bright Data provide the intake snapshot; this helper copies that approved
+snapshot into the ``listing_*`` fields consumed by Hugo and verifies the file
+is ready for deployment.
 """
 from __future__ import annotations
 
 import argparse
-import html
+import json
 import re
+import sys
+import tomllib
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Optional
-from urllib.error import HTTPError, URLError
+from typing import Any
 from urllib.parse import urlparse
-from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
 DEALS_DIR = ROOT / "content" / "deals"
 
-USER_AGENT = (
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
-    "AppleWebKit/537.36 (KHTML, like Gecko) "
-    "Chrome/124.0.0.0 Safari/537.36"
-)
+
+class MetadataError(RuntimeError):
+    """A live deal cannot safely be normalized from its stored snapshot."""
 
 
-def split_front_matter(raw: str):
+def split_front_matter(raw: str) -> tuple[str, str]:
     if not raw.startswith("+++\n"):
-        return None
+        raise MetadataError("does not use TOML front matter")
     end = raw.find("\n+++\n", 4)
-    if end == -1:
-        return None
-    front = raw[4:end]
-    body = raw[end + 5 :]
-    return front, body
+    if end < 0:
+        raise MetadataError("TOML front matter is not closed")
+    return raw[4:end], raw[end + 5 :]
 
 
-def toml_escape(value: str) -> str:
-    return str(value).replace("\\", "\\\\").replace('"', '\\"').replace("\n", " ")
-
-
-def value_to_toml(value: Any) -> str:
+def toml_value(value: Any) -> str:
     if isinstance(value, bool):
         return "true" if value else "false"
-    if isinstance(value, int):
-        return str(value)
-    if isinstance(value, float):
-        return f"{value:.6f}".rstrip("0").rstrip(".")
-    return f'"{toml_escape(value)}"'
+    if isinstance(value, (int, float)) and not isinstance(value, bool):
+        return f"{float(value):.6f}".rstrip("0").rstrip(".")
+    return json.dumps(str(value), ensure_ascii=True)
 
 
-def upsert_line(front: str, key: str, value: Any) -> str:
-    rendered = f"{key} = {value_to_toml(value)}"
+def upsert(front: str, key: str, value: Any) -> str:
+    rendered = f"{key} = {toml_value(value)}"
     pattern = re.compile(rf"^{re.escape(key)}\s*=.*$", re.MULTILINE)
     if pattern.search(front):
-        return pattern.sub(rendered, front, count=1)
-    front = front.rstrip("\n")
-    return f"{front}\n{rendered}\n"
+        # TOML strings use JSON escapes such as ``\\u2011``. Supplying the
+        # rendered value directly makes ``re.sub`` parse those as regex
+        # backreferences; a callable replacement preserves the literal TOML.
+        return pattern.sub(lambda _: rendered, front, count=1)
+    return front.rstrip("\n") + f"\n{rendered}\n"
 
 
-def get_front_value(front: str, key: str) -> Optional[str]:
-    match = re.search(rf'^{re.escape(key)}\s*=\s*"([^"]+)"\s*$', front, re.MULTILINE)
-    return match.group(1).strip() if match else None
-
-
-def canonicalize_amazon_url(url: str) -> str:
+def canonical_amazon_url(url: str) -> str:
     parsed = urlparse(url)
-    if "amazon." not in parsed.netloc:
+    host = (parsed.hostname or "").lower()
+    if host not in {"amazon.com", "www.amazon.com"}:
         return url
-
-    asin_match = re.search(r"/(?:dp|gp/product)/([A-Z0-9]{10})(?:[/?]|$)", url)
-    if not asin_match:
+    asin = re.search(r"/(?:dp|gp/product|gp/aw/d)/([A-Z0-9]{10})(?:[/?]|$)", parsed.path, re.IGNORECASE)
+    if not asin:
         return url
-
-    asin = asin_match.group(1)
-    return f"{parsed.scheme or 'https'}://{parsed.netloc}/dp/{asin}"
+    return f"https://www.amazon.com/dp/{asin.group(1).upper()}"
 
 
-def fetch_html(url: str) -> Optional[str]:
-    req = Request(url, headers={"User-Agent": USER_AGENT, "Accept-Language": "en-IE,en-US;q=0.9,en;q=0.8"})
-    try:
-      with urlopen(req, timeout=20) as resp:
-          charset = resp.headers.get_content_charset() or "utf-8"
-          return resp.read().decode(charset, errors="replace")
-    except (HTTPError, URLError, TimeoutError) as exc:
-      print(f"[sync_listing_from_urls] fetch failed for {url}: {exc}")
-      return None
+def as_number(value: Any, key: str) -> float:
+    if isinstance(value, (int, float)) and not isinstance(value, bool):
+        return float(value)
+    raise MetadataError(f"missing or invalid {key}")
 
 
-def extract_meta(html_doc: str, name: str) -> Optional[str]:
-    patterns = [
-        rf'<meta[^>]+property=["\']{re.escape(name)}["\'][^>]+content=["\']([^"\']+)["\']',
-        rf'<meta[^>]+content=["\']([^"\']+)["\'][^>]+property=["\']{re.escape(name)}["\']',
-        rf'<meta[^>]+name=["\']{re.escape(name)}["\'][^>]+content=["\']([^"\']+)["\']',
-    ]
-    for pattern in patterns:
-        m = re.search(pattern, html_doc, re.IGNORECASE)
-        if m:
-            return html.unescape(m.group(1).strip())
-    return None
-
-
-def extract_title(html_doc: str) -> Optional[str]:
-    og = extract_meta(html_doc, "og:title")
-    if og:
-        return og
-    m = re.search(r"<title>(.*?)</title>", html_doc, re.IGNORECASE | re.DOTALL)
-    if not m:
-        return None
-    return html.unescape(re.sub(r"\s+", " ", m.group(1)).strip())
-
-
-def extract_image(html_doc: str) -> Optional[str]:
-    patterns = [
-        r'<img[^>]+id=["\']imgTagWrapperId["\'][^>]+data-old-hires=["\']([^"\']+)["\']',
-        r'<img[^>]+id=["\']imgTagWrapperId["\'][^>]+src=["\']([^"\']+)["\']',
-        r'data-old-hires=["\']([^"\']*m\.media-amazon\.com[^"\']+)["\']',
-        r'["\'](https://m\.media-amazon\.com/images/I/[^"\']+\.(?:jpg|jpeg|png))["\']',
-    ]
-    for pattern in patterns:
-        m = re.search(pattern, html_doc, re.IGNORECASE)
-        if m:
-            return html.unescape(m.group(1).strip())
-    return None
-
-
-def parse_money(raw: str) -> Optional[float]:
-    m = re.search(r"([0-9]+(?:[.,][0-9]{2})?)", raw)
-    if not m:
-        return None
-    return float(m.group(1).replace(",", "."))
-
-
-def extract_prices(html_doc: str):
-    sale = None
-    list_price = None
-
-    patterns = [
-        r'"priceToPay"\s*:\s*\{[^}]*"price"\s*:\s*([0-9]+(?:\.[0-9]+)?)',
-        r'"price"\s*:\s*"?EUR\s*([0-9]+(?:[.,][0-9]+)?)"?',
-        r'"displayPrice"\s*:\s*"([^"]+)"',
-    ]
-    for pattern in patterns:
-        m = re.search(pattern, html_doc)
-        if m:
-            sale = parse_money(m.group(1))
-            if sale is not None:
-                break
-
-    list_patterns = [
-        r'"basisPrice"\s*:\s*\{[^}]*"price"\s*:\s*([0-9]+(?:\.[0-9]+)?)',
-        r'"listPrice"\s*:\s*\{[^}]*"amount"\s*:\s*([0-9]+(?:\.[0-9]+)?)',
-        r'"priceWas"\s*:\s*"([^"]+)"',
-    ]
-    for pattern in list_patterns:
-        m = re.search(pattern, html_doc)
-        if m:
-            list_price = parse_money(m.group(1))
-            if list_price is not None:
-                break
-
-    discount = None
-    if sale is not None and list_price and list_price > 0:
-        discount = max(0.0, min(1.0, 1 - (sale / list_price)))
-
-    return sale, list_price, discount
-
-
-def clean_summary(value: Optional[str], title: Optional[str]) -> str:
-    if value:
-        txt = re.sub(r"\s+", " ", value).strip()
-        if txt:
-            return txt[:220]
-    if title:
-        return title
-    return ""
+def normalized_front(front: str, metadata: dict[str, Any]) -> str:
+    product_url = str(metadata.get("product_url") or "").strip()
+    title = str(metadata.get("title") or "").strip()
+    summary = str(metadata.get("summary") or title).strip()
+    image = str(metadata.get("image") or metadata.get("listing_image") or "").strip()
+    sale = as_number(metadata.get("sale_price"), "sale_price")
+    list_price = as_number(metadata.get("list_price"), "list_price")
+    if not product_url or not title or not image or sale <= 0 or list_price <= sale:
+        raise MetadataError("needs product_url, title, image, and a valid positive price reduction")
+    discount = 1 - (sale / list_price)
+    if discount <= 0:
+        raise MetadataError("has no positive verified discount")
+    synced_at = str(metadata.get("public_price_confirmed_at") or metadata.get("verified_at") or "").strip()
+    if not synced_at:
+        synced_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+    values = {
+        "listing_url": canonical_amazon_url(product_url),
+        "listing_title": title,
+        "listing_summary": summary,
+        "listing_image": image,
+        "listing_sale_price": sale,
+        "listing_list_price": list_price,
+        "listing_discount_pct": discount,
+        "listing_synced_at": synced_at,
+    }
+    result = front
+    for key, value in values.items():
+        result = upsert(result, key, value)
+    return result
 
 
 def resolve_paths(file_args: list[str]) -> list[Path]:
-    if not file_args:
-        return sorted(p for p in DEALS_DIR.glob("*.md") if p.name != "_index.md")
-
-    selected: list[Path] = []
-    for raw in file_args:
-        candidate = Path(raw)
-        if not candidate.is_absolute():
-            candidate = (ROOT / candidate).resolve()
-        if candidate.is_dir():
-            selected.extend(sorted(p for p in candidate.glob("*.md") if p.name != "_index.md"))
-            continue
-        if candidate.exists() and candidate.suffix == ".md" and candidate.name != "_index.md":
-            selected.append(candidate)
-
-    unique: list[Path] = []
-    seen: set[Path] = set()
-    for path in selected:
-        if path not in seen:
-            unique.append(path)
-            seen.add(path)
-    return unique
+    selected = []
+    raw_paths = file_args or [str(DEALS_DIR)]
+    for raw in raw_paths:
+        path = Path(raw)
+        if not path.is_absolute():
+            path = (ROOT / path).resolve()
+        if path.is_dir():
+            selected.extend(path.glob("*.md"))
+        elif path.suffix == ".md":
+            selected.append(path)
+    return sorted({path.resolve() for path in selected if path.exists() and path.name != "_index.md"})
 
 
-def main() -> None:
-    parser = argparse.ArgumentParser(description="Sync listing_* fields from retailer URLs.")
-    parser.add_argument(
-        "files",
-        nargs="*",
-        help="Optional markdown files (or directory) to sync. Defaults to all content/deals/*.md",
-    )
-    parser.add_argument(
-        "--touch-synced-at",
-        action="store_true",
-        help="Always update listing_synced_at even if no other listing fields changed.",
-    )
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("files", nargs="*", help="Live deal markdown files, or a directory (defaults to content/deals).")
     args = parser.parse_args()
-
-    updated = 0
-    now_iso = datetime.now(timezone.utc).isoformat()
-
     paths = resolve_paths(args.files)
     if not paths:
         print("[sync_listing_from_urls] no files selected")
-        return
+        return 0
 
+    updated = 0
+    failed = 0
     for path in paths:
+        try:
+            front, body = split_front_matter(path.read_text(encoding="utf-8"))
+            metadata = tomllib.loads(front)
+            next_front = normalized_front(front, metadata)
+            if next_front != front:
+                path.write_text(f"+++\n{next_front.rstrip()}\n+++\n{body}", encoding="utf-8")
+                updated += 1
+                try:
+                    display = path.relative_to(ROOT)
+                except ValueError:
+                    display = path
+                print(f"[sync_listing_from_urls] normalized {display}")
+        except (OSError, MetadataError, tomllib.TOMLDecodeError) as exc:
+            failed += 1
+            try:
+                display = path.relative_to(ROOT)
+            except ValueError:
+                display = path
+            print(f"[sync_listing_from_urls] {display}: {exc}", file=sys.stderr)
 
-        raw = path.read_text()
-        split = split_front_matter(raw)
-        if not split:
-            continue
-
-        front, body = split
-        source_url = (
-            get_front_value(front, "listing_url")
-            or get_front_value(front, "product_url")
-            or get_front_value(front, "affiliate_url")
-        )
-        if not source_url:
-            continue
-
-        listing_url = canonicalize_amazon_url(source_url)
-        doc = fetch_html(listing_url)
-        if not doc:
-            continue
-
-        title = extract_title(doc)
-        summary = extract_meta(doc, "description")
-        image = extract_meta(doc, "og:image") or extract_image(doc)
-        sale, list_price, discount = extract_prices(doc)
-
-        next_front = front
-        next_front = upsert_line(next_front, "listing_url", listing_url)
-        if title:
-            next_front = upsert_line(next_front, "listing_title", title)
-        next_front = upsert_line(next_front, "listing_summary", clean_summary(summary, title))
-        if image:
-            next_front = upsert_line(next_front, "listing_image", image)
-        if sale is not None:
-            next_front = upsert_line(next_front, "listing_sale_price", sale)
-        if list_price is not None:
-            next_front = upsert_line(next_front, "listing_list_price", list_price)
-        if discount is not None:
-            next_front = upsert_line(next_front, "listing_discount_pct", discount)
-
-        should_update_synced_at = args.touch_synced_at or (next_front != front) or (
-            get_front_value(front, "listing_synced_at") is None
-        )
-        final_front = (
-            upsert_line(next_front, "listing_synced_at", now_iso) if should_update_synced_at else next_front
-        )
-
-        if final_front != front:
-            path.write_text(f"+++\n{final_front.rstrip()}\n+++\n{body}")
-            updated += 1
-            print(f"[sync_listing_from_urls] updated {path.relative_to(ROOT)}")
-
-    print(f"[sync_listing_from_urls] done: {updated} file(s) updated")
+    print(f"[sync_listing_from_urls] done: {updated} file(s) normalized, {failed} failed")
+    return 1 if failed else 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

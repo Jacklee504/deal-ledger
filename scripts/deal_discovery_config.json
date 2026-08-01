@@ -1,13 +1,23 @@
 {
-  "marketplace": "amazon.co.uk",
-  "currency": "GBP",
+  "marketplace": "amazon.com",
+  "currency": "USD",
+  "verification": {
+    "zipcode": "94107"
+  },
   "keywords": [
     "wireless noise cancelling headphones",
     "mechanical keyboard",
     "robot vacuum",
     "air fryer",
     "gaming monitor",
-    "portable monitor"
+    "portable monitor",
+    "bluetooth speaker",
+    "robot vacuum mop",
+    "smartwatch",
+    "espresso machine",
+    "electric toothbrush",
+    "external SSD",
+    "office chair"
   ],
   "limits": {
     "max_serpapi_queries_per_run": 6,
@@ -16,8 +26,6 @@
   "policy": {
     "minimum_discount_pct": 20,
     "minimum_sale_price": 20,
-    "trusted_seller_terms": [
-      "amazon"
-    ]
+    "trusted_seller_terms": []
   }
 }

@@ -36,7 +36,7 @@
     {{ end }}
   {{ end }}
 {{ end }}
-{{ $tags := $params.tags }}
+{{ $tags := $params.tags | default (slice) }}
 {{ $url := or $params.affiliate_url $params.product_url $params.listing_url }}
 {{ $summary := or $params.summary $params.listing_summary $title }}
 {{ $marketKey := partials.Include "func/market/key.html" $page | strings.TrimSpace }}
@@ -55,7 +55,12 @@
 {{ $canShowLocalPrice := $params.show_local_price | default true }}
 {{ $isUSDDeal := eq $marketKey "us" }}
 {{ $currency := "€" }}
-{{ if $isUSDDeal }}{{ $currency = "$" }}{{ end }}
+{{ $currencyCode := upper (printf "%v" $params.currency) }}
+{{ if eq $currencyCode "GBP" }}
+  {{ $currency = "£" }}
+{{ else if or $isUSDDeal (eq $currencyCode "USD") }}
+  {{ $currency = "$" }}
+{{ end }}
 {{ $topSavings := false }}
 {{ $latest := false }}
 {{ $expiringSoon := false }}
