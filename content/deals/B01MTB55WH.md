@@ -1,5 +1,5 @@
 +++
-title = "Anker soundcore 2 Portable Bluetooth Speaker, Stereo Sound, IPX7 | BassUp, 24H Playtime, Bluetooth 5, Wireless Speaker for Home, Outdoors, Travel"
+title = "Soundcore 2 Portable Bluetooth Speaker"
 date = "2026-08-01T17:40:29Z"
 draft = false
 review_status = "approved"
@@ -15,8 +15,8 @@ product_url = "https://www.amazon.com/dp/B01MTB55WH"
 image = "https://m.media-amazon.com/images/I/71jjggEx2XL._AC_SL1500_.jpg"
 listing_source = "manual-public-confirmation"
 listing_url = "https://www.amazon.com/dp/B01MTB55WH"
-listing_title = "Anker soundcore 2 Portable Bluetooth Speaker, Stereo Sound, IPX7 | BassUp, 24H Playtime, Bluetooth 5, Wireless Speaker for Home, Outdoors, Travel"
-listing_summary = "Verified Amazon US deal: 29.98 USD (was 44.99 USD)."
+listing_title = "Soundcore 2 Portable Bluetooth Speaker"
+listing_summary = "Portable Bluetooth speaker with stereo sound, IPX7 water resistance, and up to 24-hour playtime."
 listing_image = "https://m.media-amazon.com/images/I/71jjggEx2XL._AC_SL1500_.jpg"
 listing_sale_price = 29.98
 listing_list_price = 44.99
@@ -27,7 +27,7 @@ price_review_required = false
 reference_price_basis = "brightdata_initial_price"
 tags = ["amazon", "amazon-us", "bluetooth speaker"]
 categories = ["deals"]
-summary = "Verified Amazon US deal: 29.98 USD (was 44.99 USD)."
+summary = "Portable Bluetooth speaker with stereo sound, IPX7 water resistance, and up to 24-hour playtime."
 verification_provider = "brightdata"
 verification_url = "https://www.amazon.com/dp/B01MTB55WH"
 verified_at = "2026-08-01T17:40:16.179Z"

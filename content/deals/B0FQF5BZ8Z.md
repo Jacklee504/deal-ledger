@@ -1,5 +1,5 @@
 +++
-title = "Apple Watch Series 11 [GPS 46mm] Smartwatch with Jet Black Aluminum Case with Black Sport Band - M/L. Sleep Score, Fitness Tracker, Health Monitoring, Always-On Display, Water Resistant"
+title = "Apple Watch Series 11 GPS, 46mm"
 date = "2026-08-01T17:40:29Z"
 draft = false
 review_status = "approved"
@@ -15,8 +15,8 @@ product_url = "https://www.amazon.com/dp/B0FQF5BZ8Z"
 image = "https://m.media-amazon.com/images/I/6129OfG4gfL._AC_SL1500_.jpg"
 listing_source = "manual-public-confirmation"
 listing_url = "https://www.amazon.com/dp/B0FQF5BZ8Z"
-listing_title = "Apple Watch Series 11 [GPS 46mm] Smartwatch with Jet Black Aluminum Case with Black Sport Band - M/L. Sleep Score, Fitness Tracker, Health Monitoring, Always-On Display, Water Resistant"
-listing_summary = "Verified Amazon US deal: 329.99 USD (was 429.00 USD)."
+listing_title = "Apple Watch Series 11 GPS, 46mm"
+listing_summary = "Jet black aluminum GPS smartwatch with black sport band, sleep scoring, and health and fitness tracking."
 listing_image = "https://m.media-amazon.com/images/I/6129OfG4gfL._AC_SL1500_.jpg"
 listing_sale_price = 329.99
 listing_list_price = 429
@@ -27,7 +27,7 @@ price_review_required = false
 reference_price_basis = "brightdata_initial_price"
 tags = ["amazon", "amazon-us", "smartwatch"]
 categories = ["deals"]
-summary = "Verified Amazon US deal: 329.99 USD (was 429.00 USD)."
+summary = "Jet black aluminum GPS smartwatch with black sport band, sleep scoring, and health and fitness tracking."
 verification_provider = "brightdata"
 verification_url = "https://www.amazon.com/dp/B0FQF5BZ8Z"
 verified_at = "2026-08-01T17:39:55.386Z"

@@ -1,5 +1,5 @@
 +++
-title = "Soundcore by Anker Q20i Hybrid Active Noise Cancelling Headphones, White | Over-Ear, Bluetooth, 40H ANC Playtime, Hi-Res Audio, Big Bass, Transparency Mode, Customize via App, Travel, Home, Office"
+title = "Soundcore Q20i Hybrid ANC Headphones"
 date = "2026-07-31T19:48:10Z"
 draft = false
 review_status = "approved"
@@ -15,8 +15,8 @@ product_url = "https://www.amazon.com/dp/B0CQXMXJC5"
 image = "https://m.media-amazon.com/images/I/51QSktkLy1L._AC_SL1500_.jpg"
 listing_source = "manual-public-confirmation"
 listing_url = "https://www.amazon.com/dp/B0CQXMXJC5"
-listing_title = "Soundcore by Anker Q20i Hybrid Active Noise Cancelling Headphones, White | Over-Ear, Bluetooth, 40H ANC Playtime, Hi-Res Audio, Big Bass, Transparency Mode, Customize via App, Travel, Home, Office"
-listing_summary = "Verified Amazon US deal: 39.98 USD (was 69.99 USD)."
+listing_title = "Soundcore Q20i Hybrid ANC Headphones"
+listing_summary = "White over-ear Bluetooth headphones with hybrid noise cancelling, transparency mode, and up to 40-hour ANC playtime."
 listing_image = "https://m.media-amazon.com/images/I/51QSktkLy1L._AC_SL1500_.jpg"
 listing_sale_price = 39.98
 listing_list_price = 69.99
@@ -27,7 +27,7 @@ price_review_required = false
 reference_price_basis = "brightdata_initial_price"
 tags = ["amazon", "amazon-us", "wireless noise cancelling headphones"]
 categories = ["deals"]
-summary = "Verified Amazon US deal: 39.98 USD (was 69.99 USD)."
+summary = "White over-ear Bluetooth headphones with hybrid noise cancelling, transparency mode, and up to 40-hour ANC playtime."
 verification_provider = "brightdata"
 verification_url = "https://www.amazon.com/dp/B0CQXMXJC5"
 verified_at = "2026-07-31T19:47:50.454Z"

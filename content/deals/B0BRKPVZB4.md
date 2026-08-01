@@ -1,5 +1,5 @@
 +++
-title = "Bluetooth Speaker, 20W HD Sound, Portable Wireless, IPX5 Waterproof, Up to 24H Playtime, TWS Pairing, for Home/Party/Outdoor/Camping/Beach Essentials, Electronic Gadgets, Birthday Gift (Black)"
+title = "20W Portable Bluetooth Speaker"
 date = "2026-08-01T17:40:29Z"
 draft = false
 review_status = "approved"
@@ -15,8 +15,8 @@ product_url = "https://www.amazon.com/dp/B0BRKPVZB4"
 image = "https://m.media-amazon.com/images/I/8165VSHcJlL._AC_SL1500_.jpg"
 listing_source = "manual-public-confirmation"
 listing_url = "https://www.amazon.com/dp/B0BRKPVZB4"
-listing_title = "Bluetooth Speaker, 20W HD Sound, Portable Wireless, IPX5 Waterproof, Up to 24H Playtime, TWS Pairing, for Home/Party/Outdoor/Camping/Beach Essentials, Electronic Gadgets, Birthday Gift (Black)"
-listing_summary = "Verified Amazon US deal: 23.99 USD (was 29.99 USD)."
+listing_title = "20W Portable Bluetooth Speaker"
+listing_summary = "Portable 20W Bluetooth speaker with IPX5 water resistance, up to 24-hour playtime, and TWS pairing."
 listing_image = "https://m.media-amazon.com/images/I/8165VSHcJlL._AC_SL1500_.jpg"
 listing_sale_price = 23.99
 listing_list_price = 29.99
@@ -27,7 +27,7 @@ price_review_required = false
 reference_price_basis = "brightdata_initial_price"
 tags = ["amazon", "amazon-us", "bluetooth speaker"]
 categories = ["deals"]
-summary = "Verified Amazon US deal: 23.99 USD (was 29.99 USD)."
+summary = "Portable 20W Bluetooth speaker with IPX5 water resistance, up to 24-hour playtime, and TWS pairing."
 verification_provider = "brightdata"
 verification_url = "https://www.amazon.com/dp/B0BRKPVZB4"
 verified_at = "2026-08-01T17:39:57.247Z"

@@ -1,5 +1,5 @@
 +++
-title = "Redragon K668 108-Key Hot-Swap Wired RGB Gaming Keyboard, Extra 4 Hotkeys | Dedicated Shortcut Keys for Mute, Calc & Desktop, Cushioned Noise Dampening for Creamy Thocky Sound, Swap-Ready, PRO Software"
+title = "Redragon K668 RGB Mechanical Gaming Keyboard"
 date = "2026-08-01T16:48:11Z"
 draft = false
 review_status = "approved"
@@ -15,8 +15,8 @@ product_url = "https://www.amazon.com/dp/B0CDWP1D58"
 image = "https://m.media-amazon.com/images/I/618A+B25MKL._AC_SL1500_.jpg"
 listing_source = "manual-public-confirmation"
 listing_url = "https://www.amazon.com/dp/B0CDWP1D58"
-listing_title = "Redragon K668 108-Key Hot-Swap Wired RGB Gaming Keyboard, Extra 4 Hotkeys | Dedicated Shortcut Keys for Mute, Calc & Desktop, Cushioned Noise Dampening for Creamy Thocky Sound, Swap-Ready, PRO Software"
-listing_summary = "Verified Amazon US deal: 39.99 USD (was 49.99 USD)."
+listing_title = "Redragon K668 RGB Mechanical Gaming Keyboard"
+listing_summary = "108-key hot-swappable wired keyboard with dedicated hotkeys and sound dampening."
 listing_image = "https://m.media-amazon.com/images/I/618A+B25MKL._AC_SL1500_.jpg"
 listing_sale_price = 39.99
 listing_list_price = 49.99
@@ -27,7 +27,7 @@ price_review_required = false
 reference_price_basis = "brightdata_initial_price"
 tags = ["amazon", "amazon-us", "mechanical keyboard"]
 categories = ["deals"]
-summary = "Verified Amazon US deal: 39.99 USD (was 49.99 USD)."
+summary = "108-key hot-swappable wired keyboard with dedicated hotkeys and sound dampening."
 verification_provider = "brightdata"
 verification_url = "https://www.amazon.com/dp/B0CDWP1D58"
 verified_at = "2026-08-01T16:47:35.481Z"

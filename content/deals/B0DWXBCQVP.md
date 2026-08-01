@@ -1,5 +1,5 @@
 +++
-title = "roborock Q10 S5+ Robot Vacuum and Mop, 10,000Pa Suction | Upgraded from Q8 max+, 70-Day Self-Emptying, Obstacle Avoidance, Sonic Mopping, Dual Anti-Tangle Design, Auto Mop Lift, Black"
+title = "Roborock Q10 S5+ Robot Vacuum & Mop"
 date = "2026-08-01T17:40:29Z"
 draft = false
 review_status = "approved"
@@ -15,8 +15,8 @@ product_url = "https://www.amazon.com/dp/B0DWXBCQVP"
 image = "https://m.media-amazon.com/images/I/61KBMtvTenL._AC_SL1500_.jpg"
 listing_source = "manual-public-confirmation"
 listing_url = "https://www.amazon.com/dp/B0DWXBCQVP"
-listing_title = "roborock Q10 S5+ Robot Vacuum and Mop, 10,000Pa Suction | Upgraded from Q8 max+, 70-Day Self-Emptying, Obstacle Avoidance, Sonic Mopping, Dual Anti-Tangle Design, Auto Mop Lift, Black"
-listing_summary = "Verified Amazon US deal: 279.99 USD (was 549.99 USD)."
+listing_title = "Roborock Q10 S5+ Robot Vacuum & Mop"
+listing_summary = "Robot vacuum and mop with 10,000Pa suction, self-emptying, obstacle avoidance, and sonic mopping."
 listing_image = "https://m.media-amazon.com/images/I/61KBMtvTenL._AC_SL1500_.jpg"
 listing_sale_price = 279.99
 listing_list_price = 549.99
@@ -27,7 +27,7 @@ price_review_required = false
 reference_price_basis = "brightdata_initial_price"
 tags = ["amazon", "amazon-us", "robot vacuum mop"]
 categories = ["deals"]
-summary = "Verified Amazon US deal: 279.99 USD (was 549.99 USD)."
+summary = "Robot vacuum and mop with 10,000Pa suction, self-emptying, obstacle avoidance, and sonic mopping."
 verification_provider = "brightdata"
 verification_url = "https://www.amazon.com/dp/B0DWXBCQVP"
 verified_at = "2026-08-01T17:39:56.429Z"
