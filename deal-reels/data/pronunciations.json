@@ -1,0 +1,14 @@
+{
+  "products": [
+    {
+      "match": "garmin.*v[ií]voactive.*5",
+      "display": "Garmin vívoactive 5 GPS Smartwatch",
+      "spoken": "Garmin Vee-vo-active 5 G P S smartwatch"
+    },
+    {
+      "match": "aquasonic.*electric toothbrush",
+      "display": "Aquasonic Electric Toothbrush",
+      "spoken": "Aqua-sonic electric toothbrush"
+    }
+  ]
+}

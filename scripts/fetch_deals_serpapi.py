@@ -9,15 +9,15 @@ links, commits, or sends emails.
 
 Usage:
   BRIGHTDATA_API_TOKEN=... BRIGHTDATA_DATASET_ID=... \\
-  python scripts/fetch_deals_serpapi.py --dry-run --max-queries 1 \\
-    --max-products 3 --report-out /tmp/deal-intake-report.json
+  python scripts/fetch_deals_serpapi.py --dry-run --max-queries 6 \\
+    --max-products 24 --report-out /tmp/deal-intake-report.json
 
-  python scripts/fetch_deals_serpapi.py --write-review-drafts --max-queries 1 \\
-    --max-products 3 --report-out /tmp/deal-intake-report.json
+  python scripts/fetch_deals_serpapi.py --write-review-drafts --max-queries 6 \\
+    --max-products 24 --report-out /tmp/deal-intake-report.json
 
-  # Continue with the next configured keyword(s).
+  # Continue with the next configured category slot(s).
   python scripts/fetch_deals_serpapi.py --write-review-drafts --query-offset 3 \\
-    --max-queries 3 --max-products 9 --report-out /tmp/deal-intake-report.json
+    --max-queries 3 --max-products 12 --report-out /tmp/deal-intake-report.json
 """
 from __future__ import annotations
 
@@ -195,7 +195,8 @@ def amazon_search_url(keyword: str, marketplace: str) -> str:
 
 
 def discovery_candidate(result: dict[str, Any], *, keyword: str, marketplace: str,
-                        minimum_discount: float, minimum_sale_price: float) -> tuple[dict[str, Any] | None, str | None]:
+                        minimum_discount: float, minimum_sale_price: float,
+                        category: str | None = None) -> tuple[dict[str, Any] | None, str | None]:
     source_url = str(record_value(result, "url", "product_url", "product_link", "link", "product_page_url") or "")
     url_asin = asin_from_amazon_url(source_url)
     title = str(record_value(result, "title", "product_title", "name", "product_name") or "").strip()
@@ -234,6 +235,7 @@ def discovery_candidate(result: dict[str, Any], *, keyword: str, marketplace: st
     return {
         "asin": asin,
         "keyword": keyword,
+        "category": category or keyword,
         "title": title,
         "url": clean_amazon_url(asin, marketplace),
         "brightdata_search_sale_price": sale_price,
@@ -256,21 +258,21 @@ def unique_by_asin(items: Iterable[dict[str, Any]]) -> list[dict[str, Any]]:
 
 
 def select_candidates(items: Iterable[dict[str, Any]], maximum: int) -> list[dict[str, Any]]:
-    """Pick unique candidates fairly, favouring search records with a deal signal."""
-    by_keyword: dict[str, list[dict[str, Any]]] = {}
-    fallback_by_keyword: dict[str, list[dict[str, Any]]] = {}
+    """Pick backup candidates fairly, favouring each category's deal signals."""
+    by_category: dict[str, list[dict[str, Any]]] = {}
+    fallback_by_category: dict[str, list[dict[str, Any]]] = {}
     seen_asins: set[str] = set()
     for item in items:
         asin = str(item.get("asin") or "")
-        keyword = str(item.get("keyword") or "")
-        if not asin or not keyword or asin in seen_asins:
+        category = str(item.get("category") or item.get("keyword") or "")
+        if not asin or not category or asin in seen_asins:
             continue
         seen_asins.add(asin)
-        bucket = by_keyword if item.get("brightdata_search_discount_eligible") else fallback_by_keyword
-        bucket.setdefault(keyword, []).append(item)
+        bucket = by_category if item.get("brightdata_search_discount_eligible") else fallback_by_category
+        bucket.setdefault(category, []).append(item)
 
     selected: list[dict[str, Any]] = []
-    for groups in (by_keyword, fallback_by_keyword):
+    for groups in (by_category, fallback_by_category):
         index = 0
         while len(selected) < maximum:
             added = False
@@ -284,6 +286,51 @@ def select_candidates(items: Iterable[dict[str, Any]], maximum: int) -> list[dic
                 break
             index += 1
     return selected
+
+
+def configured_categories(config: dict[str, Any]) -> list[dict[str, str]]:
+    """Return category slots, retaining keyword-only config compatibility."""
+    raw_categories = config.get("categories")
+    if isinstance(raw_categories, list) and raw_categories:
+        categories: list[dict[str, str]] = []
+        used_ids: set[str] = set()
+        used_keywords: set[str] = set()
+        for entry in raw_categories:
+            if not isinstance(entry, dict):
+                raise ProviderError("Each configured category must be an object")
+            category_id = str(entry.get("id") or "").strip().lower()
+            keyword = str(entry.get("keyword") or "").strip()
+            if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", category_id):
+                raise ProviderError("Each configured category id must be lowercase kebab-case")
+            if not keyword:
+                raise ProviderError("Each configured category must have a keyword")
+            if category_id in used_ids or keyword.casefold() in used_keywords:
+                raise ProviderError("Configured category ids and keywords must be unique")
+            used_ids.add(category_id)
+            used_keywords.add(keyword.casefold())
+            categories.append({"id": category_id, "keyword": keyword})
+        return categories
+
+    keywords = [str(value).strip() for value in config.get("keywords", []) if str(value).strip()]
+    return [{"id": f"keyword-{index + 1}", "keyword": keyword} for index, keyword in enumerate(keywords)]
+
+
+def select_category_winners(candidates: Iterable[dict[str, Any]],
+                            normalized_by_asin: dict[str, dict[str, Any]]) -> tuple[list[dict[str, Any]], set[str]]:
+    """Keep the first verified backup for each category in deterministic search order."""
+    winners: list[dict[str, Any]] = []
+    winning_asins: set[str] = set()
+    completed_categories: set[str] = set()
+    for candidate in candidates:
+        asin = str(candidate["asin"])
+        category = str(candidate.get("category") or candidate.get("keyword") or "")
+        normalized = normalized_by_asin.get(asin)
+        if not normalized or not category or category in completed_categories:
+            continue
+        winners.append({**normalized, "discovery_category": category})
+        winning_asins.add(asin)
+        completed_categories.add(category)
+    return winners, winning_asins
 
 
 def brightdata_collect(token: str, dataset_id: str, inputs: list[dict[str, Any]], *,
@@ -456,8 +503,11 @@ def render_review_draft(verified: dict[str, Any], discovery: dict[str, Any] | No
     verified_at = str(verified["verified_at"])
     discovery = discovery or {}
     keyword = str(discovery.get("keyword") or "")
+    category = str(discovery.get("category") or "")
     tags = ["amazon", MARKETPLACE_TAG]
-    if keyword:
+    if category:
+        tags.append(category)
+    elif keyword:
         tags.append(keyword)
     summary = f"Verified {MARKETPLACE_LABEL} candidate: {price:.2f} {verified['currency']}."
     if has_verified_reference:
@@ -530,6 +580,7 @@ def render_review_draft(verified: dict[str, Any], discovery: dict[str, Any] | No
         front_matter.insert(-3, f"brightdata_pdp_reference_price = {provider_reference_price:.2f}")
     discovery_fields = [
         f"brightdata_search_keyword = {toml_string(keyword)}",
+        f"brightdata_search_category = {toml_string(category)}",
         f"brightdata_search_candidate_url = {toml_string(discovery.get('url') or '')}",
         f"brightdata_search_sale_price = {toml_string(discovery.get('brightdata_search_sale_price') or '')}",
         f"brightdata_search_reference_price = {toml_string(discovery.get('brightdata_search_reference_price') or '')}",
@@ -616,13 +667,13 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Explicit local-only mode: create pending review drafts from accepted Bright Data records.",
     )
-    parser.add_argument("--max-queries", type=int, default=1)
-    parser.add_argument("--max-products", type=int, default=3)
+    parser.add_argument("--max-queries", type=int, default=6, help="Configured category slots to search.")
+    parser.add_argument("--max-products", type=int, default=24, help="Total backup product URLs to verify across category slots.")
     parser.add_argument(
         "--query-offset",
         type=int,
         default=0,
-        help="Zero-based offset into configured keywords (use this to continue with later categories).",
+        help="Zero-based offset into configured category slots (use this to continue with later categories).",
     )
     parser.add_argument("--report-out", type=Path, required=True)
     return parser.parse_args()
@@ -636,7 +687,7 @@ def main() -> int:
     config = load_json(args.config)
     marketplace = str(config.get("marketplace") or "").lower()
     currency = str(config.get("currency") or "").upper()
-    keywords = [str(value).strip() for value in config.get("keywords", []) if str(value).strip()]
+    categories = configured_categories(config)
     limits = config.get("limits") if isinstance(config.get("limits"), dict) else {}
     policy = config.get("policy") if isinstance(config.get("policy"), dict) else {}
     max_queries = min(args.max_queries, int(limits.get("max_brightdata_search_queries_per_run", args.max_queries)))
@@ -648,11 +699,13 @@ def main() -> int:
     discovery = config.get("discovery") if isinstance(config.get("discovery"), dict) else {}
     if marketplace != SUPPORTED_MARKETPLACE or currency != SUPPORTED_CURRENCY:
         raise ProviderError("Initial intake is restricted to amazon.com and USD")
-    if not keywords:
-        raise ProviderError("No discovery keywords are configured")
-    selected_keywords = keywords[args.query_offset : args.query_offset + max_queries]
-    if not selected_keywords:
-        raise ProviderError("--query-offset is beyond the configured keyword list")
+    if not categories:
+        raise ProviderError("No discovery categories are configured")
+    selected_categories = categories[args.query_offset : args.query_offset + max_queries]
+    if not selected_categories:
+        raise ProviderError("--query-offset is beyond the configured category list")
+    selected_keywords = [category["keyword"] for category in selected_categories]
+    category_by_keyword = {category["keyword"].casefold(): category["id"] for category in selected_categories}
     search_dataset_id = brightdata_search_dataset_id(config)
     search_inputs = brightdata_search_inputs(selected_keywords, marketplace, discovery)
     environment = require_env()
@@ -674,10 +727,11 @@ def main() -> int:
             "max_queries": max_queries,
             "max_products": max_products,
             "query_offset": args.query_offset,
-            "configured_keywords_selected": selected_keywords,
+            "configured_categories_selected": selected_categories,
         },
         "discovery": {"queries": [], "candidates": [], "rejected": [], "skipped_known": []},
-        "verification": {"submitted": [], "inputs": [], "accepted": [], "rejected": []},
+        "verification": {"submitted": [], "inputs": [], "accepted": [], "rejected": [], "skipped_backups": [], "rounds": []},
+        "categories": [],
         "drafts": {"created": [], "skipped_existing": [], "skipped_known": []},
         "next_step": "No review drafts were written. Inspect this report before any manual draft-writing run.",
     }
@@ -701,8 +755,9 @@ def main() -> int:
             continue
         records_by_keyword[keyword].append(product)
     for keyword in selected_keywords:
+        category = category_by_keyword[keyword.casefold()]
         products = records_by_keyword[keyword]
-        report["discovery"]["queries"].append({"keyword": keyword, "results_received": len(products)})
+        report["discovery"]["queries"].append({"category": category, "keyword": keyword, "results_received": len(products)})
         for product in products:
             candidate, reason = discovery_candidate(
                 product,
@@ -710,11 +765,13 @@ def main() -> int:
                 marketplace=marketplace,
                 minimum_discount=minimum_discount,
                 minimum_sale_price=minimum_sale_price,
+                category=category,
             )
             if candidate:
                 candidates.append(candidate)
             else:
                 report["discovery"]["rejected"].append({
+                    "category": category,
                     "keyword": keyword,
                     "asin": (
                         extract_asin(record_value(product, "asin", "product_asin", "product_id"))
@@ -724,51 +781,105 @@ def main() -> int:
                     "reason": reason,
                 })
 
-    selected = select_candidates(candidates, max_products)
     known = known_asin_states()
     unreviewed: list[dict[str, Any]] = []
-    for candidate in selected:
+    for candidate in candidates:
         asin = str(candidate["asin"])
         if asin in known:
             report["discovery"]["skipped_known"].append({"asin": asin, "state": known[asin]})
         else:
             unreviewed.append(candidate)
-    selected = unreviewed
-    submitted_asins = {str(item["asin"]) for item in selected}
+    selected = select_candidates(unreviewed, max_products)
     report["discovery"]["candidates"] = selected
-    report["verification"]["submitted"] = [item["url"] for item in selected]
-    verification_inputs = build_brightdata_inputs(report["verification"]["submitted"], verification)
-    report["verification"]["inputs"] = verification_inputs
+    backup_queues: dict[str, list[dict[str, Any]]] = {str(category["id"]): [] for category in selected_categories}
+    for candidate in selected:
+        category = str(candidate.get("category") or "")
+        if category in backup_queues:
+            backup_queues[category].append(candidate)
 
-    verified = brightdata_verify(
-        environment[BRIGHTDATA_TOKEN_ENV],
-        environment[BRIGHTDATA_PDP_DATASET_ENV],
-        verification_inputs,
-    )
-    for record in verified:
-        normalized, reason = verified_record(
-            record,
-            marketplace=marketplace,
-            currency=currency,
-            trusted_seller_terms=trusted_seller_terms,
-            minimum_discount=minimum_discount,
-            minimum_sale_price=minimum_sale_price,
+    winners: list[dict[str, Any]] = []
+    completed_categories: set[str] = set()
+    submitted_by_category = {str(category["id"]): 0 for category in selected_categories}
+    round_number = 0
+    while True:
+        round_candidates: list[dict[str, Any]] = []
+        for category in selected_categories:
+            category_id = str(category["id"])
+            if category_id in completed_categories or not backup_queues[category_id]:
+                continue
+            round_candidates.append(backup_queues[category_id].pop(0))
+        if not round_candidates:
+            break
+
+        round_number += 1
+        round_urls = [str(candidate["url"]) for candidate in round_candidates]
+        round_inputs = build_brightdata_inputs(round_urls, verification)
+        report["verification"]["submitted"].extend(round_urls)
+        report["verification"]["inputs"].extend(round_inputs)
+        report["verification"]["rounds"].append({
+            "round": round_number,
+            "categories": [str(candidate["category"]) for candidate in round_candidates],
+            "submitted_asins": [str(candidate["asin"]) for candidate in round_candidates],
+        })
+        for candidate in round_candidates:
+            submitted_by_category[str(candidate["category"])] += 1
+
+        verified = brightdata_verify(
+            environment[BRIGHTDATA_TOKEN_ENV],
+            environment[BRIGHTDATA_PDP_DATASET_ENV],
+            round_inputs,
         )
-        if normalized:
-            if normalized["asin"] in submitted_asins:
-                report["verification"]["accepted"].append(normalized)
+        round_asins = {str(candidate["asin"]) for candidate in round_candidates}
+        normalized_by_asin: dict[str, dict[str, Any]] = {}
+        for record in verified:
+            normalized, reason = verified_record(
+                record,
+                marketplace=marketplace,
+                currency=currency,
+                trusted_seller_terms=trusted_seller_terms,
+                minimum_discount=minimum_discount,
+                minimum_sale_price=minimum_sale_price,
+            )
+            if normalized:
+                if normalized["asin"] in round_asins:
+                    normalized_by_asin.setdefault(str(normalized["asin"]), normalized)
+                else:
+                    report["verification"]["rejected"].append({
+                        "asin": normalized["asin"],
+                        "title": normalized["title"][:180],
+                        "reason": "Bright Data ASIN was not among submitted candidates",
+                    })
             else:
                 report["verification"]["rejected"].append({
-                    "asin": normalized["asin"],
-                    "title": normalized["title"][:180],
-                    "reason": "Bright Data ASIN was not among submitted candidates",
+                    "asin": extract_asin(record_value(record, "asin", "product_asin", "product_id")) or asin_from_amazon_url(record_value(record, "url", "product_url")),
+                    "title": str(record_value(record, "title", "product_title", "name") or "")[:180],
+                    "reason": reason,
                 })
-        else:
-            report["verification"]["rejected"].append({
-                "asin": extract_asin(record_value(record, "asin", "product_asin", "product_id")) or asin_from_amazon_url(record_value(record, "url", "product_url")),
-                "title": str(record_value(record, "title", "product_title", "name") or "")[:180],
-                "reason": reason,
-            })
+
+        round_winners, _ = select_category_winners(round_candidates, normalized_by_asin)
+        winners.extend(round_winners)
+        completed_categories.update(str(winner["discovery_category"]) for winner in round_winners)
+
+    report["verification"]["accepted"] = winners
+    for category, backups in backup_queues.items():
+        if category in completed_categories:
+            for candidate in backups:
+                report["verification"]["skipped_backups"].append({
+                    "asin": candidate["asin"],
+                    "category": category,
+                    "reason": "a verified candidate was selected for this category",
+                })
+    accepted_by_category = {str(item["discovery_category"]): str(item["asin"]) for item in winners}
+    report["categories"] = [
+        {
+            "id": category["id"],
+            "keyword": category["keyword"],
+            "backup_candidates_submitted": submitted_by_category[category["id"]],
+            "accepted_asin": accepted_by_category.get(category["id"]),
+            "status": "accepted" if category["id"] in accepted_by_category else "no verified candidate",
+        }
+        for category in selected_categories
+    ]
 
     if args.write_review_drafts:
         discoveries = {str(item["asin"]): item for item in selected}

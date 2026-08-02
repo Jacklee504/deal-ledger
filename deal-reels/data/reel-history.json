@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "reels": [
+    {
+      "renderedAt": "2026-08-02T11:54:29.198Z",
+      "status": "rendered",
+      "asins": [
+        "B0H2TZNH4Z",
+        "B09H8CWFNK",
+        "B0DWXBCQVP"
+      ],
+      "families": [
+        "robot-vacuum"
+      ],
+      "categories": [
+        "home"
+      ],
+      "artifactStatus": "superseded-before-archive-layout",
+      "videoPath": null,
+      "coverPath": null
+    },
+    {
+      "renderedAt": "2026-08-02T15:16:23.379Z",
+      "status": "rendered",
+      "asins": [
+        "B0CQXMXJC5",
+        "B0D5FRXYMJ",
+        "B0H34K2NZG"
+      ],
+      "families": [
+        "headphones",
+        "air-fryer",
+        "office-chair"
+      ],
+      "categories": [
+        "Audio",
+        "Kitchen",
+        "Home office"
+      ],
+      "videoPath": "Media/videos/archive/020826-1/deal-ledger-reel.mp4",
+      "coverPath": "Media/videos/archive/020826-1/deal-ledger-reel-cover.png"
+    },
+    {
+      "renderedAt": "2026-08-02T15:17:42.483Z",
+      "status": "rendered",
+      "asins": [
+        "B0CG6NBJ61",
+        "B0DD7GPXFH",
+        "B072YVWBXH"
+      ],
+      "families": [
+        "smartwatch",
+        "monitor",
+        "electric-toothbrush"
+      ],
+      "categories": [
+        "Wearables",
+        "Tech",
+        "Personal care"
+      ],
+      "videoPath": "Media/videos/archive/020826-2/deal-ledger-reel.mp4",
+      "coverPath": "Media/videos/archive/020826-2/deal-ledger-reel-cover.png"
+    }
+  ]
+}

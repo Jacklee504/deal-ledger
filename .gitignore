@@ -1,6 +1,7 @@
 public/
 review-queue/
 content/deals-review/generated/
+# Local Bright Data downloads and social-media exports; never part of the Hugo site.
 /Media/
 .env
 .env.*

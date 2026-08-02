@@ -8,24 +8,17 @@
   "verification": {
     "zipcode": "94107"
   },
-  "keywords": [
-    "wireless noise cancelling headphones",
-    "mechanical keyboard",
-    "robot vacuum",
-    "air fryer",
-    "gaming monitor",
-    "portable monitor",
-    "bluetooth speaker",
-    "robot vacuum mop",
-    "smartwatch",
-    "espresso machine",
-    "electric toothbrush",
-    "external SSD",
-    "office chair"
+  "categories": [
+    {"id": "audio", "keyword": "wireless noise cancelling headphones"},
+    {"id": "tech", "keyword": "gaming monitor"},
+    {"id": "home-office", "keyword": "office chair"},
+    {"id": "kitchen", "keyword": "air fryer"},
+    {"id": "cleaning", "keyword": "robot vacuum"},
+    {"id": "personal-care", "keyword": "electric toothbrush"}
   ],
   "limits": {
     "max_brightdata_search_queries_per_run": 6,
-    "max_brightdata_products_per_run": 15
+    "max_brightdata_products_per_run": 24
   },
   "policy": {
     "minimum_discount_pct": 20,

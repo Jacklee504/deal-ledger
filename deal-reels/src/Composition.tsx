@@ -1,0 +1,31 @@
+import { Composition } from "remotion";
+import { DealLedgerReel } from "./DealLedgerReel";
+import reelData from "./data/reel.json";
+import { CoverScene } from "./scenes/CoverScene";
+import type { ReelData } from "./types";
+
+const reel = reelData as ReelData;
+const durationInFrames = reel.audioSegments.reduce((total, segment) => total + segment.durationInFrames, 0);
+
+export const DealLedgerComposition = () => {
+  return (
+    <>
+      <Composition
+        id="DealLedgerReel"
+        component={DealLedgerReel}
+        durationInFrames={durationInFrames}
+        fps={30}
+        width={1080}
+        height={1920}
+      />
+      <Composition
+        id="DealLedgerCover"
+        component={() => <CoverScene deals={reel.deals} />}
+        durationInFrames={1}
+        fps={30}
+        width={1080}
+        height={1920}
+      />
+    </>
+  );
+};

@@ -22,8 +22,8 @@ def config() -> dict[str, object]:
             "verification": {}, "limits": {}, "policy": {"trusted_seller_terms": []}}
 
 
-def verified(initial_price: object = "99.99") -> dict[str, object]:
-    return {"asin": "B012345678", "title": "Product", "url": "https://www.amazon.com/dp/B012345678",
+def verified(initial_price: object = "99.99", asin: str = "B012345678", title: str = "Product") -> dict[str, object]:
+    return {"asin": asin, "title": title, "url": f"https://www.amazon.com/dp/{asin}",
             "domain": "amazon.com", "currency": "USD", "final_price": "59.99", "initial_price": initial_price,
             "is_available": True, "buybox_seller": "Brand Store", "image_url": "https://images.example.test/p.jpg"}
 
@@ -35,6 +35,22 @@ class BrightDataIntakeTests(unittest.TestCase):
             {"asin": "B000000003", "keyword": "keyboards"}, {"asin": "B000000004", "keyword": "keyboards"},
         ]
         self.assertEqual([item["asin"] for item in MODULE.select_candidates(candidates, 4)], ["B000000001", "B000000003", "B000000002", "B000000004"])
+
+    def test_category_slots_and_winners_keep_one_verified_backup_per_category(self) -> None:
+        categories = MODULE.configured_categories({"categories": [{"id": "audio", "keyword": "headphones"}, {"id": "kitchen", "keyword": "air fryer"}]})
+        self.assertEqual(categories, [{"id": "audio", "keyword": "headphones"}, {"id": "kitchen", "keyword": "air fryer"}])
+        candidates = [
+            {"asin": "B000000001", "category": "audio"},
+            {"asin": "B000000002", "category": "audio"},
+            {"asin": "B000000003", "category": "kitchen"},
+        ]
+        normalized = {
+            "B000000002": {"asin": "B000000002", "title": "Audio deal"},
+            "B000000003": {"asin": "B000000003", "title": "Kitchen deal"},
+        }
+        winners, asins = MODULE.select_category_winners(candidates, normalized)
+        self.assertEqual([item["asin"] for item in winners], ["B000000002", "B000000003"])
+        self.assertEqual(asins, {"B000000002", "B000000003"})
 
     def test_documented_search_inputs_and_dataset_default(self) -> None:
         self.assertEqual(MODULE.brightdata_search_dataset_id({"discovery": {}}), "gd_lwdb4vjm1ehb499uxs")
@@ -134,6 +150,29 @@ class BrightDataIntakeTests(unittest.TestCase):
             search_call.assert_called_once(); draft_write.assert_not_called()
             self.assertEqual(report["providers"]["discovery"], "brightdata-amazon-products-search")
             self.assertEqual(report["verification"]["accepted"][0]["asin"], "B012345678")
+
+    def test_category_retry_only_resubmits_the_failed_slot(self) -> None:
+        category_config = {
+            "marketplace": "amazon.com",
+            "currency": "USD",
+            "categories": [{"id": "audio", "keyword": "headphones"}, {"id": "kitchen", "keyword": "air fryer"}],
+            "discovery": {"dataset_id": "gd_lwdb4vjm1ehb499uxs", "pages_to_search": 1},
+            "verification": {}, "limits": {}, "policy": {"trusted_seller_terms": []},
+        }
+        search = [
+            {"keyword": "headphones", "title": "Audio", "url": "https://www.amazon.com/dp/B000000001", "price": "60", "currency": "USD"},
+            {"keyword": "air fryer", "title": "Kitchen first", "url": "https://www.amazon.com/dp/B000000002", "price": "60", "currency": "USD"},
+            {"keyword": "air fryer", "title": "Kitchen backup", "url": "https://www.amazon.com/dp/B000000003", "price": "60", "currency": "USD"},
+        ]
+        with tempfile.TemporaryDirectory() as directory:
+            report_path = Path(directory) / "report.json"
+            with (patch.object(MODULE, "require_env", return_value={"BRIGHTDATA_API_TOKEN": "test", "BRIGHTDATA_DATASET_ID": "test"}), patch.object(MODULE, "load_json", return_value=category_config), patch.object(MODULE, "brightdata_search", return_value=search), patch.object(MODULE, "brightdata_verify", side_effect=[[verified(asin="B000000001", title="Audio")], [verified(asin="B000000003", title="Kitchen backup")]]) as verify_call, patch("sys.argv", ["fetch_deals_serpapi.py", "--dry-run", "--report-out", str(report_path)])):
+                self.assertEqual(MODULE.main(), 0)
+            report = json.loads(report_path.read_text())
+            self.assertEqual(verify_call.call_count, 2)
+            self.assertEqual(report["verification"]["rounds"][0]["submitted_asins"], ["B000000001", "B000000002"])
+            self.assertEqual(report["verification"]["rounds"][1]["submitted_asins"], ["B000000003"])
+            self.assertEqual([winner["asin"] for winner in report["verification"]["accepted"]], ["B000000001", "B000000003"])
 
 
 if __name__ == "__main__":

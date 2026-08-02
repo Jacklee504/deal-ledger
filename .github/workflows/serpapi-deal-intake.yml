@@ -4,14 +4,14 @@ on:
   workflow_dispatch:
     inputs:
       max_queries:
-        description: "Amazon US keyword searches to run (safe maximum is 1 for dry runs)"
+        description: "Amazon US category slots to search (maximum is 6)"
         required: true
-        default: "1"
+        default: "6"
         type: string
       max_products:
-        description: "Candidate product URLs to verify with Bright Data (safe maximum is 3)"
+        description: "Backup product URLs to verify with Bright Data (maximum is 24)"
         required: true
-        default: "3"
+        default: "24"
         type: string
 
 jobs:
