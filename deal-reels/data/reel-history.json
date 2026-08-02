@@ -60,6 +60,62 @@
       ],
       "videoPath": "Media/videos/archive/020826-2/deal-ledger-reel.mp4",
       "coverPath": "Media/videos/archive/020826-2/deal-ledger-reel-cover.png"
+    },
+    {
+      "renderedAt": "2026-08-02T18:36:04.351Z",
+      "status": "rendered",
+      "asins": [
+        "B0CQXMXJC5",
+        "B01MTB55WH",
+        "B0BRKPVZB4"
+      ],
+      "families": [
+        "headphones",
+        "speaker"
+      ],
+      "categories": [
+        "Audio"
+      ],
+      "videoPath": "Media/videos/archive/020826-3/deal-ledger-reel.mp4",
+      "coverPath": "Media/videos/archive/020826-3/deal-ledger-reel-cover.png",
+      "instagramCoverPath": "Media/videos/archive/020826-3/deal-ledger-reel-instagram-cover.png"
+    },
+    {
+      "renderedAt": "2026-08-02T18:36:49.891Z",
+      "status": "rendered",
+      "asins": [
+        "B0CQXMXJC5",
+        "B01MTB55WH",
+        "B0BRKPVZB4"
+      ],
+      "families": [
+        "headphones",
+        "speaker"
+      ],
+      "categories": [
+        "Audio"
+      ],
+      "videoPath": "Media/videos/archive/020826-3/deal-ledger-reel.mp4",
+      "coverPath": "Media/videos/archive/020826-3/deal-ledger-reel-cover.png",
+      "instagramCoverPath": "Media/videos/archive/020826-3/deal-ledger-reel-instagram-cover.png"
+    },
+    {
+      "renderedAt": "2026-08-02T18:37:44.673Z",
+      "status": "rendered",
+      "asins": [
+        "B09H8CWFNK",
+        "B0DWXBCQVP",
+        "B0DSP8J476"
+      ],
+      "families": [
+        "robot-vacuum"
+      ],
+      "categories": [
+        "Home"
+      ],
+      "videoPath": "Media/videos/archive/020826-4/deal-ledger-reel.mp4",
+      "coverPath": "Media/videos/archive/020826-4/deal-ledger-reel-cover.png",
+      "instagramCoverPath": "Media/videos/archive/020826-4/deal-ledger-reel-instagram-cover.png"
     }
   ]
 }

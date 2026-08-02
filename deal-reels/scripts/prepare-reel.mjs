@@ -108,14 +108,22 @@ const compactTitle = (title) => {
 const spokenTitle = (title) => {
   const override = productNameOverride(title);
   if (override) return override.spoken;
-  return normalizeProductName(title)
-    .replace(/\bGPS\b/gi, "G P S")
-    .replace(/\bWi-?Fi\b/gi, "why fi")
-    .replace(/\b[A-Za-z]*\d+[A-Za-z0-9+.-]*\b/g, "")
-    .replace(/\b(AI|Ultra|Pro|Series)\b/gi, "")
-    .replace(/\s{2,}/g, " ")
-    .trim()
-    .slice(0, 42);
+  const source = normalizeProductName(title).toLowerCase();
+  const labels = [
+    [/robot vacuum|vacuum.*mop/, "a robot vacuum and mop"],
+    [/electric toothbrush/, "an electric toothbrush"],
+    [/headphones?|headset/, "wireless noise-cancelling headphones"],
+    [/speaker/, "a Bluetooth speaker"],
+    [/smartwatch|apple watch|watch series/, "a GPS smartwatch"],
+    [/air fryer/, "an air fryer"],
+    [/monitor|display/, "a curved gaming monitor"],
+    [/television|\btv\b/, "a smart TV"],
+    [/keyboard/, "a mechanical keyboard"],
+    [/\bmouse\b/, "a wireless mouse"],
+    [/desktop|computer|laptop/, "a laptop"],
+    [/office chair/, "an office chair"],
+  ];
+  return labels.find(([pattern]) => pattern.test(source))?.[1] ?? "a standout deal";
 };
 
 const candidates = storePaths

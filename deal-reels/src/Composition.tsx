@@ -26,6 +26,14 @@ export const DealLedgerComposition = () => {
         width={1080}
         height={1920}
       />
+      <Composition
+        id="DealLedgerInstagramCover"
+        component={() => <CoverScene deals={reel.deals} social />}
+        durationInFrames={1}
+        fps={30}
+        width={1080}
+        height={1440}
+      />
     </>
   );
 };

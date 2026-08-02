@@ -39,7 +39,7 @@ export const recentReelUsage = ({ asinDays = 30, familyDays = 60 } = {}) => {
   return { asins, families, categories };
 };
 
-export const recordRenderedReel = (reel, { videoPath, coverPath }) => {
+export const recordRenderedReel = (reel, { videoPath, coverPath, instagramCoverPath }) => {
   const history = loadHistory();
   const record = {
     renderedAt: new Date().toISOString(),
@@ -49,6 +49,7 @@ export const recordRenderedReel = (reel, { videoPath, coverPath }) => {
     categories: [...new Set(reel.deals.map((deal) => deal.category).filter(Boolean))],
     videoPath,
     coverPath,
+    instagramCoverPath,
   };
   mkdirSync(dirname(historyPath), { recursive: true });
   writeFileSync(historyPath, `${JSON.stringify({ version: 1, reels: [...history.reels, record].slice(-100) }, null, 2)}\n`);
