@@ -3,6 +3,7 @@ import { cpSync, existsSync, mkdirSync, rmSync, readFileSync, writeFileSync } fr
 import { delimiter, dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { recentReelUsage } from "./reel-history.mjs";
+import { dealContentFileForPath, dealFilesByLowercaseName } from "./deal-content-paths.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const projectRoot = resolve(here, "..");
@@ -13,6 +14,10 @@ const imageDirectory = join(publicDirectory, "deals");
 const audioDirectory = join(publicDirectory, "audio");
 const localPythonPackages = join(projectRoot, ".tools");
 const fps = 30;
+const dealContentDirectory = join(siteRoot, "content", "deals");
+// Hugo URLs are lowercase, while ASIN-named Markdown files retain Amazon's uppercase
+// convention. macOS masks that mismatch; GitHub's Linux runner does not.
+const dealFiles = dealFilesByLowercaseName(dealContentDirectory);
 const requestedAsins = (() => {
   const optionIndex = process.argv.indexOf("--asins");
   if (optionIndex === -1) return null;
@@ -128,8 +133,8 @@ const spokenTitle = (title) => {
 
 const candidates = storePaths
   .map((dealPath) => {
-    const file = join(siteRoot, "content", `${dealPath}.md`);
-    if (!existsSync(file)) return null;
+    const file = dealContentFileForPath(dealFiles, dealPath);
+    if (!file || !existsSync(file)) return null;
     const data = parseFrontmatter(readFileSync(file, "utf8"));
     const salePrice = Number(data.listing_sale_price ?? data.sale_price);
     const listPrice = Number(data.listing_list_price ?? data.list_price);

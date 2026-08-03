@@ -67,7 +67,9 @@ jobs:
           npx remotion versions
 
       - name: Lint renderer source
-        run: npm run lint
+        run: |
+          npm test
+          npm run lint
 
       - name: Render current Deal Ledger reel
         id: render
