@@ -1,0 +1,40 @@
+{
+  "generatedAt": "2000-01-01T00:00:00.000Z",
+  "audioSegments": [
+    { "path": "audio/fixture-1.mp3", "durationInFrames": 90 },
+    { "path": "audio/fixture-2.mp3", "durationInFrames": 120 },
+    { "path": "audio/fixture-3.mp3", "durationInFrames": 120 },
+    { "path": "audio/fixture-4.mp3", "durationInFrames": 120 },
+    { "path": "audio/fixture-5.mp3", "durationInFrames": 90 },
+    { "path": "audio/fixture-6.mp3", "durationInFrames": 90 }
+  ],
+  "deals": [
+    {
+      "asin": "FIXTURE001",
+      "title": "Fixture audio deal",
+      "shortTitle": "Fixture audio deal",
+      "salePrice": 39.99,
+      "listPrice": 79.99,
+      "discountPct": 0.5,
+      "imagePath": "deals/fixture-1.jpg"
+    },
+    {
+      "asin": "FIXTURE002",
+      "title": "Fixture home deal",
+      "shortTitle": "Fixture home deal",
+      "salePrice": 49.99,
+      "listPrice": 99.99,
+      "discountPct": 0.5,
+      "imagePath": "deals/fixture-2.jpg"
+    },
+    {
+      "asin": "FIXTURE003",
+      "title": "Fixture kitchen deal",
+      "shortTitle": "Fixture kitchen deal",
+      "salePrice": 59.99,
+      "listPrice": 119.99,
+      "discountPct": 0.5,
+      "imagePath": "deals/fixture-3.jpg"
+    }
+  ]
+}

@@ -25,6 +25,8 @@ Run **Deal Ledger reel render capability test** manually from the repository's A
 - the MP4 is H.264, 1080 × 1920, at least 15 seconds long, and has audio;
 - the TikTok cover is 1080 × 1920 and the Instagram cover is 1080 × 1440.
 
+`src/data/reel.json` is generated and deliberately ignored by Git. `npm run lint` creates a non-renderable local fixture only when that file is absent, so a fresh GitHub runner can type-check the renderer. The real preparation step always replaces it with current live deal data before rendering.
+
 The workflow never publishes to social media. To also prove the R2 handoff, set **Upload the verified output to R2** to true and configure these repository settings first:
 
 - Secrets: `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `R2_ENDPOINT` (the account-specific S3 endpoint);

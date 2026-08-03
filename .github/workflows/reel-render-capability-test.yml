@@ -125,7 +125,7 @@ jobs:
 
       - name: Upload render artifact
         if: ${{ always() && inputs.save_artifact }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: deal-ledger-reel-render-${{ github.run_id }}
           path: |

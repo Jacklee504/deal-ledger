@@ -25,7 +25,7 @@
     "dev": "remotion studio",
     "build": "remotion bundle",
     "upgrade": "remotion upgrade",
-    "lint": "eslint src && tsc",
+    "lint": "node scripts/ensure-reel-data.mjs && eslint src && tsc",
     "prepare-reel": "node scripts/prepare-reel.mjs",
     "render:reel": "node scripts/render-reel.mjs",
     "render:explainers": "node scripts/render-explainers.mjs"
