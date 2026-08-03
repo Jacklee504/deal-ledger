@@ -1,31 +1,34 @@
-name: Deal Ledger reel render capability test
+name: Scheduled Deal Ledger reel
 
 on:
+  schedule:
+    # Tuesday and Friday at 14:00 UTC.
+    - cron: "0 14 * * 2,5"
   workflow_dispatch:
     inputs:
       asins:
-        description: "Exactly three eligible, live US deal ASINs to render"
-        required: true
-        default: "B09H8CWFNK,B0DWXBCQVP,B0DSP8J476"
+        description: "Optional: exactly three eligible, live US deal ASINs for a controlled render"
+        required: false
+        default: ""
         type: string
       upload_to_r2:
-        description: "Upload the verified output to R2 and test the credentials"
+        description: "Explicitly upload the verified output to R2 (manual runs only)"
         required: true
         default: false
         type: boolean
       save_artifact:
-        description: "Keep a three-day Actions artifact for download and inspection"
+        description: "Keep a three-day Media/videos artifact for download"
         required: true
         default: true
         type: boolean
 
 concurrency:
-  group: deal-ledger-reel-render-capability-test
+  group: scheduled-deal-ledger-reel
   cancel-in-progress: false
 
 jobs:
-  render-smoke:
-    name: Render, inspect, and optionally upload
+  render:
+    name: Render and package current deal reel
     runs-on: ubuntu-24.04
     timeout-minutes: 35
     permissions:
@@ -55,36 +58,28 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install --yes --no-install-recommends ffmpeg
-          command -v ffmpeg
-          command -v ffprobe
 
       - name: Install render dependencies
         run: |
           npm ci
           python -m pip install --disable-pip-version-check --no-cache-dir -r requirements-render.txt
 
-      - name: Check runner capabilities
-        run: |
-          node --version
-          npm --version
-          python --version
-          python -c "import edge_tts; print(f'edge-tts {edge_tts.__version__}')"
-          ffmpeg -version | sed -n '1p'
-          ffprobe -version | sed -n '1p'
-          npx remotion versions
-
       - name: Lint renderer source
         run: |
           npm test
           npm run lint
 
-      - name: Render current Deal Ledger reel
+      - name: Render eligible live US deals
         id: render
         env:
-          REEL_ASINS: ${{ inputs.asins }}
+          REQUESTED_ASINS: ${{ inputs.asins }}
         run: |
           started_at="$(date +%s)"
-          npm run render:reel -- --asins "$REEL_ASINS"
+          if [ -n "$REQUESTED_ASINS" ]; then
+            npm run render:reel -- --asins "$REQUESTED_ASINS"
+          else
+            npm run render:reel
+          fi
           archive_dir="$(find ../Media/videos/archive -mindepth 1 -maxdepth 1 -type d -print -quit)"
           test -n "$archive_dir"
           archive_dir="$(cd "$archive_dir" && pwd)"
@@ -101,7 +96,7 @@ jobs:
 
       - name: Package Media output for download
         id: package
-        if: ${{ steps.render.outcome == 'success' && inputs.save_artifact }}
+        if: ${{ steps.render.outcome == 'success' && (github.event_name == 'schedule' || inputs.save_artifact) }}
         env:
           ARCHIVE_DIR: ${{ steps.render.outputs.archive_dir }}
         run: |
@@ -113,7 +108,7 @@ jobs:
           echo "package_dir=$package_dir" >> "$GITHUB_OUTPUT"
 
       - name: Upload verified media to R2
-        if: ${{ inputs.upload_to_r2 }}
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.upload_to_r2 }}
         env:
           ARCHIVE_DIR: ${{ steps.render.outputs.archive_dir }}
           R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
@@ -131,7 +126,7 @@ jobs:
           export AWS_ACCESS_KEY_ID="$R2_ACCESS_KEY_ID"
           export AWS_SECRET_ACCESS_KEY="$R2_SECRET_ACCESS_KEY"
           command -v aws >/dev/null || python -m pip install --disable-pip-version-check --no-cache-dir awscli
-          prefix="social/render-smoke/${GITHUB_RUN_ID}"
+          prefix="social/scheduled-reels/${GITHUB_RUN_ID}"
           aws s3 sync "$ARCHIVE_DIR" "s3://${R2_BUCKET}/${prefix}" --endpoint-url "$R2_ENDPOINT" --no-progress
           for file in deal-ledger-reel.mp4 deal-ledger-reel-cover.png deal-ledger-reel-instagram-cover.png; do
             aws s3api head-object --bucket "$R2_BUCKET" --key "${prefix}/${file}" --endpoint-url "$R2_ENDPOINT" >/dev/null
@@ -145,18 +140,89 @@ jobs:
           echo "## R2 upload" >> "$GITHUB_STEP_SUMMARY"
           echo "Verified R2 object prefix: \`${prefix}\`." >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Upload render artifact
-        if: ${{ always() && steps.render.outcome == 'success' && inputs.save_artifact }}
+      - name: Upload Media/videos artifact
+        if: ${{ always() && steps.render.outcome == 'success' && (github.event_name == 'schedule' || inputs.save_artifact) }}
         uses: actions/upload-artifact@v6
         with:
-          name: deal-ledger-reel-render-${{ github.run_id }}
-          path: |
-            ${{ steps.package.outputs.package_dir }}
-          if-no-files-found: warn
+          name: deal-ledger-reel-${{ github.run_id }}
+          path: ${{ steps.package.outputs.package_dir }}
+          if-no-files-found: error
           retention-days: 3
+
+      - name: Upload generated cooldown history for scheduled persistence
+        if: ${{ github.event_name == 'schedule' && steps.verify.outcome == 'success' }}
+        uses: actions/upload-artifact@v6
+        with:
+          name: scheduled-deal-ledger-reel-history-${{ github.run_id }}
+          path: deal-reels/data/reel-history.json
+          if-no-files-found: error
+          retention-days: 1
 
       - name: Report render duration
         if: ${{ always() }}
         run: |
-          echo "## Render capability result" >> "$GITHUB_STEP_SUMMARY"
+          echo "## Scheduled reel result" >> "$GITHUB_STEP_SUMMARY"
           echo "Render seconds: ${{ steps.render.outputs.render_seconds || 'not available' }}" >> "$GITHUB_STEP_SUMMARY"
+
+  persist-cooldown-history:
+    name: Persist scheduled reel cooldown history
+    needs: render
+    if: ${{ github.event_name == 'schedule' && needs.render.result == 'success' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      # This job alone needs write access, and commits only the cooldown file.
+      contents: write
+
+    steps:
+      - name: Checkout default branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Download generated cooldown history
+        uses: actions/download-artifact@v4
+        with:
+          name: scheduled-deal-ledger-reel-history-${{ github.run_id }}
+          path: ${{ runner.temp }}/scheduled-reel-history
+
+      - name: Commit only the generated cooldown history
+        env:
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          generated_history="$(find "$RUNNER_TEMP/scheduled-reel-history" -type f -name reel-history.json -print -quit)"
+          test -n "$generated_history"
+          for attempt in 1 2 3; do
+            git fetch origin "$DEFAULT_BRANCH"
+            worktree="$RUNNER_TEMP/scheduled-reel-history-${attempt}"
+            git worktree add --detach "$worktree" "origin/$DEFAULT_BRANCH"
+            if (
+              cd "$worktree"
+              node deal-reels/scripts/reel-history.mjs --merge deal-reels/data/reel-history.json "$generated_history"
+              git add -- deal-reels/data/reel-history.json
+              if git diff --cached --quiet -- deal-reels/data/reel-history.json; then
+                exit 10
+              fi
+              git config user.name "github-actions[bot]"
+              git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+              git commit --only deal-reels/data/reel-history.json -m "chore: record scheduled Deal Ledger reel"
+              git push origin "HEAD:${DEFAULT_BRANCH}"
+            ); then
+              echo "Persisted merged deal-reels/data/reel-history.json to ${DEFAULT_BRANCH}." >> "$GITHUB_STEP_SUMMARY"
+              exit 0
+            else
+              status=$?
+            fi
+            if [ "$status" -eq 10 ]; then
+              echo "Cooldown history was already current." >> "$GITHUB_STEP_SUMMARY"
+              exit 0
+            fi
+            echo "Cooldown history push attempt ${attempt} failed; retrying with the latest default branch." >> "$GITHUB_STEP_SUMMARY"
+          done
+          echo "Could not persist cooldown history after three attempts." >&2
+          exit 1

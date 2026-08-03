@@ -8,14 +8,74 @@ const historyPath = join(reelRoot, "data", "reel-history.json");
 
 const emptyHistory = () => ({ version: 1, reels: [] });
 
-const loadHistory = () => {
-  if (!existsSync(historyPath)) return emptyHistory();
+const normalizedTextKey = (value) => String(value ?? "").normalize("NFKC").trim().toLowerCase().replace(/\s+/g, " ");
+const normalizedAsin = (value) => normalizedTextKey(value).toUpperCase();
+
+const normalizedValues = (values, normalize) => [
+  ...new Set((Array.isArray(values) ? values : []).map(normalize).filter(Boolean)),
+];
+
+const canonicalizeRecord = (record) => ({
+  ...record,
+  asins: normalizedValues(record.asins, normalizedAsin),
+  families: normalizedValues(record.families, normalizedTextKey),
+  categories: normalizedValues(record.categories, normalizedTextKey),
+});
+
+const stableJson = (value) => {
+  if (Array.isArray(value)) return `[${value.map(stableJson).join(",")}]`;
+  if (value && typeof value === "object") {
+    return `{${Object.keys(value).sort().map((key) => `${JSON.stringify(key)}:${stableJson(value[key])}`).join(",")}}`;
+  }
+  return JSON.stringify(value);
+};
+
+class NormalizedKeySet extends Set {
+  constructor(normalize) {
+    super();
+    this.normalize = normalize;
+  }
+
+  add(value) {
+    return super.add(this.normalize(value));
+  }
+
+  has(value) {
+    return super.has(this.normalize(value));
+  }
+}
+
+const loadHistory = (filePath = historyPath) => {
+  if (!existsSync(filePath)) return emptyHistory();
   try {
-    const history = JSON.parse(readFileSync(historyPath, "utf8"));
+    const history = JSON.parse(readFileSync(filePath, "utf8"));
     return Array.isArray(history.reels) ? history : emptyHistory();
   } catch {
     return emptyHistory();
   }
+};
+
+export const mergeReelHistories = (currentHistory, generatedHistory) => {
+  const records = [...(currentHistory?.reels ?? []), ...(generatedHistory?.reels ?? [])]
+    .filter((record) => record && typeof record === "object" && !Array.isArray(record))
+    .map(canonicalizeRecord);
+  const uniqueRecords = new Map(records.map((record) => [stableJson(record), record]));
+  const reels = [...uniqueRecords.entries()]
+    .sort(([leftKey, left], [rightKey, right]) => {
+      const leftTime = Date.parse(left.renderedAt) || 0;
+      const rightTime = Date.parse(right.renderedAt) || 0;
+      return leftTime - rightTime || leftKey.localeCompare(rightKey);
+    })
+    .map(([, record]) => record)
+    .slice(-100);
+  return { version: 1, reels };
+};
+
+export const mergeReelHistoryFiles = (targetHistoryFile, generatedHistoryFile) => {
+  const mergedHistory = mergeReelHistories(loadHistory(targetHistoryFile), loadHistory(generatedHistoryFile));
+  mkdirSync(dirname(targetHistoryFile), { recursive: true });
+  writeFileSync(targetHistoryFile, `${JSON.stringify(mergedHistory, null, 2)}\n`);
+  return mergedHistory;
 };
 
 const isWithinDays = (value, days, now = Date.now()) => {
@@ -23,35 +83,53 @@ const isWithinDays = (value, days, now = Date.now()) => {
   return Number.isFinite(timestamp) && timestamp >= now - days * 24 * 60 * 60 * 1000;
 };
 
-export const recentReelUsage = ({ asinDays = 30, familyDays = 60 } = {}) => {
-  const history = loadHistory();
-  const asins = new Set();
-  const families = new Set();
-  const categories = new Set();
+export const recentReelUsage = ({ asinDays = 30, familyDays = 60, historyFile = historyPath, now = Date.now() } = {}) => {
+  const history = loadHistory(historyFile);
+  // These sets normalize lookup values too, so legacy keys such as "home"
+  // still block the display label "Home" used by the selector.
+  const asins = new NormalizedKeySet(normalizedAsin);
+  const families = new NormalizedKeySet(normalizedTextKey);
+  const categories = new NormalizedKeySet(normalizedTextKey);
 
   for (const reel of history.reels) {
-    if (isWithinDays(reel.renderedAt, asinDays)) for (const asin of reel.asins ?? []) asins.add(asin);
-    if (isWithinDays(reel.renderedAt, familyDays)) {
-      for (const family of reel.families ?? []) families.add(family);
-      for (const category of reel.categories ?? []) categories.add(category);
+    if (isWithinDays(reel.renderedAt, asinDays, now)) {
+      for (const asin of reel.asins ?? []) {
+        if (normalizedAsin(asin)) asins.add(asin);
+      }
+    }
+    if (isWithinDays(reel.renderedAt, familyDays, now)) {
+      for (const family of reel.families ?? []) {
+        if (normalizedTextKey(family)) families.add(family);
+      }
+      for (const category of reel.categories ?? []) {
+        if (normalizedTextKey(category)) categories.add(category);
+      }
     }
   }
   return { asins, families, categories };
 };
 
-export const recordRenderedReel = (reel, { videoPath, coverPath, instagramCoverPath }) => {
-  const history = loadHistory();
+export const recordRenderedReel = (reel, { videoPath, coverPath, instagramCoverPath, historyFile = historyPath, now = new Date() }) => {
+  const history = loadHistory(historyFile);
   const record = {
-    renderedAt: new Date().toISOString(),
+    renderedAt: new Date(now).toISOString(),
     status: "rendered",
-    asins: reel.deals.map((deal) => deal.asin),
-    families: [...new Set(reel.deals.map((deal) => deal.family).filter(Boolean))],
-    categories: [...new Set(reel.deals.map((deal) => deal.category).filter(Boolean))],
+    asins: [...new Set(reel.deals.map((deal) => normalizedAsin(deal.asin)).filter(Boolean))],
+    families: [...new Set(reel.deals.map((deal) => normalizedTextKey(deal.family)).filter(Boolean))],
+    categories: [...new Set(reel.deals.map((deal) => normalizedTextKey(deal.category)).filter(Boolean))],
     videoPath,
     coverPath,
     instagramCoverPath,
   };
-  mkdirSync(dirname(historyPath), { recursive: true });
-  writeFileSync(historyPath, `${JSON.stringify({ version: 1, reels: [...history.reels, record].slice(-100) }, null, 2)}\n`);
+  mkdirSync(dirname(historyFile), { recursive: true });
+  writeFileSync(historyFile, `${JSON.stringify({ version: 1, reels: [...history.reels, record].slice(-100) }, null, 2)}\n`);
   return record;
 };
+
+if (resolve(process.argv[1] ?? "") === fileURLToPath(import.meta.url)) {
+  const [command, targetHistoryFile, generatedHistoryFile] = process.argv.slice(2);
+  if (command !== "--merge" || !targetHistoryFile || !generatedHistoryFile) {
+    throw new Error("Usage: node reel-history.mjs --merge <target-history-file> <generated-history-file>");
+  }
+  mergeReelHistoryFiles(targetHistoryFile, generatedHistoryFile);
+}
