@@ -51,6 +51,13 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Install FFmpeg tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends ffmpeg
+          command -v ffmpeg
+          command -v ffprobe
+
       - name: Install render dependencies
         run: |
           npm ci
@@ -126,7 +133,7 @@ jobs:
           echo "Verified R2 object prefix: \`${prefix}\`." >> "$GITHUB_STEP_SUMMARY"
 
       - name: Upload render artifact
-        if: ${{ always() && inputs.save_artifact }}
+        if: ${{ always() && steps.render.outcome == 'success' && inputs.save_artifact }}
         uses: actions/upload-artifact@v6
         with:
           name: deal-ledger-reel-render-${{ github.run_id }}
