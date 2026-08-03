@@ -239,8 +239,11 @@ const audioSegments = voiceoverSegments.map(createVoiceSegment);
 
 const logoSource = join(siteRoot, "static", "images", "brand", "deal-ledger-logo.svg");
 const logoTarget = join(publicDirectory, "brand", "deal-ledger-logo.svg");
+const circularLogoSource = join(siteRoot, "static", "images", "brand", "deal-ledger-logo-circle.svg");
+const circularLogoTarget = join(publicDirectory, "brand", "deal-ledger-logo-circle.svg");
 mkdirSync(dirname(logoTarget), { recursive: true });
 cpSync(logoSource, logoTarget);
+cpSync(circularLogoSource, circularLogoTarget);
 
 writeFileSync(
   join(dataDirectory, "reel.json"),
