@@ -1,0 +1,2 @@
+# Kept separate from the Node project because Edge TTS is invoked by the render-preparation scripts.
+edge-tts==7.2.8

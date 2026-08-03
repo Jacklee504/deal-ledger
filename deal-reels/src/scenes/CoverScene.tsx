@@ -36,17 +36,18 @@ export const CoverScene: React.FC<{ deals: Deal[]; square?: boolean; social?: bo
                 style={{
                   flex: 1,
                   display: "flex",
+                  isolation: "isolate",
                   overflow: "hidden",
                   borderRadius: 38,
                   background: "#fffdf9",
                   boxShadow: "0 20px 42px rgba(29, 43, 36, 0.12)",
                 }}
               >
-                <div style={{ flex: 1, minWidth: 0, display: "flex", alignItems: "center", justifyContent: "center", padding: "18px 38px" }}>
-                  <Img src={staticFile(deal.imagePath)} style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+                <div style={{ position: "relative", zIndex: 1, flex: 1, minWidth: 0, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", padding: "18px 38px" }}>
+                  <Img src={staticFile(deal.imagePath)} style={{ position: "relative", zIndex: 1, display: "block", width: "100%", height: "100%", maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }} />
                 </div>
-                <div style={{ width: 255, background: "#136f63", color: "#fffdf9", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", padding: 20, textAlign: "center" }}>
-                  <div style={{ color: "#bde3d5", fontSize: 18, fontWeight: 850, letterSpacing: "0.12em" }}>SAVE</div>
+                <div style={{ position: "relative", zIndex: 2, width: 255, background: "#17332e", color: "#fffdf9", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", padding: 20, textAlign: "center" }}>
+                  <div style={{ color: "#d7e8df", fontSize: 18, fontWeight: 850, letterSpacing: "0.12em" }}>SAVE</div>
                   <div style={{ marginTop: 4, fontSize: 61, fontWeight: 900, letterSpacing: "-3px", lineHeight: 0.9 }}>{Math.round(deal.discountPct * 100)}%</div>
                   <div style={{ marginTop: 3, fontSize: 22, fontWeight: 850, letterSpacing: "0.09em" }}>OFF</div>
                 </div>
@@ -103,17 +104,18 @@ export const CoverScene: React.FC<{ deals: Deal[]; square?: boolean; social?: bo
             style={{
               display: "flex",
               flexDirection: "column",
+              isolation: "isolate",
               overflow: "hidden",
               borderRadius: tileRadius,
               background: "#fffdf9",
               boxShadow: "0 24px 52px rgba(29, 43, 36, 0.12)",
             }}
           >
-            <div style={{ flex: 1, minHeight: 0, display: "flex", alignItems: "center", justifyContent: "center", padding: productPadding }}>
-              <Img src={staticFile(deal.imagePath)} style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+            <div style={{ position: "relative", zIndex: 1, flex: 1, minHeight: 0, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", padding: productPadding }}>
+              <Img src={staticFile(deal.imagePath)} style={{ position: "relative", zIndex: 1, display: "block", width: "100%", height: "100%", maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }} />
             </div>
-            <div style={{ background: "#136f63", color: "#fffdf9", padding: discountPadding, textAlign: "center" }}>
-              <div style={{ color: "#bde3d5", fontSize: square ? 12 : 20, fontWeight: 850, letterSpacing: "0.12em" }}>SAVE</div>
+            <div style={{ position: "relative", zIndex: 2, background: "#17332e", color: "#fffdf9", padding: discountPadding, textAlign: "center" }}>
+              <div style={{ color: "#d7e8df", fontSize: square ? 12 : 20, fontWeight: 850, letterSpacing: "0.12em" }}>SAVE</div>
               <div style={{ fontSize: square ? 38 : 66, fontWeight: 900, letterSpacing: square ? "-2px" : "-3px", lineHeight: 0.94 }}>{Math.round(deal.discountPct * 100)}% OFF</div>
             </div>
           </div>

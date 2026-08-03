@@ -2,6 +2,7 @@ import { Composition } from "remotion";
 import { DealLedgerReel } from "./DealLedgerReel";
 import reelData from "./data/reel.json";
 import { CoverScene } from "./scenes/CoverScene";
+import { DealLedgerExplainer } from "./ExplainerReel";
 import type { ReelData } from "./types";
 
 const reel = reelData as ReelData;
@@ -34,6 +35,9 @@ export const DealLedgerComposition = () => {
         width={1080}
         height={1440}
       />
+      <Composition id="DealLedgerExplainerSaveTime" component={() => <DealLedgerExplainer variant="save-time" />} durationInFrames={600} fps={30} width={1080} height={1920} />
+      <Composition id="DealLedgerExplainerClearPrice" component={() => <DealLedgerExplainer variant="clear-price" />} durationInFrames={600} fps={30} width={1080} height={1920} />
+      <Composition id="DealLedgerExplainerPersonalAlerts" component={() => <DealLedgerExplainer variant="personal-alerts" />} durationInFrames={600} fps={30} width={1080} height={1920} />
     </>
   );
 };

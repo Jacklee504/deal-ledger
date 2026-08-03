@@ -1,0 +1,141 @@
+name: Deal Ledger reel render capability test
+
+on:
+  workflow_dispatch:
+    inputs:
+      asins:
+        description: "Exactly three eligible, live US deal ASINs to render"
+        required: true
+        default: "B09H8CWFNK,B0DWXBCQVP,B0DSP8J476"
+        type: string
+      upload_to_r2:
+        description: "Upload the verified output to R2 and test the credentials"
+        required: true
+        default: false
+        type: boolean
+      save_artifact:
+        description: "Keep a three-day Actions artifact for download and inspection"
+        required: true
+        default: true
+        type: boolean
+
+concurrency:
+  group: deal-ledger-reel-render-capability-test
+  cancel-in-progress: false
+
+jobs:
+  render-smoke:
+    name: Render, inspect, and optionally upload
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    permissions:
+      contents: read
+
+    defaults:
+      run:
+        working-directory: deal-reels
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: deal-reels/package-lock.json
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install render dependencies
+        run: |
+          npm ci
+          python -m pip install --disable-pip-version-check --no-cache-dir -r requirements-render.txt
+
+      - name: Check runner capabilities
+        run: |
+          node --version
+          npm --version
+          python --version
+          python -c "import edge_tts; print(f'edge-tts {edge_tts.__version__}')"
+          ffmpeg -version | sed -n '1p'
+          ffprobe -version | sed -n '1p'
+          npx remotion versions
+
+      - name: Lint renderer source
+        run: npm run lint
+
+      - name: Render current Deal Ledger reel
+        id: render
+        env:
+          REEL_ASINS: ${{ inputs.asins }}
+        run: |
+          started_at="$(date +%s)"
+          npm run render:reel -- --asins "$REEL_ASINS"
+          archive_dir="$(find ../Media/videos/archive -mindepth 1 -maxdepth 1 -type d -print -quit)"
+          test -n "$archive_dir"
+          archive_dir="$(cd "$archive_dir" && pwd)"
+          echo "archive_dir=$archive_dir" >> "$GITHUB_OUTPUT"
+          echo "render_seconds=$(( $(date +%s) - started_at ))" >> "$GITHUB_OUTPUT"
+
+      - name: Verify rendered media
+        id: verify
+        env:
+          ARCHIVE_DIR: ${{ steps.render.outputs.archive_dir }}
+        run: |
+          node scripts/verify-render-output.mjs "$ARCHIVE_DIR" --report "$RUNNER_TEMP/render-report.json"
+          cat "$RUNNER_TEMP/render-report.json" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload verified media to R2
+        if: ${{ inputs.upload_to_r2 }}
+        env:
+          ARCHIVE_DIR: ${{ steps.render.outputs.archive_dir }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_ENDPOINT: ${{ secrets.R2_ENDPOINT }}
+          R2_BUCKET: ${{ vars.R2_BUCKET }}
+          R2_PUBLIC_BASE_URL: ${{ vars.R2_PUBLIC_BASE_URL }}
+          AWS_EC2_METADATA_DISABLED: "true"
+          AWS_DEFAULT_REGION: auto
+        run: |
+          test -n "$R2_ACCESS_KEY_ID" || { echo "Missing R2_ACCESS_KEY_ID secret."; exit 1; }
+          test -n "$R2_SECRET_ACCESS_KEY" || { echo "Missing R2_SECRET_ACCESS_KEY secret."; exit 1; }
+          test -n "$R2_ENDPOINT" || { echo "Missing R2_ENDPOINT secret."; exit 1; }
+          test -n "$R2_BUCKET" || { echo "Missing R2_BUCKET repository variable."; exit 1; }
+          export AWS_ACCESS_KEY_ID="$R2_ACCESS_KEY_ID"
+          export AWS_SECRET_ACCESS_KEY="$R2_SECRET_ACCESS_KEY"
+          command -v aws >/dev/null || python -m pip install --disable-pip-version-check --no-cache-dir awscli
+          prefix="social/render-smoke/${GITHUB_RUN_ID}"
+          aws s3 sync "$ARCHIVE_DIR" "s3://${R2_BUCKET}/${prefix}" --endpoint-url "$R2_ENDPOINT" --no-progress
+          for file in deal-ledger-reel.mp4 deal-ledger-reel-cover.png deal-ledger-reel-instagram-cover.png; do
+            aws s3api head-object --bucket "$R2_BUCKET" --key "${prefix}/${file}" --endpoint-url "$R2_ENDPOINT" >/dev/null
+          done
+          if [ -n "$R2_PUBLIC_BASE_URL" ]; then
+            base="${R2_PUBLIC_BASE_URL%/}/${prefix}"
+            for file in deal-ledger-reel.mp4 deal-ledger-reel-cover.png deal-ledger-reel-instagram-cover.png; do
+              curl --fail --silent --show-error --retry 3 --head "${base}/${file}" >/dev/null
+            done
+          fi
+          echo "## R2 upload" >> "$GITHUB_STEP_SUMMARY"
+          echo "Verified R2 object prefix: \`${prefix}\`." >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload render artifact
+        if: ${{ always() && inputs.save_artifact }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: deal-ledger-reel-render-${{ github.run_id }}
+          path: |
+            ${{ steps.render.outputs.archive_dir }}
+            ${{ runner.temp }}/render-report.json
+          if-no-files-found: warn
+          retention-days: 3
+
+      - name: Report render duration
+        if: ${{ always() }}
+        run: |
+          echo "## Render capability result" >> "$GITHUB_STEP_SUMMARY"
+          echo "Render seconds: ${{ steps.render.outputs.render_seconds || 'not available' }}" >> "$GITHUB_STEP_SUMMARY"
