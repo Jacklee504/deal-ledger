@@ -3,6 +3,7 @@ import { DealLedgerReel } from "./DealLedgerReel";
 import reelData from "./data/reel.json";
 import { CoverScene } from "./scenes/CoverScene";
 import { DealLedgerExplainer } from "./ExplainerReel";
+import { DealLedgerSlideshow, slideshowDurationInFrames } from "./DealLedgerSlideshow";
 import type { ReelData } from "./types";
 
 const reel = reelData as ReelData;
@@ -15,6 +16,14 @@ export const DealLedgerComposition = () => {
         id="DealLedgerReel"
         component={DealLedgerReel}
         durationInFrames={durationInFrames}
+        fps={30}
+        width={1080}
+        height={1920}
+      />
+      <Composition
+        id="DealLedgerSlideshow"
+        component={DealLedgerSlideshow}
+        durationInFrames={slideshowDurationInFrames}
         fps={30}
         width={1080}
         height={1920}

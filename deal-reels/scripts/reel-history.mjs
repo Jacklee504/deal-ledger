@@ -83,13 +83,11 @@ const isWithinDays = (value, days, now = Date.now()) => {
   return Number.isFinite(timestamp) && timestamp >= now - days * 24 * 60 * 60 * 1000;
 };
 
-export const recentReelUsage = ({ asinDays = 30, familyDays = 60, historyFile = historyPath, now = Date.now() } = {}) => {
+export const recentReelUsage = ({ asinDays = 30, historyFile = historyPath, now = Date.now() } = {}) => {
   const history = loadHistory(historyFile);
-  // These sets normalize lookup values too, so legacy keys such as "home"
-  // still block the display label "Home" used by the selector.
+  // This is intentionally ASIN-only. Categories and product types can recur;
+  // only the exact product is kept out of the recent rotation.
   const asins = new NormalizedKeySet(normalizedAsin);
-  const families = new NormalizedKeySet(normalizedTextKey);
-  const categories = new NormalizedKeySet(normalizedTextKey);
 
   for (const reel of history.reels) {
     if (isWithinDays(reel.renderedAt, asinDays, now)) {
@@ -97,16 +95,8 @@ export const recentReelUsage = ({ asinDays = 30, familyDays = 60, historyFile = 
         if (normalizedAsin(asin)) asins.add(asin);
       }
     }
-    if (isWithinDays(reel.renderedAt, familyDays, now)) {
-      for (const family of reel.families ?? []) {
-        if (normalizedTextKey(family)) families.add(family);
-      }
-      for (const category of reel.categories ?? []) {
-        if (normalizedTextKey(category)) categories.add(category);
-      }
-    }
   }
-  return { asins, families, categories };
+  return { asins };
 };
 
 export const recordRenderedReel = (reel, { videoPath, coverPath, instagramCoverPath, historyFile = historyPath, now = new Date() }) => {
@@ -115,8 +105,6 @@ export const recordRenderedReel = (reel, { videoPath, coverPath, instagramCoverP
     renderedAt: new Date(now).toISOString(),
     status: "rendered",
     asins: [...new Set(reel.deals.map((deal) => normalizedAsin(deal.asin)).filter(Boolean))],
-    families: [...new Set(reel.deals.map((deal) => normalizedTextKey(deal.family)).filter(Boolean))],
-    categories: [...new Set(reel.deals.map((deal) => normalizedTextKey(deal.category)).filter(Boolean))],
     videoPath,
     coverPath,
     instagramCoverPath,

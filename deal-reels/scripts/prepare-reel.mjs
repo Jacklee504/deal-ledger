@@ -166,21 +166,16 @@ const deals = (() => {
   }
 
   const recentUsage = recentReelUsage();
-  const selectedFamilies = new Set();
-  const selectedCategories = new Set();
   const freshDeals = [];
   for (const candidate of candidates) {
-    if (recentUsage.asins.has(candidate.asin) || recentUsage.families.has(candidate.family) || recentUsage.categories.has(candidate.category)) continue;
-    if (selectedFamilies.has(candidate.family) || selectedCategories.has(candidate.category)) continue;
+    if (recentUsage.asins.has(candidate.asin)) continue;
     freshDeals.push(candidate);
-    selectedFamilies.add(candidate.family);
-    selectedCategories.add(candidate.category);
     if (freshDeals.length === 3) break;
   }
   return freshDeals;
 })();
 
-if (deals.length < 3) throw new Error("Need three fresh, category-diverse live US deals to generate a reel. Add more eligible deals or wait for the cooldown.");
+if (deals.length < 3) throw new Error("Need three live US deals that have not appeared in a reel within the last 30 days. Add more eligible deals or wait for the cooldown.");
 
 mkdirSync(imageDirectory, { recursive: true });
 mkdirSync(audioDirectory, { recursive: true });

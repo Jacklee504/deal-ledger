@@ -18,7 +18,7 @@ export const SafeFrame: FC<PropsWithChildren> = ({ children }) => (
         flexDirection: "column",
       }}
     >
-      {children}
+      <div style={{ display: "flex", flex: 1, flexDirection: "column", position: "relative" }}>{children}</div>
     </div>
   </AbsoluteFill>
 );

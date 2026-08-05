@@ -15,7 +15,7 @@ const temporaryHistory = (t, source = { version: 1, reels: [] }) => {
   return historyFile;
 };
 
-test("reads legacy mixed-case history as normalized cooldown keys", (t) => {
+test("reads legacy mixed-case history as normalized ASIN cooldown keys", (t) => {
   const historyFile = temporaryHistory(t, {
     version: 1,
     reels: [{
@@ -28,11 +28,10 @@ test("reads legacy mixed-case history as normalized cooldown keys", (t) => {
 
   const usage = recentReelUsage({ historyFile, now: fixedNow });
   assert.equal(usage.asins.has("B0H2TZNH4Z"), true);
-  assert.equal(usage.families.has("robot-vacuum"), true);
-  assert.equal(usage.categories.has("Home"), true);
+  assert.deepEqual(Object.keys(usage), ["asins"]);
 });
 
-test("writes normalized cooldown keys without changing source deal labels", (t) => {
+test("writes normalized ASIN cooldown keys", (t) => {
   const historyFile = temporaryHistory(t);
   const reel = {
     deals: [{ asin: "b0h2tznh4z", family: "Robot-Vacuum", category: "Home" }],
@@ -47,11 +46,10 @@ test("writes normalized cooldown keys without changing source deal labels", (t) 
   });
 
   assert.deepEqual(record.asins, ["B0H2TZNH4Z"]);
-  assert.deepEqual(record.families, ["robot-vacuum"]);
-  assert.deepEqual(record.categories, ["home"]);
-  assert.equal(reel.deals[0].category, "Home");
-  assert.equal(recentReelUsage({ historyFile, now: fixedNow }).categories.has("Home"), true);
-  assert.deepEqual(JSON.parse(readFileSync(historyFile, "utf8")).reels[0].categories, ["home"]);
+  assert.equal("families" in record, false);
+  assert.equal("categories" in record, false);
+  assert.equal(recentReelUsage({ historyFile, now: fixedNow }).asins.has("b0h2tznh4z"), true);
+  assert.equal("categories" in JSON.parse(readFileSync(historyFile, "utf8")).reels[0], false);
 });
 
 test("merges concurrent cooldown histories deterministically without dropping either render", () => {
