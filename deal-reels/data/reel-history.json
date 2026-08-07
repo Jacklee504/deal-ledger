@@ -33,9 +33,9 @@
         "office-chair"
       ],
       "categories": [
-        "Audio",
-        "Kitchen",
-        "Home office"
+        "audio",
+        "kitchen",
+        "home office"
       ],
       "videoPath": "Media/videos/archive/020826-1/deal-ledger-reel.mp4",
       "coverPath": "Media/videos/archive/020826-1/deal-ledger-reel-cover.png"
@@ -54,9 +54,9 @@
         "electric-toothbrush"
       ],
       "categories": [
-        "Wearables",
-        "Tech",
-        "Personal care"
+        "wearables",
+        "tech",
+        "personal care"
       ],
       "videoPath": "Media/videos/archive/020826-2/deal-ledger-reel.mp4",
       "coverPath": "Media/videos/archive/020826-2/deal-ledger-reel-cover.png"
@@ -74,7 +74,7 @@
         "speaker"
       ],
       "categories": [
-        "Audio"
+        "audio"
       ],
       "videoPath": "Media/videos/archive/020826-3/deal-ledger-reel.mp4",
       "coverPath": "Media/videos/archive/020826-3/deal-ledger-reel-cover.png",
@@ -93,7 +93,7 @@
         "speaker"
       ],
       "categories": [
-        "Audio"
+        "audio"
       ],
       "videoPath": "Media/videos/archive/020826-3/deal-ledger-reel.mp4",
       "coverPath": "Media/videos/archive/020826-3/deal-ledger-reel-cover.png",
@@ -111,11 +111,25 @@
         "robot-vacuum"
       ],
       "categories": [
-        "Home"
+        "home"
       ],
       "videoPath": "Media/videos/archive/020826-4/deal-ledger-reel.mp4",
       "coverPath": "Media/videos/archive/020826-4/deal-ledger-reel-cover.png",
       "instagramCoverPath": "Media/videos/archive/020826-4/deal-ledger-reel-instagram-cover.png"
+    },
+    {
+      "renderedAt": "2026-08-07T14:49:57.866Z",
+      "status": "rendered",
+      "asins": [
+        "B0FQF9ZX7P",
+        "B0FQF5BZ8Z",
+        "B09LD7WRVS"
+      ],
+      "videoPath": "Media/videos/archive/070826-1/deal-ledger-reel.mp4",
+      "coverPath": "Media/videos/archive/070826-1/deal-ledger-reel-cover.png",
+      "instagramCoverPath": "Media/videos/archive/070826-1/deal-ledger-reel-instagram-cover.png",
+      "families": [],
+      "categories": []
     }
   ]
 }
